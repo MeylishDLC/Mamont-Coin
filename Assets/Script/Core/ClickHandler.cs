@@ -28,4 +28,5 @@ public class ClickHandler : MonoBehaviour
         multiplierText.text = "MULTIPLIER: " + GameManager.Multiplier;
     }
 
+    
 }

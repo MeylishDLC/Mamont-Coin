@@ -7,4 +7,7 @@ public static class Events
 {
     public static UnityAction ClicksUpdated;
     public static UnityAction MessageRecieved;
+    
+    public static UnityAction AutoclickStarted;
+    public static UnityAction AutoWindowsAppearStarted;
 }

@@ -23,7 +23,7 @@ public class WindowedApp : MonoBehaviour
     private int notificationCounter;
     
     private bool isOpen;
-
+    
     private void Start()
     {
         if (closedOnStart)
