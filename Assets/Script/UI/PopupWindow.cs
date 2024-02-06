@@ -30,5 +30,6 @@ public class PopupWindow : MonoBehaviour
     public void CloseWindow()
     {
         gameObject.SetActive(false);
+        Debug.Log("hello");
     }
 }
