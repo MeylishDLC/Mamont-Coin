@@ -1,34 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class DragnDrop : MonoBehaviour
+public class DragnDrop : MonoBehaviour, IDragHandler
 {
+    //todo: remake w new input system
     private RectTransform rectTransform;
-    private Canvas canvas;
-    private Vector2 originalPosition;
 
-    void Awake()
+    private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
-        canvas = GetComponentInParent<Canvas>();
     }
 
-    void Update()
+    public void OnDrag(PointerEventData eventData)
     {
-        if (InputManager.GetInstance().IsDragging())
-        {
-            originalPosition = rectTransform.anchoredPosition;
-            rectTransform.SetAsLastSibling();
-            
-            Vector2 localPoint;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, InputManager.GetInstance().GetPointerPos(), null, out localPoint);
-            rectTransform.anchoredPosition = localPoint;
-        }
-        else
-        {
-            rectTransform.anchoredPosition = originalPosition;
-        }
+        rectTransform.anchoredPosition += eventData.delta;
     }
 }
