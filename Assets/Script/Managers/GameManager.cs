@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Interface")] 
     [SerializeField] private GameObject clicker;
-    [SerializeField] private GameObject clickerBuffsShC
+    [SerializeField] private GameObject clickerBuffsShop;
     [SerializeField] private GameObject skypeNotification;
     
     private void Start()
@@ -21,12 +21,7 @@ public class GameManager : MonoBehaviour
         Multiplier = 1;
         //////////////
         
-        clicker.SetActive(false);
-        clickerBuffsShop.SetActive(false);
-    }
-
-    public void GameBegin()
-    {
-        
+        // clicker.SetActive(false);
+        // clickerBuffsShop.SetActive(false);
     }
 }

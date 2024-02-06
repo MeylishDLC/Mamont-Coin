@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,11 +16,27 @@ public class WindowedApp : MonoBehaviour
     [SerializeField] private float openDuration;
     [SerializeField] private bool closedOnStart;
 
+    [Header("Window Icon")] 
+    [SerializeField] private GameObject windowIcon;
+    [SerializeField] private GameObject notificationIcon;
+    private TextMeshProUGUI notificationCounterText;
+    private int notificationCounter;
+    
+    private bool isOpen;
+
     private void Start()
     {
         if (closedOnStart)
         {
+            isOpen = false;
             gameObject.SetActive(false);
+            notificationIcon.SetActive(false);
+
+            notificationCounterText = notificationIcon.GetComponentInChildren<TextMeshProUGUI>();
+            notificationCounter = 0;
+            notificationCounterText.text = notificationCounter.ToString();
+
+            Events.MessageRecieved += OnNewNotificationGet;
         }
     }
 
@@ -31,6 +48,7 @@ public class WindowedApp : MonoBehaviour
 
         closeButton.interactable = true;
         gameObject.SetActive(false);
+        isOpen = false;
     }
 
     private async UniTask OpenAppAsync()
@@ -41,6 +59,23 @@ public class WindowedApp : MonoBehaviour
         await transform.DOScale(scaleOnOpen, openDuration).ToUniTask();
 
         closeButton.interactable = true;
+        
+        notificationIcon.SetActive(false);
+        notificationCounter = 0;
+        isOpen = true;
+    }
+
+    private void OnNewNotificationGet()
+    {
+        if (!isOpen)
+        {
+            notificationCounter++;
+            
+            notificationIcon.SetActive(true);
+            notificationIcon.transform.DOScale(1.3f, 0.1f).SetLoops(2, LoopType.Yoyo);
+            
+            notificationCounterText.text = notificationCounter.ToString();
+        }
     }
 
     public void CloseApp()
@@ -52,4 +87,6 @@ public class WindowedApp : MonoBehaviour
     {
         OpenAppAsync().Forget();
     }
+    
+    
 }

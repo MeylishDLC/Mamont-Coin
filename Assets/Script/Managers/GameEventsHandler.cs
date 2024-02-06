@@ -7,6 +7,9 @@ using UnityEngine.Events;
 
 public class GameEventsHandler : MonoBehaviour
 {
+    //todo: dialogues on > 20 clicks
+    
+    
     [SerializeField] private ClicksCountEventPair[] countEventPairs;
     private int goalIndex;
     private int currentGoal;
@@ -33,7 +36,7 @@ public class GameEventsHandler : MonoBehaviour
     }
     public void CheckEnoughClicks()
     {
-        if (GameManager.Clicks == currentGoal)
+        if (GameManager.Clicks >= currentGoal)
         {
             countEventPairs[goalIndex].Event.Invoke();
             if (goalIndex < countEventPairs.Length - 1)

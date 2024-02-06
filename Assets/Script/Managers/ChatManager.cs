@@ -18,7 +18,6 @@ public class ChatManager : MonoBehaviour
     private void Start()
     {
         messageList = new List<Message>();
-        
     }
 
     private void Awake()
@@ -42,7 +41,7 @@ public class ChatManager : MonoBehaviour
             SendMessageToChat("Keyboard button was pressed");
         }
     }
-
+    
     public void SendMessageToChat(string text)
     {
         if (messageList.Count >= maxMessages)
@@ -58,14 +57,6 @@ public class ChatManager : MonoBehaviour
         newMessage.textObject.text = newMessage.text;
         
         messageList.Add(newMessage);
-    }
-
-    public async void SendMultipleMessages(List<string> messages)
-    {
-        foreach (var message in messages)
-        {
-            SendMessageToChat(message);
-            await UniTask.Delay(1500);
-        }
+        Events.MessageRecieved?.Invoke();
     }
 }
