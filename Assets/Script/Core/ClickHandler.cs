@@ -13,8 +13,8 @@ public class ClickHandler : MonoBehaviour
     private void Start()
     {
         counterText.text = GameManager.Clicks.ToString();
-        multiplierText.text = "MULTIPLIER: " + GameManager.Multiplier;
-        coinToRubleText.text = "Mamont rubles: 0";
+        multiplierText.text = GameManager.Multiplier + " кликов";
+        coinToRubleText.text = "0 руб.";
 
         Events.ClicksUpdated += OnClicksUpdated;
     }
@@ -28,7 +28,7 @@ public class ClickHandler : MonoBehaviour
     private void OnClicksUpdated()
     {
         counterText.text = GameManager.Clicks.ToString();
-        multiplierText.text = "MULTIPLIER: " + GameManager.Multiplier;
+        multiplierText.text = GameManager.Multiplier + " кликов";
 
         var clicks = GameManager.Clicks;
         var rubles = Convert.ToDouble(clicks) / Convert.ToDouble(coinExchangeRate);

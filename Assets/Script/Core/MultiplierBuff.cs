@@ -52,7 +52,7 @@ public class MultiplierBuff : MonoBehaviour
     private void Start()
     {
         priceText.text = price.ToString();
-        multiplierText.text = "+" + multiplier + " КЛИКОВ";
+        //multiplierText.text = "+" + multiplier + " КЛИКОВ";
         UpdateButtonInteractable(); 
     }
 

@@ -20,6 +20,7 @@ public class TaskBackgroundManager : MonoBehaviour
     [SerializeField] private List<GameObject> popupWindows;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject spawnParent;
+    [SerializeField] private int coinsPerPopupWindow;
 
     private static TaskBackgroundManager instance;
     private void Awake()
@@ -38,27 +39,22 @@ public class TaskBackgroundManager : MonoBehaviour
     
     private void Start()
     {
-        Events.AutoClickEnabled += AutoClick;
-        Events.AutoWindowsAppearEnabled += PopupWindowAppear;
-        Events.ClicksUpdated += DoubleClickChance;
-        
-        
         //debug//
         if (GameManager.GetInstance().autoPopupWindowsEnabled)
         {
-            Events.AutoWindowsAppearEnabled?.Invoke();
+           PopupWindowAppear();
         }
         if (GameManager.GetInstance().doubleClickChanceEnabled)
         {
-            Events.DoubleClickChanceEnabled?.Invoke();
+            DoubleClickChance();
         }
         if (GameManager.GetInstance().autoClickEnabled)
         {
-            Events.AutoClickEnabled?.Invoke();
+            AutoClick();
         }
     }
-
-    private void DoubleClickChance()
+    
+    public void DoubleClickChance()
     {
         var chance = Random.Range(1, 100);
         if (chance <= percentageChanceOfDoubleClick)
@@ -85,17 +81,21 @@ public class TaskBackgroundManager : MonoBehaviour
             await UniTask.Delay(appearFrequencyMilliseconds);
         }
     }
-    private void PopupWindowAppear()
+    public void PopupWindowAppear()
     {
+        GameManager.GetInstance().autoPopupWindowsEnabled = true;
         PopupWindowAppearAsync().Forget();
     }
     private async UniTask AutoClickAsync()
     {
-        await UniTask.Delay(clickFrequencyMilliseconds);
-        GameManager.Clicks++;
-        Events.ClicksUpdated?.Invoke();
+        while (true)
+        {
+            await UniTask.Delay(clickFrequencyMilliseconds);
+            GameManager.Clicks++;
+            Events.ClicksUpdated?.Invoke();
+        }
     }
-    private void AutoClick()
+    public void AutoClick()
     {
         AutoClickAsync().Forget();
     }

@@ -47,5 +47,5 @@ public class GameEventsHandler : MonoBehaviour
             Debug.Log("All goals achieved");
         }
     }
-    
+
 }

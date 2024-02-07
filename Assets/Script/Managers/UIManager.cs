@@ -9,25 +9,29 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("Buffs shop")]
-    [SerializeField] private GameObject shopBuffsPanel;
+
+    [Header("Buffs shop")] [SerializeField]
+    private GameObject shopBuffsPanel;
+
     [SerializeField] private Button showBuffsPanelButton;
     [SerializeField] private Button hideBuffsPanelButton;
     [SerializeField] private float xMoveShow;
     [SerializeField] private float xMoveHide;
     private bool buffsPanelOpen;
+
     private void Start()
     {
-        buffsPanelOpen = false; 
+        buffsPanelOpen = false;
         shopBuffsPanel.SetActive(false);
     }
+
     private async UniTask ShowPanelAsync()
     {
         if (!buffsPanelOpen)
         {
             shopBuffsPanel.SetActive(true);
             showBuffsPanelButton.interactable = false;
-            
+
             await shopBuffsPanel.transform.DOLocalMoveX(xMoveShow, 0.5f).ToUniTask();
 
             showBuffsPanelButton.interactable = true;
@@ -35,19 +39,21 @@ public class UIManager : MonoBehaviour
         }
 
     }
+
     private async UniTask HidePanelAsync()
     {
         hideBuffsPanelButton.interactable = false;
         showBuffsPanelButton.interactable = false;
-        
+
         await shopBuffsPanel.transform.DOLocalMoveX(xMoveHide, 0.5f).ToUniTask();
 
         hideBuffsPanelButton.interactable = true;
         showBuffsPanelButton.interactable = true;
-        
+
         buffsPanelOpen = false;
         shopBuffsPanel.SetActive(false);
     }
+
     public void ShowPanel()
     {
         ShowPanelAsync().Forget();
@@ -57,4 +63,8 @@ public class UIManager : MonoBehaviour
     {
         HidePanelAsync().Forget();
     }
+
+   
+
 }
+

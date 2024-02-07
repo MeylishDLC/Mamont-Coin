@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject interactionOff;
     [Header("Clicker")] 
     [SerializeField] private GameObject clickerCanvas;
     [SerializeField] private GameObject shopPanelCanvas;
@@ -22,7 +24,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Introduction")] 
     [SerializeField] private GameObject clickerEXE;
-    [SerializeField] private GameObject interactionOff;
     [SerializeField] private List<string> hackerMessagesBeforeOpen;
     [SerializeField] private List<string> hackerMessagesAfterOpen;
     
@@ -64,16 +65,14 @@ public class GameManager : MonoBehaviour
             skypeObject.GetComponent<DragnDrop>().enabled = false;
             skypeCloseButton.interactable = false;
             
+            clickerCanvas.SetActive(false);
+            shopPanelCanvas.SetActive(false);
+            
             StartGame().Forget();
         }
     }
-    
-    //todo: make skype open by default  OR  redo everything
     private async UniTask StartGame()
     {
-        clickerCanvas.SetActive(false);
-        shopPanelCanvas.SetActive(false);
-        
         await GameIntroduction();
         if (skypeApp.isOpen)
         {
