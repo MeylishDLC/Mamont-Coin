@@ -9,48 +9,52 @@ using Random = UnityEngine.Random;
 
 public class TaskBackgroundManager : MonoBehaviour
 {
-    [Header("Autoclicker")] 
+    [Header("AutoClicker")] 
     [SerializeField] private int clickFrequencyMilliseconds;
-    public bool AutoClickEnabled;
-    
-    //todo: make it work
-    /*private bool autoClickEnabled;
-    public bool AutoClickEnabled
-    {
-        get
-        {
-            return autoClickEnabled;
-        }
-        set
-        {
-            autoClickEnabled = value;
-            if (value)
-            {
-                AutoClickAsync().Forget();
-            }
-        }
-    }*/
 
     [Header("Double Click Chance")] 
     [SerializeField] private int percentageChanceOfDoubleClick;
-    public bool doubleClickChanceEnabled;
-
+    
     [Header("Auto Pop-up Windows")] 
     [SerializeField] private int appearFrequencyMilliseconds;
     [SerializeField] private List<GameObject> popupWindows;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject spawnParent;
-    public bool AutoPopupWindowsEnabled;
 
+    private static TaskBackgroundManager instance;
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("Found more than one TaskBackgroundManager in the scene.");
+        }
+        instance = this;
+    }
+
+    public static TaskBackgroundManager GetInstance()
+    {
+        return instance;
+    }
+    
     private void Start()
     {
         Events.AutoClickEnabled += AutoClick;
         Events.AutoWindowsAppearEnabled += PopupWindowAppear;
         Events.ClicksUpdated += DoubleClickChance;
         
-        if (AutoPopupWindowsEnabled)
+        
+        //debug//
+        if (GameManager.GetInstance().autoPopupWindowsEnabled)
         {
-            PopupWindowAppearAsync().Forget();
+            Events.AutoWindowsAppearEnabled?.Invoke();
+        }
+        if (GameManager.GetInstance().doubleClickChanceEnabled)
+        {
+            Events.DoubleClickChanceEnabled?.Invoke();
+        }
+        if (GameManager.GetInstance().autoClickEnabled)
+        {
+            Events.AutoClickEnabled?.Invoke();
         }
     }
 
@@ -66,15 +70,16 @@ public class TaskBackgroundManager : MonoBehaviour
 
     private async UniTask PopupWindowAppearAsync()
     {
-        while (AutoPopupWindowsEnabled)
+        while (GameManager.GetInstance().autoPopupWindowsEnabled)
         {
             var randomX = Random.Range(0f, Screen.width);
             var randomY = Random.Range(0f, Screen.height);
             var randomWindow = popupWindows[Random.Range(0, popupWindows.Count - 1)];
             
-            var randomPositionWorld = mainCamera.ScreenToWorldPoint(new Vector3(randomX, randomY, mainCamera.nearClipPlane));
+            var randomPositionWorld = mainCamera.ScreenToWorldPoint(new Vector2(randomX, randomY));
             
-            var popupWindow = Instantiate(randomWindow, randomPositionWorld, Quaternion.identity, spawnParent.transform);
+            var popupWindow = Instantiate(randomWindow, spawnParent.transform);
+            popupWindow.transform.localPosition = randomPositionWorld;
             
             await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
             await UniTask.Delay(appearFrequencyMilliseconds);
@@ -86,12 +91,9 @@ public class TaskBackgroundManager : MonoBehaviour
     }
     private async UniTask AutoClickAsync()
     {
-        while (true)
-        {
-            await UniTask.Delay(clickFrequencyMilliseconds);
-            GameManager.Clicks++;
-            Events.ClicksUpdated?.Invoke();
-        }
+        await UniTask.Delay(clickFrequencyMilliseconds);
+        GameManager.Clicks++;
+        Events.ClicksUpdated?.Invoke();
     }
     private void AutoClick()
     {

@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: f460bc27a33c72540a9fa2ed0cca5be3
+guid: d8872a6b238d79f4abd1c9b19253710c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3667233811315737260
-    second: skampIconCalls_0
-  - first:
-      213: -7174535663861908396
-    second: skampIconCalls_1
-  - first:
-      213: 7090322065896084807
-    second: skampIconCalls_2
+      213: 8901836483765696675
+    second: f53ab97e3190be20_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -184,13 +178,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: skampIconCalls_0
+      name: f53ab97e3190be20_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 53
-        height: 52
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,52 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ca2c6c7b8b1a4e230800000000000000
-      internalID: 3667233811315737260
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: skampIconCalls_1
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 0
-        width: 54
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 45cb32773ddee6c90800000000000000
-      internalID: -7174535663861908396
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: skampIconCalls_2
-      rect:
-        serializedVersion: 2
-        x: 125
-        y: 0
-        width: 53
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 74599d05a52e56260800000000000000
-      internalID: 7090322065896084807
+      spriteID: 3a877773e1da98b70800000000000000
+      internalID: 8901836483765696675
       vertices: []
       indices: 
       edges: []
@@ -253,7 +203,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -261,9 +211,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      skampIconCalls_0: 3667233811315737260
-      skampIconCalls_1: -7174535663861908396
-      skampIconCalls_2: 7090322065896084807
+      f53ab97e3190be20_0: 8901836483765696675
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

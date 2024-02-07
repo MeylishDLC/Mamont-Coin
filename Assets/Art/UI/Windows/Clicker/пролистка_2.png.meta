@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 76e8628dc775dc746b77ec7a9abec8fa
+guid: d6a8858f801d71a41a66525e236bf956
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5462727177813779378
-    second: skampEscButton 1_0
+      213: -7275094783482541726
+    second: "\u043F\u0440\u043E\u043B\u0438\u0441\u0442\u043A\u0430_2_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -178,13 +178,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: skampEscButton 1_0
+      name: "\u043F\u0440\u043E\u043B\u0438\u0441\u0442\u043A\u0430_2_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 93
-        height: 40
+        width: 25
+        height: 98
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e4c9985139e7034b0800000000000000
-      internalID: -5462727177813779378
+      spriteID: 269c93be6dba90b90800000000000000
+      internalID: -7275094783482541726
       vertices: []
       indices: 
       edges: []
@@ -211,7 +211,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      skampEscButton 1_0: -5462727177813779378
+      "\u043F\u0440\u043E\u043B\u0438\u0441\u0442\u043A\u0430_2_0": -7275094783482541726
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

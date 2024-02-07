@@ -9,6 +9,7 @@ public class PopupWindow : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private bool isInstantiable;
+    [SerializeField] private bool destroyOnClose;
 
     private void Awake()
     {
@@ -26,6 +27,13 @@ public class PopupWindow : MonoBehaviour
 
     public void CloseWindow()
     {
-        Destroy(gameObject);
+        if (destroyOnClose)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -656,6 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInstantiable: 1
+  destroyOnClose: 1
 --- !u!114 &5845513180058822267
 MonoBehaviour:
   m_ObjectHideFlags: 0

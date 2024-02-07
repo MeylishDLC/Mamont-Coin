@@ -22,7 +22,7 @@ public class WindowedApp : MonoBehaviour
     private TextMeshProUGUI notificationCounterText;
     private int notificationCounter;
     
-    private bool isOpen;
+    public bool isOpen { get; set; }
     
     private void Start()
     {
@@ -63,6 +63,8 @@ public class WindowedApp : MonoBehaviour
         notificationIcon.SetActive(false);
         notificationCounter = 0;
         isOpen = true;
+        
+        Events.AppOpened?.Invoke();
     }
 
     private void OnNewNotificationGet()

@@ -32,7 +32,7 @@ public class ClickHandler : MonoBehaviour
 
         var clicks = GameManager.Clicks;
         var rubles = Convert.ToDouble(clicks) / Convert.ToDouble(coinExchangeRate);
-        coinToRubleText.text = "Mamont rubles: " + rubles;
+        coinToRubleText.text = rubles + " руб.";
     }
 
     

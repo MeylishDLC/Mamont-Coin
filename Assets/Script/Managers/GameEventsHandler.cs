@@ -36,6 +36,7 @@ public class GameEventsHandler : MonoBehaviour
         {
             if (GameManager.Clicks >= currentGoal)
             {
+                //todo: optional delay on message send
                 countEventPairs[goalIndex].Event.Invoke();
                 goalIndex++;
                 currentGoal = countEventPairs[goalIndex].ClicksCount;
