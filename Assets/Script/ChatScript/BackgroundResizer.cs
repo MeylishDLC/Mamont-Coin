@@ -7,20 +7,24 @@ using TMPro;
 [RequireComponent(typeof(RectTransform))]
 public class BackgroundResizer : MonoBehaviour
 {
-    [SerializeField] private TMP_Text textObject;
-    [SerializeField] private RectTransform imageRectTransform;
-    [SerializeField] private Vector2 padding;
-    bool isOutside;
+    [SerializeField] private GameObject image;
+    [SerializeField] private GameObject text;
+    [SerializeField] private float paddingX = 0f;
+    [SerializeField] private float paddingY = 0f;
+
+    private RectTransform imageRectTransform;
+    private TextMeshProUGUI textMeshPro;
+
+    private void Start()
+    {
+        imageRectTransform = image.GetComponent<RectTransform>();
+        textMeshPro = text.GetComponent<TextMeshProUGUI>();
+    }
 
     private void Update()
     {
-        //get rendered values of the text
-        textObject.ForceMeshUpdate();
-        
-        var textInfo = textObject.textInfo;
-        var textBounds = textInfo.meshInfo[0].mesh.bounds;
-
-        imageRectTransform.sizeDelta = new Vector2(textBounds.size.x + padding.x, textBounds.size.y + padding.y);
+        textMeshPro.ForceMeshUpdate();
+        var preferredHeight = textMeshPro.GetPreferredValues().y;
+        imageRectTransform.sizeDelta = new Vector2(imageRectTransform.sizeDelta.x + paddingX, preferredHeight + paddingY);
     }
-    
 }
