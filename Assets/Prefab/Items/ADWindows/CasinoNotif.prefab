@@ -110,7 +110,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 15, y: -12}
-  m_SizeDelta: {x: 545.78, y: 50}
+  m_SizeDelta: {x: 451.18, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &583604306541097564
 CanvasRenderer:
@@ -864,9 +864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5adad528cdc164fbb80db4f1da81a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  header: {fileID: 159610826883344794}
-  info: {fileID: 6836352192532701019}
-  destroyOnClose: 1
+  isInstantiable: 1
 --- !u!114 &682979772981743529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,6 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edfaa4d57206af043878d685f93c8bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  draggableObjectRectTransform: {fileID: 3406433794874045719}
 --- !u!1 &8349165093064997771
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class TaskBackgroundManager : MonoBehaviour
@@ -29,7 +31,7 @@ public class TaskBackgroundManager : MonoBehaviour
         }
     }*/
 
-    [Header("Percent Chance")] 
+    [Header("Double Click Chance")] 
     [SerializeField] private int percentageChanceOfDoubleClick;
     public bool doubleClickChanceEnabled;
 
@@ -42,8 +44,9 @@ public class TaskBackgroundManager : MonoBehaviour
 
     private void Start()
     {
-        Events.AutoclickStarted += AutoClick;
-        Events.AutoWindowsAppearStarted += PopupWindowAppear;
+        Events.AutoClickEnabled += AutoClick;
+        Events.AutoWindowsAppearEnabled += PopupWindowAppear;
+        Events.ClicksUpdated += DoubleClickChance;
         
         if (AutoPopupWindowsEnabled)
         {
@@ -51,28 +54,36 @@ public class TaskBackgroundManager : MonoBehaviour
         }
     }
 
-    public async UniTask PopupWindowAppearAsync()
+    private void DoubleClickChance()
     {
-        while (true)
+        var chance = Random.Range(1, 100);
+        if (chance <= percentageChanceOfDoubleClick)
+        {
+            GameManager.Clicks++;
+            Debug.Log("Double click");
+        }
+    }
+
+    private async UniTask PopupWindowAppearAsync()
+    {
+        while (AutoPopupWindowsEnabled)
         {
             var randomX = Random.Range(0f, Screen.width);
             var randomY = Random.Range(0f, Screen.height);
             var randomWindow = popupWindows[Random.Range(0, popupWindows.Count - 1)];
-        
-            var randomPositionScreen = new Vector3(randomX, randomY, mainCamera.nearClipPlane);
-            var randomPositionWorld = mainCamera.ScreenToWorldPoint(randomPositionScreen);
-        
-            Instantiate(randomWindow, randomPositionWorld, Quaternion.identity, spawnParent.transform);
-        
+            
+            var randomPositionWorld = mainCamera.ScreenToWorldPoint(new Vector3(randomX, randomY, mainCamera.nearClipPlane));
+            
+            var popupWindow = Instantiate(randomWindow, randomPositionWorld, Quaternion.identity, spawnParent.transform);
+            
+            await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
             await UniTask.Delay(appearFrequencyMilliseconds);
         }
     }
-
     private void PopupWindowAppear()
     {
         PopupWindowAppearAsync().Forget();
     }
-    
     private async UniTask AutoClickAsync()
     {
         while (true)
@@ -82,9 +93,10 @@ public class TaskBackgroundManager : MonoBehaviour
             Events.ClicksUpdated?.Invoke();
         }
     }
-
     private void AutoClick()
     {
         AutoClickAsync().Forget();
     }
+    
+    
 }

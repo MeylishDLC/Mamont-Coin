@@ -7,15 +7,15 @@ using UnityEngine;
 
 public class PopupWindow : MonoBehaviour
 {
-    [Header("UI")]
-    [SerializeField] private TextMeshProUGUI header;
-    [SerializeField] private TextMeshProUGUI info;
-    [Header("Settings")] 
-    [SerializeField] private bool destroyOnClose;
+    [Header("Settings")]
+    [SerializeField] private bool isInstantiable;
 
-    private void Start()
+    private void Awake()
     {
-        gameObject.SetActive(false);
+        if (!isInstantiable)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void ShowWindow()
@@ -26,10 +26,6 @@ public class PopupWindow : MonoBehaviour
 
     public void CloseWindow()
     {
-        gameObject.SetActive(false);
-        if (destroyOnClose)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 531344238664850600}
   - component: {fileID: 8115572875946650553}
   - component: {fileID: 3222567902259685853}
-  - component: {fileID: 2128316667128980297}
+  - component: {fileID: 619122688789284224}
   m_Layer: 0
   m_Name: Tanki
   m_TagString: Untagged
@@ -96,10 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5adad528cdc164fbb80db4f1da81a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  header: {fileID: 3786640132580897121}
-  info: {fileID: 4107997226037349617}
-  destroyOnClose: 1
---- !u!114 &2128316667128980297
+  isInstantiable: 1
+--- !u!114 &619122688789284224
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edfaa4d57206af043878d685f93c8bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  draggableObjectRectTransform: {fileID: 6122294905377193416}
 --- !u!1 &2026917590836744098
 GameObject:
   m_ObjectHideFlags: 0

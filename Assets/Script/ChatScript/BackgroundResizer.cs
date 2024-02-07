@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,12 @@ using TMPro;
 [RequireComponent(typeof(RectTransform))]
 public class BackgroundResizer : MonoBehaviour
 {
-    public TMP_Text textObject;
-    public RectTransform imageRectTransform;
-    public Vector2 padding;
+    [SerializeField] private TMP_Text textObject;
+    [SerializeField] private RectTransform imageRectTransform;
+    [SerializeField] private Vector2 padding;
+    bool isOutside;
 
-    void Update()
+    private void Update()
     {
         //get rendered values of the text
         textObject.ForceMeshUpdate();
@@ -20,4 +22,5 @@ public class BackgroundResizer : MonoBehaviour
 
         imageRectTransform.sizeDelta = new Vector2(textBounds.size.x + padding.x, textBounds.size.y + padding.y);
     }
+    
 }

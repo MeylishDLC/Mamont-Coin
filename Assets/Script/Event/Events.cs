@@ -8,6 +8,7 @@ public static class Events
     public static UnityAction ClicksUpdated;
     public static UnityAction MessageRecieved;
     
-    public static UnityAction AutoclickStarted;
-    public static UnityAction AutoWindowsAppearStarted;
+    public static UnityAction AutoClickEnabled;
+    public static UnityAction DoubleClickChanceEnabled;
+    public static UnityAction AutoWindowsAppearEnabled;
 }

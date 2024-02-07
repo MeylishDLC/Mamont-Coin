@@ -9,19 +9,15 @@ public class GameManager : MonoBehaviour
     public static int Clicks;
     public static int Multiplier;
 
-    [Header("Interface")] 
+    [Header("Interface")]
     [SerializeField] private GameObject clicker;
     [SerializeField] private GameObject clickerBuffsShop;
     [SerializeField] private GameObject skypeNotification;
-    
     private void Start()
     {
         ///////////////
         Clicks = 0;
         Multiplier = 1;
         //////////////
-        
-        // clicker.SetActive(false);
-        // clickerBuffsShop.SetActive(false);
     }
 }

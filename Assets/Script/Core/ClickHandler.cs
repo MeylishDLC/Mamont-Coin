@@ -8,11 +8,14 @@ public class ClickHandler : MonoBehaviour
 { 
     [SerializeField] private TextMeshProUGUI counterText;
     [SerializeField] private TextMeshProUGUI multiplierText;
-
+    [SerializeField] private TextMeshProUGUI coinToRubleText;
+    [SerializeField] private int coinExchangeRate;
     private void Start()
     {
-        counterText.text = "CLICKS: " + GameManager.Clicks;
+        counterText.text = GameManager.Clicks.ToString();
         multiplierText.text = "MULTIPLIER: " + GameManager.Multiplier;
+        coinToRubleText.text = "Mamont rubles: 0";
+
         Events.ClicksUpdated += OnClicksUpdated;
     }
     public void Increment()
@@ -24,8 +27,12 @@ public class ClickHandler : MonoBehaviour
 
     private void OnClicksUpdated()
     {
-        counterText.text = "CLICKS: " + GameManager.Clicks;
+        counterText.text = GameManager.Clicks.ToString();
         multiplierText.text = "MULTIPLIER: " + GameManager.Multiplier;
+
+        var clicks = GameManager.Clicks;
+        var rubles = Convert.ToDouble(clicks) / Convert.ToDouble(coinExchangeRate);
+        coinToRubleText.text = "Mamont rubles: " + rubles;
     }
 
     
