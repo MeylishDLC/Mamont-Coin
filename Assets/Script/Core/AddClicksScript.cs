@@ -10,7 +10,7 @@ public class AddClicksScript : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private TextMeshProUGUI clicksToAddText;
-
+    
     private void OnEnable()
     {
         button.onClick.AddListener(BuyClicks);
@@ -23,6 +23,7 @@ public class AddClicksScript : MonoBehaviour
         Events.ClicksUpdated -= UpdateButtonInteractable; 
     }
 
+    
     private void UpdateButtonInteractable()
     {
         button.interactable = GameManager.Clicks >= price;
@@ -32,7 +33,8 @@ public class AddClicksScript : MonoBehaviour
     {
         priceText.text = price + " clicks";
         clicksToAddText.text = "ПРИБАВИТЬ " + clicksToAdd;
-        UpdateButtonInteractable(); 
+        UpdateButtonInteractable();
+
     }
 
     public void BuyClicks()

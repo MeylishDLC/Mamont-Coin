@@ -7,6 +7,5 @@ public static class Events
 {
     public static UnityAction ClicksUpdated;
     public static UnityAction MessageRecieved;
-    public static UnityAction AppOpened;
     public static UnityAction DoubleClickChanceEnabled;
 }

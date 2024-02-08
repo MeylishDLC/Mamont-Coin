@@ -5,8 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/WorkSceneMeylish.unity
+    guid: 3d3927c9f0f477d4abdddf046369f7b0
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 309215c6b040df74aadd8f60e566ca21, type: 2}
+  m_UseUCBPForAssetBundles: 0

@@ -15,8 +15,7 @@ public class TaskBackgroundManager : MonoBehaviour
 
     [Header("Double Click Chance")] 
     [SerializeField] private int percentageChanceOfDoubleClick;
-    public int chanceClickAmount;
-    
+
     [Header("Auto Pop-up Windows")] 
     [SerializeField] private int appearFrequencyMilliseconds;
     [SerializeField] private List<GameObject> popupWindows;
@@ -39,12 +38,12 @@ public class TaskBackgroundManager : MonoBehaviour
         return instance;
     }
 
-    public void DoubleClickChance(int clickAmount = 2)
+    public void DoubleClickChance()
     {
         var chance = Random.Range(1, 100);
         if (chance <= percentageChanceOfDoubleClick)
         {
-            GameManager.Clicks += clickAmount;
+            GameManager.Clicks *= 2;
             Events.ClicksUpdated?.Invoke();
             Debug.Log("Chance click");
         }
@@ -57,11 +56,11 @@ public class TaskBackgroundManager : MonoBehaviour
             var randomX = Random.Range(0f, Screen.width);
             var randomY = Random.Range(0f, Screen.height);
             var randomWindow = popupWindows[Random.Range(0, popupWindows.Count - 1)];
-            
-            var randomPositionWorld = mainCamera.ScreenToWorldPoint(new Vector2(randomX, randomY));
-            
+
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(spawnParent.GetComponent<RectTransform>(), new Vector2(randomX, randomY), mainCamera, out Vector2 randomPositionLocal);
+
             var popupWindow = Instantiate(randomWindow, spawnParent.transform);
-            popupWindow.transform.localPosition = randomPositionWorld;
+            popupWindow.transform.localPosition = randomPositionLocal;
             
             await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
             await UniTask.Delay(appearFrequencyMilliseconds);

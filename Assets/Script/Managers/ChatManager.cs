@@ -19,22 +19,24 @@ public class ChatManager : MonoBehaviour
     //todo: blue color for selected bro
     [Header("Scammer ChatBox")] 
     [SerializeField] private string scammerName;
+    [SerializeField] private GameObject scammerChat;
     [SerializeField] private List<Message> scammerMessageList;
-    [SerializeField] private GameObject scammerChatPanel;
+    [SerializeField] private GameObject scammerChatContent;
     [SerializeField] private Image scammerProfileToolPanel;
 
     [Header("Scammer ChatBox")] 
     [SerializeField] private string hackerName;
+    [SerializeField] private GameObject hackerChat;
     [SerializeField] private List<Message> hackerMessageList;
-    [SerializeField] private GameObject hackerChatPanel;
+    [SerializeField] private GameObject hackerChatContent;
     [SerializeField] private Image hackerProfileToolPanel;
     private Color originalProfilesColor;
 
     private static ChatManager instance;
     private void Start()
     {
-        scammerChatPanel.SetActive(true);
-        hackerChatPanel.SetActive(false);
+        scammerChat.SetActive(true);
+        hackerChat.SetActive(false);
         currentChatName.text = scammerName;
         
         hackerMessageList = new List<Message>();
@@ -65,7 +67,7 @@ public class ChatManager : MonoBehaviour
         }
         var newMessage = new Message {text = text};
         
-        var newText = Instantiate(textObject, scammerChatPanel.transform);
+        var newText = Instantiate(textObject, scammerChatContent.transform);
         
         newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
         newMessage.textObject.text = newMessage.text;
@@ -82,7 +84,7 @@ public class ChatManager : MonoBehaviour
         }
         var newMessage = new Message {text = text};
         
-        var newText = Instantiate(textObject, hackerChatPanel.transform);
+        var newText = Instantiate(textObject, hackerChatContent.transform);
         
         newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
         newMessage.textObject.text = newMessage.text;
@@ -91,29 +93,29 @@ public class ChatManager : MonoBehaviour
         Events.MessageRecieved?.Invoke();
     }
     
-    public void SendMessageToScammerChat(string text, string messageName)
+    public void SendMessageToScammerChatWithName(string text, string messageName)
     {
-        if (hackerMessageList.Count >= maxMessages)
+        if (scammerMessageList.Count >= maxMessages)
         {
-            Destroy(hackerMessageList[0].textObject.gameObject);
-            hackerMessageList.Remove(hackerMessageList[0]); 
+            Destroy(scammerMessageList[0].textObject.gameObject);
+            scammerMessageList.Remove(scammerMessageList[0]); 
         }
         var newMessage = new Message {text = text};
         
-        var newText = Instantiate(textObject, hackerChatPanel.transform);
+        var newText = Instantiate(textObject, scammerChatContent.transform);
         newText.name = messageName;
         
-        newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
+        newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
         newMessage.textObject.text = newMessage.text;
         
-        hackerMessageList.Add(newMessage);
+        scammerMessageList.Add(newMessage);
         Events.MessageRecieved?.Invoke();
     }
 
     public void SwitchToHacker()
     {
-        scammerChatPanel.SetActive(false);
-        hackerChatPanel.SetActive(true);
+        scammerChat.SetActive(false);
+        hackerChat.SetActive(true);
 
         currentChatName.text = hackerName;
 
@@ -123,8 +125,8 @@ public class ChatManager : MonoBehaviour
 
     public void SwitchToScammer()
     {
-        hackerChatPanel.SetActive(false);
-        scammerChatPanel.SetActive(true);
+        hackerChat.SetActive(false);
+        scammerChat.SetActive(true);
         
         currentChatName.text = scammerName;
         

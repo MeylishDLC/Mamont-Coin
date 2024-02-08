@@ -63,8 +63,6 @@ public class SkypeApp : MonoBehaviour, IWindowedApp
         notificationIcon.SetActive(false);
         notificationCounter = 0;
         isOpen = true;
-        
-        Events.AppOpened?.Invoke();
     }
 
     private void OnNewNotificationGet()

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClickHandler : MonoBehaviour
 { 
@@ -18,6 +19,12 @@ public class ClickHandler : MonoBehaviour
         coinToRubleText.text = "0 руб.";
 
         Events.ClicksUpdated += OnClicksUpdated;
+        Events.DoubleClickChanceEnabled += AddDoubleClick;
+    }
+    
+    public void AddDoubleClick()
+    {
+        gameObject.GetComponent<Button>().onClick.AddListener(TaskBackgroundManager.GetInstance().DoubleClickChance);
     }
     public void Increment()
     {

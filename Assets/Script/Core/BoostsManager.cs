@@ -43,12 +43,12 @@ public class BoostsManager : MonoBehaviour
         GameManager.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }
-
+    
     public void DoubleClickChance()
     {
         //todo: check double click
         doubleClickChanceEnabled = true;
-        TaskBackgroundManager.GetInstance().DoubleClickChance();
+        Events.DoubleClickChanceEnabled?.Invoke();
     }
 
     public void ImproveAutoClick(int improvedClickAmount)
@@ -74,8 +74,8 @@ public class BoostsManager : MonoBehaviour
     {
         if (doubleClickChanceEnabled)
         {
-            TaskBackgroundManager.GetInstance().chanceClickAmount = improvedClickAmount;
-            TaskBackgroundManager.GetInstance().DoubleClickChance(improvedClickAmount);
+            
+            
         }
         else
         {

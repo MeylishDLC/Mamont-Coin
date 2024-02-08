@@ -24,8 +24,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Introduction")] 
     [SerializeField] private GameObject clickerEXE;
-    [SerializeField] private List<string> hackerMessagesBeforeOpen;
-    [SerializeField] private List<string> hackerMessagesAfterOpen;
+    [SerializeField] private List<string> hackerMessages;
     
     [Header("DEBUG")]
     [SerializeField] private bool gameIntroductionEnabled;
@@ -61,54 +60,29 @@ public class GameManager : MonoBehaviour
             skypeApp = skypeObject.GetComponent<SkypeApp>();
             skypeObject.GetComponent<DragnDrop>().enabled = false;
             skypeCloseButton.interactable = false;
-            
+
             clickerCanvas.SetActive(false);
-            shopPanelCanvas.SetActive(false);
-            
-            StartGame().Forget();
-        }
-    }
-    private async UniTask StartGame()
-    {
-        await GameIntroduction();
-        if (skypeApp.isOpen)
-        {
+            shopPanelCanvas.SetActive(false); 
             interactionOff.SetActive(true);
-            await OnSkypeOpenFirstTimeAsync();
-        }
-        else
-        {
-            Events.AppOpened += OnSkypeOpenFirstTime;
+
+            OnSkypeOpenFirstTimeAsync().Forget();
         }
     }
     private async UniTask OnSkypeOpenFirstTimeAsync()
     {
-        await UniTask.Delay(1000);
-
-        foreach (var message in hackerMessagesAfterOpen)
+        await UniTask.Delay(2000);
+        skypeApp.OpenApp();
+        
+        foreach (var message in hackerMessages)
         {
             ChatManager.GetInstance().SendMessageToScammerChat(message);
             await UniTask.Delay(1500);
         }
-        ChatManager.GetInstance().SendMessageToScammerChat("<color=white>.</color>\n\n\n<color=white>.</color>", "exe.message");
+        ChatManager.GetInstance().SendMessageToScammerChatWithName("<color=white>.</color>\n\n\n\n<color=white>.</color>", "exe.message");
         clickerEXE.SetActive(true);
     }
-    private void OnSkypeOpenFirstTime()
-    {
-        interactionOff.SetActive(true);
-        OnSkypeOpenFirstTimeAsync().Forget();
-    }
-    
-    private async UniTask GameIntroduction()
-    {
-        await UniTask.Delay(3000);
-        foreach (var message in hackerMessagesBeforeOpen)
-        {
-            ChatManager.GetInstance().SendMessageToScammerChat(message);
-            await UniTask.Delay(1500);
-        }
-    }
 
+    
     public void OpenClicker()
     {
         skypeCloseButton.interactable = true;
@@ -120,6 +94,6 @@ public class GameManager : MonoBehaviour
         
         Destroy(GameObject.Find("exe.message"));
         skypeObject.GetComponent<DragnDrop>().enabled = true;
-        Events.AppOpened -= OnSkypeOpenFirstTime;
+  
     }
 }

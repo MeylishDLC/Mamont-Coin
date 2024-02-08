@@ -19,9 +19,9 @@ public class NotepadInteractable : MonoBehaviour, IWindowedApp
 
     [Header("Boost Options")] 
     [SerializeField] private GameObject boostTextPrefab;
-    private TextMeshProUGUI boostText;
-    private TextMeshProUGUI boostDescriptionText;
     [SerializeField] private NotepadChoices boostChoices;
+    [SerializeField] private TextMeshProUGUI boostText;
+    private TextMeshProUGUI boostDescriptionText;
 
     private void Start()
     {
@@ -29,11 +29,10 @@ public class NotepadInteractable : MonoBehaviour, IWindowedApp
         {
             gameObject.SetActive(false);
         }
-        boostText = boostTextPrefab.GetComponent<TextMeshProUGUI>();
         boostDescriptionText = boostTextPrefab.GetComponentInChildren<TextMeshProUGUI>();
-
-        boostText.text = "";
-        boostDescriptionText.text = "";
+        
+        boostText.text = " ";
+        boostDescriptionText.text = " ";
     }
 
     public void OpenApp()
