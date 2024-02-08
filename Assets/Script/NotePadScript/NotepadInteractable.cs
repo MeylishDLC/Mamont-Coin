@@ -31,13 +31,20 @@ public class NotepadInteractable : MonoBehaviour, IWindowedApp
 
     public void InstantiateBoostInfo(bool isFirstChoice = true)
     {
-        var boostInfo = Instantiate(boostPrefab, notepadContainer.transform);
-        var boostInfoText = boostPrefab.GetComponent<TextMeshProUGUI>();
+        var firstChoice = notepad.firstChoices[notepad.currentAct].ChoiceName;
+        var secondChoice = notepad.secondChoices[notepad.currentAct].ChoiceName;
         
+        var boostInfo = Instantiate(boostPrefab, notepadContainer.transform);
+        var boostInfoText = boostInfo.GetComponentInChildren<TextMeshProUGUI>();
+
         boostInfoText.SetText(isFirstChoice
-            ? notepad.firstChoices[notepad.currentAct].ChoiceName
-            : notepad.secondChoices[notepad.currentAct].ChoiceName);
+            ? firstChoice
+            : secondChoice);
+        
+        Debug.Log($"{notepad.firstChoices[notepad.currentAct].ChoiceName}");
+        Debug.Log($"{notepad.secondChoices[notepad.currentAct].ChoiceName}");
     }
+    
     public void OpenApp()
     {
         OpenAppAsync().Forget();
