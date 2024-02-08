@@ -43,7 +43,7 @@ public class TaskBackgroundManager : MonoBehaviour
         var chance = Random.Range(1, 100);
         if (chance <= percentageChanceOfDoubleClick)
         {
-            GameManager.Clicks *= 2;
+            GameManager.Multiplier *= 2;
             Events.ClicksUpdated?.Invoke();
             Debug.Log("Chance click");
         }
