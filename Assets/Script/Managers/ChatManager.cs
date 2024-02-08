@@ -4,21 +4,44 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using JetBrains.Annotations;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChatManager : MonoBehaviour
 {
-    [Header("ChatBox")] [SerializeField] private int maxMessages;
-    [SerializeField] private List<Message> messageList;
-    [SerializeField] private GameObject chatPanel;
-    [SerializeField] private GameObject textObject;
+    [Header("Main")]
     [SerializeField] private GameObject chatCanvas;
+    [SerializeField] private int maxMessages;
+    [SerializeField] private GameObject textObject;
+    [SerializeField] private TextMeshProUGUI currentChatName;
+
+    //todo: blue color for selected bro
+    [Header("Scammer ChatBox")] 
+    [SerializeField] private string scammerName;
+    [SerializeField] private GameObject scammerChat;
+    [SerializeField] private List<Message> scammerMessageList;
+    [SerializeField] private GameObject scammerChatContent;
+    [SerializeField] private Image scammerProfileToolPanel;
+
+    [Header("Scammer ChatBox")] 
+    [SerializeField] private string hackerName;
+    [SerializeField] private GameObject hackerChat;
+    [SerializeField] private List<Message> hackerMessageList;
+    [SerializeField] private GameObject hackerChatContent;
+    [SerializeField] private Image hackerProfileToolPanel;
+    private Color originalProfilesColor;
 
     private static ChatManager instance;
     private void Start()
     {
-        messageList = new List<Message>();
+        scammerChat.SetActive(true);
+        hackerChat.SetActive(false);
+        currentChatName.text = scammerName;
         
+        hackerMessageList = new List<Message>();
+        originalProfilesColor = hackerProfileToolPanel.color;
+        scammerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 1f);
     }
 
     private void Awake()
@@ -34,38 +57,80 @@ public class ChatManager : MonoBehaviour
     {
         return instance;
     }
-
-    private void Update()
+    
+    public void SendMessageToScammerChat(string text)
     {
-        if (InputManager.GetInstance().GetKeyboardButtonPressed())
+        if (scammerMessageList.Count >= maxMessages)
         {
-            SendMessageToChat("Keyboard button was pressed");
-        }
-    }
-
-    public void SendMessageToChat(string text)
-    {
-        if (messageList.Count >= maxMessages)
-        {
-            Destroy(messageList[0].textObject.gameObject);
-            messageList.Remove(messageList[0]); 
+            Destroy(scammerMessageList[0].textObject.gameObject);
+            scammerMessageList.Remove(scammerMessageList[0]); 
         }
         var newMessage = new Message {text = text};
         
-        var newText = Instantiate(textObject, chatPanel.transform);
+        var newText = Instantiate(textObject, scammerChatContent.transform);
         
-        newMessage.textObject = newText.GetComponent<TextMeshProUGUI>();
+        newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
         newMessage.textObject.text = newMessage.text;
         
-        messageList.Add(newMessage);
+        scammerMessageList.Add(newMessage);
+        Events.MessageRecieved?.Invoke();
+    }
+    public void SendMessageToHackerChat(string text)
+    {
+        if (hackerMessageList.Count >= maxMessages)
+        {
+            Destroy(hackerMessageList[0].textObject.gameObject);
+            hackerMessageList.Remove(hackerMessageList[0]); 
+        }
+        var newMessage = new Message {text = text};
+        
+        var newText = Instantiate(textObject, hackerChatContent.transform);
+        
+        newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
+        newMessage.textObject.text = newMessage.text;
+        
+        hackerMessageList.Add(newMessage);
+        Events.MessageRecieved?.Invoke();
+    }
+    
+    public void SendMessageToScammerChatWithName(string text, string messageName)
+    {
+        if (scammerMessageList.Count >= maxMessages)
+        {
+            Destroy(scammerMessageList[0].textObject.gameObject);
+            scammerMessageList.Remove(scammerMessageList[0]); 
+        }
+        var newMessage = new Message {text = text};
+        
+        var newText = Instantiate(textObject, scammerChatContent.transform);
+        newText.name = messageName;
+        
+        newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
+        newMessage.textObject.text = newMessage.text;
+        
+        scammerMessageList.Add(newMessage);
+        Events.MessageRecieved?.Invoke();
     }
 
-    public async void SendMultipleMessages(List<string> messages)
+    public void SwitchToHacker()
     {
-        foreach (var message in messages)
-        {
-            SendMessageToChat(message);
-            await UniTask.Delay(1500);
-        }
+        scammerChat.SetActive(false);
+        hackerChat.SetActive(true);
+
+        currentChatName.text = hackerName;
+
+        hackerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 1f);
+        scammerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 0f);
+    }
+
+    public void SwitchToScammer()
+    {
+        hackerChat.SetActive(false);
+        scammerChat.SetActive(true);
+        
+        currentChatName.text = scammerName;
+        
+        scammerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 1f);
+        hackerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 0f);
     }
 }

@@ -15,7 +15,6 @@ public class GameEventsHandler : MonoBehaviour
     {
         goalIndex = 0;
         currentGoal = countEventPairs[goalIndex].ClicksCount;
-        
     }
     
     private void Awake()
@@ -33,19 +32,20 @@ public class GameEventsHandler : MonoBehaviour
     }
     public void CheckEnoughClicks()
     {
-        if (GameManager.Clicks == currentGoal)
+        if (goalIndex < countEventPairs.Length - 1)
         {
-            countEventPairs[goalIndex].Event.Invoke();
-            if (goalIndex < countEventPairs.Length - 1)
+            if (GameManager.Clicks >= currentGoal)
             {
+                //todo: optional delay on message send
+                countEventPairs[goalIndex].Event.Invoke();
                 goalIndex++;
                 currentGoal = countEventPairs[goalIndex].ClicksCount;
             }
-            else
-            {
-                Debug.Log("All goals achieved");
-            }
+        }
+        else
+        {
+            Debug.Log("All goals achieved");
         }
     }
-    
+
 }

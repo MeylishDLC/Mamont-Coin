@@ -7,19 +7,9 @@ using UnityEngine;
 
 public class PopupWindow : MonoBehaviour
 {
-    [Header("Text")]
-    [SerializeField] private string headerText;
-    [SerializeField] private string infoText;
-    [Header("UI")]
-    [SerializeField] private TextMeshProUGUI header;
-    [SerializeField] private TextMeshProUGUI info;
-
-    private void Start()
-    {
-        header.text = headerText;
-        info.text = infoText;
-        gameObject.SetActive(false);
-    }
+    [Header("Settings")]
+    [SerializeField] private bool destroyOnClose;
+    [SerializeField] private bool isPaid;
 
     public void ShowWindow()
     {
@@ -29,6 +19,18 @@ public class PopupWindow : MonoBehaviour
 
     public void CloseWindow()
     {
-        gameObject.SetActive(false);
+        if (destroyOnClose)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+        if (isPaid)
+        {
+            GameManager.Clicks += TaskBackgroundManager.GetInstance().coinsPerPopupWindow;
+            Events.ClicksUpdated?.Invoke();
+        }
     }
 }

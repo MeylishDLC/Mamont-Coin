@@ -6,8 +6,11 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
 {
+    private Vector2 pointerPos = Vector2.zero;
+    
     private bool mouseButtonPressed;
     private bool keyboardButtonPressed;
+    private bool isDragging;
 
     private static InputManager instance;
 
@@ -24,7 +27,6 @@ public class InputManager : MonoBehaviour
     {
         return instance;
     }
-
 
     public void MouseButtonPressed(InputAction.CallbackContext context)
     {
