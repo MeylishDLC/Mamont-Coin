@@ -9,7 +9,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-
     [Header("Buffs shop")] [SerializeField]
     private GameObject shopBuffsPanel;
 

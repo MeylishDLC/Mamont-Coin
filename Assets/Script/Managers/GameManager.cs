@@ -90,10 +90,10 @@ public class GameManager : MonoBehaviour
 
         foreach (var message in hackerMessagesAfterOpen)
         {
-            ChatManager.GetInstance().SendMessageToChat(message);
+            ChatManager.GetInstance().SendMessageToScammerChat(message);
             await UniTask.Delay(1500);
         }
-        ChatManager.GetInstance().SendMessageToChatWithName("<color=white>.</color>\n\n\n<color=white>.</color>", "exe.message");
+        ChatManager.GetInstance().SendMessageToScammerChat("<color=white>.</color>\n\n\n<color=white>.</color>", "exe.message");
         clickerEXE.SetActive(true);
     }
     private void OnSkypeOpenFirstTime()
@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
         await UniTask.Delay(3000);
         foreach (var message in hackerMessagesBeforeOpen)
         {
-            ChatManager.GetInstance().SendMessageToChat(message);
+            ChatManager.GetInstance().SendMessageToScammerChat(message);
             await UniTask.Delay(1500);
         }
     }

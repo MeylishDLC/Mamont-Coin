@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class ClickHandler : MonoBehaviour
 { 
+    //todo: clicker animations
     [SerializeField] private TextMeshProUGUI counterText;
     [SerializeField] private TextMeshProUGUI multiplierText;
     [SerializeField] private TextMeshProUGUI coinToRubleText;
