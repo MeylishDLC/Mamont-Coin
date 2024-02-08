@@ -12,25 +12,31 @@ public class ChatManager : MonoBehaviour
 {
     [Header("Main")]
     [SerializeField] private GameObject chatCanvas;
+    [SerializeField] private SkypeApp skypeApp;
     [SerializeField] private int maxMessages;
     [SerializeField] private GameObject textObject;
     [SerializeField] private TextMeshProUGUI currentChatName;
     
     [Header("Scammer ChatBox")] 
     [SerializeField] private string scammerName;
-    [SerializeField] private GameObject scammerChat;
-    [SerializeField] private List<Message> scammerMessageList;
+    [SerializeField] private GameObject scammerChat; 
     [SerializeField] private GameObject scammerChatContent;
     [SerializeField] private Image scammerProfileToolPanel;
+    [SerializeField] private GameObject scammerNotificationIcon;
 
-    [Header("Scammer ChatBox")] 
+    private List<Message> scammerMessageList;
+
+    [Header("Hacker ChatBox")] 
     [SerializeField] private string hackerName;
     [SerializeField] private GameObject hackerChat;
-    [SerializeField] private List<Message> hackerMessageList;
     [SerializeField] private GameObject hackerChatContent;
     [SerializeField] private Image hackerProfileToolPanel;
+    [SerializeField] private GameObject hackerNotificationIcon;
+    
+    private List<Message> hackerMessageList;
+    
     private Color originalProfilesColor;
-    public bool scammerChatActive = true;
+    private bool scammerChatActive = true;
 
     private static ChatManager instance;
     private void Start()
@@ -40,6 +46,8 @@ public class ChatManager : MonoBehaviour
         currentChatName.text = scammerName;
         
         hackerMessageList = new List<Message>();
+        scammerMessageList = new List<Message>();
+        
         originalProfilesColor = hackerProfileToolPanel.color;
         scammerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 1f);
     }
@@ -60,6 +68,11 @@ public class ChatManager : MonoBehaviour
     
     public void SendMessageToScammerChat(string text)
     {
+        if (skypeApp.isOpen && !scammerChatActive)
+        {
+            scammerNotificationIcon.SetActive(true);
+        }
+        
         if (scammerMessageList.Count >= maxMessages)
         {
             Destroy(scammerMessageList[0].textObject.gameObject);
@@ -77,6 +90,11 @@ public class ChatManager : MonoBehaviour
     }
     public void SendMessageToHackerChat(string text)
     {
+        if (skypeApp.isOpen && scammerChatActive)
+        {
+            hackerNotificationIcon.SetActive(true);
+        }
+        
         if (hackerMessageList.Count >= maxMessages)
         {
             Destroy(hackerMessageList[0].textObject.gameObject);
@@ -116,6 +134,8 @@ public class ChatManager : MonoBehaviour
     {
         scammerChatActive = false;
         scammerChat.SetActive(false);
+        
+        hackerNotificationIcon.SetActive(false);
         hackerChat.SetActive(true);
 
         currentChatName.text = hackerName;
@@ -126,8 +146,10 @@ public class ChatManager : MonoBehaviour
 
     public void SwitchToScammer()
     {
-        scammerChatActive = false;
+        scammerChatActive = true;
         hackerChat.SetActive(false);
+        
+        scammerNotificationIcon.SetActive(false);
         scammerChat.SetActive(true);
         
         currentChatName.text = scammerName;

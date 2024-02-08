@@ -37,7 +37,7 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="D:/мусор/clicker\ClickerNavoznyhMuh.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -82,7 +82,8 @@
       <workItem from="1707295146921" duration="35808000" />
       <workItem from="1707385510159" duration="6944000" />
       <workItem from="1707394212045" duration="2985000" />
-      <workItem from="1707402047988" duration="11631000" />
+      <workItem from="1707402047988" duration="15213000" />
+      <workItem from="1707429424908" duration="3604000" />
     </task>
     <servers />
   </component>

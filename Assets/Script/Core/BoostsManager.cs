@@ -26,11 +26,14 @@ public class BoostsManager : MonoBehaviour
         return instance;
     }
 
-    private void InstantiateBoostInfo(bool isFirstChoice)
+    private void InstantiateBoostInfo(bool isFirstChoice = true)
     {
         var boostInfo = Instantiate(boostPrefab, notepadContainer.transform);
-        boostInfo.GetComponent<TextMeshProUGUI>().text = notepad.firstChoices[notepad.currentAct].ChoiceDescription;
-        boostInfo.GetComponentInChildren<TextMeshProUGUI>().text = notepad.firstChoices[notepad.currentAct].ChoiceName;
+        var boostInfoText = boostPrefab.GetComponentInChildren<TextMeshProUGUI>();
+        
+        boostInfoText.SetText(isFirstChoice
+            ? notepad.firstChoices[notepad.currentAct].ChoiceName
+            : notepad.secondChoices[notepad.currentAct].ChoiceName);
     }
     
     public void AutoClicker()
@@ -60,36 +63,21 @@ public class BoostsManager : MonoBehaviour
         doubleClickChanceEnabled = true;
     }
 
-    public void ImproveAutoClick(int improvedClickAmount)
+    public void ImproveAutoClick()
     {
-        if (autoClickerEnabled)
-        {
-            TaskBackgroundManager.GetInstance().autoclickAmount = improvedClickAmount;
-            TaskBackgroundManager.GetInstance().AutoClick(improvedClickAmount);
-        }
-        else
-        {
-            Debug.Log("Could not improve autoclick since it's not enabled");
-        }
+        
     }
 
     public void MoneyBonus(int bonus)
     {
+        InstantiateBoostInfo();
         GameManager.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }
 
     public void ImproveDoubleClickChance(int improvedClickAmount)
     {
-        if (doubleClickChanceEnabled)
-        {
-            
-            
-        }
-        else
-        {
-            Debug.Log("Could not improve double click since it's not enabled");
-        }
+        
     }
     
 }

@@ -18,8 +18,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Skype")] 
     [SerializeField] private GameObject skypeObject;
-    [SerializeField] private Button skypeCloseButton;
-    [SerializeField] private GameObject skypeNotification;
     private SkypeApp skypeApp;
 
     [Header("Introduction")] 
@@ -58,8 +56,6 @@ public class GameManager : MonoBehaviour
         if (gameIntroductionEnabled)
         {
             skypeApp = skypeObject.GetComponent<SkypeApp>();
-            skypeObject.GetComponent<DragnDrop>().enabled = false;
-            skypeCloseButton.interactable = false;
 
             clickerCanvas.SetActive(false);
             shopPanelCanvas.SetActive(false); 
@@ -85,7 +81,6 @@ public class GameManager : MonoBehaviour
     
     public void OpenClicker()
     {
-        skypeCloseButton.interactable = true;
         clickerCanvas.SetActive(true);
         shopPanelCanvas.SetActive(true);
         
@@ -93,7 +88,5 @@ public class GameManager : MonoBehaviour
         clickerEXE.SetActive(false);
         
         Destroy(GameObject.Find("exe.message"));
-        skypeObject.GetComponent<DragnDrop>().enabled = true;
-  
     }
 }

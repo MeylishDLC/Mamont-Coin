@@ -42,6 +42,7 @@ public class SkypeApp : MonoBehaviour, IWindowedApp
 
     private async UniTask CloseAppAsync()
     {
+        
         closeButton.interactable = false;
         
         await transform.DOScale(scaleOnClose, openDuration).ToUniTask();

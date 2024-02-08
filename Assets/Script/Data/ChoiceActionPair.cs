@@ -7,7 +7,6 @@ namespace Script.Data
     public class ChoiceActionPair
     {
         [field:SerializeField] public string ChoiceName { get; private set; }
-        [field:SerializeField] public string ChoiceDescription { get; private set; }
         [field:SerializeField] public UnityEvent Event { get; private set; }
     }
 }
