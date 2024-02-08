@@ -16,23 +16,12 @@ public class NotepadInteractable : MonoBehaviour, IWindowedApp
     [SerializeField] private float scaleOnClose;
     [SerializeField] private float openDuration;
     [SerializeField] private bool closedOnStart;
-
-    [Header("Boost Options")] 
-    [SerializeField] private GameObject boostTextPrefab;
-    [SerializeField] private NotepadChoices boostChoices;
-    [SerializeField] private TextMeshProUGUI boostText;
-    private TextMeshProUGUI boostDescriptionText;
-
     private void Start()
     {
         if (closedOnStart)
         {
             gameObject.SetActive(false);
         }
-        boostDescriptionText = boostTextPrefab.GetComponentInChildren<TextMeshProUGUI>();
-        
-        boostText.text = " ";
-        boostDescriptionText.text = " ";
     }
 
     public void OpenApp()

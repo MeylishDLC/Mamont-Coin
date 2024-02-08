@@ -15,8 +15,7 @@ public class ChatManager : MonoBehaviour
     [SerializeField] private int maxMessages;
     [SerializeField] private GameObject textObject;
     [SerializeField] private TextMeshProUGUI currentChatName;
-
-    //todo: blue color for selected bro
+    
     [Header("Scammer ChatBox")] 
     [SerializeField] private string scammerName;
     [SerializeField] private GameObject scammerChat;
@@ -31,6 +30,7 @@ public class ChatManager : MonoBehaviour
     [SerializeField] private GameObject hackerChatContent;
     [SerializeField] private Image hackerProfileToolPanel;
     private Color originalProfilesColor;
+    public bool scammerChatActive = true;
 
     private static ChatManager instance;
     private void Start()
@@ -114,6 +114,7 @@ public class ChatManager : MonoBehaviour
 
     public void SwitchToHacker()
     {
+        scammerChatActive = false;
         scammerChat.SetActive(false);
         hackerChat.SetActive(true);
 
@@ -125,6 +126,7 @@ public class ChatManager : MonoBehaviour
 
     public void SwitchToScammer()
     {
+        scammerChatActive = false;
         hackerChat.SetActive(false);
         scammerChat.SetActive(true);
         

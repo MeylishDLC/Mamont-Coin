@@ -19,18 +19,32 @@ public class ClickHandler : MonoBehaviour
         coinToRubleText.text = "0 руб.";
 
         Events.ClicksUpdated += OnClicksUpdated;
-        Events.DoubleClickChanceEnabled += AddDoubleClick;
     }
     
-    public void AddDoubleClick()
-    {
-        gameObject.GetComponent<Button>().onClick.AddListener(TaskBackgroundManager.GetInstance().DoubleClickChance);
-    }
     public void Increment()
     {
-        GameManager.Clicks += GameManager.Multiplier;
-        Events.ClicksUpdated?.Invoke();
-        GameEventsHandler.GetInstance().CheckEnoughClicks();
+        if (BoostsManager.GetInstance().doubleClickChanceEnabled)
+        {
+            if (TaskBackgroundManager.GetInstance().DoubleClickChance())
+            {
+                GameManager.Clicks += GameManager.Multiplier * 2;
+                Events.ClicksUpdated?.Invoke();
+                GameEventsHandler.GetInstance().CheckEnoughClicks();
+            }
+            else
+            {
+                GameManager.Clicks += GameManager.Multiplier;
+                Events.ClicksUpdated?.Invoke();
+                GameEventsHandler.GetInstance().CheckEnoughClicks();
+            }
+        }
+        else
+        {
+            GameManager.Clicks += GameManager.Multiplier;
+            Events.ClicksUpdated?.Invoke();
+            GameEventsHandler.GetInstance().CheckEnoughClicks();
+        }
+
     }
 
     private void OnClicksUpdated()

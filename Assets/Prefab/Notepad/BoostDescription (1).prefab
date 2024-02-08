@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2247166253059614472
+--- !u!1 &4853365724326223583
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5807874217868105152}
-  - component: {fileID: 841919046407130099}
-  - component: {fileID: 7460702505162155970}
+  - component: {fileID: 1133147298301358626}
+  - component: {fileID: 5065520107588848131}
+  - component: {fileID: 6156074993358540346}
   m_Layer: 0
   m_Name: Boost
   m_TagString: Untagged
@@ -18,40 +18,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &5807874217868105152
+--- !u!224 &1133147298301358626
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2247166253059614472}
+  m_GameObject: {fileID: 4853365724326223583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7227478117620819144}
+  m_Father: {fileID: 8259793034909736805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.000011443, y: 0.0000019073}
   m_SizeDelta: {x: 661.71, y: 131.05}
   m_Pivot: {x: 0, y: 0}
---- !u!222 &841919046407130099
+--- !u!222 &5065520107588848131
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2247166253059614472}
+  m_GameObject: {fileID: 4853365724326223583}
   m_CullTransparentMesh: 1
---- !u!114 &7460702505162155970
+--- !u!114 &6156074993358540346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2247166253059614472}
+  m_GameObject: {fileID: 4853365724326223583}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -65,8 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "- \u041F\u0440\u043E\u0434\u0430\u0442\u044C\u0441\u044F \u0432 \u0441\u043A\u043E\u0432\u043E\u0440\u043E\u0434\u043E\u0447\u043D\u043E\u0435
-    \u0440\u0430\u0431\u0441\u0442\u0432\u043E \u041A\u0440\u0430\u0441\u0438\u043B\u044C\u043D\u0438\u043A\u043E\u0432\u0443?"
+  m_text: '- ...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6fca41145db51cc4b99180e56ed59653, type: 2}
   m_sharedMaterial: {fileID: 6859402337791770632, guid: 6fca41145db51cc4b99180e56ed59653, type: 2}
@@ -93,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -137,7 +136,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &8407943734739743831
+--- !u!1 &8501336623083460526
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,29 +144,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7227478117620819144}
-  - component: {fileID: 1347445336883497192}
-  - component: {fileID: 2178289599785575730}
+  - component: {fileID: 8259793034909736805}
+  - component: {fileID: 7482450688830128114}
+  - component: {fileID: 738554053333113258}
   m_Layer: 0
-  m_Name: BoostDescription
+  m_Name: BoostDescription (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &7227478117620819144
+--- !u!224 &8259793034909736805
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8407943734739743831}
+  m_GameObject: {fileID: 8501336623083460526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0000798, y: 1.0000798, z: 1.0000798}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5807874217868105152}
+  - {fileID: 1133147298301358626}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -175,21 +174,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 210.1}
   m_Pivot: {x: 0, y: 0}
---- !u!222 &1347445336883497192
+--- !u!222 &7482450688830128114
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8407943734739743831}
+  m_GameObject: {fileID: 8501336623083460526}
   m_CullTransparentMesh: 1
---- !u!114 &2178289599785575730
+--- !u!114 &738554053333113258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8407943734739743831}
+  m_GameObject: {fileID: 8501336623083460526}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -203,11 +202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0414\u044F\u0434\u044F \u0445\u0430\u043A\u0435\u0440 \u0441\u043A\u0430\u0437\u0430\u043B,
-    \u0447\u0442\u043E \u0441\u043A\u043E\u0432\u043E\u0440\u043E\u0434\u043A\u0438
-    \u043C\u044B\u0442\u044C \u043D\u0435 \u0441\u043B\u043E\u0436\u043D\u043E \u0438
-    \u043A\u0440\u0430\u0441\u0438\u043B\u044C\u043D\u0438\u043A\u043E\u0432 \u0445\u043E\u0440\u043E\u0448\u043E
-    \u043F\u043B\u0430\u0442\u0438\u0442..."
+  m_text: ...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6fca41145db51cc4b99180e56ed59653, type: 2}
   m_sharedMaterial: {fileID: 6859402337791770632, guid: 6fca41145db51cc4b99180e56ed59653, type: 2}
@@ -234,8 +229,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

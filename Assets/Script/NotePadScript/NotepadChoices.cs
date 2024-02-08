@@ -25,7 +25,7 @@ public class NotepadChoices : MonoBehaviour, IWindowedApp
     private TextMeshProUGUI secondChoiceText;
     public List<ChoiceActionPair> secondChoices;
     
-    private int currentAct;
+    public int currentAct;
 
     private void Start()
     {

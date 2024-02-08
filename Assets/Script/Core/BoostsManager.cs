@@ -1,4 +1,6 @@
 using System;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoostsManager : MonoBehaviour
@@ -7,6 +9,9 @@ public class BoostsManager : MonoBehaviour
     public bool autoClickerEnabled;
     public bool autoPopupWindowEnabled;
     public bool doubleClickChanceEnabled;
+    [SerializeField] private NotepadChoices notepad;
+    [SerializeField] private GameObject notepadContainer;
+    [SerializeField] private GameObject boostPrefab;
     private void Awake()
     {
         if (instance != null)
@@ -15,40 +20,44 @@ public class BoostsManager : MonoBehaviour
         }
         instance = this;
     }
-
-    private void Start()
-    {
-        
-    }
-
+    
     public static BoostsManager GetInstance()
     {
         return instance;
     }
+
+    private void InstantiateBoostInfo(bool isFirstChoice)
+    {
+        var boostInfo = Instantiate(boostPrefab, notepadContainer.transform);
+        boostInfo.GetComponent<TextMeshProUGUI>().text = notepad.firstChoices[notepad.currentAct].ChoiceDescription;
+        boostInfo.GetComponentInChildren<TextMeshProUGUI>().text = notepad.firstChoices[notepad.currentAct].ChoiceName;
+    }
     
     public void AutoClicker()
     {
+        InstantiateBoostInfo(true);
         autoClickerEnabled = true;
         TaskBackgroundManager.GetInstance().AutoClick(TaskBackgroundManager.GetInstance().autoclickAmount);
     }
 
     public void DownloadAmegas()
     {
+        InstantiateBoostInfo(true);
         autoPopupWindowEnabled = true;
         TaskBackgroundManager.GetInstance().PopupWindowAppear();
     }
 
     public void Refelalka(int bonus)
     {
+        InstantiateBoostInfo(false);
         GameManager.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }
     
     public void DoubleClickChance()
     {
-        //todo: check double click
+        InstantiateBoostInfo(false);
         doubleClickChanceEnabled = true;
-        Events.DoubleClickChanceEnabled?.Invoke();
     }
 
     public void ImproveAutoClick(int improvedClickAmount)

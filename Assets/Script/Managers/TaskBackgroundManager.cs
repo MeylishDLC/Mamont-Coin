@@ -38,15 +38,15 @@ public class TaskBackgroundManager : MonoBehaviour
         return instance;
     }
 
-    public void DoubleClickChance()
+    public bool DoubleClickChance()
     {
         var chance = Random.Range(1, 100);
         if (chance <= percentageChanceOfDoubleClick)
         {
-            GameManager.Clicks *= 2;
-            Events.ClicksUpdated?.Invoke();
-            Debug.Log("Chance click");
+            return true;
         }
+
+        return false;
     }
 
     private async UniTask PopupWindowAppearAsync()
@@ -55,7 +55,7 @@ public class TaskBackgroundManager : MonoBehaviour
         {
             var randomX = Random.Range(0f, Screen.width);
             var randomY = Random.Range(0f, Screen.height);
-            var randomWindow = popupWindows[Random.Range(0, popupWindows.Count - 1)];
+            var randomWindow = popupWindows[Random.Range(0, popupWindows.Count)];
 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(spawnParent.GetComponent<RectTransform>(), new Vector2(randomX, randomY), mainCamera, out Vector2 randomPositionLocal);
 
