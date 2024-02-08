@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Data;
+using Script.UI;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NotepadChoices : MonoBehaviour
+public class NotepadChoices : MonoBehaviour, IWindowedApp
 {
     [Header("Notepad Boost Choice")] [SerializeField]
     private GameObject notepad;
@@ -18,10 +19,12 @@ public class NotepadChoices : MonoBehaviour
     [Header("Choices Set")] 
     [SerializeField] private Button firstChoice;
     private TextMeshProUGUI firstChoiceText;
-    [SerializeField] private List<ChoiceActionPair> firstChoices;
+    public List<ChoiceActionPair> firstChoices;
+    
     [SerializeField] private Button secondChoice;
     private TextMeshProUGUI secondChoiceText;
-    [SerializeField] private List<ChoiceActionPair> secondChoices;
+    public List<ChoiceActionPair> secondChoices;
+    
     private int currentAct;
 
     private void Start()
@@ -66,17 +69,22 @@ public class NotepadChoices : MonoBehaviour
         UpdateChoices();
     }
     
-    public void ShowNotepad()
+    private async UniTask CloseNotepadAsync()
+    {
+        await notepad.transform.DOScale(zoomOut, 0.1f).ToUniTask();
+        notepad.SetActive(false);
+        GameManager.GetInstance().interactionOff.SetActive(false);
+    }
+
+    public void OpenApp()
     {
         GameManager.GetInstance().interactionOff.SetActive(true);
         notepad.SetActive(true);
         notepad.transform.DOScale(zoomIn, 0.1f);
     }
 
-    private async UniTask CloseNotepadAsync()
+    public void CloseApp()
     {
-        await notepad.transform.DOScale(zoomOut, 0.1f).ToUniTask();
-        notepad.SetActive(false);
-        GameManager.GetInstance().interactionOff.SetActive(false);
+        CloseNotepadAsync().Forget();
     }
 }

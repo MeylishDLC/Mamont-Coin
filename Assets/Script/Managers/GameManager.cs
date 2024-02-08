@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject skypeObject;
     [SerializeField] private Button skypeCloseButton;
     [SerializeField] private GameObject skypeNotification;
-    private WindowedApp skypeApp;
+    private SkypeApp skypeApp;
 
     [Header("Introduction")] 
     [SerializeField] private GameObject clickerEXE;
@@ -28,10 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<string> hackerMessagesAfterOpen;
     
     [Header("DEBUG")]
-    [SerializeField] private bool gameIntroductionEnabled; 
-    public bool autoClickEnabled;
-    public bool doubleClickChanceEnabled;
-    public bool autoPopupWindowsEnabled;
+    [SerializeField] private bool gameIntroductionEnabled;
 
     private static GameManager instance;
 
@@ -61,7 +58,7 @@ public class GameManager : MonoBehaviour
         
         if (gameIntroductionEnabled)
         {
-            skypeApp = skypeObject.GetComponent<WindowedApp>();
+            skypeApp = skypeObject.GetComponent<SkypeApp>();
             skypeObject.GetComponent<DragnDrop>().enabled = false;
             skypeCloseButton.interactable = false;
             

@@ -8,16 +8,8 @@ using UnityEngine;
 public class PopupWindow : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private bool isInstantiable;
     [SerializeField] private bool destroyOnClose;
-
-    private void Awake()
-    {
-        if (!isInstantiable)
-        {
-            gameObject.SetActive(false);
-        }
-    }
+    [SerializeField] private bool isPaid;
 
     public void ShowWindow()
     {
@@ -34,6 +26,11 @@ public class PopupWindow : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
+        }
+        if (isPaid)
+        {
+            GameManager.Clicks += TaskBackgroundManager.GetInstance().coinsPerPopupWindow;
+            Events.ClicksUpdated?.Invoke();
         }
     }
 }

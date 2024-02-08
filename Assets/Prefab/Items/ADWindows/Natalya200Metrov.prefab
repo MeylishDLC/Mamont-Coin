@@ -655,8 +655,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5adad528cdc164fbb80db4f1da81a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInstantiable: 1
   destroyOnClose: 1
+  isPaid: 1
 --- !u!114 &5845513180058822267
 MonoBehaviour:
   m_ObjectHideFlags: 0

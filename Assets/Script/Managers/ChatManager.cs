@@ -39,6 +39,7 @@ public class ChatManager : MonoBehaviour
         
         hackerMessageList = new List<Message>();
         originalProfilesColor = hackerProfileToolPanel.color;
+        scammerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 1f);
     }
 
     private void Awake()
