@@ -16,6 +16,11 @@ public class TaskBackgroundManager : MonoBehaviour
     [Header("Double Click Chance")] 
     [SerializeField] private int percentageChanceOfDoubleClick;
 
+    [Header("Auto Pop-up Trojan Warnings")]
+    [SerializeField] private int warningAppearFrequencyMilliseconds;
+    [SerializeField] private List<GameObject> popupWarnings;
+    [SerializeField] private bool trojanWarningsActive;
+    
     [Header("Auto Pop-up Windows")] 
     [SerializeField] private int appearFrequencyMilliseconds;
     [SerializeField] private List<GameObject> popupWindows;
@@ -31,6 +36,14 @@ public class TaskBackgroundManager : MonoBehaviour
             Debug.LogError("Found more than one TaskBackgroundManager in the scene.");
         }
         instance = this;
+    }
+
+    private void Start()
+    {
+        if (trojanWarningsActive)
+        {
+            TrojanWarningAppear();
+        }
     }
 
     public static TaskBackgroundManager GetInstance()
@@ -49,19 +62,23 @@ public class TaskBackgroundManager : MonoBehaviour
         return false;
     }
 
+    private GameObject RandomSpawn(List<GameObject> windowsList)
+    {
+        var randomX = Random.Range(0f, Screen.width);
+        var randomY = Random.Range(0f, Screen.height);
+        var randomWindow = windowsList[Random.Range(0, windowsList.Count)];
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(spawnParent.GetComponent<RectTransform>(), new Vector2(randomX, randomY), mainCamera, out Vector2 randomPositionLocal);
+
+        var popupWindow = Instantiate(randomWindow, spawnParent.transform);
+        popupWindow.transform.localPosition = randomPositionLocal;
+        return popupWindow;
+    }
     private async UniTask PopupWindowAppearAsync()
     {
         while (BoostsManager.GetInstance().autoPopupWindowEnabled)
         {
-            var randomX = Random.Range(0f, Screen.width);
-            var randomY = Random.Range(0f, Screen.height);
-            var randomWindow = popupWindows[Random.Range(0, popupWindows.Count)];
-
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(spawnParent.GetComponent<RectTransform>(), new Vector2(randomX, randomY), mainCamera, out Vector2 randomPositionLocal);
-
-            var popupWindow = Instantiate(randomWindow, spawnParent.transform);
-            popupWindow.transform.localPosition = randomPositionLocal;
-            
+            var popupWindow = RandomSpawn(popupWindows);
             await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
             await UniTask.Delay(appearFrequencyMilliseconds);
         }
@@ -70,6 +87,19 @@ public class TaskBackgroundManager : MonoBehaviour
     {
         BoostsManager.GetInstance().autoPopupWindowEnabled = true;
         PopupWindowAppearAsync().Forget();
+    }
+    private async UniTask TrojanWarningAppearAsync()
+    {
+        while (trojanWarningsActive)
+        {
+            var popupWindow = RandomSpawn(popupWarnings);
+            await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
+            await UniTask.Delay(warningAppearFrequencyMilliseconds);
+        }
+    }
+    public void TrojanWarningAppear()
+    {
+        TrojanWarningAppearAsync().Forget();
     }
     private async UniTask AutoClickAsync(int clicksAmount)
     {
