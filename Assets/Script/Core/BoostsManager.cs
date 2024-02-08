@@ -9,9 +9,8 @@ public class BoostsManager : MonoBehaviour
     public bool autoClickerEnabled;
     public bool autoPopupWindowEnabled;
     public bool doubleClickChanceEnabled;
-    [SerializeField] private NotepadChoices notepad;
-    [SerializeField] private GameObject notepadContainer;
-    [SerializeField] private GameObject boostPrefab;
+    
+    [SerializeField] private NotepadInteractable interactableNotepad;
     private void Awake()
     {
         if (instance != null)
@@ -26,40 +25,32 @@ public class BoostsManager : MonoBehaviour
         return instance;
     }
 
-    private void InstantiateBoostInfo(bool isFirstChoice = true)
-    {
-        var boostInfo = Instantiate(boostPrefab, notepadContainer.transform);
-        var boostInfoText = boostPrefab.GetComponentInChildren<TextMeshProUGUI>();
-        
-        boostInfoText.SetText(isFirstChoice
-            ? notepad.firstChoices[notepad.currentAct].ChoiceName
-            : notepad.secondChoices[notepad.currentAct].ChoiceName);
-    }
+    
     
     public void AutoClicker()
     {
-        InstantiateBoostInfo(true);
+        interactableNotepad.InstantiateBoostInfo(true);
         autoClickerEnabled = true;
         TaskBackgroundManager.GetInstance().AutoClick(TaskBackgroundManager.GetInstance().autoclickAmount);
     }
 
     public void DownloadAmegas()
     {
-        InstantiateBoostInfo(true);
+        interactableNotepad.InstantiateBoostInfo(true);
         autoPopupWindowEnabled = true;
         TaskBackgroundManager.GetInstance().PopupWindowAppear();
     }
 
     public void Refelalka(int bonus)
     {
-        InstantiateBoostInfo(false);
+        interactableNotepad.InstantiateBoostInfo(false);
         GameManager.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }
     
     public void DoubleClickChance()
     {
-        InstantiateBoostInfo(false);
+        interactableNotepad.InstantiateBoostInfo(false);
         doubleClickChanceEnabled = true;
     }
 
@@ -70,7 +61,7 @@ public class BoostsManager : MonoBehaviour
 
     public void MoneyBonus(int bonus)
     {
-        InstantiateBoostInfo();
+        interactableNotepad.InstantiateBoostInfo();
         GameManager.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }

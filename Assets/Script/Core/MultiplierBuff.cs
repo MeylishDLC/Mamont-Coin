@@ -20,27 +20,11 @@ public class MultiplierBuff : MonoBehaviour
 
     private void OnEnable()
     {
-        if (timeLimitMilliseconds > 0)
-        {
-            button.onClick.AddListener(BuyMultiplierBuffTimeLimited);
-        }
-        else
-        {
-            button.onClick.AddListener(BuyMultiplierBuff);
-        }
         Events.ClicksUpdated += UpdateButtonInteractable; 
     }
 
     private void OnDisable()
     {
-        if (timeLimitMilliseconds > 0)
-        {
-            button.onClick.RemoveListener(BuyMultiplierBuff); 
-        }
-        else
-        {
-            button.onClick.RemoveListener(BuyMultiplierBuffTimeLimited);
-        }
         Events.ClicksUpdated -= UpdateButtonInteractable; 
     }
 

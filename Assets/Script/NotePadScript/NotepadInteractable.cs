@@ -16,6 +16,11 @@ public class NotepadInteractable : MonoBehaviour, IWindowedApp
     [SerializeField] private float scaleOnClose;
     [SerializeField] private float openDuration;
     [SerializeField] private bool closedOnStart;
+    
+    [Header("Notepad")]
+    [SerializeField] private NotepadChoices notepad;
+    [SerializeField] private GameObject notepadContainer;
+    [SerializeField] private GameObject boostPrefab;
     private void Start()
     {
         if (closedOnStart)
@@ -24,6 +29,15 @@ public class NotepadInteractable : MonoBehaviour, IWindowedApp
         }
     }
 
+    public void InstantiateBoostInfo(bool isFirstChoice = true)
+    {
+        var boostInfo = Instantiate(boostPrefab, notepadContainer.transform);
+        var boostInfoText = boostPrefab.GetComponent<TextMeshProUGUI>();
+        
+        boostInfoText.SetText(isFirstChoice
+            ? notepad.firstChoices[notepad.currentAct].ChoiceName
+            : notepad.secondChoices[notepad.currentAct].ChoiceName);
+    }
     public void OpenApp()
     {
         OpenAppAsync().Forget();
