@@ -25,32 +25,26 @@ public class BoostsManager : MonoBehaviour
         return instance;
     }
 
-    
-    
     public void AutoClicker()
     {
-        interactableNotepad.InstantiateBoostInfo(true);
         autoClickerEnabled = true;
-        TaskBackgroundManager.GetInstance().AutoClick(TaskBackgroundManager.GetInstance().autoclickAmount);
+        TaskBackgroundManager.GetInstance().AutoClick(TaskBackgroundManager.GetInstance().autoClickAmount);
     }
 
     public void DownloadAmegas()
     {
-        interactableNotepad.InstantiateBoostInfo(true);
         autoPopupWindowEnabled = true;
         TaskBackgroundManager.GetInstance().PopupWindowAppear();
     }
 
     public void Refelalka(int bonus)
     {
-        interactableNotepad.InstantiateBoostInfo(false);
         GameManager.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }
     
     public void DoubleClickChance()
     {
-        interactableNotepad.InstantiateBoostInfo(false);
         doubleClickChanceEnabled = true;
     }
 
@@ -61,7 +55,6 @@ public class BoostsManager : MonoBehaviour
 
     public void MoneyBonus(int bonus)
     {
-        interactableNotepad.InstantiateBoostInfo();
         GameManager.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }

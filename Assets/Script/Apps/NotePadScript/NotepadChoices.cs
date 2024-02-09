@@ -24,12 +24,15 @@ public class NotepadChoices : MonoBehaviour, IWindowedApp
     [SerializeField] private Button secondChoice;
     private TextMeshProUGUI secondChoiceText;
     public List<ChoiceActionPair> secondChoices;
-    
-    public int currentAct;
+
+    [Header("Interactable Notepad")]
+    [SerializeField] private NotepadInteractable notepadInteractable;
+
+    public int CurrentAct { get; set; }
 
     private void Start()
     {
-        currentAct = 0;
+        CurrentAct = 0;
         firstChoiceText = firstChoice.GetComponentInChildren<TextMeshProUGUI>();
         secondChoiceText = secondChoice.GetComponentInChildren<TextMeshProUGUI>();
         UpdateChoices();
@@ -38,8 +41,8 @@ public class NotepadChoices : MonoBehaviour, IWindowedApp
 
     private void UpdateChoices()
     {
-        firstChoiceText.text = firstChoices[currentAct].ChoiceName;
-        secondChoiceText.text = secondChoices[currentAct].ChoiceName;
+        firstChoiceText.text = firstChoices[CurrentAct].ChoiceName;
+        secondChoiceText.text = secondChoices[CurrentAct].ChoiceName;
     }
 
     public void MakeChoice(int choiceNum)
@@ -47,19 +50,21 @@ public class NotepadChoices : MonoBehaviour, IWindowedApp
         switch (choiceNum)
         {
             case 1:
-                firstChoices[currentAct].Event?.Invoke();
+                firstChoices[CurrentAct].Event?.Invoke();
+                notepadInteractable.InstantiateBoostInfo(firstChoices[CurrentAct].ChoiceName);
                 break;
             case 2:
-                secondChoices[currentAct].Event?.Invoke();
+                secondChoices[CurrentAct].Event?.Invoke();
+                notepadInteractable.InstantiateBoostInfo(secondChoices[CurrentAct].ChoiceName);
                 break;
             default:
                 Debug.LogError("Wrong choice number, only 2 choices can exist");
                 return;
         }
 
-        if (currentAct < firstChoices.Count - 1)
+        if (CurrentAct < firstChoices.Count - 1)
         {
-            currentAct++;
+            CurrentAct++;
         }
         else
         {
@@ -78,6 +83,7 @@ public class NotepadChoices : MonoBehaviour, IWindowedApp
 
     public void OpenApp()
     {
+        notepadInteractable.CloseApp();
         GameManager.GetInstance().interactionOff.SetActive(true);
         notepad.SetActive(true);
         notepad.transform.DOScale(zoomIn, 0.1f);

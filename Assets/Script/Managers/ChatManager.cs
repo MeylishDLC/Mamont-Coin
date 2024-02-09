@@ -11,9 +11,7 @@ using UnityEngine.UI;
 public class ChatManager : MonoBehaviour
 {
     [Header("Main")]
-    [SerializeField] private GameObject chatCanvas;
     [SerializeField] private SkypeApp skypeApp;
-    [SerializeField] private int maxMessages;
     [SerializeField] private GameObject textObject;
     [SerializeField] private TextMeshProUGUI currentChatName;
     
@@ -73,11 +71,6 @@ public class ChatManager : MonoBehaviour
             scammerNotificationIcon.SetActive(true);
         }
         
-        if (scammerMessageList.Count >= maxMessages)
-        {
-            Destroy(scammerMessageList[0].textObject.gameObject);
-            scammerMessageList.Remove(scammerMessageList[0]); 
-        }
         var newMessage = new Message {text = text};
         
         var newText = Instantiate(textObject, scammerChatContent.transform);
@@ -94,12 +87,7 @@ public class ChatManager : MonoBehaviour
         {
             hackerNotificationIcon.SetActive(true);
         }
-        
-        if (hackerMessageList.Count >= maxMessages)
-        {
-            Destroy(hackerMessageList[0].textObject.gameObject);
-            hackerMessageList.Remove(hackerMessageList[0]); 
-        }
+
         var newMessage = new Message {text = text};
         
         var newText = Instantiate(textObject, hackerChatContent.transform);
@@ -113,11 +101,6 @@ public class ChatManager : MonoBehaviour
     
     public void SendMessageToScammerChatWithName(string text, string messageName)
     {
-        if (scammerMessageList.Count >= maxMessages)
-        {
-            Destroy(scammerMessageList[0].textObject.gameObject);
-            scammerMessageList.Remove(scammerMessageList[0]); 
-        }
         var newMessage = new Message {text = text};
         
         var newText = Instantiate(textObject, scammerChatContent.transform);

@@ -31,6 +31,7 @@ public class PopupWindow : MonoBehaviour
         {
             GameManager.Clicks += TaskBackgroundManager.GetInstance().coinsPerPopupWindow;
             Events.ClicksUpdated?.Invoke();
+            Debug.Log("+ money for AD");
         }
     }
 }

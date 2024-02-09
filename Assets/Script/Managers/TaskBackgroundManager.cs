@@ -11,7 +11,7 @@ public class TaskBackgroundManager : MonoBehaviour
 {
     [Header("AutoClicker")] 
     [SerializeField] private int clickFrequencyMilliseconds;
-    public int autoclickAmount;
+    public int autoClickAmount;
 
     [Header("Double Click Chance")] 
     [SerializeField] private int percentageChanceOfDoubleClick;
@@ -19,7 +19,7 @@ public class TaskBackgroundManager : MonoBehaviour
     [Header("Auto Pop-up Trojan Warnings")]
     [SerializeField] private int warningAppearFrequencyMilliseconds;
     [SerializeField] private List<GameObject> popupWarnings;
-    [SerializeField] private bool trojanWarningsActive;
+    public bool trojanWarningsActive;
     
     [Header("Auto Pop-up Windows")] 
     [SerializeField] private int appearFrequencyMilliseconds;
@@ -56,6 +56,7 @@ public class TaskBackgroundManager : MonoBehaviour
         var chance = Random.Range(1, 100);
         if (chance <= percentageChanceOfDoubleClick)
         {
+            Debug.Log("Double click");
             return true;
         }
 
@@ -103,13 +104,13 @@ public class TaskBackgroundManager : MonoBehaviour
     }
     private async UniTask AutoClickAsync(int clicksAmount)
     {
-        while (true)
+        while (BoostsManager.GetInstance().autoClickerEnabled)
         {
             await UniTask.Delay(clickFrequencyMilliseconds);
             GameManager.Clicks += clicksAmount;
             Events.ClicksUpdated?.Invoke();
             
-            if (clicksAmount != autoclickAmount)
+            if (clicksAmount != autoClickAmount)
                 break;
         }
     }
