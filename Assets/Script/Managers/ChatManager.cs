@@ -66,9 +66,10 @@ public class ChatManager : MonoBehaviour
     
     public void SendMessageToScammerChat(string text)
     {
-        if (skypeApp.isOpen && !scammerChatActive)
+        if (!scammerChatActive)
         {
             scammerNotificationIcon.SetActive(true);
+            Debug.Log("Notif");
         }
         
         var newMessage = new Message {text = text};
@@ -83,9 +84,10 @@ public class ChatManager : MonoBehaviour
     }
     public void SendMessageToHackerChat(string text)
     {
-        if (skypeApp.isOpen && scammerChatActive)
+        if (scammerChatActive)
         {
             hackerNotificationIcon.SetActive(true);
+            Debug.Log("Notif");
         }
 
         var newMessage = new Message {text = text};
