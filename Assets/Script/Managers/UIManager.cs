@@ -4,11 +4,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Mamont Title")] 
+    [SerializeField] private GameObject mamontTitleObject;
+    [SerializeField] private float mamontTitleScale;
+    private TextMeshProUGUI mamontTitleText;
+
     [Header("Buffs shop")] [SerializeField]
     private GameObject shopBuffsPanel;
 
@@ -22,6 +28,9 @@ public class UIManager : MonoBehaviour
     {
         buffsPanelOpen = false;
         shopBuffsPanel.SetActive(false);
+
+        mamontTitleText = mamontTitleObject.GetComponent<TextMeshProUGUI>();
+        mamontTitleText.text = "мамонтёнок";
     }
 
     private async UniTask ShowPanelAsync()
@@ -37,6 +46,12 @@ public class UIManager : MonoBehaviour
             buffsPanelOpen = true;
         }
 
+    }
+
+    public void UpdateMamontTitle(string titleName)
+    {
+        mamontTitleText.text = titleName;
+        mamontTitleObject.transform.DOScale(mamontTitleScale, 0.2f).SetLoops(2, LoopType.Yoyo);
     }
 
     private async UniTask HidePanelAsync()
