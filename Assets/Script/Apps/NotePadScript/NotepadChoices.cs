@@ -24,6 +24,9 @@ public class NotepadChoices : MonoBehaviour, IWindowedApp
     [SerializeField] private Button scammerChoice;
     private TextMeshProUGUI scammerChoiceText;
     public List<ChoiceActionPair> scammerChoices;
+    
+    [Header("Specific Choices")]
+    [SerializeField] private int specificChoiceActNumber;
 
     [Header("Interactable Notepad")]
     [SerializeField] private NotepadInteractable notepadInteractable;
@@ -41,7 +44,10 @@ public class NotepadChoices : MonoBehaviour, IWindowedApp
 
     private void UpdateChoices()
     {
-        hackerChoiceText.text = hackerChoices[CurrentAct].ChoiceName;
+        hackerChoiceText.text = CurrentAct != specificChoiceActNumber - 1 
+            ? hackerChoices[CurrentAct].ChoiceName 
+            : BoostsManager.CurrentSpecificBoostName;
+        
         scammerChoiceText.text = scammerChoices[CurrentAct].ChoiceName;
     }
 
@@ -51,7 +57,9 @@ public class NotepadChoices : MonoBehaviour, IWindowedApp
         {
             case 1:
                 hackerChoices[CurrentAct].Event?.Invoke();
-                notepadInteractable.InstantiateBoostInfo(hackerChoices[CurrentAct].ChoiceName);
+                notepadInteractable.InstantiateBoostInfo(CurrentAct != specificChoiceActNumber - 1
+                    ? hackerChoices[CurrentAct].ChoiceName
+                    : BoostsManager.CurrentSpecificBoostName);
                 break;
             case 2:
                 scammerChoices[CurrentAct].Event?.Invoke();

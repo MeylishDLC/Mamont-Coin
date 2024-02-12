@@ -15,6 +15,7 @@ public class TaskBackgroundManager : MonoBehaviour
 
     [Header("Double Click Chance")] 
     [SerializeField] private int percentageChanceOfDoubleClick;
+    public static int doubleClickAmount = 2;
 
     [Header("Auto Pop-up Trojan Warnings")]
     [SerializeField] private int warningAppearFrequencyMilliseconds;
@@ -51,16 +52,15 @@ public class TaskBackgroundManager : MonoBehaviour
         return instance;
     }
 
-    public bool DoubleClickChance()
+    public int DoubleClickChance()
     {
         var chance = Random.Range(1, 100);
         if (chance <= percentageChanceOfDoubleClick)
         {
-            Debug.Log("Double click");
-            return true;
+            Debug.Log($"Double click = {doubleClickAmount}");
+            return doubleClickAmount;
         }
-
-        return false;
+        return 1;
     }
 
     private GameObject RandomSpawn(List<GameObject> windowsList)

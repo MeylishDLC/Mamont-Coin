@@ -23,20 +23,11 @@ public class ClickHandler : MonoBehaviour
     
     public void Increment()
     {
-        if (BoostsManager.GetInstance().doubleClickChanceEnabled)
+        if (BoostsManager.DoubleClickChanceEnabled)
         {
-            if (TaskBackgroundManager.GetInstance().DoubleClickChance())
-            {
-                GameManager.Clicks += GameManager.Multiplier * 2;
-                Events.ClicksUpdated?.Invoke();
-                GameEventsHandler.GetInstance().CheckEnoughClicks();
-            }
-            else
-            {
-                GameManager.Clicks += GameManager.Multiplier;
-                Events.ClicksUpdated?.Invoke();
-                GameEventsHandler.GetInstance().CheckEnoughClicks();
-            }
+            GameManager.Clicks += GameManager.Multiplier * TaskBackgroundManager.GetInstance().DoubleClickChance();
+            Events.ClicksUpdated?.Invoke();
+            GameEventsHandler.GetInstance().CheckEnoughClicks();
         }
         else
         {
