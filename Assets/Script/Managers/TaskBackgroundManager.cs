@@ -11,7 +11,7 @@ public class TaskBackgroundManager : MonoBehaviour
 {
     [Header("AutoClicker")] 
     [SerializeField] private int clickFrequencyMilliseconds;
-    public int autoClickAmount;
+    public static int autoClickAmount = 1;
 
     [Header("Double Click Chance")] 
     [SerializeField] private int percentageChanceOfDoubleClick;
@@ -103,21 +103,18 @@ public class TaskBackgroundManager : MonoBehaviour
     {
         TrojanWarningAppearAsync().Forget();
     }
-    private async UniTask AutoClickAsync(int clicksAmount)
+    private async UniTask AutoClickAsync()
     {
         while (BoostsManager.GetInstance().autoClickerEnabled)
         {
             await UniTask.Delay(clickFrequencyMilliseconds);
-            GameManager.Clicks += clicksAmount;
+            GameManager.Clicks += autoClickAmount;
             Events.ClicksUpdated?.Invoke();
-            
-            if (clicksAmount != autoClickAmount)
-                break;
         }
     }
-    public void AutoClick(int clicksAmount)
+    public void AutoClick()
     {
-        AutoClickAsync(clicksAmount).Forget();
+        AutoClickAsync().Forget();
     }
     
     

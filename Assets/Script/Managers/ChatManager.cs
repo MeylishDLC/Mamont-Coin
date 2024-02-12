@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using JetBrains.Annotations;
 using TMPro;
 using Unity.VisualScripting;
@@ -14,6 +15,7 @@ public class ChatManager : MonoBehaviour
     [SerializeField] private SkypeApp skypeApp;
     [SerializeField] private GameObject textObject;
     [SerializeField] private TextMeshProUGUI currentChatName;
+    [SerializeField] private float messageScale;
     
     [Header("Scammer ChatBox")] 
     [SerializeField] private string scammerName;
@@ -79,6 +81,8 @@ public class ChatManager : MonoBehaviour
         newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
         newMessage.textObject.text = newMessage.text;
         
+        newText.transform.DOScale(messageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
+        
         scammerMessageList.Add(newMessage);
         Events.MessageRecieved?.Invoke();
     }
@@ -96,6 +100,8 @@ public class ChatManager : MonoBehaviour
         
         newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
         newMessage.textObject.text = newMessage.text;
+
+        newText.transform.DOScale(messageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
         
         hackerMessageList.Add(newMessage);
         Events.MessageRecieved?.Invoke();
@@ -113,6 +119,13 @@ public class ChatManager : MonoBehaviour
 
         hackerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 1f);
         scammerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 0f);
+        
+        SwitchChatAsync().Forget();
+    }
+
+    private async UniTask SwitchChatAsync()
+    {
+       await skypeApp.transform.DOScale(1.1f, 0.1f).SetLoops(2, LoopType.Yoyo);
     }
 
     public void SwitchToScammer()
@@ -127,5 +140,7 @@ public class ChatManager : MonoBehaviour
         
         scammerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 1f);
         hackerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 0f);
+        
+        SwitchChatAsync().Forget();
     }
 }

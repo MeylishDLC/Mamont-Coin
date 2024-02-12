@@ -9,6 +9,9 @@ public class BoostsManager : MonoBehaviour
     public bool autoClickerEnabled;
     public bool autoPopupWindowEnabled;
     public bool doubleClickChanceEnabled;
+
+    [Header("Specific boost setting")] 
+    [SerializeField] private int autoClickUpdateAmount;
     
     [SerializeField] private NotepadInteractable interactableNotepad;
     private void Awake()
@@ -28,7 +31,7 @@ public class BoostsManager : MonoBehaviour
     public void AutoClicker()
     {
         autoClickerEnabled = true;
-        TaskBackgroundManager.GetInstance().AutoClick(TaskBackgroundManager.GetInstance().autoClickAmount);
+        TaskBackgroundManager.GetInstance().AutoClick();
     }
 
     public void DownloadAmegas()
@@ -42,17 +45,16 @@ public class BoostsManager : MonoBehaviour
         GameManager.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }
-    
-    public void DoubleClickChance()
-    {
-        doubleClickChanceEnabled = true;
-    }
 
-    public void ImproveAutoClick()
+    public void SpecificBoost()
     {
+        if (autoClickerEnabled)
+        {
+            TaskBackgroundManager.autoClickAmount = autoClickUpdateAmount;
+        }
         
     }
-
+    
     public void MoneyBonus(int bonus)
     {
         GameManager.Clicks += bonus;

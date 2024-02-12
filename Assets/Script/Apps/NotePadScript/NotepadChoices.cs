@@ -17,13 +17,13 @@ public class NotepadChoices : MonoBehaviour, IWindowedApp
     [SerializeField] private float zoomOut;
 
     [Header("Choices Set")] 
-    [SerializeField] private Button firstChoice;
-    private TextMeshProUGUI firstChoiceText;
-    public List<ChoiceActionPair> firstChoices;
+    [SerializeField] private Button hackerChoice;
+    private TextMeshProUGUI hackerChoiceText;
+    public List<ChoiceActionPair> hackerChoices;
     
-    [SerializeField] private Button secondChoice;
-    private TextMeshProUGUI secondChoiceText;
-    public List<ChoiceActionPair> secondChoices;
+    [SerializeField] private Button scammerChoice;
+    private TextMeshProUGUI scammerChoiceText;
+    public List<ChoiceActionPair> scammerChoices;
 
     [Header("Interactable Notepad")]
     [SerializeField] private NotepadInteractable notepadInteractable;
@@ -33,16 +33,16 @@ public class NotepadChoices : MonoBehaviour, IWindowedApp
     private void Start()
     {
         CurrentAct = 0;
-        firstChoiceText = firstChoice.GetComponentInChildren<TextMeshProUGUI>();
-        secondChoiceText = secondChoice.GetComponentInChildren<TextMeshProUGUI>();
+        hackerChoiceText = hackerChoice.GetComponentInChildren<TextMeshProUGUI>();
+        scammerChoiceText = scammerChoice.GetComponentInChildren<TextMeshProUGUI>();
         UpdateChoices();
         notepad.SetActive(false);
     }
 
     private void UpdateChoices()
     {
-        firstChoiceText.text = firstChoices[CurrentAct].ChoiceName;
-        secondChoiceText.text = secondChoices[CurrentAct].ChoiceName;
+        hackerChoiceText.text = hackerChoices[CurrentAct].ChoiceName;
+        scammerChoiceText.text = scammerChoices[CurrentAct].ChoiceName;
     }
 
     public void MakeChoice(int choiceNum)
@@ -50,19 +50,19 @@ public class NotepadChoices : MonoBehaviour, IWindowedApp
         switch (choiceNum)
         {
             case 1:
-                firstChoices[CurrentAct].Event?.Invoke();
-                notepadInteractable.InstantiateBoostInfo(firstChoices[CurrentAct].ChoiceName);
+                hackerChoices[CurrentAct].Event?.Invoke();
+                notepadInteractable.InstantiateBoostInfo(hackerChoices[CurrentAct].ChoiceName);
                 break;
             case 2:
-                secondChoices[CurrentAct].Event?.Invoke();
-                notepadInteractable.InstantiateBoostInfo(secondChoices[CurrentAct].ChoiceName);
+                scammerChoices[CurrentAct].Event?.Invoke();
+                notepadInteractable.InstantiateBoostInfo(scammerChoices[CurrentAct].ChoiceName);
                 break;
             default:
                 Debug.LogError("Wrong choice number, only 2 choices can exist");
                 return;
         }
 
-        if (CurrentAct < firstChoices.Count - 1)
+        if (CurrentAct < hackerChoices.Count - 1)
         {
             CurrentAct++;
         }
