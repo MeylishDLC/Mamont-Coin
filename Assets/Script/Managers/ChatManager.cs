@@ -100,20 +100,6 @@ public class ChatManager : MonoBehaviour
         hackerMessageList.Add(newMessage);
         Events.MessageRecieved?.Invoke();
     }
-    
-    public void SendMessageToScammerChatWithName(string text, string messageName)
-    {
-        var newMessage = new Message {text = text};
-        
-        var newText = Instantiate(textObject, scammerChatContent.transform);
-        newText.name = messageName;
-        
-        newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
-        newMessage.textObject.text = newMessage.text;
-        
-        scammerMessageList.Add(newMessage);
-        Events.MessageRecieved?.Invoke();
-    }
 
     public void SwitchToHacker()
     {

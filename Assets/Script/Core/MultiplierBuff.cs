@@ -17,17 +17,7 @@ public class MultiplierBuff : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private TextMeshProUGUI multiplierText;
-
-    private void OnEnable()
-    {
-        Events.ClicksUpdated += UpdateButtonInteractable; 
-    }
-
-    private void OnDisable()
-    {
-        Events.ClicksUpdated -= UpdateButtonInteractable; 
-    }
-
+    
     private void UpdateButtonInteractable()
     {
         button.interactable = GameManager.Clicks >= price;
@@ -36,7 +26,8 @@ public class MultiplierBuff : MonoBehaviour
     private void Start()
     {
         priceText.text = price.ToString();
-        //multiplierText.text = "+" + multiplier + " КЛИКОВ";
+        
+        Events.ClicksUpdated += UpdateButtonInteractable; 
         UpdateButtonInteractable(); 
     }
 

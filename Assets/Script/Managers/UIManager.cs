@@ -35,6 +35,8 @@ public class UIManager : MonoBehaviour
 
     private async UniTask ShowPanelAsync()
     {
+        Events.ClicksUpdated?.Invoke();
+        
         if (!buffsPanelOpen)
         {
             shopBuffsPanel.SetActive(true);
@@ -45,8 +47,8 @@ public class UIManager : MonoBehaviour
             showBuffsPanelButton.interactable = true;
             buffsPanelOpen = true;
         }
-
     }
+    
 
     public void UpdateMamontTitle(string titleName)
     {

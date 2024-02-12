@@ -21,8 +21,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../platformerr/Assets/Script/Stuff/InputManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10871f9e312b442cb78b9b97db88fdcb172a00/ee/b88f337a/UnityAction.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2bwOeKNVsbMZmyVdbHvBQ3XC7aQ" />
   <component name="ProjectViewState">
@@ -87,6 +85,7 @@
       <workItem from="1707402047988" duration="15213000" />
       <workItem from="1707429424908" duration="11554000" />
       <workItem from="1707458319312" duration="11292000" />
+      <workItem from="1707733531946" duration="1868000" />
     </task>
     <servers />
   </component>

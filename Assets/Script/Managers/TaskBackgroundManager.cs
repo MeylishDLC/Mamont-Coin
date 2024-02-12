@@ -91,6 +91,7 @@ public class TaskBackgroundManager : MonoBehaviour
     }
     private async UniTask TrojanWarningAppearAsync()
     {
+        trojanWarningsActive = true;
         while (trojanWarningsActive)
         {
             var popupWindow = RandomSpawn(popupWarnings);

@@ -12,26 +12,29 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static int Clicks;
+    public static int Multiplier;
+    
     [Header("Main")] 
     public GameObject interactionOff;
     public int messageDelayMilliseconds;
 
-    [Header("Clicker")] 
-    [SerializeField] private GameObject clickerCanvas;
-    [SerializeField] private GameObject shopPanelCanvas;
-    public static int Clicks;
-    public static int Multiplier;
-
     [Header("Apps")] 
+    [SerializeField] private GameObject clickerObject;
+    [SerializeField] private GameObject shopPanelObject;
+    
     [SerializeField] private GameObject skypeObject;
     private SkypeApp skypeApp;
     [SerializeField] private GameObject notepadObject;
     private NotepadInteractable notepadInteractable;
+    [SerializeField] private float scaleOnOpenApp;
 
 
     [Header("Introduction")] 
-    [SerializeField] private GameObject clickerEXE;
+    [SerializeField] private GameObject clickerExeMessagePrefab;
+    [SerializeField] private GameObject scammerMessageContainer;
     [SerializeField] private List<string> scammerBeginningMessages;
+    private Button clickerExeButton;
 
     [Header("Ending")] 
     [SerializeField] private GameObject bankCardForm;
@@ -67,7 +70,6 @@ public class GameManager : MonoBehaviour
         //////////////
 
         interactionOff.SetActive(false);
-        clickerEXE.SetActive(false);
 
         notepadInteractable = notepadObject.GetComponent<NotepadInteractable>();
         skypeApp = skypeObject.GetComponent<SkypeApp>();
@@ -76,24 +78,55 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         bankCardForm.SetActive(false);
-        clickerCanvas.SetActive(false);
-        shopPanelCanvas.SetActive(false); 
-        interactionOff.SetActive(true);
+        
+        clickerObject.SetActive(false);
+        shopPanelObject.SetActive(false);
 
         OnSkypeOpenFirstTimeAsync().Forget();
     }
-    
+    private async UniTask OnSkypeOpenFirstTimeAsync()
+    {
+        await UniTask.Delay(2000);
 
+        foreach (var message in scammerBeginningMessages)
+        {
+            ChatManager.GetInstance().SendMessageToScammerChat(message);
+            await UniTask.Delay(messageDelayMilliseconds);
+        }
+
+        var messageObject = Instantiate(clickerExeMessagePrefab, scammerMessageContainer.transform);
+        clickerExeButton = messageObject.GetComponentInChildren<Button>();
+        clickerExeButton.onClick.AddListener(OpenClicker);
+    }
+
+    private async UniTask OpenClickerAsync()
+    {
+        clickerObject.SetActive(true);
+        await clickerObject.transform.DOScale(scaleOnOpenApp, 0.1f).SetLoops(2, LoopType.Yoyo);
+        shopPanelObject.SetActive(true);
+
+        clickerExeButton.interactable = false;
+        TaskBackgroundManager.GetInstance().TrojanWarningAppear();
+    }
+    private void OpenClicker()
+    {
+        clickerExeButton.onClick.RemoveListener(OpenClicker);
+        OpenClickerAsync().Forget();
+    }
+    
     public void GameEnd()
     {
         GameEndAsync().Forget();
     }
+    
+    
+    
     private async UniTask GameEndAsync()
     {
         DisableAllBackgroundProcesses();
         
-        clickerCanvas.SetActive(false);
-        shopPanelCanvas.SetActive(false);
+        clickerObject.SetActive(false);
+        shopPanelObject.SetActive(false);
         
         interactionOff.SetActive(true);
         
@@ -121,33 +154,6 @@ public class GameManager : MonoBehaviour
         }
         bankCardForm.SetActive(true);
         await bankCardForm.transform.DOScale(bankCardFormScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();
-    }
-    private async UniTask OnSkypeOpenFirstTimeAsync()
-    {
-        await UniTask.Delay(2000);
-        skypeApp.OpenApp();
-        
-        foreach (var message in scammerBeginningMessages)
-        {
-            ChatManager.GetInstance().SendMessageToScammerChat(message);
-            await UniTask.Delay(messageDelayMilliseconds);
-        }
-        ChatManager.GetInstance().SendMessageToScammerChatWithName("<color=white>.</color>\n\n\n\n<color=white>.</color>", "exe.message");
-        clickerEXE.SetActive(true);
-    }
-    
-    
-    public void OpenClicker()
-    {
-        clickerCanvas.SetActive(true);
-        shopPanelCanvas.SetActive(true);
-
-        interactionOff.SetActive(false);
-        clickerEXE.SetActive(false);
-        TaskBackgroundManager.GetInstance().trojanWarningsActive = true;
-        TaskBackgroundManager.GetInstance().TrojanWarningAppear();
-
-        Destroy(GameObject.Find("exe.message"));
     }
     
     private void DisableAllBackgroundProcesses()
