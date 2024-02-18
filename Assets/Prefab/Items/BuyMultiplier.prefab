@@ -259,7 +259,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3422825771671887399}
         m_TargetAssemblyTypeName: MultiplierBuff, Assembly-CSharp
-        m_MethodName: BuyMultiplierBuff
+        m_MethodName: BuyAddMultiplier
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -22,7 +22,7 @@ public class TaskBackgroundManager : MonoBehaviour
     [SerializeField] private List<GameObject> popupWarnings;
     public bool trojanWarningsActive;
     
-    [Header("Auto Pop-up Windows")] 
+    [Header("Auto Pop-up Paid Windows")] 
     [SerializeField] private int appearFrequencyMilliseconds;
     [SerializeField] private List<GameObject> popupWindows;
     [SerializeField] private Camera mainCamera;

@@ -31,30 +31,37 @@ public class MultiplierBuff : MonoBehaviour
         UpdateButtonInteractable(); 
     }
 
-    private async UniTask BuyMultiplierBuffTimeLimitedAsync()
+    private async UniTask BuyTimesMultiplierTimeLimitedAsync()
+    { 
+        BuyTimesMultiplierBuff(); 
+        await UniTask.Delay(timeLimitMilliseconds);
+        GameManager.Multiplier /= multiplier;
+    }
+
+    public void BuyTimesMultiplierTimeLimited()
+    {
+        BuyTimesMultiplierTimeLimitedAsync().Forget();
+    }
+    
+    //todo: time limited add multiplier
+    public void BuyAddMultiplier()
     {
         if (GameManager.Clicks >= price)
         {
             GameManager.Multiplier += multiplier;
             GameManager.Clicks -= price;
-            UpdateButtonInteractable();
+            
             Events.ClicksUpdated?.Invoke();
-            await UniTask.Delay(timeLimitMilliseconds);
-            GameManager.Multiplier -= multiplier;
         }
     }
 
-    public void BuyMultiplierBuffTimeLimited()
-    {
-        BuyMultiplierBuffTimeLimitedAsync().Forget();
-    }
-    public void BuyMultiplierBuff()
+    public void BuyTimesMultiplierBuff()
     {
         if (GameManager.Clicks >= price)
         {
-            GameManager.Multiplier += multiplier;
+            GameManager.Multiplier *= multiplier;
             GameManager.Clicks -= price;
-            UpdateButtonInteractable();
+            
             Events.ClicksUpdated?.Invoke();
         }
     }
