@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
     private void DisableAllBackgroundProcesses()
     {
         TaskBackgroundManager.GetInstance().trojanWarningsActive = false;
-        BoostsManager.GetInstance().autoPopupWindowEnabled = false;
+        BoostsManager.GetInstance().paidPopupWindowEnabled = false;
         BoostsManager.GetInstance().autoClickerEnabled = false;
     }
     

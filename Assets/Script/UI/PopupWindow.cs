@@ -9,7 +9,7 @@ public class PopupWindow : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private bool destroyOnClose;
-    [SerializeField] private bool isPaid;
+    public bool isPaid;
 
     public void ShowWindow()
     {

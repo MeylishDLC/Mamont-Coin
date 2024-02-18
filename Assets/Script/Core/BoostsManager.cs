@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class BoostsManager : MonoBehaviour
 {
     private static BoostsManager instance;
     public bool autoClickerEnabled;
-    public bool autoPopupWindowEnabled;
+    public bool paidPopupWindowEnabled;
     public static bool DoubleClickChanceEnabled;
 
     [Header("Specific boost setting")]
@@ -25,7 +26,12 @@ public class BoostsManager : MonoBehaviour
         }
         instance = this;
     }
-    
+
+    private void Start()
+    {
+        TaskBackgroundManager.GetInstance().PopupWindowAppearAsync().Forget();
+    }
+
     public static BoostsManager GetInstance()
     {
         return instance;
@@ -40,8 +46,8 @@ public class BoostsManager : MonoBehaviour
 
     public void DownloadAmegas()
     {
-        autoPopupWindowEnabled = true;
-        TaskBackgroundManager.GetInstance().PopupWindowAppear();
+        paidPopupWindowEnabled = true;
+        TaskBackgroundManager.GetInstance().PaidPopupWindowAppear();
     }
 
     public void Refelalka(int bonus)

@@ -20,13 +20,17 @@ public class TaskBackgroundManager : MonoBehaviour
     [Header("Auto Pop-up Trojan Warnings")]
     [SerializeField] private int warningAppearFrequencyMilliseconds;
     [SerializeField] private List<GameObject> popupWarnings;
-    public bool trojanWarningsActive;
+    public bool trojanWarningsActive { get; set; }
+    
+    [Header("Auto Pop-up Windows")]
+    [SerializeField] private List<GameObject> popupWindows;
+    [SerializeField] private GameObject spawnParent;
+    
+    [Header("Auto Pop-up AD Windows")]
+    [SerializeField] private int appearFrequencyMilliseconds;
     
     [Header("Auto Pop-up Paid Windows")] 
-    [SerializeField] private int appearFrequencyMilliseconds;
-    [SerializeField] private List<GameObject> popupWindows;
-    [SerializeField] private Camera mainCamera;
-    [SerializeField] private GameObject spawnParent;
+    [SerializeField] private int paidAppearFrequencyMilliseconds;
     public int coinsPerPopupWindow;
 
     private static TaskBackgroundManager instance;
@@ -38,15 +42,6 @@ public class TaskBackgroundManager : MonoBehaviour
         }
         instance = this;
     }
-
-    private void Start()
-    {
-        if (trojanWarningsActive)
-        {
-            TrojanWarningAppear();
-        }
-    }
-
     public static TaskBackgroundManager GetInstance()
     {
         return instance;
@@ -69,25 +64,36 @@ public class TaskBackgroundManager : MonoBehaviour
         var randomY = Random.Range(0f, Screen.height);
         var randomWindow = windowsList[Random.Range(0, windowsList.Count)];
 
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(spawnParent.GetComponent<RectTransform>(), new Vector2(randomX, randomY), mainCamera, out Vector2 randomPositionLocal);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(spawnParent.GetComponent<RectTransform>(), new Vector2(randomX, randomY), Camera.main, out Vector2 randomPositionLocal);
 
         var popupWindow = Instantiate(randomWindow, spawnParent.transform);
         popupWindow.transform.localPosition = randomPositionLocal;
         return popupWindow;
     }
-    private async UniTask PopupWindowAppearAsync()
+
+    public async UniTask PopupWindowAppearAsync()
     {
-        while (BoostsManager.GetInstance().autoPopupWindowEnabled)
+        while (true)
         {
             var popupWindow = RandomSpawn(popupWindows);
+            popupWindow.GetComponent<PopupWindow>().isPaid = false;
             await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
             await UniTask.Delay(appearFrequencyMilliseconds);
         }
     }
-    public void PopupWindowAppear()
+    private async UniTask PaidPopupWindowAppearAsync()
     {
-        BoostsManager.GetInstance().autoPopupWindowEnabled = true;
-        PopupWindowAppearAsync().Forget();
+        while (BoostsManager.GetInstance().paidPopupWindowEnabled)
+        {
+            var popupWindow = RandomSpawn(popupWindows);
+            await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
+            await UniTask.Delay(paidAppearFrequencyMilliseconds);
+        }
+    }
+    public void PaidPopupWindowAppear()
+    {
+        BoostsManager.GetInstance().paidPopupWindowEnabled = true;
+        PaidPopupWindowAppearAsync().Forget();
     }
     private async UniTask TrojanWarningAppearAsync()
     {
