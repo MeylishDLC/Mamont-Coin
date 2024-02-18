@@ -4,19 +4,26 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Script.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
-public class UIManager : MonoBehaviour
+public class Clicker : MonoBehaviour
 {
+    [Header("Clicker")] 
+    [SerializeField] private GameObject errorMessagePrefab;
+    [SerializeField] private GameObject spawnParent;
+    [SerializeField] private float errorWindowAnimationScale;
+    
     [Header("Mamont Title")] 
     [SerializeField] private GameObject mamontTitleObject;
     [SerializeField] private float mamontTitleScale;
     private TextMeshProUGUI mamontTitleText;
 
-    [Header("Buffs shop")] [SerializeField]
-    private GameObject shopBuffsPanel;
+    [Header("Buffs shop")] 
+    [SerializeField] private GameObject shopBuffsPanel;
 
     [SerializeField] private Button showBuffsPanelButton;
     [SerializeField] private Button hideBuffsPanelButton;
@@ -80,7 +87,19 @@ public class UIManager : MonoBehaviour
         HidePanelAsync().Forget();
     }
 
-   
-
+    public void OnClickerCloseButtonPress()
+    {
+        var errorWindow = Instantiate(errorMessagePrefab, spawnParent.transform);
+        
+        var rectTransform = errorWindow.GetComponent<RectTransform>();
+        var position = rectTransform.anchoredPosition;
+        
+        position.x += Random.Range(-100, 100);
+        position.y += Random.Range(-50, 50);
+        
+        rectTransform.anchoredPosition = position;
+        errorWindow.transform.DOScale(errorWindowAnimationScale, 0.1f).SetLoops(2, LoopType.Yoyo);
+    }
+    
 }
 
