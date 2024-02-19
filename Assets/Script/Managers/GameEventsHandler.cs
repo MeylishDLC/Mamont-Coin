@@ -15,6 +15,8 @@ public class GameEventsHandler : MonoBehaviour
     {
         goalIndex = 0;
         currentGoal = countEventPairs[goalIndex].ClicksCount;
+
+        Events.ClicksUpdated += CheckEnoughClicks;
     }
     
     private void Awake()

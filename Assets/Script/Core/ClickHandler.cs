@@ -12,6 +12,8 @@ public class ClickHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI multiplierText;
     [SerializeField] private TextMeshProUGUI coinToRubleText;
     [SerializeField] private int coinExchangeRate;
+
+    [SerializeField] private ProgressHandler progressHandler;
     private void Start()
     {
         counterText.text = GameManager.Clicks.ToString();
@@ -26,16 +28,15 @@ public class ClickHandler : MonoBehaviour
         if (BoostsManager.DoubleClickChanceEnabled)
         {
             GameManager.Clicks += GameManager.Multiplier * TaskBackgroundManager.GetInstance().DoubleClickChance();
+            progressHandler.AddProgress(GameManager.Multiplier * TaskBackgroundManager.GetInstance().DoubleClickChance());
             Events.ClicksUpdated?.Invoke();
-            GameEventsHandler.GetInstance().CheckEnoughClicks();
         }
         else
         {
             GameManager.Clicks += GameManager.Multiplier;
+            progressHandler.AddProgress(GameManager.Multiplier);
             Events.ClicksUpdated?.Invoke();
-            GameEventsHandler.GetInstance().CheckEnoughClicks();
         }
-
     }
 
     private void OnClicksUpdated()
