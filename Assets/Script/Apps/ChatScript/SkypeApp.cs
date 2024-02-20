@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Script.Sound;
 using Script.UI;
 using TMPro;
 using UnityEngine;
@@ -69,6 +70,7 @@ public class SkypeApp : MonoBehaviour, IWindowedApp
 
     private void OnNewNotificationGet()
     {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.skypeMessageSound);
         if (!isOpen)
         {
             notificationCounter++;

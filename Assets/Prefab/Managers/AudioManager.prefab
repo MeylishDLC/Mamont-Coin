@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &652227054584503457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3111060602078326107}
+  - component: {fileID: 977923958247936047}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3111060602078326107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652227054584503457}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2566745802147885761}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &977923958247936047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652227054584503457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb3bd6c0ba4747629c9c0ee2b77a635b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolume: 1
+  musicVolume: 1
+  SFXVolume: 1
+--- !u!1 &7709428357747057039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2566745802147885761}
+  - component: {fileID: 3810815890894956950}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2566745802147885761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7709428357747057039}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3111060602078326107}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3810815890894956950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7709428357747057039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cd7b7304104d79926ce0bfc5d80bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <defaultMusic>k__BackingField:
+    Guid:
+      Data1: -2049796796
+      Data2: 1165232022
+      Data3: 1054721182
+      Data4: 1836196248
+    Path: event:/Music/DefaultMusic
+  <skypeMessageSound>k__BackingField:
+    Guid:
+      Data1: -2056325614
+      Data2: 1079997431
+      Data3: 254475703
+      Data4: 172504672
+    Path: event:/SFX/SkypeNewMessage
+  <skypeCallSound>k__BackingField:
+    Guid:
+      Data1: 794042727
+      Data2: 1074538901
+      Data3: -1281294708
+      Data4: 260063821
+    Path: event:/SFX/SkypeCall
+  <clickSound>k__BackingField:
+    Guid:
+      Data1: 687147958
+      Data2: 1329236203
+      Data3: -1378353269
+      Data4: 1101442147
+    Path: event:/SFX/MouseClick
+  <errorSound>k__BackingField:
+    Guid:
+      Data1: -1037992838
+      Data2: 1240497622
+      Data3: 1852374672
+      Data4: -1369160361
+    Path: event:/SFX/ErrorWindowPopup
+  <popupADSound>k__BackingField:
+    Guid:
+      Data1: -1037992838
+      Data2: 1240497622
+      Data3: 1852374672
+      Data4: -1369160361
+    Path: event:/SFX/ErrorWindowPopup
+  <windowsGreetingSound>k__BackingField:
+    Guid:
+      Data1: 34926083
+      Data2: 1088592000
+      Data3: -502078031
+      Data4: 1812026887
+    Path: event:/SFX/WindowsGreeting

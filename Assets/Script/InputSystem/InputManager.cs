@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Script.Sound;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,6 +34,7 @@ public class InputManager : MonoBehaviour
         if (context.performed)
         {
             mouseButtonPressed = true;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.clickSound);
         }
         else if (context.canceled)
         {

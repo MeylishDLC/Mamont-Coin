@@ -78,6 +78,9 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.windowsGreetingSound);
+        AudioManager.instance.InitializeMusic(FMODEvents.instance.defaultMusic);
+        
         bankCardForm.SetActive(false);
         
         clickerObject.SetActive(false);
@@ -102,6 +105,8 @@ public class GameManager : MonoBehaviour
 
     private async UniTask OpenClickerAsync()
     {
+        AudioManager.instance.SetMusicAct(MusicAct.MAIN);
+        
         clickerObject.SetActive(true);
         await clickerObject.transform.DOScale(scaleOnOpenApp, 0.1f).SetLoops(2, LoopType.Yoyo);
         shopPanelObject.SetActive(true);

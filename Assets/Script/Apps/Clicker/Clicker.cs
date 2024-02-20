@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Script.Sound;
 using Script.UI;
 using TMPro;
 using UnityEngine;
@@ -78,6 +79,7 @@ public class Clicker : MonoBehaviour
     public void OnClickerCloseButtonPress()
     {
         var errorWindow = Instantiate(errorMessagePrefab, spawnParent.transform);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.errorSound);
         
         var rectTransform = errorWindow.GetComponent<RectTransform>();
         var position = rectTransform.anchoredPosition;
