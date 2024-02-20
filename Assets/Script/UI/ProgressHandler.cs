@@ -57,6 +57,7 @@ public class ProgressHandler : MonoBehaviour
     {
         mamontTitleText.text = titleName;
         await mamontTitleObject.transform.DOScale(mamontTitleScale, 0.2f).SetLoops(2, LoopType.Yoyo);
+        mamontTitleObject.transform.localScale = new Vector3(1,1,1);
     }
 
     public void AddProgress(int amount)
