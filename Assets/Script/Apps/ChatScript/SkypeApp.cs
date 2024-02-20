@@ -58,6 +58,7 @@ public class SkypeApp : MonoBehaviour, IWindowedApp
         closeButton.interactable = false;
         
         await transform.DOScale(scaleOnOpen, openDuration).ToUniTask();
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
 
         closeButton.interactable = true;
         

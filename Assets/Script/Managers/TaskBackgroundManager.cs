@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Script.Sound;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -17,7 +18,7 @@ public class TaskBackgroundManager : MonoBehaviour
     [SerializeField] private int percentageChanceOfDoubleClick;
     public static int doubleClickAmount = 2;
 
-    [Header("Auto Pop-up Trojan Warnings")]
+    [Header("Trojan Warnings")]
     [SerializeField] private int warningAppearFrequencyMilliseconds;
     [SerializeField] private List<GameObject> popupWarnings;
     public bool trojanWarningsActive { get; set; }
@@ -86,6 +87,7 @@ public class TaskBackgroundManager : MonoBehaviour
         while (BoostsManager.GetInstance().paidPopupWindowEnabled)
         {
             var popupWindow = RandomSpawn(popupWindows);
+            
             await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
             await UniTask.Delay(paidAppearFrequencyMilliseconds);
         }
@@ -101,6 +103,8 @@ public class TaskBackgroundManager : MonoBehaviour
         while (trojanWarningsActive)
         {
             var popupWindow = RandomSpawn(popupWarnings);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.errorSound);
+            
             await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
             await UniTask.Delay(warningAppearFrequencyMilliseconds);
         }

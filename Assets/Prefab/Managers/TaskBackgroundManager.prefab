@@ -44,15 +44,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15b7c0e47d1fb84aa0e43956299b2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickFrequencyMilliseconds: 500
-  AutoClickEnabled: 0
-  percentageChanceOfDoubleClick: 0
-  doubleClickChanceEnabled: 0
-  appearFrequencyMilliseconds: 4000
+  clickFrequencyMilliseconds: 5
+  percentageChanceOfDoubleClick: 25
+  errorSound:
+    Guid:
+      Data1: -1037992838
+      Data2: 1240497622
+      Data3: 1852374672
+      Data4: -1369160361
+    Path: event:/ErrorWindowPopup
+  warningAppearFrequencyMilliseconds: 80000
+  popupWarnings:
+  - {fileID: 2114143692428675400, guid: 7d19b0786add63d48834f6d03d04d816, type: 3}
+  - {fileID: 5385966589402032087, guid: 34d4c4b611da9e54f9c4c26fb3ca0658, type: 3}
   popupWindows:
   - {fileID: 1588685383201358127, guid: d5e28ae31bf5c5848a8ecf6ce365541f, type: 3}
   - {fileID: 6718039979547507973, guid: 9351f8b1fc61aad44bbefc3e56ce9f1f, type: 3}
   - {fileID: 7626940383357585063, guid: f9fe7e061bdb8d64cb971478ff6861b1, type: 3}
-  mainCamera: {fileID: 0}
+  - {fileID: 550987806604311869, guid: 73ccf38fc53b52d46ac55023a5935ee0, type: 3}
+  - {fileID: 3683443974668729248, guid: 70d0ca7f90f57c94f8b63ad2c4ca758b, type: 3}
   spawnParent: {fileID: 0}
-  AutoPopupWindowsEnabled: 0
+  appearFrequencyMilliseconds: 20000
+  paidAppearFrequencyMilliseconds: 30000
+  coinsPerPopupWindow: 500
