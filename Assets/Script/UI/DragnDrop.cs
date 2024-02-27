@@ -9,8 +9,9 @@ public class DragnDrop : MonoBehaviour, IDragHandler
 {
     //todo: remake w new input system
     [SerializeField] private RectTransform draggableObjectRectTransform;
-    public void OnDrag(PointerEventData eventData)
+    public virtual void OnDrag(PointerEventData eventData)
     {
         draggableObjectRectTransform.anchoredPosition += eventData.delta;
     }
+    
 }
