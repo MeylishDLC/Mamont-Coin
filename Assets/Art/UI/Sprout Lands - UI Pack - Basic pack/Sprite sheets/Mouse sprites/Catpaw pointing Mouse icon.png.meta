@@ -210,7 +210,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Catpaw pointing Mouse icon_0: 2884403659147420005
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

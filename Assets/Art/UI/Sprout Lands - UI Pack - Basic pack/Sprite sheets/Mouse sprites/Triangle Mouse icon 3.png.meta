@@ -210,7 +210,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Triangle Mouse icon 3_0: -6130839231719218058
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

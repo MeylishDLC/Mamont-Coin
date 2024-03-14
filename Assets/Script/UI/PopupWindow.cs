@@ -29,7 +29,7 @@ public class PopupWindow : MonoBehaviour
         }
         if (isPaid)
         {
-            GameManager.Clicks += TaskBackgroundManager.GetInstance().coinsPerPopupWindow;
+            GameManager.Clicks += BoostsManager.GetInstance().coinsPerPopupWindow;
             Events.ClicksUpdated?.Invoke();
             Debug.Log("+ money for AD");
         }

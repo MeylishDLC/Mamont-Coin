@@ -14,44 +14,45 @@ public class ChatManager : MonoBehaviour
     [Header("Main")]
     [SerializeField] private SkypeApp skypeApp;
     [SerializeField] private GameObject textObject;
-    [SerializeField] private TextMeshProUGUI currentChatName;
-    [SerializeField] private float messageScale;
     
-    [Header("Scammer ChatBox")] 
-    [SerializeField] private string scammerName;
-    [SerializeField] private GameObject scammerChat; 
-    [SerializeField] private GameObject scammerChatContent;
-    [SerializeField] private Image scammerProfileToolPanel;
-    [SerializeField] private GameObject scammerNotificationIcon;
-
-    private List<Message> scammerMessageList;
-
-    [Header("Hacker ChatBox")] 
-    [SerializeField] private string hackerName;
-    [SerializeField] private GameObject hackerChat;
-    [SerializeField] private GameObject hackerChatContent;
-    [SerializeField] private Image hackerProfileToolPanel;
-    [SerializeField] private GameObject hackerNotificationIcon;
+    private Color profileColorActive;
+    private Color profileColorInactive;
     
-    private List<Message> hackerMessageList;
-    
-    private Color originalProfilesColor;
     private bool scammerChatActive = true;
-
-    private static ChatManager instance;
-    private void Start()
+    private bool ScammerChatActive
     {
-        scammerChat.SetActive(true);
-        hackerChat.SetActive(false);
-        currentChatName.text = scammerName;
-        
-        hackerMessageList = new List<Message>();
-        scammerMessageList = new List<Message>();
-        
-        originalProfilesColor = hackerProfileToolPanel.color;
-        scammerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 1f);
+        get => scammerChatActive;
+        set
+        {
+            scammerChatActive = value;
+            
+            if (scammerChatActive)
+            {
+                skypeApp.hackerChat.SetActive(false);
+                skypeApp.scammerNotificationIcon.SetActive(false);
+                
+                skypeApp.scammerChat.SetActive(true);
+                skypeApp.currentChatName.text = skypeApp.scammerName;
+
+                skypeApp.scammerProfileToolPanel.color = profileColorActive;
+                skypeApp.hackerProfileToolPanel.color = profileColorInactive;
+            }
+            else
+            {
+                skypeApp.scammerChat.SetActive(false);
+
+                skypeApp.hackerNotificationIcon.SetActive(false);
+                skypeApp.hackerChat.SetActive(true);
+
+                skypeApp.currentChatName.text = skypeApp.hackerName;
+
+                skypeApp.hackerProfileToolPanel.color = profileColorActive;
+                skypeApp.scammerProfileToolPanel.color = profileColorInactive;
+            }
+        }
     }
 
+    private static ChatManager instance;
     private void Awake()
     {
         if (instance != null)
@@ -59,6 +60,16 @@ public class ChatManager : MonoBehaviour
             Debug.LogError("Found more than one Chat Manager in the scene.");
         }
         instance = this;
+        
+        skypeApp.scammerChat.SetActive(true);
+        skypeApp.hackerChat.SetActive(false);
+        skypeApp.currentChatName.text = skypeApp.scammerName;
+
+        var origColor = skypeApp.hackerProfileToolPanel.color;
+        profileColorActive = new Color(origColor.r, origColor.g, origColor.b, 1f);
+        profileColorInactive = new Color(origColor.r, origColor.g, origColor.b, 0f);
+
+        skypeApp.scammerProfileToolPanel.color = profileColorActive;
     }
 
     public static ChatManager GetInstance()
@@ -68,79 +79,48 @@ public class ChatManager : MonoBehaviour
     
     public void SendMessageToScammerChat(string text)
     {
-        if (!scammerChatActive)
+        if (!ScammerChatActive)
         {
-            scammerNotificationIcon.SetActive(true);
-            Debug.Log("Notif");
+            skypeApp.scammerNotificationIcon.SetActive(true);
         }
         
         var newMessage = new Message {text = text};
         
-        var newText = Instantiate(textObject, scammerChatContent.transform);
+        var newText = Instantiate(textObject, skypeApp.scammerChatContent.transform);
         
         newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
         newMessage.textObject.text = newMessage.text;
         
-        newText.transform.DOScale(messageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
+        newText.transform.DOScale(skypeApp.messageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
         
-        scammerMessageList.Add(newMessage);
         Events.MessageRecieved?.Invoke();
     }
     public void SendMessageToHackerChat(string text)
     {
-        if (scammerChatActive)
+        if (ScammerChatActive)
         {
-            hackerNotificationIcon.SetActive(true);
-            Debug.Log("Notif");
+            skypeApp.hackerNotificationIcon.SetActive(true);
         }
 
         var newMessage = new Message {text = text};
         
-        var newText = Instantiate(textObject, hackerChatContent.transform);
+        var newText = Instantiate(textObject, skypeApp.hackerChatContent.transform);
         
         newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
         newMessage.textObject.text = newMessage.text;
 
-        newText.transform.DOScale(messageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
+        newText.transform.DOScale(skypeApp.messageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
         
-        hackerMessageList.Add(newMessage);
         Events.MessageRecieved?.Invoke();
     }
 
     public void SwitchToHacker()
     {
-        scammerChatActive = false;
-        scammerChat.SetActive(false);
-        
-        hackerNotificationIcon.SetActive(false);
-        hackerChat.SetActive(true);
-
-        currentChatName.text = hackerName;
-
-        hackerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 1f);
-        scammerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 0f);
-        
-        SwitchChatAsync().Forget();
+        ScammerChatActive = false;
     }
-
-    private async UniTask SwitchChatAsync()
-    {
-       await skypeApp.transform.DOScale(1.1f, 0.1f).SetLoops(2, LoopType.Yoyo);
-    }
-
+    
     public void SwitchToScammer()
     {
-        scammerChatActive = true;
-        hackerChat.SetActive(false);
-        
-        scammerNotificationIcon.SetActive(false);
-        scammerChat.SetActive(true);
-        
-        currentChatName.text = scammerName;
-        
-        scammerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 1f);
-        hackerProfileToolPanel.color = new Color(originalProfilesColor.r, originalProfilesColor.g, originalProfilesColor.b, 0f);
-        
-        SwitchChatAsync().Forget();
+        ScammerChatActive = true;
     }
 }

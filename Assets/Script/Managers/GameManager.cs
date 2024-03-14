@@ -23,17 +23,13 @@ public class GameManager : MonoBehaviour
     [Header("Apps")] 
     [SerializeField] private GameObject clickerObject;
     [SerializeField] private GameObject shopPanelObject;
+    [SerializeField] private float scaleOnOpenClicker;
     
-    [SerializeField] private GameObject skypeObject;
-    private SkypeApp skypeApp;
-    [SerializeField] private GameObject notepadObject;
-    private NotepadInteractable notepadInteractable;
-    [SerializeField] private float scaleOnOpenApp;
-
-
+    [SerializeField] private SkypeApp skypeApp;
+    [SerializeField] private NotepadInteractable notepadInteractable;
+    
     [Header("Introduction")] 
     [SerializeField] private GameObject clickerExeMessagePrefab;
-    [SerializeField] private GameObject scammerMessageContainer;
     [SerializeField] private List<string> scammerBeginningMessages;
     private Button clickerExeButton;
 
@@ -42,8 +38,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float bankCardFormScale;
     
     [SerializeField] private List<string> scammerEndMessages;
-    [SerializeField] private GameObject popupWindowsContainer;
-    
+
     [SerializeField] private Vector3 skypeSetPosition;
     [SerializeField] private Vector3 notepadSetPosition;
     
@@ -71,9 +66,6 @@ public class GameManager : MonoBehaviour
         //////////////
 
         interactionOff.SetActive(false);
-
-        notepadInteractable = notepadObject.GetComponent<NotepadInteractable>();
-        skypeApp = skypeObject.GetComponent<SkypeApp>();
     }
 
     public void GameStart()
@@ -98,7 +90,7 @@ public class GameManager : MonoBehaviour
             await UniTask.Delay(messageDelayMilliseconds);
         }
 
-        var messageObject = Instantiate(clickerExeMessagePrefab, scammerMessageContainer.transform);
+        var messageObject = Instantiate(clickerExeMessagePrefab, skypeApp.scammerChatContent.transform);
         clickerExeButton = messageObject.GetComponentInChildren<Button>();
         clickerExeButton.onClick.AddListener(OpenClicker);
     }
@@ -108,11 +100,11 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.SetMusicAct(MusicAct.MAIN);
         
         clickerObject.SetActive(true);
-        await clickerObject.transform.DOScale(scaleOnOpenApp, 0.1f).SetLoops(2, LoopType.Yoyo);
+        await clickerObject.transform.DOScale(scaleOnOpenClicker, 0.1f).SetLoops(2, LoopType.Yoyo);
         shopPanelObject.SetActive(true);
 
         clickerExeButton.interactable = false;
-        TaskBackgroundManager.GetInstance().TrojanWarningAppear();
+        PopupsManager.GetInstance().TrojanWarningAppear();
     }
     private void OpenClicker()
     {
@@ -124,8 +116,6 @@ public class GameManager : MonoBehaviour
     {
         GameEndAsync().Forget();
     }
-    
-    
     
     private async UniTask GameEndAsync()
     {
@@ -140,18 +130,17 @@ public class GameManager : MonoBehaviour
         notepadInteractable.CloseApp();
         skypeApp.CloseApp();
 
-        notepadObject.transform.localPosition = notepadSetPosition;
-        skypeObject.transform.localPosition = skypeSetPosition;
+        notepadInteractable.gameObject.transform.localPosition = notepadSetPosition;
+        skypeApp.gameObject.transform.localPosition = skypeSetPosition;
         await UniTask.Delay(messageDelayMilliseconds);
         
         notepadInteractable.OpenApp();
         skypeApp.OpenApp();
         
         //clear all windows
-        Destroy(popupWindowsContainer);
+        Destroy(PopupsManager.GetInstance().PopupsContainer);
         
         ChatManager.GetInstance().SwitchToScammer();
-        
 
         foreach (var message in scammerEndMessages)
         {
@@ -164,9 +153,8 @@ public class GameManager : MonoBehaviour
     
     private void DisableAllBackgroundProcesses()
     {
-        TaskBackgroundManager.GetInstance().trojanWarningsActive = false;
-        BoostsManager.GetInstance().paidPopupWindowEnabled = false;
-        BoostsManager.GetInstance().autoClickerEnabled = false;
+        PopupsManager.GetInstance().DisableAllPopups();
+        BoostsManager.GetInstance().DisableAllBoosts();
     }
     
 }

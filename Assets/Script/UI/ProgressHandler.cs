@@ -37,7 +37,11 @@ public class ProgressHandler : MonoBehaviour
 
     private void UpdateProgress()
     {
-        progressBar.value = currentValue / maxValue;
+        if (progressBar.value < maxValue)
+        {
+            progressBar.value = currentValue / maxValue;
+        }
+       
         if (currentValue == maxValue)
         {
             if (currentGoalIndex < ranks.Length)

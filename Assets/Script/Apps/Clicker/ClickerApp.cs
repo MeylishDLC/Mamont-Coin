@@ -11,13 +11,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class Clicker : MonoBehaviour
+public class ClickerApp : MonoBehaviour
 {
     [Header("Clicker")] 
     [SerializeField] private GameObject errorMessagePrefab;
     [SerializeField] private GameObject spawnParent;
     [SerializeField] private float errorWindowAnimationScale;
-    
+    [SerializeField] private Button clickerButton;
+    [SerializeField] private ParticleSystem particlePrefab;
 
     [Header("Buffs shop")] 
     [SerializeField] private GameObject shopBuffsPanel;
@@ -32,8 +33,6 @@ public class Clicker : MonoBehaviour
     {
         buffsPanelOpen = false;
         shopBuffsPanel.SetActive(false);
-
-
     }
 
     private async UniTask ShowPanelAsync()
@@ -89,6 +88,13 @@ public class Clicker : MonoBehaviour
         
         rectTransform.anchoredPosition = position;
         errorWindow.transform.DOScale(errorWindowAnimationScale, 0.1f).SetLoops(2, LoopType.Yoyo);
+    }
+
+        
+    public void ParticleSpawn()
+    {
+        Instantiate(particlePrefab, clickerButton.GetComponent<RectTransform>().position,
+            Quaternion.identity);
     }
     
 }

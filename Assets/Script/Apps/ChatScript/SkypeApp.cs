@@ -11,15 +11,31 @@ using UnityEngine.UI;
 
 public class SkypeApp : MonoBehaviour, IWindowedApp
 {
+    [Header("UI")]
+    [SerializeField] public TextMeshProUGUI currentChatName;
+    [SerializeField] public float messageScale;
+    
+    [Header("Scammer ChatBox")] 
+    [SerializeField] public string scammerName;
+    [SerializeField] public GameObject scammerChat; 
+    [SerializeField] public GameObject scammerChatContent;
+    [SerializeField] public Image scammerProfileToolPanel;
+    [SerializeField] public GameObject scammerNotificationIcon;
+
+    [Header("Hacker ChatBox")] 
+    [SerializeField] public string hackerName;
+    [SerializeField] public GameObject hackerChat;
+    [SerializeField] public GameObject hackerChatContent;
+    [SerializeField] public Image hackerProfileToolPanel;
+    [SerializeField] public GameObject hackerNotificationIcon;
+    
     [Header("Open/Close Window")]
     [SerializeField] private Button closeButton;
     [SerializeField] private float scaleOnOpen;
     [SerializeField] private float scaleOnClose;
     [SerializeField] private float openDuration;
-    [SerializeField] private bool closedOnStart;
 
-    [Header("Skype Icon")] 
-    [SerializeField] private GameObject windowIcon;
+    [Header("Skype Icon")]
     [SerializeField] private GameObject notificationIcon;
     private TextMeshProUGUI notificationCounterText;
     private int notificationCounter;
@@ -27,26 +43,23 @@ public class SkypeApp : MonoBehaviour, IWindowedApp
     
     private void Start()
     {
-        if (closedOnStart)
-        {
-            isOpen = false;
-            gameObject.SetActive(false);
-            notificationIcon.SetActive(false);
+        isOpen = false;
+        gameObject.SetActive(false);
+        notificationIcon.SetActive(false);
 
-            notificationCounterText = notificationIcon.GetComponentInChildren<TextMeshProUGUI>();
-            notificationCounter = 0;
-            notificationCounterText.text = notificationCounter.ToString();
+        notificationCounterText = notificationIcon.GetComponentInChildren<TextMeshProUGUI>();
+        notificationCounter = 0;
+        notificationCounterText.text = notificationCounter.ToString();
 
-            Events.MessageRecieved += OnNewNotificationGet;
-        }
+        Events.MessageRecieved += OnNewNotificationGet;
     }
 
     private async UniTask CloseAppAsync()
     {
-        
         closeButton.interactable = false;
         
         await transform.DOScale(scaleOnClose, openDuration).ToUniTask();
+        gameObject.transform.localScale = new Vector3(scaleOnClose, scaleOnClose, scaleOnClose);
 
         closeButton.interactable = true;
         gameObject.SetActive(false);
@@ -59,7 +72,7 @@ public class SkypeApp : MonoBehaviour, IWindowedApp
         closeButton.interactable = false;
         
         await transform.DOScale(scaleOnOpen, openDuration).ToUniTask();
-        gameObject.transform.localScale = new Vector3(1, 1, 1);
+        gameObject.transform.localScale = new Vector3(scaleOnOpen, scaleOnOpen, scaleOnOpen);
 
         closeButton.interactable = true;
         
@@ -71,6 +84,7 @@ public class SkypeApp : MonoBehaviour, IWindowedApp
     private void OnNewNotificationGet()
     {
         AudioManager.instance.PlayOneShot(FMODEvents.instance.skypeMessageSound);
+
         if (!isOpen)
         {
             notificationCounter++;
@@ -84,12 +98,18 @@ public class SkypeApp : MonoBehaviour, IWindowedApp
 
     public void CloseApp()
     {
-        CloseAppAsync().Forget();
+        if (isOpen)
+        {
+            CloseAppAsync().Forget();   
+        }
     }
 
     public void OpenApp()
     {
-        OpenAppAsync().Forget();
+        if (!isOpen)
+        {
+            OpenAppAsync().Forget();
+        }
     }
     
     

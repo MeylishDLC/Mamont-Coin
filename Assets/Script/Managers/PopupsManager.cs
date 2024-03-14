@@ -8,33 +8,22 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
-public class TaskBackgroundManager : MonoBehaviour
+public class PopupsManager : MonoBehaviour
 {
-    [Header("AutoClicker")] 
-    [SerializeField] private int clickFrequencyMilliseconds;
-    public static int autoClickAmount = 1;
-
-    [Header("Double Click Chance")] 
-    [SerializeField] private int percentageChanceOfDoubleClick;
-    public static int doubleClickAmount = 2;
-
+    public GameObject PopupsContainer;
+    
     [Header("Trojan Warnings")]
     [SerializeField] private int warningAppearFrequencyMilliseconds;
     [SerializeField] private List<GameObject> popupWarnings;
-    public bool trojanWarningsActive { get; set; }
     
-    [Header("Auto Pop-up Windows")]
-    [SerializeField] private List<GameObject> popupWindows;
+    [Header("Auto Pop-up AD Windows")] 
+    public List<GameObject> popupWindows;
     [SerializeField] private GameObject spawnParent;
-    
-    [Header("Auto Pop-up AD Windows")]
     [SerializeField] private int appearFrequencyMilliseconds;
-    
-    [Header("Auto Pop-up Paid Windows")] 
-    [SerializeField] private int paidAppearFrequencyMilliseconds;
-    public int coinsPerPopupWindow;
+    private bool trojanWarningsActive { get; set; }
+    private bool adPopupsActive { get; set; }
 
-    private static TaskBackgroundManager instance;
+    private static PopupsManager instance;
     private void Awake()
     {
         if (instance != null)
@@ -42,24 +31,15 @@ public class TaskBackgroundManager : MonoBehaviour
             Debug.LogError("Found more than one TaskBackgroundManager in the scene.");
         }
         instance = this;
+        
+        PopupWindowAppearAsync().Forget();
     }
-    public static TaskBackgroundManager GetInstance()
+    public static PopupsManager GetInstance()
     {
         return instance;
     }
 
-    public int DoubleClickChance()
-    {
-        var chance = Random.Range(1, 100);
-        if (chance <= percentageChanceOfDoubleClick)
-        {
-            Debug.Log($"Double click = {doubleClickAmount}");
-            return doubleClickAmount;
-        }
-        return 1;
-    }
-
-    private GameObject RandomSpawn(List<GameObject> windowsList)
+    public GameObject RandomSpawn(List<GameObject> windowsList)
     {
         var randomX = Random.Range(0f, Screen.width);
         var randomY = Random.Range(0f, Screen.height);
@@ -72,9 +52,10 @@ public class TaskBackgroundManager : MonoBehaviour
         return popupWindow;
     }
 
-    public async UniTask PopupWindowAppearAsync()
+    private async UniTask PopupWindowAppearAsync()
     {
-        while (true)
+        adPopupsActive = true;
+        while (adPopupsActive)
         {
             var popupWindow = RandomSpawn(popupWindows);
             popupWindow.GetComponent<PopupWindow>().isPaid = false;
@@ -82,21 +63,7 @@ public class TaskBackgroundManager : MonoBehaviour
             await UniTask.Delay(appearFrequencyMilliseconds);
         }
     }
-    private async UniTask PaidPopupWindowAppearAsync()
-    {
-        while (BoostsManager.GetInstance().paidPopupWindowEnabled)
-        {
-            var popupWindow = RandomSpawn(popupWindows);
-            
-            await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
-            await UniTask.Delay(paidAppearFrequencyMilliseconds);
-        }
-    }
-    public void PaidPopupWindowAppear()
-    {
-        BoostsManager.GetInstance().paidPopupWindowEnabled = true;
-        PaidPopupWindowAppearAsync().Forget();
-    }
+   
     private async UniTask TrojanWarningAppearAsync()
     {
         trojanWarningsActive = true;
@@ -113,19 +80,11 @@ public class TaskBackgroundManager : MonoBehaviour
     {
         TrojanWarningAppearAsync().Forget();
     }
-    private async UniTask AutoClickAsync()
+
+    public void DisableAllPopups()
     {
-        while (BoostsManager.GetInstance().autoClickerEnabled)
-        {
-            await UniTask.Delay(clickFrequencyMilliseconds);
-            GameManager.Clicks += autoClickAmount;
-            Events.ClicksUpdated?.Invoke();
-        }
+        trojanWarningsActive = false;
+        adPopupsActive = false;
     }
-    public void AutoClick()
-    {
-        AutoClickAsync().Forget();
-    }
-    
     
 }
