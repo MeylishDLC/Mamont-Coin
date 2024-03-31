@@ -68,5 +68,18 @@ namespace Script.Sound
         {
             RuntimeManager.PlayOneShot(sound);
         }
+        
+        void CleanUp()
+        {
+            foreach (EventInstance eventInstance in eventInstances)
+            {
+                eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                eventInstance.release();
+            }
+        }
+        private void OnDestroy()
+        {
+            CleanUp();
+        }
     }
 }

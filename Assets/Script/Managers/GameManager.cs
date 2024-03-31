@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
         //////////////
 
         interactionOff.SetActive(false);
+        
+        GameStart();
     }
 
     public void GameStart()
