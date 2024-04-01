@@ -8,7 +8,9 @@ using Script.Sound;
 using Script.UI;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -18,26 +20,24 @@ public class GameManager : MonoBehaviour
     
     [Header("Main")] 
     public GameObject interactionOff;
-    public int messageDelayMilliseconds;
 
     [Header("Apps")] 
     [SerializeField] private GameObject clickerObject;
     [SerializeField] private GameObject shopPanelObject;
     [SerializeField] private float scaleOnOpenClicker;
     
-    [SerializeField] private SkypeApp skypeApp;
-    [SerializeField] private NotepadInteractable notepadInteractable;
-    
+    [SerializeField] private SkypeApp skypeApp; 
+    [SerializeField] private NotepadInteractable notepadInteractive;
+
     [Header("Introduction")] 
+    [SerializeField] private UnityEvent beginningDialogueSequence;
     [SerializeField] private GameObject clickerExeMessagePrefab;
-    [SerializeField] private List<string> scammerBeginningMessages;
     private Button clickerExeButton;
 
     [Header("Ending")] 
     [SerializeField] private GameObject bankCardForm;
     [SerializeField] private float bankCardFormScale;
-    
-    [SerializeField] private List<string> scammerEndMessages;
+    [SerializeField] private UnityEvent endingDialogueSequence;
 
     [SerializeField] private Vector3 skypeSetPosition;
     [SerializeField] private Vector3 notepadSetPosition;
@@ -85,13 +85,13 @@ public class GameManager : MonoBehaviour
     private async UniTask OnSkypeOpenFirstTimeAsync()
     {
         await UniTask.Delay(2000);
-
-        foreach (var message in scammerBeginningMessages)
-        {
-            ChatManager.GetInstance().SendMessageToScammerChat(message);
-            await UniTask.Delay(messageDelayMilliseconds);
-        }
-
+        
+        beginningDialogueSequence.Invoke();
+        
+        //todo: fix that shit
+        await UniTask.Delay(ChatManager.GetInstance().delayBetweenMessagesMillisecond * 4);
+        AudioManager.instance.PlayOneShot(FMODEvents.instance.skypeMessageSound);
+        
         var messageObject = Instantiate(clickerExeMessagePrefab, skypeApp.scammerChatContent.transform);
         clickerExeButton = messageObject.GetComponentInChildren<Button>();
         clickerExeButton.onClick.AddListener(OpenClicker);
@@ -118,7 +118,14 @@ public class GameManager : MonoBehaviour
     {
         GameEndAsync().Forget();
     }
-    
+
+    public void CloseAllApps(IWindowedApp[] windowedApps)
+    {
+        foreach (var app in windowedApps)
+        {
+            app.CloseApp();
+        }
+    }
     private async UniTask GameEndAsync()
     {
         DisableAllBackgroundProcesses();
@@ -129,26 +136,22 @@ public class GameManager : MonoBehaviour
         interactionOff.SetActive(true);
         
         //reopen notepad and skype
-        notepadInteractable.CloseApp();
+        notepadInteractive.CloseApp();
         skypeApp.CloseApp();
 
-        notepadInteractable.gameObject.transform.localPosition = notepadSetPosition;
+        notepadInteractive.gameObject.transform.localPosition = notepadSetPosition;
         skypeApp.gameObject.transform.localPosition = skypeSetPosition;
-        await UniTask.Delay(messageDelayMilliseconds);
+        await UniTask.Delay(1500);
         
-        notepadInteractable.OpenApp();
+        notepadInteractive.OpenApp();
         skypeApp.OpenApp();
         
         //clear all windows
         Destroy(PopupsManager.GetInstance().PopupsContainer);
         
         ChatManager.GetInstance().SwitchToScammer();
-
-        foreach (var message in scammerEndMessages)
-        {
-            ChatManager.GetInstance().SendMessageToScammerChat(message);
-            await UniTask.Delay(messageDelayMilliseconds);
-        }
+        endingDialogueSequence.Invoke();
+        
         bankCardForm.SetActive(true);
         await bankCardForm.transform.DOScale(bankCardFormScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();
     }

@@ -19,6 +19,7 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Editor Toolbox/Editor/ToolboxEditorToolbar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Apps/Duralingo/TextObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../platformerr/Assets/Script/Stuff/InputManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -118,7 +119,7 @@
       <workItem from="1708464020929" duration="7561000" />
       <workItem from="1709069621547" duration="3157000" />
       <workItem from="1711662716303" duration="10252000" />
-      <workItem from="1711931985396" duration="795000" />
+      <workItem from="1711931985396" duration="1207000" />
     </task>
     <servers />
   </component>

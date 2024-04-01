@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using JetBrains.Annotations;
+using Script.Data;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,43 +15,14 @@ public class ChatManager : MonoBehaviour
     [Header("Main")]
     [SerializeField] private SkypeApp skypeApp;
     [SerializeField] private GameObject textObject;
+
+    [Header("Dialogues")] 
+    [SerializeField] private SerializedDictionary<string, DialogueSpeakerPair> dialogues; 
+    [SerializeField] public int delayBetweenMessagesMillisecond;
     
     private Color profileColorActive;
     private Color profileColorInactive;
-    
-    private bool scammerChatActive = true;
-    private bool ScammerChatActive
-    {
-        get => scammerChatActive;
-        set
-        {
-            scammerChatActive = value;
-            
-            if (scammerChatActive)
-            {
-                skypeApp.hackerChat.SetActive(false);
-                skypeApp.scammerNotificationIcon.SetActive(false);
-                
-                skypeApp.scammerChat.SetActive(true);
-                skypeApp.currentChatName.text = skypeApp.scammerName;
-
-                skypeApp.scammerProfileToolPanel.color = profileColorActive;
-                skypeApp.hackerProfileToolPanel.color = profileColorInactive;
-            }
-            else
-            {
-                skypeApp.scammerChat.SetActive(false);
-
-                skypeApp.hackerNotificationIcon.SetActive(false);
-                skypeApp.hackerChat.SetActive(true);
-
-                skypeApp.currentChatName.text = skypeApp.hackerName;
-
-                skypeApp.hackerProfileToolPanel.color = profileColorActive;
-                skypeApp.scammerProfileToolPanel.color = profileColorInactive;
-            }
-        }
-    }
+    private bool ScammerChatActive { get; set; } = true;
 
     private static ChatManager instance;
     private void Awake()
@@ -72,10 +44,38 @@ public class ChatManager : MonoBehaviour
         skypeApp.scammerProfileToolPanel.color = profileColorActive;
     }
 
+    public void StartDialogueSequence(string dialogueKey)
+    {
+        if (!dialogues.ContainsKey(dialogueKey))
+        {
+            Debug.LogWarning($"Could not find a dialogue key: {dialogueKey}");
+            return;
+        }
+        var pair = dialogues[dialogueKey];
+        StartDialogueSequenceAsync(pair.speaker, pair.dialogueLines).Forget();
+    }
+
+    private async UniTask StartDialogueSequenceAsync(Speaker speaker, List<string> dialogueLines)
+    {
+        foreach (var line in dialogueLines)
+        {
+            if (speaker is Speaker.Hacker)
+            {
+                SendMessageToHackerChat(line);
+            }
+            else
+            {
+                SendMessageToScammerChat(line);
+            }
+            await UniTask.Delay(delayBetweenMessagesMillisecond);
+        }
+    }
+
     public static ChatManager GetInstance()
     {
         return instance;
     }
+    
     
     public void SendMessageToScammerChat(string text)
     {
@@ -117,10 +117,27 @@ public class ChatManager : MonoBehaviour
     public void SwitchToHacker()
     {
         ScammerChatActive = false;
+        skypeApp.scammerChat.SetActive(false);
+
+        skypeApp.hackerNotificationIcon.SetActive(false);
+        skypeApp.hackerChat.SetActive(true);
+
+        skypeApp.currentChatName.text = skypeApp.hackerName;
+
+        skypeApp.hackerProfileToolPanel.color = profileColorActive;
+        skypeApp.scammerProfileToolPanel.color = profileColorInactive;
     }
     
     public void SwitchToScammer()
     {
         ScammerChatActive = true;
+        skypeApp.hackerChat.SetActive(false);
+        skypeApp.scammerNotificationIcon.SetActive(false);
+                
+        skypeApp.scammerChat.SetActive(true);
+        skypeApp.currentChatName.text = skypeApp.scammerName;
+
+        skypeApp.scammerProfileToolPanel.color = profileColorActive;
+        skypeApp.hackerProfileToolPanel.color = profileColorInactive;
     }
 }
