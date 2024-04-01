@@ -12,9 +12,8 @@ namespace Script.Core.Buffs
         [Header("UI")]
         [SerializeField] protected Button button;
         [SerializeField] protected TMP_Text priceText;
-        [SerializeField] protected TMP_Text multiplierText;
         
-        protected void UpdateButtonInteractive()
+        private void UpdateButtonInteractive()
         {
             button.interactable = GameManager.Clicks >= price;
         }

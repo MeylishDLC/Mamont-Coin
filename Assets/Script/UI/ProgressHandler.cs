@@ -48,7 +48,10 @@ public class ProgressHandler : MonoBehaviour
             {
                 UpdateMamontTitle(ranks[currentGoalIndex].RankName).Forget();
                 currentGoalIndex++;
-                maxValue = ranks[currentGoalIndex].RankGoal;
+                if (currentGoalIndex < ranks.Length)
+                {
+                    maxValue = ranks[currentGoalIndex].RankGoal;
+                }
             }
             else
             {

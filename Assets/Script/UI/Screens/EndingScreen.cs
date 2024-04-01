@@ -11,6 +11,7 @@ public class EndingScreen : MonoBehaviour
     {
         text = gameObject.GetComponentInChildren<TypeText>();
         text.enabled = false;
+        text.gameObject.SetActive(false);
         
         OnAppearAsync().Forget();
     }
@@ -18,6 +19,7 @@ public class EndingScreen : MonoBehaviour
     private async UniTask OnAppearAsync()
     {
         await gameObject.transform.DOScale(1, 0.1f).ToUniTask();
+        text.gameObject.SetActive(true);
         text.enabled = true;
     } 
 }
