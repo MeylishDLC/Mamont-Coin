@@ -6,6 +6,7 @@ using Script.UI;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class NotepadInteractable : MonoBehaviour, IWindowedApp
@@ -15,25 +16,29 @@ public class NotepadInteractable : MonoBehaviour, IWindowedApp
     [SerializeField] private float scaleOnOpen;
     [SerializeField] private float scaleOnClose;
     [SerializeField] private float openDuration;
-    [SerializeField] private bool closedOnStart;
     
-    [Header("Notepad")]
-    [SerializeField] private GameObject notepadContainer;
-    [SerializeField] private GameObject boostPrefab;
+    [Header("Boosts chosen")] 
+    [SerializeField] private List<TMP_Text> chosenBoosts;
+    private int chosenBoostAmount;
     private void Start()
     {
-        if (closedOnStart)
-        {
-            gameObject.SetActive(false);
-        }
-    }
-    public void InstantiateBoostInfo(string boostName)
-    {
-        var boostInfo = Instantiate(boostPrefab, notepadContainer.transform);
-        var boostInfoText = boostInfo.GetComponentInChildren<TextMeshProUGUI>();
+        gameObject.SetActive(false);
 
-        boostInfoText.SetText(boostName);
+        foreach (var boostInfo in chosenBoosts)
+        {
+            boostInfo.gameObject.SetActive(false);
+        }
+        
+        closeButton.onClick.AddListener(CloseApp);
     }
+
+    public void WriteDownNewBoost(string boostName)
+    {
+        chosenBoostAmount++;
+        chosenBoosts[chosenBoostAmount - 1].text = boostName;
+        chosenBoosts[chosenBoostAmount - 1].gameObject.SetActive(true);
+    }
+    
     
     public void OpenApp()
     {

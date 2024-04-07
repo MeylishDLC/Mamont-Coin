@@ -52,14 +52,14 @@ public class ChatManager : MonoBehaviour
             return;
         }
         var pair = dialogues[dialogueKey];
-        StartDialogueSequenceAsync(pair.speaker, pair.dialogueLines).Forget();
+        StartDialogueSequenceAsync(pair.character, pair.dialogueLines).Forget();
     }
 
-    private async UniTask StartDialogueSequenceAsync(Speaker speaker, List<string> dialogueLines)
+    private async UniTask StartDialogueSequenceAsync(Character character, List<string> dialogueLines)
     {
         foreach (var line in dialogueLines)
         {
-            if (speaker is Speaker.Hacker)
+            if (character is Character.Hacker)
             {
                 SendMessageToHackerChat(line);
             }

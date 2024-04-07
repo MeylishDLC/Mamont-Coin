@@ -28,7 +28,7 @@ public class PopupsManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogError("Found more than one TaskBackgroundManager in the scene.");
+            Debug.LogError("Found more than one PopupsManager in the scene.");
         }
         instance = this;
         

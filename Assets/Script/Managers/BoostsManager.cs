@@ -27,14 +27,16 @@ public class BoostsManager : MonoBehaviour
     
     [Header("Specific boost setting")]
     [SerializeField] private int autoClickAmountImprove;
-    [SerializeField] private int doubleClickImprove;
-    
-    [SerializeField] private string doubleClickImproveText;
     [SerializeField] private string autoClickImproveText;
-    public static string CurrentSpecificBoostName;
+    
+    [SerializeField] private int doubleClickImprove;
+    [SerializeField] private string doubleClickImproveText;
 
+    public static string CurrentSpecificBoostName;
     private List<Boost> boosts;
-        
+
+    #region Set Instance
+    
     private static BoostsManager instance;
     private void Awake()
     {
@@ -43,7 +45,15 @@ public class BoostsManager : MonoBehaviour
             Debug.LogError("Found more than one BoostManager in the scene.");
         }
         instance = this;
-
+    }
+    public static BoostsManager GetInstance()
+    {
+        return instance;
+    }
+    
+    #endregion
+    private void Start()
+    {
         autoClicker = new AutoClicker(clickFrequencyMilliseconds, autoClickAmount);
         doubleClick = new DoubleClick(percentageChanceOfDoubleClick, doubleClickAmount);
         paidPopups = new PaidPopups(paidAppearFrequencyMilliseconds, PopupsManager.GetInstance().popupWindows);
@@ -54,10 +64,6 @@ public class BoostsManager : MonoBehaviour
             doubleClick,
             paidPopups
         };
-    }
-    public static BoostsManager GetInstance()
-    {
-        return instance;
     }
 
     public void EnableAutoClicker()
@@ -81,7 +87,11 @@ public class BoostsManager : MonoBehaviour
         GameManager.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }
-
+    public void MoneyBonus(int bonus)
+    {
+        GameManager.Clicks += bonus;
+        Events.ClicksUpdated?.Invoke();
+    }
     public void DisableAllBoosts()
     {
         foreach (var boost in boosts)
@@ -102,11 +112,6 @@ public class BoostsManager : MonoBehaviour
         }
     }
     
-    public void MoneyBonus(int bonus)
-    {
-        GameManager.Clicks += bonus;
-        Events.ClicksUpdated?.Invoke();
-    }
     
     
 }
