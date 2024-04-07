@@ -15,9 +15,9 @@ public class ClickerApp : MonoBehaviour
 {
     [Header("Clicker")] 
     [SerializeField] private GameObject errorMessagePrefab;
-    [SerializeField] private GameObject spawnParent;
     [SerializeField] private float errorWindowAnimationScale;
     [SerializeField] private Button clickerButton;
+    [SerializeField] private Button clickerCloseButton;
     [SerializeField] private ParticleSystem particlePrefab;
 
     [Header("Buffs shop")] 
@@ -33,6 +33,12 @@ public class ClickerApp : MonoBehaviour
     {
         buffsPanelOpen = false;
         shopBuffsPanel.SetActive(false);
+        
+        showBuffsPanelButton.onClick.AddListener(ShowPanel);
+        hideBuffsPanelButton.onClick.AddListener(HidePanel);
+        
+        clickerCloseButton.onClick.AddListener(OnClickerCloseButtonPress);
+        clickerButton.onClick.AddListener(ParticleSpawn);
     }
 
     private async UniTask ShowPanelAsync()
@@ -77,7 +83,7 @@ public class ClickerApp : MonoBehaviour
 
     public void OnClickerCloseButtonPress()
     {
-        var errorWindow = Instantiate(errorMessagePrefab, spawnParent.transform);
+        var errorWindow = Instantiate(errorMessagePrefab, PopupsManager.GetInstance().PopupsContainer.transform);
         AudioManager.instance.PlayOneShot(FMODEvents.instance.errorSound);
         
         var rectTransform = errorWindow.GetComponent<RectTransform>();

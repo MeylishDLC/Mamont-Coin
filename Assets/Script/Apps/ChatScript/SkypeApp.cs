@@ -52,6 +52,7 @@ public class SkypeApp : MonoBehaviour, IWindowedApp
         notificationCounterText.text = notificationCounter.ToString();
 
         Events.MessageRecieved += OnNewNotificationGet;
+        closeButton.onClick.AddListener(CloseApp);
     }
 
     private async UniTask CloseAppAsync()

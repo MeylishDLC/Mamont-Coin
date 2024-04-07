@@ -23,6 +23,8 @@ namespace Script.Sound
         private List<EventInstance> eventInstances;
 
         private EventInstance musicEventInstance;
+
+        #region Set Instance
         public static AudioManager instance { get; private set; }
         private void Awake()
         {
@@ -38,6 +40,7 @@ namespace Script.Sound
             musicBus = RuntimeManager.GetBus("bus:/Music");
             SFXBus = RuntimeManager.GetBus("bus:/SFX");
         }
+        #endregion
 
         private void Update()
         {

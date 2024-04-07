@@ -8,9 +8,9 @@ using UnityEngine.UI;
 
 public class ClickHandler : MonoBehaviour
 { 
-    [SerializeField] private TextMeshProUGUI counterText;
-    [SerializeField] private TextMeshProUGUI multiplierText;
-    [SerializeField] private TextMeshProUGUI coinToRubleText;
+    [SerializeField] private TMP_Text counterText;
+    [SerializeField] private TMP_Text multiplierText;
+    [SerializeField] private TMP_Text coinToRubleText;
     [SerializeField] private int coinExchangeRate;
     [SerializeField] private ProgressHandler progressHandler;
     private void Start()

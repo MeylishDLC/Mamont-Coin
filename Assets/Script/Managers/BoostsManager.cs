@@ -85,15 +85,11 @@ public class BoostsManager : MonoBehaviour
     }
     public void Refelalka(int bonus)
     {
-        //GameManager.Clicks += bonus;
-
         DataBank.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }
     public void MoneyBonus(int bonus)
     {
-        //GameManager.Clicks += bonus;
-
         DataBank.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }

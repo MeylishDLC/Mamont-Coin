@@ -5,17 +5,20 @@ using DG.Tweening;
 using Script.Data;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PopupWindow : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private bool destroyOnClose;
+    [SerializeField] private Button closeButton;
     public bool isPaid;
 
     public void ShowWindow()
     {
         gameObject.SetActive(true);
         transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo);
+        closeButton.onClick.AddListener(CloseWindow);
     }
 
     public void CloseWindow()
