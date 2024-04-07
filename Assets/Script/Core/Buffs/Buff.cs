@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Script.Data;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +16,7 @@ namespace Script.Core.Buffs
         
         private void UpdateButtonInteractive()
         {
-            button.interactable = GameManager.Clicks >= price;
+            button.interactable = DataBank.Clicks >= price;
         }
 
         private void Start()

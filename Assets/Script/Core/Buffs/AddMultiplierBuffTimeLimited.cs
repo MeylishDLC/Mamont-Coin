@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Script.Data;
 using UnityEngine;
 
 namespace Script.Core.Buffs
@@ -15,7 +16,7 @@ namespace Script.Core.Buffs
         {
             BuyAddMultiplier();
             await UniTask.Delay(timeLimitMilliseconds);
-            GameManager.Multiplier -= buffAmount;
+            DataBank.Multiplier -= buffAmount;
         }
     }
 }

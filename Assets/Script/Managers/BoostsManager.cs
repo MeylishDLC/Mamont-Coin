@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Script.Core;
+using Script.Data;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -84,12 +85,16 @@ public class BoostsManager : MonoBehaviour
     }
     public void Refelalka(int bonus)
     {
-        GameManager.Clicks += bonus;
+        //GameManager.Clicks += bonus;
+
+        DataBank.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }
     public void MoneyBonus(int bonus)
     {
-        GameManager.Clicks += bonus;
+        //GameManager.Clicks += bonus;
+
+        DataBank.Clicks += bonus;
         Events.ClicksUpdated?.Invoke();
     }
     public void DisableAllBoosts()

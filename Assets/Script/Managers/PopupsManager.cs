@@ -23,6 +23,8 @@ public class PopupsManager : MonoBehaviour
     private bool trojanWarningsActive { get; set; }
     private bool adPopupsActive { get; set; }
 
+    #region Set Instance
+
     private static PopupsManager instance;
     private void Awake()
     {
@@ -38,6 +40,8 @@ public class PopupsManager : MonoBehaviour
     {
         return instance;
     }
+
+    #endregion
 
     public GameObject RandomSpawn(List<GameObject> windowsList)
     {

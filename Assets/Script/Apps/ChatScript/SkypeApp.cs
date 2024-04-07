@@ -39,7 +39,7 @@ public class SkypeApp : MonoBehaviour, IWindowedApp
     [SerializeField] private GameObject notificationIcon;
     private TextMeshProUGUI notificationCounterText;
     private int notificationCounter;
-    public bool isOpen { get; private set; }
+    private bool isOpen { get; set; }
     
     private void Start()
     {

@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Script.Data;
 
 namespace Script.Core.Buffs
 {
@@ -6,24 +7,24 @@ namespace Script.Core.Buffs
     {
         private async UniTask BuyTimesMultiplierTimeLimitedAsync()
         { 
-            if (GameManager.Clicks >= price)
+            if (DataBank.Clicks >= price)
             {
-                GameManager.Multiplier *= buffAmount;
-                var currentMultiplier = GameManager.Multiplier;
+                DataBank.Multiplier *= buffAmount;
+                var currentMultiplier = DataBank.Multiplier;
                 
-                GameManager.Clicks -= price;
+                DataBank.Clicks -= price;
             
                 Events.ClicksUpdated?.Invoke();
                 await UniTask.Delay(timeLimitMilliseconds);
 
-                var diff = GameManager.Multiplier - currentMultiplier;
+                var diff = DataBank.Multiplier - currentMultiplier;
                 if (diff > 0)
                 {
-                    GameManager.Multiplier = currentMultiplier/buffAmount + diff;
+                    DataBank.Multiplier = currentMultiplier/buffAmount + diff;
                 }
                 else
                 {
-                    GameManager.Multiplier /= buffAmount;
+                    DataBank.Multiplier /= buffAmount;
                 }
             }
         }

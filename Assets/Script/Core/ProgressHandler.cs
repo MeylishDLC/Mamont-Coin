@@ -1,10 +1,12 @@
 using System;
+using System.Numerics;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Vector3 = UnityEngine.Vector3;
 
 public class ProgressHandler : MonoBehaviour
 {
@@ -24,7 +26,7 @@ public class ProgressHandler : MonoBehaviour
 
     private void Start()
     {
-        currentValue = GameManager.Clicks;
+        currentValue = DataBank.Clicks;
         currentGoalIndex = 1;
         maxValue = ranks[currentGoalIndex].RankGoal;
 
@@ -66,8 +68,8 @@ public class ProgressHandler : MonoBehaviour
         await mamontTitleObject.transform.DOScale(mamontTitleScale, 0.2f).SetLoops(2, LoopType.Yoyo);
         mamontTitleObject.transform.localScale = new Vector3(1,1,1);
     }
-
-    public void AddProgress(int amount)
+    
+    public void AddProgress(long amount)
     {
         currentValue += amount;
         

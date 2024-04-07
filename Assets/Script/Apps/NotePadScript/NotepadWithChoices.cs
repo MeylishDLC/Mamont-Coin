@@ -32,11 +32,11 @@ namespace Script.Apps.NotePadScript
         [Header("Interactable Notepad")] 
         [SerializeField] private NotepadInteractable notepadInteractable;
 
-        public int CurrentAct { get; set; }
+        private int currentAct;
 
         private void Start()
         {
-            CurrentAct = 0;
+            currentAct = 0;
             hackerChoiceText = hackerChoiceButton.GetComponentInChildren<TextMeshProUGUI>();
             scammerChoiceText = scammerChoiceButton.GetComponentInChildren<TextMeshProUGUI>();
             
@@ -46,20 +46,18 @@ namespace Script.Apps.NotePadScript
             hackerChoiceButton.onClick.AddListener(()=> MakeChoice(Character.Hacker));
             scammerChoiceButton.onClick.AddListener(() => MakeChoice(Character.Scammer));
         }
-
-        //  UPDATE CHOICES - sets the name of next choice after the choice was made
         private void UpdateChoices()
         {
-            if (CurrentAct == specificChoiceAct - 1)
+            if (currentAct == specificChoiceAct - 1)
             {
                 hackerChoiceText.text = BoostsManager.CurrentSpecificBoostName;
             }
             else
             {
-                hackerChoiceText.text = HackerChoiceAction.Keys.ElementAt(CurrentAct);
+                hackerChoiceText.text = HackerChoiceAction.Keys.ElementAt(currentAct);
             }
 
-            scammerChoiceText.text = ScammerChoiceAction.Keys.ElementAt(CurrentAct);
+            scammerChoiceText.text = ScammerChoiceAction.Keys.ElementAt(currentAct);
         }
 
         private void MakeChoice(Character characterChoice)
@@ -68,9 +66,9 @@ namespace Script.Apps.NotePadScript
             {
                 case Character.Hacker:
 
-                    var hackerBoostName = HackerChoiceAction.Keys.ElementAt(CurrentAct);
+                    var hackerBoostName = HackerChoiceAction.Keys.ElementAt(currentAct);
                     HackerChoiceAction[hackerBoostName]?.Invoke();
-                    if (CurrentAct == specificChoiceAct - 1)
+                    if (currentAct == specificChoiceAct - 1)
                     {
                         notepadInteractable.WriteDownNewBoost(BoostsManager.CurrentSpecificBoostName);
                     }
@@ -83,7 +81,7 @@ namespace Script.Apps.NotePadScript
                 
                 case Character.Scammer:
                     
-                    var scammerBoostName = ScammerChoiceAction.Keys.ElementAt(CurrentAct);
+                    var scammerBoostName = ScammerChoiceAction.Keys.ElementAt(currentAct);
                     ScammerChoiceAction[scammerBoostName]?.Invoke();
                     notepadInteractable.WriteDownNewBoost(scammerBoostName);
                     
@@ -93,9 +91,9 @@ namespace Script.Apps.NotePadScript
                     return;
             }
 
-            if (CurrentAct < HackerChoiceAction.Count - 1)
+            if (currentAct < HackerChoiceAction.Count - 1)
             {
-                CurrentAct++;
+                currentAct++;
             }
             else
             {

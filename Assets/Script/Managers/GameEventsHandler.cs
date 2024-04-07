@@ -10,19 +10,12 @@ public class GameEventsHandler : MonoBehaviour
 {
     [SerializeField] private SerializedDictionary<int, UnityEvent> clickCountEventPair;
     
-     private ClicksCountEventPair[] countEventPairs;
     private int goalIndex;
     private int currentGoal;
-    private static GameEventsHandler instance;
-    private void Start()
-    {
-        goalIndex = 0;
-        //currentGoal = countEventPairs[goalIndex].ClicksCount;
-        currentGoal = clickCountEventPair.Keys.ToArray()[goalIndex];
 
-        Events.ClicksUpdated += CheckEnoughClicks;
-    }
+    #region Set Instance
     
+    private static GameEventsHandler instance;
     private void Awake()
     {
         if (instance != null)
@@ -36,28 +29,21 @@ public class GameEventsHandler : MonoBehaviour
     {
         return instance;
     }
-    public void CheckEnoughClicksOld()
+    
+    #endregion
+    private void Start()
     {
-        if (goalIndex < countEventPairs.Length - 1)
-        {
-            if (GameManager.Clicks >= currentGoal)
-            {
-                //todo: optional delay on message send
-                countEventPairs[goalIndex].Event.Invoke();
-                goalIndex++;
-                currentGoal = countEventPairs[goalIndex].ClicksCount;
-            }
-        }
-        else
-        {
-            Debug.Log("All goals achieved");
-        }
-    } 
-    public void CheckEnoughClicks()
+        goalIndex = 0;
+        currentGoal = clickCountEventPair.Keys.ElementAt(goalIndex);
+
+        Events.ClicksUpdated += CheckEnoughClicks;
+    }
+    
+    private void CheckEnoughClicks()
     {
         if (goalIndex < clickCountEventPair.Count)
         {
-            if (GameManager.Clicks >= currentGoal)
+            if (DataBank.Clicks >= currentGoal)
             {
                 var keys = clickCountEventPair.Keys.ToArray();
                 clickCountEventPair[keys[goalIndex]]?.Invoke();

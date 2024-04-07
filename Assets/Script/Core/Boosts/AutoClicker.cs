@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Script.Data;
 
 namespace Script.Core
 {
@@ -7,10 +8,10 @@ namespace Script.Core
         public int ClickFrequencyMilliseconds { get; set; }
         public int AutoClickAmount { get; set; }
         
-        public AutoClicker(int clickFrequencyMilliseconds, int autoClickAmount)
+        public AutoClicker(int clickFrequencyMilliseconds, int autoClickAmount = 1)
         {
             ClickFrequencyMilliseconds = clickFrequencyMilliseconds;
-            AutoClickAmount = 1;
+            AutoClickAmount = autoClickAmount;
         }
         
         public override void Activate()
@@ -24,7 +25,7 @@ namespace Script.Core
             while (IsEnabled)
             {
                 await UniTask.Delay(ClickFrequencyMilliseconds);
-                GameManager.Clicks += AutoClickAmount;
+                DataBank.Clicks += AutoClickAmount;
                 Events.ClicksUpdated?.Invoke();
             }
         }

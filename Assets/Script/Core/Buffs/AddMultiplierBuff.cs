@@ -1,13 +1,15 @@
-﻿namespace Script.Core.Buffs
+﻿using Script.Data;
+
+namespace Script.Core.Buffs
 {
     public class AddMultiplierBuff: Buff
     {
         public void BuyAddMultiplier()
         {
-            if (GameManager.Clicks >= price)
+            if (DataBank.Clicks >= price)
             {
-                GameManager.Multiplier += buffAmount;
-                GameManager.Clicks -= price;
+                DataBank.Multiplier += buffAmount;
+                DataBank.Clicks -= price;
             
                 Events.ClicksUpdated?.Invoke();
             }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Script.Data;
 using Script.Sound;
 using Script.UI;
 using Unity.VisualScripting;
@@ -15,8 +16,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static int Clicks;
-    public static int Multiplier;
+    // public static int Clicks;
+    // public static int Multiplier;
     
     [Header("Main")] 
     public GameObject interactionOff;
@@ -42,8 +43,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector3 skypeSetPosition;
     [SerializeField] private Vector3 notepadSetPosition;
     
-    private static GameManager instance;
+    #region Set Instance
 
+    private static GameManager instance;
     private void Awake()
     {
         if (instance != null)
@@ -52,21 +54,18 @@ public class GameManager : MonoBehaviour
         }
         instance = this;
     }
-
     public static GameManager GetInstance()
     {
         return instance;
     }
-    
+
+    #endregion
     private void Start()
     {
-        ///////////////
-        Clicks = 0;
-        Multiplier = 1;
-        //////////////
+        // Clicks = 0;
+        // Multiplier = 1;
 
         interactionOff.SetActive(false);
-        
         GameStart();
     }
 
@@ -119,7 +118,8 @@ public class GameManager : MonoBehaviour
         GameEndAsync().Forget();
     }
 
-    public void CloseAllApps(IWindowedApp[] windowedApps)
+    //todo: finish
+    public void CloseAllApps(IEnumerable<IWindowedApp> windowedApps)
     {
         foreach (var app in windowedApps)
         {
@@ -151,6 +151,9 @@ public class GameManager : MonoBehaviour
         
         ChatManager.GetInstance().SwitchToScammer();
         endingDialogueSequence.Invoke();
+
+        //todo: fix that shit too
+        await UniTask.Delay(ChatManager.GetInstance().delayBetweenMessagesMillisecond * 4);
         
         bankCardForm.SetActive(true);
         await bankCardForm.transform.DOScale(bankCardFormScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();

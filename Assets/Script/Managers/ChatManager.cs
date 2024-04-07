@@ -24,6 +24,8 @@ public class ChatManager : MonoBehaviour
     private Color profileColorInactive;
     private bool ScammerChatActive { get; set; } = true;
 
+    #region Set Instance
+
     private static ChatManager instance;
     private void Awake()
     {
@@ -33,6 +35,17 @@ public class ChatManager : MonoBehaviour
         }
         instance = this;
         
+        
+    }
+    
+    public static ChatManager GetInstance()
+    {
+        return instance;
+    }
+
+    #endregion
+    private void Start()
+    {
         skypeApp.scammerChat.SetActive(true);
         skypeApp.hackerChat.SetActive(false);
         skypeApp.currentChatName.text = skypeApp.scammerName;
@@ -71,11 +84,7 @@ public class ChatManager : MonoBehaviour
         }
     }
 
-    public static ChatManager GetInstance()
-    {
-        return instance;
-    }
-    
+
     
     public void SendMessageToScammerChat(string text)
     {

@@ -1,3 +1,4 @@
+using Script.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,13 @@ public class AddClicksScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private TextMeshProUGUI clicksToAddText;
     
+    private void Start()
+    {
+        priceText.text = price + " clicks";
+        clicksToAddText.text = "ПРИБАВИТЬ " + clicksToAdd;
+        UpdateButtonInteractable();
+
+    }
     private void OnEnable()
     {
         button.onClick.AddListener(BuyClicks);
@@ -22,27 +30,17 @@ public class AddClicksScript : MonoBehaviour
         button.onClick.RemoveListener(BuyClicks); 
         Events.ClicksUpdated -= UpdateButtonInteractable; 
     }
-
     
     private void UpdateButtonInteractable()
     {
-        button.interactable = GameManager.Clicks >= price;
+        button.interactable = DataBank.Clicks >= price;
     }
-
-    private void Start()
+    private void BuyClicks()
     {
-        priceText.text = price + " clicks";
-        clicksToAddText.text = "ПРИБАВИТЬ " + clicksToAdd;
-        UpdateButtonInteractable();
-
-    }
-
-    public void BuyClicks()
-    {
-        if (GameManager.Clicks >= price)
+        if (DataBank.Clicks >= price)
         {
-            GameManager.Clicks -= price;
-            GameManager.Clicks += clicksToAdd;
+            DataBank.Clicks -= price;
+            DataBank.Clicks += clicksToAdd;
             UpdateButtonInteractable();
             Events.ClicksUpdated?.Invoke();
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Script.Data;
 using TMPro;
 using UnityEngine;
 
@@ -29,7 +30,7 @@ public class PopupWindow : MonoBehaviour
         }
         if (isPaid)
         {
-            GameManager.Clicks += BoostsManager.GetInstance().coinsPerPopupWindow;
+            DataBank.Clicks += BoostsManager.GetInstance().coinsPerPopupWindow;
             Events.ClicksUpdated?.Invoke();
             Debug.Log("+ money for AD");
         }
