@@ -1962,24 +1962,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e43dd3c539e12419a035e114a0cc03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ranks:
-  - <RankName>k__BackingField: "\u043C\u0430\u043C\u043E\u043D\u0442\u0451\u043D\u043E\u043A"
-    <RankGoal>k__BackingField: 0
-  - <RankName>k__BackingField: "\u043C\u0430\u043C\u043E\u043D\u0442 \u043D\u0443\u0431\u044F\u0440\u0430 "
-    <RankGoal>k__BackingField: 1000
-  - <RankName>k__BackingField: "\u0447\u0435\u0442\u043A\u0438\u0439 \u043C\u0430\u043C\u043E\u043D\u0442"
-    <RankGoal>k__BackingField: 10000
-  - <RankName>k__BackingField: "\u0432\u044B\u0441\u0448\u0438\u0439 \u043C\u0430\u043C\u043E\u043D\u0442"
-    <RankGoal>k__BackingField: 100000
-  - <RankName>k__BackingField: "\u043B\u0435\u0433\u0435\u043D\u0434\u0430\u0440\u043D\u044B\u0439
-      \u043C\u0430\u043C\u043E\u043D\u0442"
-    <RankGoal>k__BackingField: 1000000
-  - <RankName>k__BackingField: "\u0432\u0435\u043B\u0438\u0447\u0430\u0439\u0448\u0438\u0439
-      \u0431\u043E\u0433 \u043C\u0430\u043C\u043E\u043D\u0442"
-    <RankGoal>k__BackingField: 1000000000
-  mamontTitleObject: {fileID: 784138142}
+  rankNameGoalPair:
+    pairs:
+    - key: "\u043C\u0430\u043C\u043E\u043D\u0442\u0451\u043D\u043E\u043A"
+      value: 0
+    - key: "\u043C\u0430\u043C\u043E\u043D\u0442 \u043D\u0443\u0431\u044F\u0440\u0430 "
+      value: 1000
+    - key: "\u0447\u0435\u0442\u043A\u0438\u0439 \u043C\u0430\u043C\u043E\u043D\u0442"
+      value: 10000
+    - key: "\u0432\u044B\u0441\u0448\u0438\u0439 \u043C\u0430\u043C\u043E\u043D\u0442"
+      value: 100000
+    - key: "\u043B\u0435\u0433\u0435\u043D\u0434\u0430\u0440\u043D\u044B\u0439 \u043C\u0430\u043C\u043E\u043D\u0442"
+      value: 1000000
+    - key: "\u0432\u0435\u043B\u0438\u0447\u0430\u0439\u0448\u0438\u0439 \u0431\u043E\u0433
+        \u043C\u0430\u043C\u043E\u043D\u0442"
+      value: 1000000000
+    error: 0
+  mamontTitle: {fileID: 784138148}
   mamontTitleScale: 1.2
   progressBar: {fileID: 736777343}
+--- !u!114 &784138148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5941300112780814035, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
+  m_PrefabInstance: {fileID: 6740307559629107402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784138142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &806676702 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3487031082673933645, guid: 1dac07d35d4656242997f637639dbfa5, type: 3}
@@ -2705,6 +2717,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2203739642835205906, guid: 412946504a96d084d944efe11484e41c, type: 3}
   m_PrefabInstance: {fileID: 1099556785}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1125171214 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4210865528621262093, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
+  m_PrefabInstance: {fileID: 6740307559629107402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1126007463
 GameObject:
   m_ObjectHideFlags: 0
@@ -12645,6 +12668,10 @@ PrefabInstance:
       value: -1970
       objectReference: {fileID: 0}
     - target: {fileID: 4963115655550734407, guid: b86c20c32c3bcfb42adb022c91eb762f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4963115655550734407, guid: b86c20c32c3bcfb42adb022c91eb762f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8477966684934749261}
@@ -16306,6 +16333,10 @@ PrefabInstance:
       value: ClickerBase
       objectReference: {fileID: 0}
     - target: {fileID: 1067855919843514544, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1067855919843514544, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8477966684934749261}
@@ -16399,7 +16430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4210865528621262093, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4210865528621262093, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -16434,6 +16465,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4888854005469912427, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
+      propertyPath: minScale
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888854005469912427, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
       propertyPath: spawnParent
       value: 
       objectReference: {fileID: 8666543406775630327}
@@ -16442,6 +16477,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 595179847}
     - target: {fileID: 4888854005469912427, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
+      propertyPath: scaleDuration
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888854005469912427, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
       propertyPath: particlePrefab
       value: 
       objectReference: {fileID: 8411693021192613806, guid: fd5facd3c44f1eb4da31df13d38276f4, type: 3}
@@ -16449,6 +16488,10 @@ PrefabInstance:
       propertyPath: shopBuffsPanel
       value: 
       objectReference: {fileID: 8450945229092822453}
+    - target: {fileID: 4888854005469912427, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
+      propertyPath: clickerCloseButton
+      value: 
+      objectReference: {fileID: 1125171214}
     - target: {fileID: 4888854005469912427, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
       propertyPath: errorMessagePrefab
       value: 
@@ -16471,7 +16514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5009051419249864894, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5009051419249864894, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -16496,6 +16539,26 @@ PrefabInstance:
     - target: {fileID: 5009051419249864894, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207919466912862896, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207919466912862896, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207919466912862896, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207919466912862896, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.317
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207919466912862896, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.317
       objectReference: {fileID: 0}
     - target: {fileID: 7560393758023627026, guid: 721c5c1daea20cc4fa62370b7febd81a, type: 3}
       propertyPath: progressBar

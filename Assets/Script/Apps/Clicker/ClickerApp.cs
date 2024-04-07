@@ -16,9 +16,15 @@ public class ClickerApp : MonoBehaviour
     [Header("Clicker")] 
     [SerializeField] private GameObject errorMessagePrefab;
     [SerializeField] private float errorWindowAnimationScale;
-    [SerializeField] private Button clickerButton;
     [SerializeField] private Button clickerCloseButton;
+
+    
+    [Header("Clicker Button")]
+    [SerializeField] private Button clickerButton;
+    [SerializeField] private float minScale;
+    [SerializeField] private float scaleDuration;
     [SerializeField] private ParticleSystem particlePrefab;
+    private bool isAnimated;
 
     [Header("Buffs shop")] 
     [SerializeField] private GameObject shopBuffsPanel;
@@ -39,6 +45,7 @@ public class ClickerApp : MonoBehaviour
         
         clickerCloseButton.onClick.AddListener(OnClickerCloseButtonPress);
         clickerButton.onClick.AddListener(ParticleSpawn);
+        clickerButton.onClick.AddListener(AnimateClicker);
     }
 
     private async UniTask ShowPanelAsync()
@@ -96,6 +103,19 @@ public class ClickerApp : MonoBehaviour
         errorWindow.transform.DOScale(errorWindowAnimationScale, 0.1f).SetLoops(2, LoopType.Yoyo);
     }
 
+    private void AnimateClicker()
+    {
+        if (isAnimated)
+            return;
+        
+        AnimateClickerAsync().Forget();
+    }
+    private async UniTask AnimateClickerAsync()
+    {
+        isAnimated = true;
+        await clickerButton.gameObject.transform.DOScale(minScale, scaleDuration).SetLoops(2, LoopType.Yoyo);
+        isAnimated = false;
+    }
         
     public void ParticleSpawn()
     {

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Numerics;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -11,12 +12,11 @@ using Vector3 = UnityEngine.Vector3;
 public class ProgressHandler : MonoBehaviour
 {
     [Header("Ranks")] 
-    [SerializeField] private Rank[] ranks;
+    [SerializeField] private SerializedDictionary<string, long> rankNameGoalPair;
     
     [Header("Mamont Title")] 
-    [SerializeField] private GameObject mamontTitleObject;
+    [SerializeField] private TMP_Text mamontTitle;
     [SerializeField] private float mamontTitleScale;
-    private TextMeshProUGUI mamontTitleText;
     
     [Header("Progress Bar")]
     [SerializeField] private Slider progressBar;
@@ -28,11 +28,9 @@ public class ProgressHandler : MonoBehaviour
     {
         currentValue = DataBank.Clicks;
         currentGoalIndex = 1;
-        maxValue = ranks[currentGoalIndex].RankGoal;
 
-        mamontTitleText = mamontTitleObject.GetComponent<TextMeshProUGUI>();
-        mamontTitleText.text = ranks[0].RankName;
-        
+        maxValue = rankNameGoalPair.Values.ElementAt(currentGoalIndex);
+        mamontTitle.text = rankNameGoalPair.Keys.First();
         
         Events.ClicksUpdated += UpdateProgress;
     }
@@ -46,13 +44,13 @@ public class ProgressHandler : MonoBehaviour
        
         if (currentValue == maxValue)
         {
-            if (currentGoalIndex < ranks.Length)
+            if (currentGoalIndex < rankNameGoalPair.Count)
             {
-                UpdateMamontTitle(ranks[currentGoalIndex].RankName).Forget();
+                UpdateMamontTitle(rankNameGoalPair.Keys.ElementAt(currentGoalIndex)).Forget();
                 currentGoalIndex++;
-                if (currentGoalIndex < ranks.Length)
+                if (currentGoalIndex < rankNameGoalPair.Count)
                 {
-                    maxValue = ranks[currentGoalIndex].RankGoal;
+                    maxValue = rankNameGoalPair.Values.ElementAt(currentGoalIndex);
                 }
             }
             else
@@ -64,9 +62,11 @@ public class ProgressHandler : MonoBehaviour
     
     private async UniTask UpdateMamontTitle(string titleName)
     {
-        mamontTitleText.text = titleName;
-        await mamontTitleObject.transform.DOScale(mamontTitleScale, 0.2f).SetLoops(2, LoopType.Yoyo);
-        mamontTitleObject.transform.localScale = new Vector3(1,1,1);
+        mamontTitle.text = titleName;
+
+        var mamontObject = mamontTitle.gameObject;
+        await mamontObject.transform.DOScale(mamontTitleScale, 0.2f).SetLoops(2, LoopType.Yoyo);
+        mamontObject.transform.localScale = new Vector3(1,1,1);
     }
     
     public void AddProgress(long amount)

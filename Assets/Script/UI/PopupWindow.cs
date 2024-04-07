@@ -14,11 +14,15 @@ public class PopupWindow : MonoBehaviour
     [SerializeField] private Button closeButton;
     public bool isPaid;
 
+    private void Start()
+    {
+        closeButton.onClick.AddListener(CloseWindow);
+    }
+
     public void ShowWindow()
     {
         gameObject.SetActive(true);
         transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo);
-        closeButton.onClick.AddListener(CloseWindow);
     }
 
     public void CloseWindow()
