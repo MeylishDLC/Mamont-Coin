@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Script.Apps.Duralingo;
 using Script.Sound;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
@@ -13,13 +15,21 @@ public class PopupsManager : MonoBehaviour
     public GameObject PopupsContainer;
     
     [Header("Trojan Warnings")]
-    [SerializeField] private int warningAppearFrequencyMilliseconds;
+    [SerializeField] private int warningAppearIntervalMilliseconds;
     [SerializeField] private List<GameObject> popupWarnings;
     
     [Header("Auto Pop-up AD Windows")] 
     public List<GameObject> popupWindows;
-    [SerializeField] private GameObject spawnParent;
-    [SerializeField] private int appearFrequencyMilliseconds;
+    [SerializeField] private GameObject spawnParent; 
+    [SerializeField] private int adAppearIntervalMilliseconds;
+
+    [Header("Duralingo")] 
+    [SerializeField]private List<DuralingoGame> duralingoTests;
+    [SerializeField] private GameObject duralingoCall;
+    [SerializeField] private int duralingoCallIntervalMilliseconds;
+    [SerializeField] private int duralingoCallsAmount;
+    private int currentDuralingoTestIndex;
+    
     private bool trojanWarningsActive { get; set; }
     private bool adPopupsActive { get; set; }
 
@@ -33,8 +43,6 @@ public class PopupsManager : MonoBehaviour
             Debug.LogError("Found more than one PopupsManager in the scene.");
         }
         instance = this;
-        
-        PopupWindowAppearAsync().Forget();
     }
     public static PopupsManager GetInstance()
     {
@@ -42,6 +50,16 @@ public class PopupsManager : MonoBehaviour
     }
 
     #endregion
+
+    private void Start()
+    {
+        PopupWindowAppearAsync().Forget();
+
+        foreach (var duralingo in duralingoTests)
+        {
+            duralingo.OnDuralingoLoseGame += DuralingoCallSpamAsync;
+        }
+    }
 
     public GameObject RandomSpawn(List<GameObject> windowsList)
     {
@@ -64,7 +82,7 @@ public class PopupsManager : MonoBehaviour
             var popupWindow = RandomSpawn(popupWindows);
             popupWindow.GetComponent<PopupWindow>().isPaid = false;
             await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
-            await UniTask.Delay(appearFrequencyMilliseconds);
+            await UniTask.Delay(adAppearIntervalMilliseconds);
         }
     }
    
@@ -77,7 +95,7 @@ public class PopupsManager : MonoBehaviour
             AudioManager.instance.PlayOneShot(FMODEvents.instance.errorSound);
             
             await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
-            await UniTask.Delay(warningAppearFrequencyMilliseconds);
+            await UniTask.Delay(warningAppearIntervalMilliseconds);
         }
     }
     public void TrojanWarningAppear()
@@ -85,6 +103,23 @@ public class PopupsManager : MonoBehaviour
         TrojanWarningAppearAsync().Forget();
     }
 
+    public void DuralingoAppear()
+    {
+        var duralingo = duralingoTests[currentDuralingoTestIndex];
+        duralingo.OpenApp();
+        if (currentDuralingoTestIndex < duralingoTests.Count - 1)
+        {
+            currentDuralingoTestIndex++;
+        }
+        else
+        {
+            Debug.Log("no duralingo tests anymore");
+        }
+    }
+    private void DuralingoCallSpamAsync()
+    {
+        Debug.Log("Spam Spam");
+    }
     public void DisableAllPopups()
     {
         trojanWarningsActive = false;

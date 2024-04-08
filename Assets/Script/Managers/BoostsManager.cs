@@ -7,11 +7,12 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.Serialization;
 
 public class BoostsManager : MonoBehaviour
 {
     [Header("Auto Clicker")] 
-    [SerializeField] private int clickFrequencyMilliseconds;
+    [SerializeField] private int clickIntervalMilliseconds;
     [SerializeField] private int autoClickAmount = 1;
     private AutoClicker autoClicker;
         
@@ -20,9 +21,9 @@ public class BoostsManager : MonoBehaviour
     public int doubleClickAmount = 2;
     public DoubleClick doubleClick;
 
-   
+    
     [Header("Paid Pop-up Windows")]
-    [SerializeField] private int paidAppearFrequencyMilliseconds;
+    [SerializeField] private int paidAppearIntervalMilliseconds;
     public int coinsPerPopupWindow;
     private PaidPopups paidPopups;
     
@@ -55,9 +56,9 @@ public class BoostsManager : MonoBehaviour
     #endregion
     private void Start()
     {
-        autoClicker = new AutoClicker(clickFrequencyMilliseconds, autoClickAmount);
+        autoClicker = new AutoClicker(clickIntervalMilliseconds, autoClickAmount);
         doubleClick = new DoubleClick(percentageChanceOfDoubleClick, doubleClickAmount);
-        paidPopups = new PaidPopups(paidAppearFrequencyMilliseconds, PopupsManager.GetInstance().popupWindows);
+        paidPopups = new PaidPopups(paidAppearIntervalMilliseconds, PopupsManager.GetInstance().popupWindows);
 
         boosts = new List<Boost>
         {

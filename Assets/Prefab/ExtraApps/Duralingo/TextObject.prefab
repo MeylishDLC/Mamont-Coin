@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4774036023487922738}
   - component: {fileID: 4135075257648578172}
   - component: {fileID: 1108286247973061812}
-  - component: {fileID: 5631721551489913984}
   - component: {fileID: 2388682251114989076}
   m_Layer: 0
   m_Name: TextObject
@@ -78,18 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!225 &5631721551489913984
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4099875458636819115}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &2388682251114989076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0386b7a6c58a764c8cdcefff06dcc8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 0}
 --- !u!1 &6576651512060654910
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +154,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0438"
+  m_text: "\u0431\u043E\u0433\u0438\u043D\u044F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6fca41145db51cc4b99180e56ed59653, type: 2}
   m_sharedMaterial: {fileID: 6859402337791770632, guid: 6fca41145db51cc4b99180e56ed59653, type: 2}

@@ -7,12 +7,11 @@ using UnityEngine.EventSystems;
 public class TextObject : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     private Vector2 originalPosition;
-    private GameObject textFieldObject;
+    [SerializeField] private TextField textField;
     public bool isAdded { get; private set; }
     void Start()
     {
         originalPosition = transform.position;
-        textFieldObject = TextField.instance.gameObject;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -39,7 +38,7 @@ public class TextObject : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         
         foreach (var result in results)
         {
-            if (result.gameObject == textFieldObject)
+            if (result.gameObject == textField.gameObject)
             {
                 isOverTargetUIObject = true;
                 break;
@@ -48,15 +47,15 @@ public class TextObject : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
         if (isOverTargetUIObject)
         {
-            TextField.instance.AddWordToSentence(this);
+            textField.AddWordToSentence(this);
             isAdded = true;
         }
         else
         {
-            TextField.instance.RemoveWordFromSentence(this);
+            textField.RemoveWordFromSentence(this);
             isAdded = false;
             transform.position = originalPosition;
         }
-        TextField.instance.RefreshLayout();
+        textField.RefreshLayout();
     }
 }

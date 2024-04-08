@@ -14,16 +14,6 @@ public class TextField : MonoBehaviour
     private readonly List<TextObject> currentSentence = new();
     private GridLayoutGroup layoutGroup;
 
-    public static TextField instance;
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Debug.LogError("Found more than one TextField in the scene.");
-        }
-        instance = this;
-    }
-
     private void Start()
     {
         layoutGroup = gameObject.GetComponent<GridLayoutGroup>();
