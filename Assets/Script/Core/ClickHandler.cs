@@ -15,11 +15,11 @@ namespace Script.Core
             this.progressHandler = progressHandler;
         }
         
-        public void Increment(int addAmount)
+        public void Increment(long addAmount)
         {
             DataBank.Clicks += addAmount;
             progressHandler.AddProgress(addAmount);
-            ClicksUpdated?.Invoke(addAmount);
+            ClicksUpdated?.Invoke((int)addAmount);
         }
     }
 }

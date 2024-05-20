@@ -10,8 +10,9 @@ namespace Script.Sound
 
         [field: Header("UI SFX")]
         [field: SerializeField] public EventReference skypeMessageSound { get; private set; }
-        [field: SerializeField] public EventReference skypeCallSound { get; private set; }
         [field: SerializeField] public EventReference clickSound { get; private set; }
+        [field: SerializeField] public EventReference buySound { get; private set; }
+        [field: SerializeField] public EventReference boostChoiceSound { get; private set; }
 
         [field: Header("Popup Windows SFX")] 
         [field: SerializeField] public EventReference errorSound { get; private set; }
@@ -19,7 +20,13 @@ namespace Script.Sound
         
         [field: Header("Windows Specific Sounds")]
         [field: SerializeField] public EventReference windowsGreetingSound { get; private set; }
+        
+        [field: Header("Duralingo Sounds")]
+        [field: SerializeField] public EventReference skypeCallSound { get; private set; }
+        [field: SerializeField] public EventReference duralingoCorrect { get; private set; }
+        [field: SerializeField] public EventReference duralingoWrong { get; private set; }
         public static FMODEvents instance { get; private set; }
+        
 
         private void Awake()
         {

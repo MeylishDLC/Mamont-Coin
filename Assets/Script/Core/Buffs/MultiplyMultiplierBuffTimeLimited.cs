@@ -1,14 +1,22 @@
 ﻿using Cysharp.Threading.Tasks;
 using Script.Data;
+using Script.Managers;
+using Script.Sound;
 
 namespace Script.Core.Buffs
 {
     public class MultiplyMultiplierBuffTimeLimited: TimeLimitedBuff
     {
+        public override void BuyBuff()
+        {
+            BuyTimesMultiplierTimeLimitedAsync().Forget();
+        }
+
         private async UniTask BuyTimesMultiplierTimeLimitedAsync()
         { 
             if (DataBank.Clicks >= price)
             {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.buySound);
                 DataBank.Multiplier *= buffAmount;
                 var currentMultiplier = DataBank.Multiplier;
                 
@@ -28,11 +36,6 @@ namespace Script.Core.Buffs
                     DataBank.Multiplier /= buffAmount;
                 }
             }
-        }
-
-        public void BuyTimesMultiplierTimeLimited()
-        {
-            BuyTimesMultiplierTimeLimitedAsync().Forget();
         }
     }
 }

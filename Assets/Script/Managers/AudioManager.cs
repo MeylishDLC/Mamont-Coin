@@ -3,6 +3,7 @@ using FMOD.Studio;
 using FMODUnity;
 using Script.Sound;
 using UnityEngine;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Script.Managers
 {
@@ -57,13 +58,13 @@ namespace Script.Managers
             musicEventInstance = CreateInstance(musicEventReference);
             musicEventInstance.start();
         }
-
+        
         public void SetMusicAct(MusicAct act)
         {
             musicEventInstance.setParameterByName("Act", (float) act);
         }
 
-        private EventInstance CreateInstance(EventReference eventReference)
+        public EventInstance CreateInstance(EventReference eventReference)
         {
             var eventInstance = RuntimeManager.CreateInstance(eventReference);
             eventInstances.Add(eventInstance);

@@ -42,19 +42,15 @@ namespace Script.Apps.Clicker
             coinToRubleText.text = "0 руб.";
 
             clickHandler = new ClickHandler(progressHandler);
-        }
-
-        private void OnEnable()
-        {
+            
             clickerCloseButton.onClick.AddListener(OnClickerCloseButtonPress);
             
-            clickerButton.onClick.AddListener(() => clickHandler.Increment((int)DataBank.Multiplier));
+            clickerButton.onClick.AddListener(() => clickHandler.Increment(DataBank.Multiplier));
             clickerButton.onClick.AddListener(ParticleSpawn);
             clickerButton.onClick.AddListener(AnimateClicker);
 
             ClickHandler.ClicksUpdated += OnClicksUpdated;
         }
-
         private void OnDestroy()
         {
             clickerButton.onClick.RemoveAllListeners();

@@ -34,6 +34,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor & Play.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -125,6 +126,7 @@
       <workItem from="1712005526955" duration="7990000" />
       <workItem from="1712523672855" duration="12116000" />
       <workItem from="1716170811578" duration="21292000" />
+      <workItem from="1716213570157" duration="940000" />
     </task>
     <servers />
   </component>
@@ -152,6 +154,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Script/Core/ClickHandler.cs</url>
+          <line>21</line>
+          <properties documentPath="G:\Data\UniProjects\Prjcs\unity\ClickerNavoznyhMuh\Assets\Script\Core\ClickHandler.cs" initialLine="21" containingFunctionPresentation="Method 'Increment'">
+            <startOffsets>
+              <option value="560" />
+            </startOffsets>
+            <endOffsets>
+              <option value="593" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,5 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Script.Data;
+using Script.Managers;
+using Script.Sound;
 using UnityEngine;
 
 namespace Script.Core.Buffs
@@ -7,14 +9,14 @@ namespace Script.Core.Buffs
     public class AddMultiplierBuffTimeLimited: AddMultiplierBuff
     {
         [SerializeField] private int timeLimitMilliseconds;
-        
-        public void BuyAddMultiplierLimited()
+
+        public override void BuyBuff()
         {
             BuyAddMultiplierLimitedAsync().Forget();
         }
         private async UniTask BuyAddMultiplierLimitedAsync()
         {
-            BuyAddMultiplier();
+            base.BuyBuff();
             await UniTask.Delay(timeLimitMilliseconds);
             DataBank.Multiplier -= buffAmount;
         }

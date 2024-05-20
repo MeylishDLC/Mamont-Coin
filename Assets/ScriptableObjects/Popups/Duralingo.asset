@@ -16,4 +16,4 @@ MonoBehaviour:
   <Popups>k__BackingField:
   - {fileID: 7249566154285154718, guid: dd44f04a35349ee4fbeb43e4f736beae, type: 3}
   <DuralingoCallsAmount>k__BackingField: 20
-  <SpawnPosition>k__BackingField: {x: 656, y: -363}
+  <SpawnPosition>k__BackingField: {x: 570, y: -403}

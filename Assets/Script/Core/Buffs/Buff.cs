@@ -23,11 +23,13 @@ namespace Script.Core.Buffs
         private void Start()
         {
             priceText.text = price.ToString();
-        
+            
+            button.onClick.AddListener(BuyBuff);
             ClickHandler.ClicksUpdated += UpdateButtonInteractive; 
             UpdateButtonInteractive(0); 
         }
 
+        public virtual void BuyBuff() { }
         private void OnDestroy()
         {
             ClickHandler.ClicksUpdated -= UpdateButtonInteractive;

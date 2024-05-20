@@ -6,6 +6,7 @@ using DG.Tweening;
 using Script.Core.Boosts;
 using Script.Data;
 using Script.Managers;
+using Script.Sound;
 using Script.UI;
 using TMPro;
 using UnityEngine;
@@ -135,6 +136,7 @@ namespace Script.Apps.NotePadScript
 
         public void OpenApp()
         {
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.boostChoiceSound);
             notepadInteractable.CloseApp();
             GameManager.GetInstance().interactionOff.SetActive(true);
             gameObject.SetActive(true);

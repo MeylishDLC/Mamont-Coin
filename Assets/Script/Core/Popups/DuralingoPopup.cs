@@ -2,7 +2,9 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using DG.Tweening.Core.Easing;
+using FMOD.Studio;
 using Script.Managers;
+using Script.Sound;
 using UnityEngine;
 
 namespace Script.Core.Popups
@@ -28,10 +30,16 @@ namespace Script.Core.Popups
                 await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
 
                 bounceCts = new CancellationTokenSource();
+                
+                var instance = AudioManager.instance.CreateInstance(FMODEvents.instance.skypeCallSound);
+                instance.start();
+                
                 Bounce(popupWindow, bounceCts.Token).Forget();
                 
                 await UniTask.Delay(AppearIntervalMilliseconds);
+       
                 bounceCts.Cancel();
+                instance.stop(STOP_MODE.IMMEDIATE);
                 
                 await popupWindow.transform.DOScale(0.9f, 0.2f).ToUniTask();
                 Destroy(popupWindow);
@@ -42,11 +50,14 @@ namespace Script.Core.Popups
 
         private async UniTask Bounce(GameObject popupWindow, CancellationToken token)
         {
+
+            
             while (!token.IsCancellationRequested)
             {
                 await popupWindow.transform.DOScale(0.95f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask(cancellationToken: token);
                 await UniTask.Delay(100, cancellationToken: token);
             }
+
             bounceCts.Dispose();
         }
     }

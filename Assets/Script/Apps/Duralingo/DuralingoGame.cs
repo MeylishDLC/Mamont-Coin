@@ -3,6 +3,8 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Core.Popups;
+using Script.Managers;
+using Script.Sound;
 using Script.UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -28,7 +30,6 @@ namespace Script.Apps.Duralingo
         [SerializeField] private int timeBeforeBombing = 2000;
 
         private CancellationTokenSource duralingoTimerCts;
-        //todo: countdown 
 
         private void Start()
         {
@@ -57,10 +58,12 @@ namespace Script.Apps.Duralingo
             gameScreen.SetActive(false);
             if (textField.CheckAccuracy())
             {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.duralingoCorrect);
                 winScreen.SetActive(true);
             }
             else
             {
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.duralingoWrong);
                 loseScreen.SetActive(true);
                 await UniTask.Delay(timeBeforeBombing);
                 duralingoSpamPopup.PopupAppear();
