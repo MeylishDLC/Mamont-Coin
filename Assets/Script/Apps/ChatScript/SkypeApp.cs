@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Data;
@@ -51,9 +52,18 @@ namespace Script.Apps.ChatScript
             notificationCounterText = notificationIcon.GetComponentInChildren<TextMeshProUGUI>();
             notificationCounter = 0;
             notificationCounterText.text = notificationCounter.ToString();
+        }
 
-            Events.MessageRecieved += OnNewNotificationGet;
+        private void OnEnable()
+        {
+            ChatManager.MessageRecieved += OnNewNotificationGet;
             closeButton.onClick.AddListener(CloseApp);
+        }
+
+        private void OnDisable()
+        {
+            ChatManager.MessageRecieved -= OnNewNotificationGet;
+            closeButton.onClick.RemoveAllListeners();
         }
 
         private async UniTask CloseAppAsync()

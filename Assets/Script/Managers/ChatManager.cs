@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -10,6 +11,8 @@ namespace Script.Managers
 {
     public class ChatManager : MonoBehaviour
     {
+        public static event Action MessageRecieved;
+        
         [Header("Main")]
         [SerializeField] private SkypeApp skypeApp;
         [SerializeField] private GameObject textObject;
@@ -76,9 +79,7 @@ namespace Script.Managers
                 await UniTask.Delay(delayBetweenMessagesMillisecond);
             }
         }
-
-
-    
+        
         public void SendMessageToScammerChat(string text)
         {
             if (!ScammerChatActive)
@@ -95,7 +96,7 @@ namespace Script.Managers
         
             newText.transform.DOScale(skypeApp.messageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
         
-            Events.MessageRecieved?.Invoke();
+            MessageRecieved?.Invoke();
         }
         public void SendMessageToHackerChat(string text)
         {
@@ -113,7 +114,7 @@ namespace Script.Managers
 
             newText.transform.DOScale(skypeApp.messageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
         
-            Events.MessageRecieved?.Invoke();
+            MessageRecieved?.Invoke();
         }
 
         public void SwitchToHacker()
