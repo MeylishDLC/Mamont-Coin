@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FMOD.Studio;
-using UnityEngine;
 using FMODUnity;
+using Script.Sound;
+using UnityEngine;
 
-namespace Script.Sound
+namespace Script.Managers
 {
     public class AudioManager : MonoBehaviour
     {
@@ -72,7 +72,7 @@ namespace Script.Sound
             RuntimeManager.PlayOneShot(sound);
         }
         
-        void CleanUp()
+        private void CleanUp()
         {
             foreach (EventInstance eventInstance in eventInstances)
             {

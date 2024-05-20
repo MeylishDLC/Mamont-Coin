@@ -1,45 +1,48 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
+using Script.Core;
 using Script.Data;
-using TMPro;
+using Script.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PopupWindow : MonoBehaviour
+namespace Script.UI
 {
-    [Header("Settings")]
-    [SerializeField] private bool destroyOnClose;
-    [SerializeField] private Button closeButton;
-    public bool isPaid;
-
-    private void Start()
+    public class PopupWindow : MonoBehaviour
     {
-        closeButton.onClick.AddListener(CloseWindow);
-    }
+        public static event Action OnPaidPopupClose;
+        
+        [Header("Settings")]
+        [SerializeField] private bool destroyOnClose;
+        [SerializeField] private Button closeButton;
+        public bool isPaid;
 
-    public void ShowWindow()
-    {
-        gameObject.SetActive(true);
-        transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo);
-    }
-
-    public void CloseWindow()
-    {
-        if (destroyOnClose)
+        private void Start()
         {
-            Destroy(gameObject);
+            closeButton.onClick.AddListener(CloseWindow);
         }
-        else
+
+        public void ShowWindow()
         {
-            gameObject.SetActive(false);
+            gameObject.SetActive(true);
+            transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo);
         }
-        if (isPaid)
+
+        public void CloseWindow()
         {
-            DataBank.Clicks += BoostsManager.GetInstance().coinsPerPopupWindow;
-            Events.ClicksUpdated?.Invoke();
-            Debug.Log("+ money for AD");
+            if (destroyOnClose)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+            
+            if (isPaid)
+            {
+                OnPaidPopupClose?.Invoke();
+            }
         }
     }
 }

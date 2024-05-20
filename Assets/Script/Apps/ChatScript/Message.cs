@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
-[System.Serializable]
-public class Message
+
+namespace Script.Apps.ChatScript
 {
-    public string text;
-    public TextMeshProUGUI textObject;
+    [System.Serializable]
+    public class Message
+    {
+        public string text;
+        public TextMeshProUGUI textObject;
+    }
 }

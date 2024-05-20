@@ -1,33 +1,39 @@
 ﻿using Cysharp.Threading.Tasks;
 using Script.Data;
+using UnityEngine;
 
-namespace Script.Core
+namespace Script.Core.Boosts
 {
-    public class AutoClicker : Boost
+    [CreateAssetMenu]
+    public class AutoClicker : Boost, IImprovableBoost
     {
-        public int ClickFrequencyMilliseconds { get; set; }
-        public int AutoClickAmount { get; set; }
+        [field: SerializeField] public int ClickFrequencyMilliseconds { get; private set; }
+        [field: SerializeField] public int AutoClickAmount { get; private set; } = 1;
         
-        public AutoClicker(int clickFrequencyMilliseconds, int autoClickAmount = 1)
-        {
-            ClickFrequencyMilliseconds = clickFrequencyMilliseconds;
-            AutoClickAmount = autoClickAmount;
-        }
+        [Header("Boost Improve")]
+        [field:SerializeField] public string ImproveText { get; set; }
+
+        [field: SerializeField] public int AutoClickImproveAmount { get; private set; }
         
         public override void Activate()
         {
             IsEnabled = true;
             AutoClickAsync().Forget();
         }
-        
+        public void Improve()
+        {
+            AutoClickAmount = AutoClickImproveAmount;
+        }
         private async UniTask AutoClickAsync()
         {
             while (IsEnabled)
             {
                 await UniTask.Delay(ClickFrequencyMilliseconds);
-                DataBank.Clicks += AutoClickAmount;
-                Events.ClicksUpdated?.Invoke();
+                var addAmount = AutoClickAmount;
+                DataBank.Clicks += addAmount;
+                ClickHandler.ClicksUpdated?.Invoke(addAmount);
             }
         }
+        
     }
 }

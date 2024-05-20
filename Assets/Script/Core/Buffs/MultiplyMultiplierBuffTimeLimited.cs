@@ -14,7 +14,8 @@ namespace Script.Core.Buffs
                 
                 DataBank.Clicks -= price;
             
-                Events.ClicksUpdated?.Invoke();
+                ClickHandler.ClicksUpdated?.Invoke(-price);
+                
                 await UniTask.Delay(timeLimitMilliseconds);
 
                 var diff = DataBank.Multiplier - currentMultiplier;

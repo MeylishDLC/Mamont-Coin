@@ -1,33 +1,56 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace Script.Core
+namespace Script.Core.Boosts
 {
-    public class DoubleClick: Boost
+    [CreateAssetMenu]
+    public class DoubleClick: Boost, IImprovableBoost
     {
-        public float PercentageOfDoubleClick { get; set; }
-        public int DoubleClickAmount { get; set; }
+        [field:SerializeField] public float PercentageOfDoubleClick { get; private set; }
+        [field: SerializeField] public int DoubleClickAmount { get; private set; } = 2;
         
-        public DoubleClick(float percentageChanceOfDoubleClick, int doubleClickAmount)
-        {
-            PercentageOfDoubleClick = percentageChanceOfDoubleClick;
-            DoubleClickAmount = doubleClickAmount;
-        }
+        [Header("Boost Improve")]
+        [field:SerializeField] public string ImproveText { get; set; }
+
+        [field: SerializeField] public int DoubleClickImproveAmount { get; private set; }
         
         public override void Activate()
         {
             IsEnabled = true;
+            ClickHandler.ClicksUpdated += OnClick;
         }
 
-        public int DoubleClickChance()
+        private void OnDisable()
+        {
+            ClickHandler.ClicksUpdated -= OnClick;
+        }
+
+        public void Improve()
+        {
+            DoubleClickAmount = DoubleClickImproveAmount;
+        }
+
+        private bool DoubleClickChance()
         {
             var chance = Random.Range(1, 100);
             if (chance <= PercentageOfDoubleClick)
             {
                 Debug.Log($"Double click = {DoubleClickAmount}");
-                return DoubleClickAmount;
+                return true;
             }
-            return 1;
+            return false;
         }
 
+        private void OnClick(int addAmount)
+        {
+            if (!DoubleClickChance())
+            {
+                return;
+            }
+            
+            addAmount *= addAmount - 1;
+            ClickHandler.ClicksUpdated?.Invoke(addAmount);
+        }
     }
 }

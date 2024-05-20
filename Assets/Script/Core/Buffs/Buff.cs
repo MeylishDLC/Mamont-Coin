@@ -14,7 +14,7 @@ namespace Script.Core.Buffs
         [SerializeField] protected Button button;
         [SerializeField] protected TMP_Text priceText;
         
-        private void UpdateButtonInteractive()
+        private void UpdateButtonInteractive(int _)
         {
             button.interactable = DataBank.Clicks >= price;
         }
@@ -23,8 +23,8 @@ namespace Script.Core.Buffs
         {
             priceText.text = price.ToString();
         
-            Events.ClicksUpdated += UpdateButtonInteractive; 
-            UpdateButtonInteractive(); 
+            ClickHandler.ClicksUpdated += UpdateButtonInteractive; 
+            UpdateButtonInteractive(0); 
         }
     }
 }

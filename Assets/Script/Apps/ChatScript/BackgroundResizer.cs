@@ -1,30 +1,30 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-[RequireComponent(typeof(RectTransform))]
-public class BackgroundResizer : MonoBehaviour
+namespace Script.Apps.ChatScript
 {
-    [SerializeField] private GameObject image;
-    [SerializeField] private GameObject text;
-    [SerializeField] private float paddingX = 0f;
-    [SerializeField] private float paddingY = 0f;
-
-    private RectTransform imageRectTransform;
-    private TextMeshProUGUI textMeshPro;
-
-    private void Start()
+    [RequireComponent(typeof(RectTransform))]
+    public class BackgroundResizer : MonoBehaviour
     {
-        imageRectTransform = image.GetComponent<RectTransform>();
-        textMeshPro = text.GetComponent<TextMeshProUGUI>();
-    }
+        [SerializeField] private GameObject image;
+        [SerializeField] private GameObject text;
+        [SerializeField] private float paddingX = 0f;
+        [SerializeField] private float paddingY = 0f;
 
-    private void Update()
-    {
-        textMeshPro.ForceMeshUpdate();
-        var preferredHeight = textMeshPro.GetPreferredValues().y;
-        imageRectTransform.sizeDelta = new Vector2(imageRectTransform.sizeDelta.x + paddingX, preferredHeight + paddingY);
+        private RectTransform imageRectTransform;
+        private TextMeshProUGUI textMeshPro;
+
+        private void Start()
+        {
+            imageRectTransform = image.GetComponent<RectTransform>();
+            textMeshPro = text.GetComponent<TextMeshProUGUI>();
+        }
+
+        private void Update()
+        {
+            textMeshPro.ForceMeshUpdate();
+            var preferredHeight = textMeshPro.GetPreferredValues().y;
+            imageRectTransform.sizeDelta = new Vector2(imageRectTransform.sizeDelta.x + paddingX, preferredHeight + paddingY);
+        }
     }
 }

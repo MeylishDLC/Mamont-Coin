@@ -1,72 +1,72 @@
-using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.UI;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class NotepadInteractable : MonoBehaviour, IWindowedApp
+namespace Script.Apps.NotePadScript
 {
-    [Header("Open/Close Window")]
-    [SerializeField] private Button closeButton;
-    [SerializeField] private float scaleOnOpen;
-    [SerializeField] private float scaleOnClose;
-    [SerializeField] private float openDuration;
-    
-    [Header("Boosts chosen")] 
-    [SerializeField] private List<TMP_Text> chosenBoosts;
-    private int chosenBoostAmount;
-    private void Start()
+    public class NotepadInteractable : MonoBehaviour, IWindowedApp
     {
-        gameObject.SetActive(false);
-
-        foreach (var boostInfo in chosenBoosts)
+        [Header("Open/Close Window")]
+        [SerializeField] private Button closeButton;
+        [SerializeField] private float scaleOnOpen;
+        [SerializeField] private float scaleOnClose;
+        [SerializeField] private float openDuration;
+    
+        [Header("Chosen Boosts")] 
+        [SerializeField] private List<TMP_Text> chosenBoosts;
+        private int chosenBoostAmount;
+        private void Start()
         {
-            boostInfo.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+
+            foreach (var boostInfo in chosenBoosts)
+            {
+                boostInfo.gameObject.SetActive(false);
+            }
+        
+            closeButton.onClick.AddListener(CloseApp);
         }
-        
-        closeButton.onClick.AddListener(CloseApp);
-    }
 
-    public void WriteDownNewBoost(string boostName)
-    {
-        chosenBoostAmount++;
-        chosenBoosts[chosenBoostAmount - 1].text = boostName;
-        chosenBoosts[chosenBoostAmount - 1].gameObject.SetActive(true);
-    }
+        public void WriteDownNewBoost(string boostName)
+        {
+            chosenBoostAmount++;
+            chosenBoosts[chosenBoostAmount - 1].text = boostName;
+            chosenBoosts[chosenBoostAmount - 1].gameObject.SetActive(true);
+        }
     
     
-    public void OpenApp()
-    {
-        OpenAppAsync().Forget();
-    }
+        public void OpenApp()
+        {
+            OpenAppAsync().Forget();
+        }
     
-    public void CloseApp()
-    {
-        CloseAppAsync().Forget();
-    }
+        public void CloseApp()
+        {
+            CloseAppAsync().Forget();
+        }
     
-    private async UniTask OpenAppAsync()
-    {
-        gameObject.SetActive(true);
-        closeButton.interactable = false;
+        private async UniTask OpenAppAsync()
+        {
+            gameObject.SetActive(true);
+            closeButton.interactable = false;
         
-        await transform.DOScale(scaleOnOpen, openDuration).ToUniTask();
+            await transform.DOScale(scaleOnOpen, openDuration).ToUniTask();
 
-        closeButton.interactable = true;
-    }
+            closeButton.interactable = true;
+        }
     
-    private async UniTask CloseAppAsync()
-    {
-        closeButton.interactable = false;
+        private async UniTask CloseAppAsync()
+        {
+            closeButton.interactable = false;
         
-        await transform.DOScale(scaleOnClose, openDuration).ToUniTask();
+            await transform.DOScale(scaleOnClose, openDuration).ToUniTask();
 
-        closeButton.interactable = true;
-        gameObject.SetActive(false);
+            closeButton.interactable = true;
+            gameObject.SetActive(false);
+        }
     }
 }

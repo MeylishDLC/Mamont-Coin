@@ -11,7 +11,7 @@ namespace Script.Core.Buffs
                 DataBank.Multiplier *= buffAmount;
                 DataBank.Clicks -= price;
             
-                Events.ClicksUpdated?.Invoke();
+                ClickHandler.ClicksUpdated?.Invoke(-price);
             }
         }
     }

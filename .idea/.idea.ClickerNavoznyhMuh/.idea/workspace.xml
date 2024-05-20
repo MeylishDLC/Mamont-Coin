@@ -121,7 +121,8 @@
       <workItem from="1711662716303" duration="10252000" />
       <workItem from="1711931985396" duration="1207000" />
       <workItem from="1712005526955" duration="7990000" />
-      <workItem from="1712523672855" duration="11722000" />
+      <workItem from="1712523672855" duration="12116000" />
+      <workItem from="1716170811578" duration="10761000" />
     </task>
     <servers />
   </component>
@@ -133,5 +134,24 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Plugins/UniTask/Runtime/Linq/UnityExtensions/EveryValueChanged.cs</url>
+          <line>17</line>
+          <properties documentPath="G:\Data\UniProjects\Prjcs\unity\ClickerNavoznyhMuh\Assets\Plugins\UniTask\Runtime\Linq\UnityExtensions\EveryValueChanged.cs" initialLine="17" containingFunctionPresentation="Method 'EveryValueChanged'">
+            <startOffsets>
+              <option value="776" />
+            </startOffsets>
+            <endOffsets>
+              <option value="963" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

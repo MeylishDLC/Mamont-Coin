@@ -1,30 +1,32 @@
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using System.Collections;
-using Cysharp.Threading.Tasks;
 
-public class TypeText : MonoBehaviour
+namespace Script.UI
 {
-    [SerializeField] private TextMeshProUGUI textMeshProUGUI;
-    [SerializeField] private int typingSpeedMilliseconds;
-
-    private string fullText;
-    private int currentCharacterIndex;
-
-    private void Start()
+    public class TypeText : MonoBehaviour
     {
-        fullText = textMeshProUGUI.text;
-        textMeshProUGUI.text = "";
-        StartTypeText().Forget();
-    }
+        [SerializeField] private TextMeshProUGUI textMeshProUGUI;
+        [SerializeField] private int typingSpeedMilliseconds;
 
-    private async UniTask StartTypeText()
-    {
-        while (currentCharacterIndex < fullText.Length)
+        private string fullText;
+        private int currentCharacterIndex;
+
+        private void Start()
         {
-            textMeshProUGUI.text += fullText[currentCharacterIndex];
-            currentCharacterIndex++;
-            await UniTask.Delay(typingSpeedMilliseconds);
+            fullText = textMeshProUGUI.text;
+            textMeshProUGUI.text = "";
+            StartTypeText().Forget();
+        }
+
+        private async UniTask StartTypeText()
+        {
+            while (currentCharacterIndex < fullText.Length)
+            {
+                textMeshProUGUI.text += fullText[currentCharacterIndex];
+                currentCharacterIndex++;
+                await UniTask.Delay(typingSpeedMilliseconds);
+            }
         }
     }
 }

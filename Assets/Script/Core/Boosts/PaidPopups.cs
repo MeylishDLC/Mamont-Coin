@@ -1,27 +1,33 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Script.Data;
+using Script.Managers;
+using Script.UI;
 using UnityEngine;
 
-namespace Script.Core
+namespace Script.Core.Boosts
 {
+    [CreateAssetMenu]
     public class PaidPopups: Boost
     {
-        public int PaidAppearFrequencyMilliseconds { get; set; }
-
-        private List<GameObject> adWindows;
-
-        public PaidPopups(int paidAppearFrequencyMilliseconds, List<GameObject> popupAdWindows)
-        {
-            PaidAppearFrequencyMilliseconds = paidAppearFrequencyMilliseconds;
-            adWindows = popupAdWindows;
-        }
+        [field:SerializeField] public int PaidAppearFrequencyMilliseconds { get; private set; }
+        [field:SerializeField] public int CoinsPerPopupWindow { get; private set; }
+        [field:SerializeField] private List<GameObject> adWindows;
         public override void Activate()
         {
+            PopupWindow.OnPaidPopupClose += PayForAd;
             IsEnabled = true;
             PaidPopupWindowAppearAsync().Forget();
         }
-        
+
+        private void PayForAd()
+        {
+            var addAmount = CoinsPerPopupWindow;
+            DataBank.Clicks += addAmount;
+            ClickHandler.ClicksUpdated?.Invoke(addAmount);
+            Debug.Log("+ money for AD");
+        }
         private async UniTask PaidPopupWindowAppearAsync()
         {
             while (IsEnabled)

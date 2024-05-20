@@ -1,5 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.UI;
 using UnityEngine;
@@ -43,10 +42,10 @@ namespace Script.Apps.Duralingo
             else
             {
                 loseScreen.SetActive(true);
-                await UniTask.Delay(5000);
-                CloseApp();
                 OnDuralingoLoseGame?.Invoke();
             }
+            await UniTask.Delay(5000);
+            CloseApp();
         }
         
         public async void OpenApp()

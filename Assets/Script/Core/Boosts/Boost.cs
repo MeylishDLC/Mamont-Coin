@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Script.Core
+namespace Script.Core.Boosts
 {
-    public abstract class Boost
+    public class Boost: ScriptableObject
     {
         public bool IsEnabled { get; set; }
-        public abstract void Activate();
+        public virtual void Activate(){}
     }
 }

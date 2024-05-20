@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BeginningScreen : MonoBehaviour
+namespace Script.UI.Screens
 {
-    public void OnPasswordEnter()
+    public class BeginningScreen : MonoBehaviour
     {
-        //todo: maybe some funny check for password
-        SceneManager.LoadScene(1);
+        public void OnPasswordEnter()
+        {
+            //todo: maybe some funny check for password
+            SceneManager.LoadScene(1);
+        }
     }
 }

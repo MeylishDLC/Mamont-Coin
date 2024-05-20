@@ -1,61 +1,62 @@
-using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TextObject : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+namespace Script.Apps.Duralingo
 {
-    private Vector2 originalPosition;
-    [SerializeField] private TextField textField;
-    public bool isAdded { get; private set; }
-    void Start()
+    public class TextObject : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
     {
-        originalPosition = transform.position;
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        // Do nothing
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        transform.position = eventData.position;
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        var pointerData = new PointerEventData(EventSystem.current)
+        private Vector2 originalPosition;
+        [SerializeField] private TextField textField;
+        public bool isAdded { get; private set; }
+        void Start()
         {
-            position = Input.mousePosition
-        };
+            originalPosition = transform.position;
+        }
 
-        var results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointerData, results);
-
-        var isOverTargetUIObject = false;
-        
-        foreach (var result in results)
+        public void OnPointerDown(PointerEventData eventData)
         {
-            if (result.gameObject == textField.gameObject)
+            // Do nothing
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            transform.position = eventData.position;
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+            var pointerData = new PointerEventData(EventSystem.current)
             {
-                isOverTargetUIObject = true;
-                break;
-            }
-        }
+                position = Input.mousePosition
+            };
 
-        if (isOverTargetUIObject)
-        {
-            textField.AddWordToSentence(this);
-            isAdded = true;
+            var results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pointerData, results);
+
+            var isOverTargetUIObject = false;
+        
+            foreach (var result in results)
+            {
+                if (result.gameObject == textField.gameObject)
+                {
+                    isOverTargetUIObject = true;
+                    break;
+                }
+            }
+
+            if (isOverTargetUIObject)
+            {
+                textField.AddWordToSentence(this);
+                isAdded = true;
+            }
+            else
+            {
+                textField.RemoveWordFromSentence(this);
+                isAdded = false;
+                transform.position = originalPosition;
+            }
+            textField.RefreshLayout();
         }
-        else
-        {
-            textField.RemoveWordFromSentence(this);
-            isAdded = false;
-            transform.position = originalPosition;
-        }
-        textField.RefreshLayout();
     }
 }

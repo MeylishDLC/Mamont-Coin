@@ -1,25 +1,27 @@
-using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
-public class EndingScreen : MonoBehaviour
+namespace Script.UI.Screens
 {
-    //todo: ????? some ending better than this shit
-    private TypeText text;
-    private void Start()
+    public class EndingScreen : MonoBehaviour
     {
-        text = gameObject.GetComponentInChildren<TypeText>();
-        text.enabled = false;
-        text.gameObject.SetActive(false);
+        //todo: ????? some ending better than this shit
+        private TypeText text;
+        private void Start()
+        {
+            text = gameObject.GetComponentInChildren<TypeText>();
+            text.enabled = false;
+            text.gameObject.SetActive(false);
         
-        OnAppearAsync().Forget();
-    }
+            OnAppearAsync().Forget();
+        }
 
-    private async UniTask OnAppearAsync()
-    {
-        await gameObject.transform.DOScale(1, 0.1f).ToUniTask();
-        text.gameObject.SetActive(true);
-        text.enabled = true;
-    } 
+        private async UniTask OnAppearAsync()
+        {
+            await gameObject.transform.DOScale(1, 0.1f).ToUniTask();
+            text.gameObject.SetActive(true);
+            text.enabled = true;
+        } 
+    }
 }

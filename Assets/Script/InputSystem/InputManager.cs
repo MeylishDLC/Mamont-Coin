@@ -1,73 +1,75 @@
-using System.Collections;
-using System.Collections.Generic;
+using Script.Managers;
 using Script.Sound;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput))]
-public class InputManager : MonoBehaviour
+namespace Script.InputSystem
 {
-    private Vector2 pointerPos = Vector2.zero;
+    [RequireComponent(typeof(PlayerInput))]
+    public class InputManager : MonoBehaviour
+    {
+        private Vector2 pointerPos = Vector2.zero;
     
-    private bool mouseButtonPressed;
-    private bool keyboardButtonPressed;
-    private bool isDragging;
+        private bool mouseButtonPressed;
+        private bool keyboardButtonPressed;
+        private bool isDragging;
 
-    private static InputManager instance;
+        private static InputManager instance;
 
-    private void Awake()
-    {
-        if (instance != null)
+        private void Awake()
         {
-            Debug.LogError("Found more than one Input Manager in the scene.");
+            if (instance != null)
+            {
+                Debug.LogError("Found more than one Input Manager in the scene.");
+            }
+            instance = this;
         }
-        instance = this;
-    }
 
-    public static InputManager GetInstance()
-    {
-        return instance;
-    }
-
-    public void MouseButtonPressed(InputAction.CallbackContext context)
-    {
-        if (context.performed)
+        public static InputManager GetInstance()
         {
-            mouseButtonPressed = true;
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.clickSound);
+            return instance;
         }
-        else if (context.canceled)
+
+        public void MouseButtonPressed(InputAction.CallbackContext context)
         {
+            if (context.performed)
+            {
+                mouseButtonPressed = true;
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.clickSound);
+            }
+            else if (context.canceled)
+            {
+                mouseButtonPressed = false;
+            }
+        }
+
+        public void KeyboardButtonPressed(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                keyboardButtonPressed = true;
+            }
+            else if (context.canceled)
+            {
+                keyboardButtonPressed = false;
+            }
+        }
+
+        // for any of the below 'Get' methods, if we're getting it then we're also using it,
+        // which means we should set it to false so that it can't be used again until actually
+        // pressed again.
+        public bool GetMouseButtonPressed()
+        {
+            bool result = mouseButtonPressed;
             mouseButtonPressed = false;
+            return result;
         }
-    }
-
-    public void KeyboardButtonPressed(InputAction.CallbackContext context)
-    {
-        if (context.performed)
+        public bool GetKeyboardButtonPressed()
         {
-            keyboardButtonPressed = true;
-        }
-        else if (context.canceled)
-        {
+            bool result = keyboardButtonPressed;
             keyboardButtonPressed = false;
+            return result;
         }
-    }
 
-    // for any of the below 'Get' methods, if we're getting it then we're also using it,
-    // which means we should set it to false so that it can't be used again until actually
-    // pressed again.
-    public bool GetMouseButtonPressed()
-    {
-        bool result = mouseButtonPressed;
-        mouseButtonPressed = false;
-        return result;
     }
-    public bool GetKeyboardButtonPressed()
-    {
-        bool result = keyboardButtonPressed;
-        keyboardButtonPressed = false;
-        return result;
-    }
-
 }

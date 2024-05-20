@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Script.Sound
+﻿namespace Script.Sound
 {
     public enum MusicAct
     {

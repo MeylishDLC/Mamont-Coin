@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace Script.Data
+﻿namespace Script.Data
 {
     public static class DataBank
     {
