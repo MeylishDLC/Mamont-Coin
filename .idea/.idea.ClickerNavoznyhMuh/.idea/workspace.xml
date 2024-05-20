@@ -21,6 +21,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Editor Toolbox/Editor/ToolboxEditorToolbar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Apps/Duralingo/TextObject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../TowerDefence/Assets/Script/UI/ProgressView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../platformerr/Assets/Script/Stuff/InputManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -123,7 +124,7 @@
       <workItem from="1711931985396" duration="1207000" />
       <workItem from="1712005526955" duration="7990000" />
       <workItem from="1712523672855" duration="12116000" />
-      <workItem from="1716170811578" duration="16008000" />
+      <workItem from="1716170811578" duration="19210000" />
     </task>
     <servers />
   </component>

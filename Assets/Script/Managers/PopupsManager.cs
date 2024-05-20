@@ -28,16 +28,21 @@ namespace Script.Managers
         #endregion
 
         
-        public GameObject RandomSpawn(List<GameObject> windowsList)
+        public GameObject RandomPositionSpawn(List<GameObject> objectsList)
         {
             var randomX = Random.Range(0f, Screen.width);
             var randomY = Random.Range(0f, Screen.height);
-            var randomWindow = windowsList[Random.Range(0, windowsList.Count)];
 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(spawnParent.GetComponent<RectTransform>(), new Vector2(randomX, randomY), Camera.main, out Vector2 randomPositionLocal);
+            
+            return SpawnRandomObject(randomPositionLocal, objectsList);
+        }
 
+        public GameObject SpawnRandomObject(Vector2 position, List<GameObject> objectsList)
+        {
+            var randomWindow = objectsList[Random.Range(0, objectsList.Count)];
             var popupWindow = Instantiate(randomWindow, spawnParent.transform);
-            popupWindow.transform.localPosition = randomPositionLocal;
+            popupWindow.transform.localPosition = position;
             return popupWindow;
         }
         private void ClearParent()

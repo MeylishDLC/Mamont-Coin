@@ -18,7 +18,7 @@ namespace Script.Core.Popups
             isActive = true;
             while (isActive)
             {
-                var popupWindow = PopupsManager.Instance.RandomSpawn(Popups);
+                var popupWindow = PopupsManager.Instance.RandomPositionSpawn(Popups);
                 AudioManager.instance.PlayOneShot(FMODEvents.instance.errorSound);
             
                 await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();

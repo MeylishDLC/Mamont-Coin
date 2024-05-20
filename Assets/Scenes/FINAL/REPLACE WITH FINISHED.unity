@@ -7599,7 +7599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].key
-      value: 300
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[10].key
@@ -8032,7 +8032,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[1].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1674318834246706520}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[1].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -8351,7 +8351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[1].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DuralingoAppear
+      value: OpenApp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[1].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -10607,7 +10607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[1].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PopupsManager, Assembly-CSharp
+      value: Script.Apps.Duralingo.DuralingoGame, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[1].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -10827,7 +10827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: act2Hacker
+      value: act4Hacker1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
@@ -14120,12 +14120,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc1a02c56cc40f49984d3a49d820f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duralingoSpamPopup: {fileID: 0}
+  timerImage: {fileID: 0}
   textField: {fileID: 258393062}
   SubmitButton: {fileID: 1042491007}
   animationScale: 0.9
   gameScreen: {fileID: 1338575970}
   loseScreen: {fileID: 767112768}
   winScreen: {fileID: 389606265}
+  timeToSolveMilliseconds: 0
+  timeBeforeBombing: 1000
 --- !u!114 &2113112688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15420,6 +15424,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7377006159599906730}
   m_CullTransparentMesh: 1
+--- !u!114 &1674318834246706520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5183862516076081935, guid: 08de2da66acda9941be1fbbd44e8339e, type: 3}
+  m_PrefabInstance: {fileID: 7853515955327686463}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc1a02c56cc40f49984d3a49d820f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1867341839105527733
 MonoBehaviour:
   m_ObjectHideFlags: 0
