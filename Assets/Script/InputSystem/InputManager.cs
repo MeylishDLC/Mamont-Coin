@@ -14,7 +14,7 @@ namespace Script.InputSystem
         private bool keyboardButtonPressed;
         private bool isDragging;
 
-        private static InputManager instance;
+        public static InputManager instance { get; private set; }
 
         private void Awake()
         {
@@ -23,11 +23,6 @@ namespace Script.InputSystem
                 Debug.LogError("Found more than one Input Manager in the scene.");
             }
             instance = this;
-        }
-
-        public static InputManager GetInstance()
-        {
-            return instance;
         }
 
         public void MouseButtonPressed(InputAction.CallbackContext context)
@@ -54,10 +49,7 @@ namespace Script.InputSystem
                 keyboardButtonPressed = false;
             }
         }
-
-        // for any of the below 'Get' methods, if we're getting it then we're also using it,
-        // which means we should set it to false so that it can't be used again until actually
-        // pressed again.
+        
         public bool GetMouseButtonPressed()
         {
             bool result = mouseButtonPressed;

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0572b1672a94f4597f2acd802a03372, type: 3}
+  m_Name: Ad
+  m_EditorClassIdentifier: 
+  <AppearIntervalMilliseconds>k__BackingField: 40000
+  <Popups>k__BackingField:
+  - {fileID: 7626940383357585063, guid: f9fe7e061bdb8d64cb971478ff6861b1, type: 3}
+  - {fileID: 550987806604311869, guid: 73ccf38fc53b52d46ac55023a5935ee0, type: 3}
+  - {fileID: 3683443974668729248, guid: 70d0ca7f90f57c94f8b63ad2c4ca758b, type: 3}
+  - {fileID: 6718039979547507973, guid: 9351f8b1fc61aad44bbefc3e56ce9f1f, type: 3}
+  - {fileID: 1588685383201358127, guid: d5e28ae31bf5c5848a8ecf6ce365541f, type: 3}

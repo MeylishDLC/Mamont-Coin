@@ -52,15 +52,12 @@ namespace Script.Apps.ChatScript
             notificationCounterText = notificationIcon.GetComponentInChildren<TextMeshProUGUI>();
             notificationCounter = 0;
             notificationCounterText.text = notificationCounter.ToString();
-        }
-
-        private void OnEnable()
-        {
+            
             ChatManager.MessageRecieved += OnNewNotificationGet;
             closeButton.onClick.AddListener(CloseApp);
         }
-
-        private void OnDisable()
+        
+        private void OnDestroy()
         {
             ChatManager.MessageRecieved -= OnNewNotificationGet;
             closeButton.onClick.RemoveAllListeners();
@@ -97,15 +94,16 @@ namespace Script.Apps.ChatScript
         {
             AudioManager.instance.PlayOneShot(FMODEvents.instance.skypeMessageSound);
 
-            if (!isOpen)
+            if (isOpen)
             {
-                notificationCounter++;
-            
-                notificationIcon.SetActive(true);
-                notificationIcon.transform.DOScale(1.3f, 0.1f).SetLoops(2, LoopType.Yoyo);
-            
-                notificationCounterText.text = notificationCounter.ToString();
+                return;
             }
+            
+            notificationCounter++;
+            notificationCounterText.text = notificationCounter.ToString();
+
+            notificationIcon.SetActive(true);
+            notificationIcon.transform.DOScale(1.3f, 0.1f).SetLoops(2, LoopType.Yoyo);
         }
 
         public void CloseApp()

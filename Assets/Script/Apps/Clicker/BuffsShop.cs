@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Core;
 using Script.Data;
@@ -24,7 +25,13 @@ namespace Script.Apps.Clicker
             showBuffsPanelButton.onClick.AddListener(ShowPanel);
             hideBuffsPanelButton.onClick.AddListener(HidePanel);
         }
-        
+
+        private void OnDestroy()
+        {
+            showBuffsPanelButton.onClick.RemoveAllListeners();
+            hideBuffsPanelButton.onClick.RemoveAllListeners();
+        }
+
         private async UniTask ShowPanelAsync()
         {
             ClickHandler.ClicksUpdated?.Invoke(0);
@@ -34,7 +41,7 @@ namespace Script.Apps.Clicker
                 shopBuffsPanel.SetActive(true);
                 showBuffsPanelButton.interactable = false;
 
-                await shopBuffsPanel.transform.DOLocalMoveX(xMoveShow, 0.5f).ToUniTask();
+                await shopBuffsPanel.transform.DOMoveX(xMoveShow, 0.5f).ToUniTask();
 
                 showBuffsPanelButton.interactable = true;
                 buffsPanelOpen = true;
@@ -46,7 +53,7 @@ namespace Script.Apps.Clicker
             hideBuffsPanelButton.interactable = false;
             showBuffsPanelButton.interactable = false;
 
-            await shopBuffsPanel.transform.DOLocalMoveX(xMoveHide, 0.5f).ToUniTask();
+            await shopBuffsPanel.transform.DOMoveX(xMoveHide, 0.5f).ToUniTask();
 
             hideBuffsPanelButton.interactable = true;
             showBuffsPanelButton.interactable = true;

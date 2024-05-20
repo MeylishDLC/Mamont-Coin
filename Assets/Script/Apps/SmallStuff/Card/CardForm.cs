@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +12,7 @@ namespace Script.Apps.SmallStuff.Card
         public bool daySet { get; set; }
         public bool yearSet { get; set; }
         public bool CVVSet { get; set; }
-    
+
         private void Update()
         {
             if (numberSet && nameSet && daySet && yearSet && CVVSet)

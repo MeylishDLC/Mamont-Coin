@@ -30,15 +30,18 @@ namespace Script.Managers
         {
             if (instance != null)
             {
-                Debug.LogError("More than one Audio Manager found");
+                Destroy(this);
+                return;
             }
             instance = this;
+            DontDestroyOnLoad(gameObject);
             
             eventInstances = new List<EventInstance>();
 
             masterBus = RuntimeManager.GetBus("bus:/");
             musicBus = RuntimeManager.GetBus("bus:/Music");
             SFXBus = RuntimeManager.GetBus("bus:/SFX");
+            
         }
         #endregion
 

@@ -1,4 +1,5 @@
-﻿using Script.Data;
+﻿using System;
+using Script.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,11 @@ namespace Script.Core.Buffs
         
             ClickHandler.ClicksUpdated += UpdateButtonInteractive; 
             UpdateButtonInteractive(0); 
+        }
+
+        private void OnDestroy()
+        {
+            ClickHandler.ClicksUpdated -= UpdateButtonInteractive;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -54,6 +55,13 @@ namespace Script.Apps.NotePadScript
             hackerChoiceButton.onClick.AddListener(()=> MakeChoice(Character.Hacker));
             scammerChoiceButton.onClick.AddListener(() => MakeChoice(Character.Scammer));
         }
+
+        private void OnDestroy()
+        {
+            hackerChoiceButton.onClick.RemoveAllListeners();
+            scammerChoiceButton.onClick.RemoveAllListeners();
+        }
+
         private void UpdateChoices()
         {
             if (currentAct == specificChoiceAct - 1)

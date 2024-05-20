@@ -32,7 +32,7 @@ namespace Script.Core.Boosts
         {
             while (IsEnabled)
             {
-                var popupWindow = PopupsManager.GetInstance().RandomSpawn(adWindows);
+                var popupWindow = new GameObject();//PopupsManager.instance.RandomSpawn(adWindows);
             
                 await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
                 await UniTask.Delay(PaidAppearFrequencyMilliseconds);

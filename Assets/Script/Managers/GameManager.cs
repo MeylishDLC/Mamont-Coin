@@ -13,7 +13,7 @@ namespace Script.Managers
 {
     public class GameManager : MonoBehaviour
     {
-        [Header("Main")] 
+        [Header("Main")] public bool Debugging;
         public GameObject interactionOff;
 
         [Header("Apps")] 
@@ -39,6 +39,7 @@ namespace Script.Managers
         [SerializeField] private Vector3 notepadSetPosition;
 
         private BoostsManager boostsManager;
+        private PopupsManager popupsManager;
     
         #region Set Instance
 
@@ -60,9 +61,14 @@ namespace Script.Managers
         private void Start()
         {
             boostsManager = notepadWithChoices.BoostsManager;
+            popupsManager = PopupsManager.Instance;
             
             interactionOff.SetActive(false);
-            GameStart();
+            
+            if (!Debugging)
+            {
+                GameStart();
+            }
         }
 
         public void GameStart()
@@ -101,7 +107,7 @@ namespace Script.Managers
             shopPanelObject.SetActive(true);
 
             clickerExeButton.interactable = false;
-            PopupsManager.GetInstance().TrojanWarningAppear();
+            //activate trojan warnings
         }
         private void OpenClicker()
         {
@@ -143,7 +149,7 @@ namespace Script.Managers
             skypeApp.OpenApp();
         
             //clear all windows
-            Destroy(PopupsManager.GetInstance().PopupsContainer);
+            popupsManager.DisableAllPopups(true);
         
             ChatManager.instance.SwitchToScammer();
             endingDialogueSequence.Invoke();
@@ -157,8 +163,8 @@ namespace Script.Managers
     
         private void DisableAllBackgroundProcesses()
         {
-            PopupsManager.GetInstance().DisableAllPopups();
-           boostsManager.DisableAllBoosts();
+            popupsManager.DisableAllPopups();
+            boostsManager.DisableAllBoosts();
         }
     
     }

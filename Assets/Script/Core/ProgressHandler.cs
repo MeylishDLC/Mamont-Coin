@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -33,6 +34,11 @@ namespace Script.Core
             mamontTitle.text = rankNameGoalPair.Keys.First();
         
             ClickHandler.ClicksUpdated += UpdateProgress;
+        }
+
+        private void OnDestroy()
+        {
+            ClickHandler.ClicksUpdated -= UpdateProgress;
         }
 
         private void UpdateProgress(int addAmount)

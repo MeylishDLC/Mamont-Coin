@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -29,6 +30,11 @@ namespace Script.Apps.NotePadScript
             }
         
             closeButton.onClick.AddListener(CloseApp);
+        }
+
+        private void OnDestroy()
+        {
+            closeButton.onClick.RemoveAllListeners();
         }
 
         public void WriteDownNewBoost(string boostName)

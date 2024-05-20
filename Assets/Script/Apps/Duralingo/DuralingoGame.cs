@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.UI;
 using UnityEngine;
@@ -20,7 +21,7 @@ namespace Script.Apps.Duralingo
         [SerializeField] private GameObject winScreen;
         
         //todo: countdown 
-        public UnityAction OnDuralingoLoseGame { get; set; }
+
         private void Start()
         {
             SubmitButton.onClick.AddListener(OnButtonSubmit);
@@ -29,7 +30,12 @@ namespace Script.Apps.Duralingo
             loseScreen.SetActive(false);
             winScreen.SetActive(false);
         }
-        
+
+        private void OnDestroy()
+        {
+            SubmitButton.onClick.RemoveAllListeners();
+        }
+
         private async void OnButtonSubmit()
         {
             SubmitButton.interactable = false;
@@ -42,19 +48,29 @@ namespace Script.Apps.Duralingo
             else
             {
                 loseScreen.SetActive(true);
-                OnDuralingoLoseGame?.Invoke();
+                
             }
             await UniTask.Delay(5000);
             CloseApp();
         }
         
-        public async void OpenApp()
+        public void OpenApp()
+        {
+            OpenAppAsync().Forget();
+        }
+
+        private async UniTask OpenAppAsync()
         {
             gameObject.SetActive(true);
             await gameObject.transform.DOScale(animationScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();
         }
 
-        public async void CloseApp()
+        public void CloseApp()
+        {
+            CloseAppAsync().Forget();
+        }
+
+        private async UniTask CloseAppAsync()
         {
             await gameObject.transform.DOScale(animationScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();
             gameObject.SetActive(false);

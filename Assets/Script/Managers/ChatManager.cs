@@ -35,8 +35,6 @@ namespace Script.Managers
                 Debug.LogError("Found more than one Chat Manager in the scene.");
             }
             instance = this;
-        
-        
         }
         
         #endregion

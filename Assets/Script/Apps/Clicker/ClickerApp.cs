@@ -16,6 +16,7 @@ namespace Script.Apps.Clicker
     {
         [Header("Clicker")] 
         [SerializeField] private GameObject errorMessagePrefab;
+        [SerializeField] private GameObject spawnParent;
         [SerializeField] private float errorWindowAnimationScale;
         [SerializeField] private Button clickerCloseButton;
     
@@ -54,7 +55,7 @@ namespace Script.Apps.Clicker
             ClickHandler.ClicksUpdated += OnClicksUpdated;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             clickerButton.onClick.RemoveAllListeners();
             clickerCloseButton.onClick.RemoveAllListeners();
@@ -64,7 +65,7 @@ namespace Script.Apps.Clicker
 
         public void OnClickerCloseButtonPress()
         {
-            var errorWindow = Instantiate(errorMessagePrefab, PopupsManager.GetInstance().PopupsContainer.transform);
+            var errorWindow = Instantiate(errorMessagePrefab, spawnParent.transform);
             AudioManager.instance.PlayOneShot(FMODEvents.instance.errorSound);
         
             var rectTransform = errorWindow.GetComponent<RectTransform>();
