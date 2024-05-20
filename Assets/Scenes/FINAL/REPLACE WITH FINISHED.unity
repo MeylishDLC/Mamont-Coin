@@ -2078,7 +2078,7 @@ PrefabInstance:
       objectReference: {fileID: 5158180467527427361}
     - target: {fileID: 1233300447702482193, guid: 4d33ac5d7609c0e479e03bf4515c8a8f, type: 3}
       propertyPath: Debugging
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1233300447702482193, guid: 4d33ac5d7609c0e479e03bf4515c8a8f, type: 3}
       propertyPath: clickerEXE
@@ -21241,7 +21241,7 @@ MonoBehaviour:
   showBuffsPanelButton: {fileID: 6006582882426988666}
   hideBuffsPanelButton: {fileID: 7568341951596625092}
   xMoveShow: 2
-  xMoveHide: 5.3
+  xMoveHide: 5.2
 --- !u!1 &8469111545456942086
 GameObject:
   m_ObjectHideFlags: 0
