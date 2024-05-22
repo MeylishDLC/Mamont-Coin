@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Script.Core.Popups
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "TrojanPopup", menuName = "Popups/TrojanPopup")]
     public class TrojanWarningPopups: Popup
     {
         public override void PopupAppear()

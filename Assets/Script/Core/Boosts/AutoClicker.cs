@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Script.Core.Boosts
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "AutoClicker", menuName = "Boosts/AutoClicker")]
     public class AutoClicker : Boost, IImprovableBoost
     {
         [field: SerializeField] public int ClickFrequencyMilliseconds { get; private set; }

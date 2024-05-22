@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Script.Core.Boosts
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "PaidPopups", menuName = "Boosts/PaidPopups")]
     public class PaidPopups: Boost
     {
         [field:SerializeField] public int PaidAppearFrequencyMilliseconds { get; private set; }

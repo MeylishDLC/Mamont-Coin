@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Script.Core.Popups
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "DuralingoPopup", menuName = "Popups/DuralingoPopup")]
     public class DuralingoPopup: Popup
     {
         [field: SerializeField] public int DuralingoCallsAmount { get; private set; }

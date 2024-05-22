@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Script.Core.Popups
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "AdPopup", menuName = "Popups/AdPopup")]
     public class AdPopup: Popup
     {
         public override void PopupAppear()

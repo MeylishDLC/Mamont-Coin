@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 namespace Script.Core.Boosts
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "DoubleClick", menuName = "Boosts/DoubleClick")]
     public class DoubleClick: Boost, IImprovableBoost
     {
         [field:SerializeField] public float PercentageOfDoubleClick { get; private set; }
