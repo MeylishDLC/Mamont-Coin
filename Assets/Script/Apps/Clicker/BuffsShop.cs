@@ -35,8 +35,12 @@ namespace Script.Apps.Clicker
         private async UniTask ShowPanelAsync()
         {
             ClickHandler.ClicksUpdated?.Invoke(0);
-        
-            if (!buffsPanelOpen)
+
+            if (buffsPanelOpen)
+            {
+                HidePanel();
+            }
+            else
             {
                 shopBuffsPanel.SetActive(true);
                 showBuffsPanelButton.interactable = false;

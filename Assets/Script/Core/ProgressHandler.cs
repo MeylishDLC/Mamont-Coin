@@ -3,6 +3,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Data;
+using Script.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +14,7 @@ namespace Script.Core
     public class ProgressHandler : MonoBehaviour
     {
         [Header("Ranks")] 
-        [SerializeField] private SerializedDictionary<string, long> rankNameGoalPair;
+        [SerializeField] private SerializedDictionary<RankNamePair, long> rankNameGoalPair;
     
         [Header("Mamont Title")] 
         [SerializeField] private TMP_Text mamontTitle;
@@ -25,20 +26,23 @@ namespace Script.Core
         private float maxValue;
         private int currentGoalIndex;
 
+        public static event Action<string, Sprite> OnNewMamontTitleReached;
         private void Start()
         {
             currentValue = DataBank.Clicks;
             currentGoalIndex = 1;
 
             maxValue = rankNameGoalPair.Values.ElementAt(currentGoalIndex);
-            mamontTitle.text = rankNameGoalPair.Keys.First();
-        
+            mamontTitle.text = rankNameGoalPair.Keys.First().Name;
+
+            OnNewMamontTitleReached += UpdateMamontTitle;
             ClickHandler.ClicksUpdated += UpdateProgress;
         }
 
         private void OnDestroy()
         {
             ClickHandler.ClicksUpdated -= UpdateProgress;
+            OnNewMamontTitleReached -= UpdateMamontTitle;
         }
 
         private void UpdateProgress(int addAmount)
@@ -52,7 +56,9 @@ namespace Script.Core
             {
                 if (currentGoalIndex < rankNameGoalPair.Count)
                 {
-                    UpdateMamontTitle(rankNameGoalPair.Keys.ElementAt(currentGoalIndex)).Forget();
+                    var pair = rankNameGoalPair.Keys.ElementAt(currentGoalIndex);
+                    OnNewMamontTitleReached?.Invoke(pair.Name, pair.NamePicture);
+                    
                     currentGoalIndex++;
                     if (currentGoalIndex < rankNameGoalPair.Count)
                     {
@@ -65,8 +71,12 @@ namespace Script.Core
                 }
             }
         }
-    
-        private async UniTask UpdateMamontTitle(string titleName)
+
+        private void UpdateMamontTitle(string titleName, Sprite _)
+        {
+            UpdateMamontTitleAsync(titleName).Forget();
+        }
+        private async UniTask UpdateMamontTitleAsync(string titleName)
         {
             mamontTitle.text = titleName;
 

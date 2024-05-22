@@ -24,7 +24,7 @@ namespace Script.Apps.Clicker
         [SerializeField] private Button clickerButton;
         [SerializeField] private float minScale;
         [SerializeField] private float scaleDuration;
-        [SerializeField] private ParticleSystem particlePrefab;
+        [SerializeField] private ParticleSystem[] particlePrefabs;
         
         [Header("Values View")]
         [SerializeField] private TMP_Text counterText;
@@ -75,8 +75,11 @@ namespace Script.Apps.Clicker
         }
         public void ParticleSpawn()
         {
-            Instantiate(particlePrefab, clickerButton.GetComponent<RectTransform>().position,
-                Quaternion.identity);
+            foreach (var particle in particlePrefabs)
+            {
+                Instantiate(particle, clickerButton.GetComponent<RectTransform>().position,
+                    Quaternion.identity);
+            }
         }
         
         private void OnClicksUpdated(int addAmount)
