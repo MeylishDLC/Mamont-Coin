@@ -5,8 +5,10 @@ using DG.Tweening;
 using Script.Data;
 using Script.UI;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Script.Core
@@ -22,14 +24,23 @@ namespace Script.Core
     
         [Header("Progress Bar")]
         [SerializeField] private Slider progressBar;
+        
         private float currentValue;
         private float maxValue;
         private int currentGoalIndex;
 
+        private IDataBank dataBank;
+        
         public static event Action<string, Sprite> OnNewMamontTitleReached;
+
+        [Inject]
+        public void Construct(IDataBank dataBank)
+        {
+            this.dataBank = dataBank;
+        }
         private void Start()
         {
-            currentValue = DataBank.Clicks;
+            currentValue = dataBank.Clicks;
             currentGoalIndex = 1;
 
             maxValue = rankNameGoalPair.Values.ElementAt(currentGoalIndex);
@@ -47,6 +58,11 @@ namespace Script.Core
 
         private void UpdateProgress(int addAmount)
         {
+            if (addAmount > 0)
+            {
+                AddProgress(addAmount);
+            }
+            
             if (progressBar.value < maxValue)
             {
                 progressBar.value = currentValue / maxValue;
@@ -84,8 +100,7 @@ namespace Script.Core
             await mamontObject.transform.DOScale(mamontTitleScale, 0.2f).SetLoops(2, LoopType.Yoyo);
             mamontObject.transform.localScale = new Vector3(1,1,1);
         }
-    
-        public void AddProgress(long amount)
+        private void AddProgress(long amount)
         {
             currentValue += amount;
         

@@ -1,6 +1,7 @@
 ﻿using Script.Managers;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Script.Sound
 {
@@ -16,7 +17,13 @@ namespace Script.Sound
         [Header("Type")] 
         [SerializeField] private VolumeType volumeType;
         private Slider volumeSlider;
-
+        private AudioManager audioManager;
+        
+        [Inject]
+        public void Construct(AudioManager audioManager)
+        {
+            this.audioManager = audioManager;
+        }
         private void Awake()
         {
             volumeSlider = GetComponentInChildren<Slider>();
@@ -27,13 +34,13 @@ namespace Script.Sound
             switch (volumeType)
             {
                 case VolumeType.MASTER:
-                    volumeSlider.value = AudioManager.instance.masterVolume;
+                    volumeSlider.value = audioManager.masterVolume;
                     break;
                 case VolumeType.MUSIC:
-                    volumeSlider.value = AudioManager.instance.musicVolume;
+                    volumeSlider.value = audioManager.musicVolume;
                     break;
                 case VolumeType.SFX:
-                    volumeSlider.value = AudioManager.instance.SFXVolume;
+                    volumeSlider.value = audioManager.SFXVolume;
                     break;
                 default:
                     Debug.LogWarning("Volume type isn't valid");
@@ -46,13 +53,13 @@ namespace Script.Sound
             switch (volumeType)
             {
                 case VolumeType.MASTER:
-                    AudioManager.instance.masterVolume = volumeSlider.value;
+                    audioManager.masterVolume = volumeSlider.value;
                     break;
                 case VolumeType.MUSIC:
-                    AudioManager.instance.musicVolume = volumeSlider.value;
+                    audioManager.musicVolume = volumeSlider.value;
                     break;
                 case VolumeType.SFX:
-                    AudioManager.instance.SFXVolume = volumeSlider.value;
+                    audioManager.SFXVolume = volumeSlider.value;
                     break;
                 default:
                     Debug.LogWarning("Volume type isn't valid");

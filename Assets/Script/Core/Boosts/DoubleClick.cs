@@ -12,7 +12,6 @@ namespace Script.Core.Boosts
         
         [Header("Boost Improve")]
         [field:SerializeField] public string ImproveText { get; set; }
-
         [field: SerializeField] public int DoubleClickImproveAmount { get; private set; }
         
         public override void Activate()

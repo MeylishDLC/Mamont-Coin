@@ -1,8 +1,8 @@
 ﻿namespace Script.Data
 {
-    public static class DataBank
+    public class DataBank: IDataBank
     {
-        public static long Clicks;
-        public static long Multiplier = 1;
+        public long Clicks { get; set; }
+        public long Multiplier { get; set; } = 1;
     }
 }

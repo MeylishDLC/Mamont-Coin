@@ -2,6 +2,7 @@ using Script.Managers;
 using Script.Sound;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 namespace Script.InputSystem
 {
@@ -14,15 +15,14 @@ namespace Script.InputSystem
         private bool keyboardButtonPressed;
         private bool isDragging;
 
-        public static InputManager instance { get; private set; }
-
-        private void Awake()
+        private AudioManager audioManager;
+        private FMODEvents FMODEvents;
+        
+        [Inject]
+        public void Construct(AudioManager audioManager, FMODEvents fmodEvents)
         {
-            if (instance != null)
-            {
-                Debug.LogError("Found more than one Input Manager in the scene.");
-            }
-            instance = this;
+            this.audioManager = audioManager;
+            FMODEvents = fmodEvents;
         }
 
         public void MouseButtonPressed(InputAction.CallbackContext context)
@@ -30,7 +30,7 @@ namespace Script.InputSystem
             if (context.performed)
             {
                 mouseButtonPressed = true;
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.clickSound);
+                audioManager.PlayOneShot(FMODEvents.clickSound);
             }
             else if (context.canceled)
             {

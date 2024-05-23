@@ -6,16 +6,17 @@ using FMOD.Studio;
 using Script.Managers;
 using Script.Sound;
 using UnityEngine;
+using Zenject;
 
 namespace Script.Core.Popups
 {
-    [CreateAssetMenu(fileName = "DuralingoPopup", menuName = "Popups/DuralingoPopup")]
     public class DuralingoPopup: Popup
     {
         [field: SerializeField] public int DuralingoCallsAmount { get; private set; }
         [field: SerializeField] public Vector2 SpawnPosition { get; private set; }
 
         private CancellationTokenSource bounceCts;
+        
         public override void PopupAppear()
         {
             PopupAppearAsync().Forget();
@@ -26,12 +27,14 @@ namespace Script.Core.Popups
             isActive = true;
             for (int i = 0; i < DuralingoCallsAmount; i++)
             {
-                var popupWindow = PopupsManager.Instance.SpawnRandomObject(SpawnPosition, Popups);
+                var popupWindow = PopupsService.GetRandomPopupPrefab(Popups);
+                popupWindow.transform.localPosition = SpawnPosition;
+                
                 await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
 
                 bounceCts = new CancellationTokenSource();
                 
-                var instance = AudioManager.instance.CreateInstance(FMODEvents.instance.skypeCallSound);
+                var instance = AudioManager.CreateInstance(FMODEvents.skypeCallSound);
                 instance.start();
                 
                 Bounce(popupWindow, bounceCts.Token).Forget();
@@ -50,14 +53,11 @@ namespace Script.Core.Popups
 
         private async UniTask Bounce(GameObject popupWindow, CancellationToken token)
         {
-
-            
             while (!token.IsCancellationRequested)
             {
                 await popupWindow.transform.DOScale(0.95f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask(cancellationToken: token);
                 await UniTask.Delay(100, cancellationToken: token);
             }
-
             bounceCts.Dispose();
         }
     }

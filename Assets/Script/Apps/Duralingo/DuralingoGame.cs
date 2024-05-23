@@ -9,6 +9,7 @@ using Script.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Script.Apps.Duralingo
 {
@@ -30,7 +31,15 @@ namespace Script.Apps.Duralingo
         [SerializeField] private int timeBeforeBombing = 2000;
 
         private CancellationTokenSource duralingoTimerCts;
+        private AudioManager audioManager;
+        private FMODEvents FMODEvents;
 
+        [Inject]
+        public void Construct(AudioManager audioManager, FMODEvents fmodEvents)
+        {
+            this.audioManager = audioManager;
+            FMODEvents = fmodEvents;
+        }
         private void Start()
         {
             duralingoTimerCts = new CancellationTokenSource();
@@ -58,12 +67,12 @@ namespace Script.Apps.Duralingo
             gameScreen.SetActive(false);
             if (textField.CheckAccuracy())
             {
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.duralingoCorrect);
+                audioManager.PlayOneShot(FMODEvents.duralingoCorrect);
                 winScreen.SetActive(true);
             }
             else
             {
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.duralingoWrong);
+                audioManager.PlayOneShot(FMODEvents.duralingoWrong);
                 loseScreen.SetActive(true);
                 await UniTask.Delay(timeBeforeBombing);
                 duralingoSpamPopup.PopupAppear();
@@ -72,12 +81,10 @@ namespace Script.Apps.Duralingo
             await UniTask.Delay(5000);
             CloseApp();
         }
-        
         public void OpenApp()
         {
             OpenAppAsync().Forget();
         }
-
         private async UniTask OpenAppAsync()
         {
             gameObject.SetActive(true);

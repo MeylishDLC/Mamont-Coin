@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Script.Core.Popups;
 using Script.Data;
 using Script.Managers;
 using Script.UI;
@@ -13,12 +14,13 @@ namespace Script.Core.Boosts
     {
         [field:SerializeField] public int PaidAppearFrequencyMilliseconds { get; private set; }
         [field:SerializeField] public int CoinsPerPopupWindow { get; private set; }
-        [field:SerializeField] private List<GameObject> adWindows;
+        [field:SerializeField] private List<PaidAdPopup> adWindows;
         public override void Activate()
         {
-            PopupWindow.OnPaidPopupClose += PayForAd;
+            PaidAdPopup.OnPaidPopupClick += PayForAd;
             IsEnabled = true;
-            PaidPopupWindowAppearAsync().Forget();
+            
+            //отсылает команду сервису для спавна окон
         }
 
         private void PayForAd()
@@ -27,16 +29,6 @@ namespace Script.Core.Boosts
             DataBank.Clicks += addAmount;
             ClickHandler.ClicksUpdated?.Invoke(addAmount);
             Debug.Log("+ money for AD");
-        }
-        private async UniTask PaidPopupWindowAppearAsync()
-        {
-            while (IsEnabled)
-            {
-                var popupWindow = new GameObject();//PopupsManager.instance.RandomSpawn(adWindows);
-            
-                await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
-                await UniTask.Delay(PaidAppearFrequencyMilliseconds);
-            }
         }
     }
 }

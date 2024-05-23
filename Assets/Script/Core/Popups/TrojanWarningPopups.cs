@@ -1,12 +1,13 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Managers;
 using Script.Sound;
 using UnityEngine;
+using Zenject;
 
 namespace Script.Core.Popups
 {
-    [CreateAssetMenu(fileName = "TrojanPopup", menuName = "Popups/TrojanPopup")]
     public class TrojanWarningPopups: Popup
     {
         public override void PopupAppear()
@@ -18,8 +19,8 @@ namespace Script.Core.Popups
             isActive = true;
             while (isActive)
             {
-                var popupWindow = PopupsManager.Instance.RandomPositionSpawn(Popups);
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.errorSound);
+                var popupWindow = PopupsService.SpawnRandomly(Popups);
+                AudioManager.PlayOneShot(FMODEvents.errorSound);
             
                 await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
                 await UniTask.Delay(AppearIntervalMilliseconds);

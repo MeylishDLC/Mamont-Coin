@@ -24,20 +24,6 @@ namespace Script.Managers
         private Color profileColorActive;
         private Color profileColorInactive;
         private bool ScammerChatActive { get; set; } = true;
-
-        #region Set Instance
-
-        public static ChatManager instance { get; private set; }
-        private void Awake()
-        {
-            if (instance != null)
-            {
-                Debug.LogError("Found more than one Chat Manager in the scene.");
-            }
-            instance = this;
-        }
-        
-        #endregion
         private void Start()
         {
             skypeApp.scammerChat.SetActive(true);

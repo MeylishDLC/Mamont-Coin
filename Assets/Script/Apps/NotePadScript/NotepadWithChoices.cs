@@ -13,13 +13,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Script.Apps.NotePadScript
 {
     public class NotepadWithChoices : MonoBehaviour, IWindowedApp
     {
-        public BoostsManager BoostsManager { get; private set; }
-        
         [SerializeField] private float zoomIn;
         [SerializeField] private float zoomOut;
 
@@ -39,13 +38,28 @@ namespace Script.Apps.NotePadScript
 
         [Header("Interactable Notepad")] 
         [SerializeField] private NotepadInteractable notepadInteractable;
-
+        [SerializeField] private GameObject interactionOff;
+        
         private int currentAct;
+        private BoostsService boostsService;
+        
+        private AudioManager audioManager;
+        private FMODEvents FMODEvents;
 
+        [Inject]
+        public void Construct(BoostsService boostsService, AudioManager audioManager, FMODEvents fmodEvents)
+        {
+            this.boostsService = boostsService;
+            this.boostsService.BoostsToManage = HackerChoiceBoost.Values.Concat(ScammerChoiceBoost.Values).Distinct().ToList();
+
+            this.audioManager = audioManager;
+            FMODEvents = fmodEvents;
+
+            this.interactionOff = interactionOff;
+        }
+        
         private void Start()
         {
-            BoostsManager = new BoostsManager(HackerChoiceBoost.Values.Concat(ScammerChoiceBoost.Values).Distinct().ToList());
-            
             currentAct = 0;
             hackerChoiceText = hackerChoiceButton.GetComponentInChildren<TextMeshProUGUI>();
             scammerChoiceText = scammerChoiceButton.GetComponentInChildren<TextMeshProUGUI>();
@@ -67,7 +81,7 @@ namespace Script.Apps.NotePadScript
         {
             if (currentAct == specificChoiceAct - 1)
             {
-                hackerChoiceText.text = BoostsManager.SpecificBoostName;
+                hackerChoiceText.text = boostsService.SpecificBoostName;
             }
             else
             {
@@ -82,32 +96,23 @@ namespace Script.Apps.NotePadScript
             switch (characterChoice)
             {
                 case Character.Hacker:
-
                     var hackerBoostName = HackerChoiceBoost.Keys.ElementAt(currentAct);
-                    
                     if (currentAct == specificChoiceAct - 1)
                     {
-                        BoostsManager.SpecificBoost();
-                        
-                        notepadInteractable.WriteDownNewBoost(BoostsManager.SpecificBoostName);
+                        boostsService.SpecificBoost();
+                        notepadInteractable.WriteDownNewBoost(boostsService.SpecificBoostName);
                     }
                     else
                     {
-                        BoostsManager.EnableBoost(HackerChoiceBoost[hackerBoostName]);
-                        
+                        boostsService.EnableBoost(HackerChoiceBoost[hackerBoostName]);
                         notepadInteractable.WriteDownNewBoost(hackerBoostName);
                     }
-                    
                     break;
                 
                 case Character.Scammer:
-                    
                     var scammerBoostName = ScammerChoiceBoost.Keys.ElementAt(currentAct);
-                    
-                    BoostsManager.EnableBoost(ScammerChoiceBoost[scammerBoostName]);
-                    
+                    boostsService.EnableBoost(ScammerChoiceBoost[scammerBoostName]);
                     notepadInteractable.WriteDownNewBoost(scammerBoostName);
-                    
                     break;
                 
                 default:
@@ -126,23 +131,20 @@ namespace Script.Apps.NotePadScript
             CloseNotepadAsync().Forget();
             UpdateChoices();
         }
-
         private async UniTask CloseNotepadAsync()
         {
             await gameObject.transform.DOScale(zoomOut, 0.1f).ToUniTask();
             gameObject.SetActive(false);
-            GameManager.GetInstance().interactionOff.SetActive(false);
+            interactionOff.SetActive(false);
         }
-
         public void OpenApp()
         {
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.boostChoiceSound);
+            audioManager.PlayOneShot(FMODEvents.boostChoiceSound);
             notepadInteractable.CloseApp();
-            GameManager.GetInstance().interactionOff.SetActive(true);
+            interactionOff.SetActive(true);
             gameObject.SetActive(true);
             gameObject.transform.DOScale(zoomIn, 0.1f);
         }
-
         public void CloseApp()
         {
             CloseNotepadAsync().Forget();

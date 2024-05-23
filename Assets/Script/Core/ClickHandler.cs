@@ -9,16 +9,15 @@ namespace Script.Core
     public class ClickHandler
     { 
         public static Action<int> ClicksUpdated;
-        private readonly ProgressHandler progressHandler;
-        public ClickHandler(ProgressHandler progressHandler)
+        private IDataBank dataBank;
+
+        public ClickHandler(IDataBank dataBank)
         {
-            this.progressHandler = progressHandler;
+            this.dataBank = dataBank;
         }
-        
         public void Increment(long addAmount)
         {
-            DataBank.Clicks += addAmount;
-            progressHandler.AddProgress(addAmount);
+            dataBank.Clicks += addAmount;
             ClicksUpdated?.Invoke((int)addAmount);
         }
     }

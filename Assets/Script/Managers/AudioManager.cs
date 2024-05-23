@@ -1,14 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Cysharp.Threading.Tasks;
 using FMOD.Studio;
 using FMODUnity;
 using Script.Sound;
 using UnityEngine;
+using Zenject;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Script.Managers
 {
     public class AudioManager : MonoBehaviour
     {
+        [BankRef]
+        public List<string> banks;
+        
         [Header("Volume")] 
         [Range(0,1)]
         public float masterVolume = 1;
@@ -21,30 +28,14 @@ namespace Script.Managers
         private Bus musicBus;
         private Bus SFXBus;
 
-        private List<EventInstance> eventInstances;
+        private List<EventInstance> eventInstances = new ();
 
         private EventInstance musicEventInstance;
 
-        #region Set Instance
-        public static AudioManager instance { get; private set; }
         private void Awake()
         {
-            if (instance != null)
-            {
-                Destroy(this);
-                return;
-            }
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            
-            eventInstances = new List<EventInstance>();
-
-            masterBus = RuntimeManager.GetBus("bus:/");
-            musicBus = RuntimeManager.GetBus("bus:/Music");
-            SFXBus = RuntimeManager.GetBus("bus:/SFX");
-            
+            LoadBanks();
         }
-        #endregion
 
         private void Update()
         {
@@ -78,6 +69,10 @@ namespace Script.Managers
         
         private void CleanUp()
         {
+            if (eventInstances is null)
+            {
+                return;
+            }
             foreach (EventInstance eventInstance in eventInstances)
             {
                 eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
@@ -87,6 +82,27 @@ namespace Script.Managers
         private void OnDestroy()
         {
             CleanUp();
+        }
+        private void LoadBanks()
+        {
+            foreach (var b in banks)
+            {
+                RuntimeManager.LoadBank(b, true);
+                Debug.Log("Loaded bank " + b);
+            }
+
+            RuntimeManager.CoreSystem.mixerSuspend();
+            RuntimeManager.CoreSystem.mixerResume();
+            
+            CheckBanksLoaded().Forget();
+        }
+
+        private async UniTask CheckBanksLoaded()
+        {
+            while (!RuntimeManager.HaveAllBanksLoaded)
+            {
+                await UniTask.Yield();
+            }
         }
     }
 }

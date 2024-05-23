@@ -8,6 +8,7 @@ using Script.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Script.Apps.ChatScript
 {
@@ -39,10 +40,20 @@ namespace Script.Apps.ChatScript
 
         [Header("Skype Icon")]
         [SerializeField] private GameObject notificationIcon;
+        
         private TextMeshProUGUI notificationCounterText;
         private int notificationCounter;
-        private bool isOpen { get; set; }
-    
+        private bool isOpen;
+        
+        private AudioManager audioManager;
+        private FMODEvents FMODEvents;
+
+        [Inject]
+        public void Construct(AudioManager audioManager, FMODEvents fmodEvents)
+        {
+            this.audioManager = audioManager;
+            FMODEvents = fmodEvents;
+        }
         private void Start()
         {
             isOpen = false;
@@ -92,7 +103,7 @@ namespace Script.Apps.ChatScript
 
         private void OnNewNotificationGet()
         {
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.skypeMessageSound);
+            audioManager.PlayOneShot(FMODEvents.skypeMessageSound);
 
             if (isOpen)
             {

@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cd7b7304104d79926ce0bfc5d80bb4, type: 3}
+  m_Name: FMODEvents
+  m_EditorClassIdentifier: 
+  <defaultMusic>k__BackingField:
+    Guid:
+      Data1: -2049796796
+      Data2: 1165232022
+      Data3: 1054721182
+      Data4: 1836196248
+    Path: event:/Music/DefaultMusic
+  <skypeMessageSound>k__BackingField:
+    Guid:
+      Data1: -2056325614
+      Data2: 1079997431
+      Data3: 254475703
+      Data4: 172504672
+    Path: event:/SFX/SkypeNewMessage
+  <clickSound>k__BackingField:
+    Guid:
+      Data1: 687147958
+      Data2: 1329236203
+      Data3: -1378353269
+      Data4: 1101442147
+    Path: event:/SFX/MouseClick
+  <buySound>k__BackingField:
+    Guid:
+      Data1: -1725475938
+      Data2: 1251368423
+      Data3: -866737506
+      Data4: 1364548421
+    Path: event:/SFX/BuyBuffs
+  <boostChoiceSound>k__BackingField:
+    Guid:
+      Data1: 1673846779
+      Data2: 1262292565
+      Data3: 600591232
+      Data4: 1067806365
+    Path: event:/SFX/BoostChoice
+  <errorSound>k__BackingField:
+    Guid:
+      Data1: -1037992838
+      Data2: 1240497622
+      Data3: 1852374672
+      Data4: -1369160361
+    Path: event:/SFX/ErrorWindowPopup
+  <popupADSound>k__BackingField:
+    Guid:
+      Data1: -1037992838
+      Data2: 1240497622
+      Data3: 1852374672
+      Data4: -1369160361
+    Path: event:/SFX/ErrorWindowPopup
+  <windowsGreetingSound>k__BackingField:
+    Guid:
+      Data1: 34926083
+      Data2: 1088592000
+      Data3: -502078031
+      Data4: 1812026887
+    Path: event:/SFX/WindowsGreeting
+  <skypeCallSound>k__BackingField:
+    Guid:
+      Data1: -1406322981
+      Data2: 1210997531
+      Data3: -998357835
+      Data4: -670086688
+    Path: event:/Music/SkypeCall
+  <duralingoCorrect>k__BackingField:
+    Guid:
+      Data1: 1329688736
+      Data2: 1273774696
+      Data3: -5343561
+      Data4: 705208068
+    Path: event:/SFX/DuralingoCorrect
+  <duralingoWrong>k__BackingField:
+    Guid:
+      Data1: 1184207811
+      Data2: 1169529018
+      Data3: -1166763102
+      Data4: 505754502
+    Path: event:/SFX/DuralingoWrong

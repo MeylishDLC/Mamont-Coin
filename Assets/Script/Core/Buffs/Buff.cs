@@ -1,8 +1,11 @@
 ﻿using System;
 using Script.Data;
+using Script.Managers;
+using Script.Sound;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Script.Core.Buffs
 {
@@ -14,7 +17,18 @@ namespace Script.Core.Buffs
         [Header("UI")]
         [SerializeField] protected Button button;
         [SerializeField] protected TMP_Text priceText;
-        
+
+        public IDataBank DataBank { get; private set; }
+        public AudioManager AudioManager { get; private set; }
+        public FMODEvents FMODEvents { get; private set; }
+
+        [Inject]
+        public void Construct(IDataBank dataBank, AudioManager audioManager, FMODEvents fmodEvents)
+        {
+            DataBank = dataBank;
+            AudioManager = audioManager;
+            FMODEvents = fmodEvents;
+        }
         private void UpdateButtonInteractive(int _)
         {
             button.interactable = DataBank.Clicks >= price;

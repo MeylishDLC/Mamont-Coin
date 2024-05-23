@@ -8,6 +8,7 @@ using Script.Sound;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Script.Apps.Clicker
@@ -35,17 +36,29 @@ namespace Script.Apps.Clicker
         
         private bool isAnimated;
         private ClickHandler clickHandler;
+        private AudioManager audioManager;
+        private FMODEvents FMODEvents;
+        private IDataBank dataBank;
+
+        [Inject]
+        public void Construct(IDataBank dataBank, ClickHandler clickHandler, AudioManager audioManager, FMODEvents fmodEvents)
+        {
+            this.dataBank = dataBank;
+            this.clickHandler = clickHandler;
+
+            this.audioManager = audioManager;
+            FMODEvents = fmodEvents;
+        }
+
         private void Start()
         {
-            counterText.text = DataBank.Clicks.ToString();
-            multiplierText.text = DataBank.Multiplier + " кликов";
+            counterText.text = dataBank.Clicks.ToString();
+            multiplierText.text = dataBank.Multiplier + " кликов";
             coinToRubleText.text = "0 руб.";
-
-            clickHandler = new ClickHandler(progressHandler);
             
             clickerCloseButton.onClick.AddListener(OnClickerCloseButtonPress);
             
-            clickerButton.onClick.AddListener(() => clickHandler.Increment(DataBank.Multiplier));
+            clickerButton.onClick.AddListener(() => clickHandler.Increment(dataBank.Multiplier));
             clickerButton.onClick.AddListener(ParticleSpawn);
             clickerButton.onClick.AddListener(AnimateClicker);
 
@@ -62,7 +75,8 @@ namespace Script.Apps.Clicker
         public void OnClickerCloseButtonPress()
         {
             var errorWindow = Instantiate(errorMessagePrefab, spawnParent.transform);
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.errorSound);
+            
+            audioManager.PlayOneShot(FMODEvents.errorSound);
         
             var rectTransform = errorWindow.GetComponent<RectTransform>();
             var position = rectTransform.anchoredPosition;
@@ -81,15 +95,13 @@ namespace Script.Apps.Clicker
                     Quaternion.identity);
             }
         }
-        
         private void OnClicksUpdated(int addAmount)
         {
-            counterText.text = DataBank.Clicks.ToString();
-            multiplierText.text = DataBank.Multiplier + " кликов";
+            counterText.text = dataBank.Clicks.ToString();
+            multiplierText.text = dataBank.Multiplier + " кликов";
             
-            coinToRubleText.text = ConvertToRuble(DataBank.Clicks) + " руб.";
+            coinToRubleText.text = ConvertToRuble(dataBank.Clicks) + " руб.";
         }
-
         private double ConvertToRuble(long clicks)
         {
             var rubles = Convert.ToDouble(clicks) / Convert.ToDouble(coinExchangeRate);

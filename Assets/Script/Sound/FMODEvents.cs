@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Script.Sound
 {
-    public class FMODEvents : MonoBehaviour
+    [CreateAssetMenu]
+    public class FMODEvents : ScriptableObject
     {
         [field: Header("Music")] 
         [field: SerializeField] public EventReference defaultMusic { get; private set; }
@@ -25,16 +26,6 @@ namespace Script.Sound
         [field: SerializeField] public EventReference skypeCallSound { get; private set; }
         [field: SerializeField] public EventReference duralingoCorrect { get; private set; }
         [field: SerializeField] public EventReference duralingoWrong { get; private set; }
-        public static FMODEvents instance { get; private set; }
-        
-
-        private void Awake()
-        {
-            if (instance != null)
-            {
-                Debug.LogError("More than FMOD Events found");
-            }
-            instance = this;
-        }
+ 
     }
 }

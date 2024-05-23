@@ -6,6 +6,7 @@ using Script.Core.Popups;
 using Script.Data;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace Script.Managers
 {
@@ -16,19 +17,13 @@ namespace Script.Managers
         private int goalIndex;
         private int currentGoal;
 
-        #region Set Instance
-    
-        public static GameEventsHandler instance { get; private set; }
-        private void Awake()
-        {
-            if (instance != null)
-            {
-                Debug.LogError("Found more than one GameEventsHandler in the scene.");
-            }
-            instance = this;
-        }
+        private IDataBank dataBank;
         
-        #endregion
+        [Inject]
+        public void Construct(IDataBank dataBank)
+        {
+            this.dataBank = dataBank;
+        }
         private void Start()
         {
             goalIndex = 0;
@@ -49,7 +44,7 @@ namespace Script.Managers
         {
             if (goalIndex < clickCountEventPair.Count)
             {
-                if (DataBank.Clicks >= currentGoal)
+                if (dataBank.Clicks >= currentGoal)
                 {
                     var keys = clickCountEventPair.Keys.ToArray();
                     clickCountEventPair[keys[goalIndex]]?.Invoke();

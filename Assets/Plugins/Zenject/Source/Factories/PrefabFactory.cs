@@ -9,8 +9,8 @@ namespace Zenject
     // rather than from within the installers
 
     //No parameters
-    public class PrefabFactory<T> : IFactory<UnityEngine.Object, T>
-        //where T : Component
+    public class PrefabFactory<T> : IFactory<UnityEngine.Object, T>, IFactory
+    //where T : Component
     {
         [Inject]
         readonly DiContainer _container = null;

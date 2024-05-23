@@ -8,13 +8,14 @@ using Script.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Script.Managers
 {
     public class GameManager : MonoBehaviour
     {
         [Header("Main")] public bool Debugging;
-        public GameObject interactionOff;
+        [SerializeField] private GameObject interactionOff;
 
         [Header("Apps")] 
         [SerializeField] private GameObject clickerObject;
@@ -23,7 +24,6 @@ namespace Script.Managers
     
         [SerializeField] private SkypeApp skypeApp; 
         [SerializeField] private NotepadInteractable notepadInteractive;
-        [SerializeField] private NotepadWithChoices notepadWithChoices;
 
         [Header("Introduction")] 
         [SerializeField] private UnityEvent beginningDialogueSequence;
@@ -38,33 +38,26 @@ namespace Script.Managers
         [SerializeField] private Vector3 skypeSetPosition;
         [SerializeField] private Vector3 notepadSetPosition;
 
-        private BoostsManager boostsManager;
-        private PopupsManager popupsManager;
-    
-        #region Set Instance
+        private ChatManager chatManager;
+        private BoostsService boostsService;
+        private PopupsService popupsService;
 
-        private static GameManager instance;
-        private void Awake()
-        {
-            if (instance != null)
-            {
-                Debug.LogError("Found more than one GameManager in the scene.");
-            }
-            instance = this;
-        }
-        public static GameManager GetInstance()
-        {
-            return instance;
-        }
+        private AudioManager audioManager;
+        private FMODEvents FMODEvents;
 
-        #endregion
+        [Inject]
+        public void Construct(BoostsService boostsService, PopupsService popupsService, ChatManager chatManager, 
+            AudioManager audioManager, FMODEvents fmodEvents)
+        {
+            this.chatManager = chatManager;
+            this.boostsService = boostsService;
+            this.popupsService = popupsService;
+            this.audioManager = audioManager;
+            FMODEvents = fmodEvents;
+        }
         private void Start()
         {
-            boostsManager = notepadWithChoices.BoostsManager;
-            popupsManager = PopupsManager.Instance;
-            
             interactionOff.SetActive(false);
-            
             if (!Debugging)
             {
                 GameStart();
@@ -73,8 +66,8 @@ namespace Script.Managers
 
         public void GameStart()
         {
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.windowsGreetingSound);
-            AudioManager.instance.InitializeMusic(FMODEvents.instance.defaultMusic);
+            audioManager.PlayOneShot(FMODEvents.windowsGreetingSound);
+            audioManager.InitializeMusic(FMODEvents.defaultMusic);
         
             bankCardForm.SetActive(false);
         
@@ -90,8 +83,8 @@ namespace Script.Managers
             beginningDialogueSequence.Invoke();
         
             //todo: fix that shit
-            await UniTask.Delay(ChatManager.instance.delayBetweenMessagesMillisecond * 4);
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.skypeMessageSound);
+            await UniTask.Delay(chatManager.delayBetweenMessagesMillisecond * 4);
+            audioManager.PlayOneShot(FMODEvents.skypeMessageSound);
         
             var messageObject = Instantiate(clickerExeMessagePrefab, skypeApp.scammerChatContent.transform);
             clickerExeButton = messageObject.GetComponentInChildren<Button>();
@@ -100,14 +93,13 @@ namespace Script.Managers
 
         private async UniTask OpenClickerAsync()
         {
-            AudioManager.instance.SetMusicAct(MusicAct.MAIN);
+            audioManager.SetMusicAct(MusicAct.MAIN);
         
             clickerObject.SetActive(true);
             await clickerObject.transform.DOScale(scaleOnOpenClicker, 0.1f).SetLoops(2, LoopType.Yoyo);
             shopPanelObject.SetActive(true);
 
             clickerExeButton.interactable = false;
-            //activate trojan warnings
         }
         private void OpenClicker()
         {
@@ -149,13 +141,13 @@ namespace Script.Managers
             skypeApp.OpenApp();
         
             //clear all windows
-            popupsManager.DisableAllPopups(true);
+            popupsService.DisableAllPopups(true);
         
-            ChatManager.instance.SwitchToScammer();
+            chatManager.SwitchToScammer();
             endingDialogueSequence.Invoke();
 
             //todo: fix that shit too
-            await UniTask.Delay(ChatManager.instance.delayBetweenMessagesMillisecond * 4);
+            await UniTask.Delay(chatManager.delayBetweenMessagesMillisecond * 4);
         
             bankCardForm.SetActive(true);
             await bankCardForm.transform.DOScale(bankCardFormScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();
@@ -163,8 +155,8 @@ namespace Script.Managers
     
         private void DisableAllBackgroundProcesses()
         {
-            popupsManager.DisableAllPopups();
-            boostsManager.DisableAllBoosts();
+            popupsService.DisableAllPopups();
+            boostsService.DisableAllBoosts();
         }
     
     }

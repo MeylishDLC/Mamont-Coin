@@ -16,7 +16,7 @@ namespace Script.Core.Buffs
         { 
             if (DataBank.Clicks >= price)
             {
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.buySound);
+                AudioManager.PlayOneShot(FMODEvents.buySound);
                 DataBank.Multiplier *= buffAmount;
                 var currentMultiplier = DataBank.Multiplier;
                 
