@@ -64,7 +64,9 @@ namespace Script.Core.Popups.Spawns
             var randomPos = GetRandomPosition();
 
             var popupWindow = InstantiateAndInject(randomPopup, randomPos);
-            popupWindow.gameObject.transform.localPosition = randomPos;
+            popupWindow.transform.localScale = new Vector3(1, 1, 1);
+            popupWindow.transform.localPosition = randomPos;
+            
             var popup = popupWindow.GetComponent<Popup>();
             return popup;
         }

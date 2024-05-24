@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a8e74102524c0ea0e1ed41b9a39780, type: 3}
   m_Name: DuralingoCallSpawner
   m_EditorClassIdentifier: 
-  <FrequencyMilliseconds>k__BackingField: 5000
-  callsAmount: 30
+  <FrequencyMilliseconds>k__BackingField: 8000
+  callsAmount: 6
   popup: {fileID: 4623816063739237335, guid: dd44f04a35349ee4fbeb43e4f736beae, type: 3}
   spawnPosition: {x: 570, y: -403}

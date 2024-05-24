@@ -5,6 +5,7 @@ using DG.Tweening;
 using Script.Managers;
 using Script.Sound;
 using UnityEngine;
+using Zenject;
 
 namespace Script.Core.Popups.Spawns
 {
@@ -37,8 +38,11 @@ namespace Script.Core.Popups.Spawns
             SpawnActive = true;
             for (int i = 0; i < callsAmount; i++)
             {
-                var popupWindow = Instantiate(popup, spawnParent.transform);
+                var popupWindow = InstantiateAndInject(popup, spawnPosition).GetComponent<Popup>();
+                popupWindow.transform.localScale = new Vector3(1, 1, 1);
                 popupWindow.transform.localPosition = spawnPosition;
+
+                popupWindow.OpenApp();
                 
                 await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
 
@@ -51,12 +55,17 @@ namespace Script.Core.Popups.Spawns
                 bounceCts.Cancel();
                 popupWindow.CloseApp();
                 
-                //await popupWindow.transform.DOScale(0.9f, 0.2f).ToUniTask();
-                //Destroy(popupWindow);
-                
                 await UniTask.Delay(300);
             }
             SpawnActive = false;
+        }
+        private GameObject InstantiateAndInject(Popup popup, Vector3 position)
+        {
+            var projectContext = FindFirstObjectByType<ProjectContext>();
+            
+            var obj = projectContext.Container.InstantiatePrefab
+                (popup, position, Quaternion.identity, spawnParent.transform);
+            return obj;
         }
 
         private async UniTask Bounce(Popup popupWindow, CancellationToken token)

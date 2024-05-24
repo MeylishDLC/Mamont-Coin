@@ -11,7 +11,7 @@ namespace Script.Apps.Duralingo
         public bool isAdded { get; private set; }
         void Start()
         {
-            originalPosition = transform.position;
+            originalPosition = transform.localPosition;
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -54,7 +54,7 @@ namespace Script.Apps.Duralingo
             {
                 textField.RemoveWordFromSentence(this);
                 isAdded = false;
-                transform.position = originalPosition;
+                transform.localPosition = originalPosition;
             }
             textField.RefreshLayout();
         }
