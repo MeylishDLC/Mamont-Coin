@@ -10,21 +10,10 @@ namespace Script.Core.Popups
 {
     public class TrojanWarningPopups: Popup
     {
-        public override void PopupAppear()
+        public override void OpenApp()
         {
-            PopupAppearAsync().Forget();
+            AudioManager.PlayOneShot(FMODEvents.errorSound);
+            base.OpenApp();
         }
-        private async UniTask PopupAppearAsync()
-        {
-            isActive = true;
-            while (isActive)
-            {
-                var popupWindow = PopupsService.SpawnRandomly(Popups);
-                AudioManager.PlayOneShot(FMODEvents.errorSound);
-            
-                await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
-                await UniTask.Delay(AppearIntervalMilliseconds);
-            }
-        } 
     }
 }

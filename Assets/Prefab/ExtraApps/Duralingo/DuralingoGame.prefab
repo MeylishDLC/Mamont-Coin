@@ -408,7 +408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2580602483152457123
 RectTransform:
   m_ObjectHideFlags: 0
@@ -416,7 +416,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281038805569302458}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc1a02c56cc40f49984d3a49d820f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duralingoSpamPopup: {fileID: 11400000, guid: 1c2c3bfdbab562f4ebf97627ad9cb5de, type: 2}
+  duralingoSpamSpawner: {fileID: 11400000, guid: 73178e6b7478f1c4bab3781f48824966, type: 2}
   timerImage: {fileID: 6947114644109019465}
   textField: {fileID: 3697695863449041607}
   SubmitButton: {fileID: 160278173568525976}
@@ -2641,6 +2641,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u0434\u0435\u0442\u0435\u0439"
       objectReference: {fileID: 0}
+    - target: {fileID: 2388682251114989076, guid: d8348b02c08b92b428f5f8dfe33374f3, type: 3}
+      propertyPath: textField
+      value: 
+      objectReference: {fileID: 3697695863449041607}
     - target: {fileID: 2877676568909150458, guid: d8348b02c08b92b428f5f8dfe33374f3, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.000017166138
@@ -2763,6 +2767,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u042F"
       objectReference: {fileID: 0}
+    - target: {fileID: 2388682251114989076, guid: d8348b02c08b92b428f5f8dfe33374f3, type: 3}
+      propertyPath: textField
+      value: 
+      objectReference: {fileID: 3697695863449041607}
     - target: {fileID: 2877676568909150458, guid: d8348b02c08b92b428f5f8dfe33374f3, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.000015258789
@@ -2885,6 +2893,10 @@ PrefabInstance:
       propertyPath: m_text
       value: b
       objectReference: {fileID: 0}
+    - target: {fileID: 2388682251114989076, guid: d8348b02c08b92b428f5f8dfe33374f3, type: 3}
+      propertyPath: textField
+      value: 
+      objectReference: {fileID: 3697695863449041607}
     - target: {fileID: 4099875458636819115, guid: d8348b02c08b92b428f5f8dfe33374f3, type: 3}
       propertyPath: m_Name
       value: TextObject (5)
@@ -3003,6 +3015,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u0436\u0435\u043D\u0449\u0438\u043D"
       objectReference: {fileID: 0}
+    - target: {fileID: 2388682251114989076, guid: d8348b02c08b92b428f5f8dfe33374f3, type: 3}
+      propertyPath: textField
+      value: 
+      objectReference: {fileID: 3697695863449041607}
     - target: {fileID: 2877676568909150458, guid: d8348b02c08b92b428f5f8dfe33374f3, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.000017166138
@@ -3125,6 +3141,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u0431\u044C\u044E"
       objectReference: {fileID: 0}
+    - target: {fileID: 2388682251114989076, guid: d8348b02c08b92b428f5f8dfe33374f3, type: 3}
+      propertyPath: textField
+      value: 
+      objectReference: {fileID: 3697695863449041607}
     - target: {fileID: 4099875458636819115, guid: d8348b02c08b92b428f5f8dfe33374f3, type: 3}
       propertyPath: m_Name
       value: TextObject (2)

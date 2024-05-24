@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Core.Popups;
+using Script.Core.Popups.Spawns;
 using Script.Managers;
 using Script.Sound;
 using Script.UI;
@@ -15,7 +16,7 @@ namespace Script.Apps.Duralingo
 {
     public class DuralingoGame: MonoBehaviour, IWindowedApp
     {
-        [SerializeField] private Popup duralingoSpamPopup;
+        [SerializeField] private CallSpawner duralingoSpamSpawner;
         [SerializeField] private Image timerImage;
         [SerializeField] private TextField textField;
         [SerializeField] private Button SubmitButton;
@@ -75,8 +76,7 @@ namespace Script.Apps.Duralingo
                 audioManager.PlayOneShot(FMODEvents.duralingoWrong);
                 loseScreen.SetActive(true);
                 await UniTask.Delay(timeBeforeBombing);
-                duralingoSpamPopup.PopupAppear();
-                
+                duralingoSpamSpawner.StartSpawn();
             }
             await UniTask.Delay(5000);
             CloseApp();
@@ -115,7 +115,7 @@ namespace Script.Apps.Duralingo
                 timerImage.fillAmount = 1f;
                 loseScreen.SetActive(true);
                 await UniTask.Delay(timeBeforeBombing, cancellationToken: token);
-                duralingoSpamPopup.PopupAppear();
+                duralingoSpamSpawner.StartSpawn();
             }
         }
         public void CloseApp()

@@ -11,13 +11,11 @@ namespace Infrastructure
     public class MainSceneInstaller: MonoInstaller
     {
         public ChatManager ChatManager;
-        public PopupsService PopupsService;
         public override void InstallBindings()
         {
             BindDataBank();
             BindBoostsService();
             BindClickHandler();
-            BindPopupsService();
             BindChatManager();
         }
         private void BindDataBank()
@@ -31,16 +29,12 @@ namespace Infrastructure
         }
         private void BindBoostsService()
         {
-            Container.Bind<BoostsService>().AsSingle();
+            Container.Bind<SpecificBoostSetter>().AsSingle();
         }
         private void BindChatManager()
         {
             Container.Bind<ChatManager>().FromInstance(ChatManager).AsSingle();
         }
-
-        private void BindPopupsService()
-        {
-            Container.Bind<PopupsService>().FromInstance(PopupsService).AsSingle().NonLazy();
-        }
+        
     }
 }

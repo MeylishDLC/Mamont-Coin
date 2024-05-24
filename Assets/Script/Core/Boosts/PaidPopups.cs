@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Core.Popups;
+using Script.Core.Popups.Spawns;
 using Script.Data;
 using Script.Managers;
 using Script.UI;
@@ -12,15 +13,13 @@ namespace Script.Core.Boosts
     [CreateAssetMenu(fileName = "PaidPopups", menuName = "Boosts/PaidPopups")]
     public class PaidPopups: Boost
     {
-        [field:SerializeField] public int PaidAppearFrequencyMilliseconds { get; private set; }
         [field:SerializeField] public int CoinsPerPopupWindow { get; private set; }
-        [field:SerializeField] private List<PaidAdPopup> adWindows;
+        [SerializeField] private RandomSpawner paidAdSpawner;
         public override void Activate()
         {
             PaidAdPopup.OnPaidPopupClick += PayForAd;
             IsEnabled = true;
-            
-            //отсылает команду сервису для спавна окон
+            paidAdSpawner.StartSpawn();
         }
 
         private void PayForAd()

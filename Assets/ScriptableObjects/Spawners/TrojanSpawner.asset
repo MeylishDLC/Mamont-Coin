@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e136e52369244ac8068b1b9f23d82ac, type: 3}
+  m_Name: TrojanSpawner
+  m_EditorClassIdentifier: 
+  <FrequencyMilliseconds>k__BackingField: 40000
+  popups:
+  - {fileID: 5644622715110849961, guid: 7d19b0786add63d48834f6d03d04d816, type: 3}
+  - {fileID: 2868826295264331684, guid: 34d4c4b611da9e54f9c4c26fb3ca0658, type: 3}

@@ -41,21 +41,17 @@ namespace Script.Apps.NotePadScript
         [SerializeField] private GameObject interactionOff;
         
         private int currentAct;
-        private BoostsService boostsService;
+        private SpecificBoostSetter specificBoostSetter;
         
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
 
         [Inject]
-        public void Construct(BoostsService boostsService, AudioManager audioManager, FMODEvents fmodEvents)
+        public void Construct(SpecificBoostSetter specificBoostSetter, AudioManager audioManager, FMODEvents fmodEvents)
         {
-            this.boostsService = boostsService;
-            this.boostsService.BoostsToManage = HackerChoiceBoost.Values.Concat(ScammerChoiceBoost.Values).Distinct().ToList();
-
+            this.specificBoostSetter = specificBoostSetter;
             this.audioManager = audioManager;
             FMODEvents = fmodEvents;
-
-            this.interactionOff = interactionOff;
         }
         
         private void Start()
@@ -81,7 +77,7 @@ namespace Script.Apps.NotePadScript
         {
             if (currentAct == specificChoiceAct - 1)
             {
-                hackerChoiceText.text = boostsService.SpecificBoostName;
+                hackerChoiceText.text = specificBoostSetter.SpecificBoostName;
             }
             else
             {
@@ -99,19 +95,19 @@ namespace Script.Apps.NotePadScript
                     var hackerBoostName = HackerChoiceBoost.Keys.ElementAt(currentAct);
                     if (currentAct == specificChoiceAct - 1)
                     {
-                        boostsService.SpecificBoost();
-                        notepadInteractable.WriteDownNewBoost(boostsService.SpecificBoostName);
+                        specificBoostSetter.SpecificBoost();
+                        notepadInteractable.WriteDownNewBoost(specificBoostSetter.SpecificBoostName);
                     }
                     else
                     {
-                        boostsService.EnableBoost(HackerChoiceBoost[hackerBoostName]);
+                        specificBoostSetter.EnableBoost(HackerChoiceBoost[hackerBoostName]);
                         notepadInteractable.WriteDownNewBoost(hackerBoostName);
                     }
                     break;
                 
                 case Character.Scammer:
                     var scammerBoostName = ScammerChoiceBoost.Keys.ElementAt(currentAct);
-                    boostsService.EnableBoost(ScammerChoiceBoost[scammerBoostName]);
+                    specificBoostSetter.EnableBoost(ScammerChoiceBoost[scammerBoostName]);
                     notepadInteractable.WriteDownNewBoost(scammerBoostName);
                     break;
                 

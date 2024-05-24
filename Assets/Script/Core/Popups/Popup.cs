@@ -10,36 +10,31 @@ using Zenject;
 
 namespace Script.Core.Popups
 {
-    public abstract class Popup: MonoBehaviour, IWindowedApp
+    public class Popup: MonoBehaviour, IWindowedApp
     {
-        [SerializeField] protected int AppearIntervalMilliseconds;
         [SerializeField] private bool destroyOnClose;
         [SerializeField] private Button closeButton;
-        public bool isActive { get; set; }
-        protected PopupsService PopupsService { get; private set; }
         protected AudioManager AudioManager { get; private set; }
         protected FMODEvents FMODEvents { get; private set; }
-        
+
         [Inject]
-        public void Construct(PopupsService popupsService, AudioManager audioManager, FMODEvents fmodEvents)
+        public void Construct(AudioManager audioManager, FMODEvents fmodEvents)
         {
-            PopupsService = popupsService;
             AudioManager = audioManager;
             FMODEvents = fmodEvents;
         }
-        private void Start()
-        {
-            closeButton.onClick.AddListener(CloseApp);
-        }
-        public virtual void PopupAppear(){}
         public virtual void OpenApp()
         {
+            closeButton.onClick.AddListener(CloseApp);
+            
             gameObject.SetActive(true);
+            transform.localScale = new Vector3(1, 1, 1);
             transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo);
         }
 
         public virtual void CloseApp()
         {
+            closeButton.onClick.RemoveAllListeners();
             if (destroyOnClose)
             {
                 Destroy(gameObject);
@@ -49,6 +44,7 @@ namespace Script.Core.Popups
                 gameObject.SetActive(false);
             }
         }
+        
     }
     
 }

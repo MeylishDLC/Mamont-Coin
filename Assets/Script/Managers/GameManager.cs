@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Apps.ChatScript;
 using Script.Apps.NotePadScript;
+using Script.Core.Popups;
+using Script.Core.Popups.Spawns;
 using Script.Sound;
 using Script.UI;
 using UnityEngine;
@@ -26,6 +29,7 @@ namespace Script.Managers
         [SerializeField] private NotepadInteractable notepadInteractive;
 
         [Header("Introduction")] 
+        [SerializeField] private RandomSpawner popupSpawner;
         [SerializeField] private UnityEvent beginningDialogueSequence;
         [SerializeField] private GameObject clickerExeMessagePrefab;
         private Button clickerExeButton;
@@ -39,25 +43,24 @@ namespace Script.Managers
         [SerializeField] private Vector3 notepadSetPosition;
 
         private ChatManager chatManager;
-        private BoostsService boostsService;
-        private PopupsService popupsService;
 
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
 
+        public static event Action OnGameEnd;
+
         [Inject]
-        public void Construct(BoostsService boostsService, PopupsService popupsService, ChatManager chatManager, 
+        public void Construct(SpecificBoostSetter specificBoostSetter, ChatManager chatManager, 
             AudioManager audioManager, FMODEvents fmodEvents)
         {
             this.chatManager = chatManager;
-            this.boostsService = boostsService;
-            this.popupsService = popupsService;
             this.audioManager = audioManager;
             FMODEvents = fmodEvents;
         }
         private void Start()
         {
             interactionOff.SetActive(false);
+            
             if (!Debugging)
             {
                 GameStart();
@@ -93,6 +96,7 @@ namespace Script.Managers
 
         private async UniTask OpenClickerAsync()
         {
+            popupSpawner.StartSpawn();
             audioManager.SetMusicAct(MusicAct.MAIN);
         
             clickerObject.SetActive(true);
@@ -111,18 +115,10 @@ namespace Script.Managers
         {
             GameEndAsync().Forget();
         }
-
-        //todo: finish
-        public void CloseAllApps(IEnumerable<IWindowedApp> windowedApps)
-        {
-            foreach (var app in windowedApps)
-            {
-                app.CloseApp();
-            }
-        }
+        
         private async UniTask GameEndAsync()
         {
-            DisableAllBackgroundProcesses();
+            OnGameEnd?.Invoke();
         
             clickerObject.SetActive(false);
             shopPanelObject.SetActive(false);
@@ -130,6 +126,7 @@ namespace Script.Managers
             interactionOff.SetActive(true);
         
             //reopen notepad and skype
+            //todo: implement for all apps
             notepadInteractive.CloseApp();
             skypeApp.CloseApp();
 
@@ -139,9 +136,7 @@ namespace Script.Managers
         
             notepadInteractive.OpenApp();
             skypeApp.OpenApp();
-        
-            //clear all windows
-            popupsService.DisableAllPopups(true);
+            
         
             chatManager.SwitchToScammer();
             endingDialogueSequence.Invoke();
@@ -151,12 +146,6 @@ namespace Script.Managers
         
             bankCardForm.SetActive(true);
             await bankCardForm.transform.DOScale(bankCardFormScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();
-        }
-    
-        private void DisableAllBackgroundProcesses()
-        {
-            popupsService.DisableAllPopups();
-            boostsService.DisableAllBoosts();
         }
     
     }

@@ -1,4 +1,6 @@
-﻿using Script.Data;
+﻿using System;
+using Script.Data;
+using Script.Managers;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +15,17 @@ namespace Script.Core.Boosts
         public void Construct(IDataBank dataBank)
         {
             DataBank = dataBank;
+            GameManager.OnGameEnd += Disable;
+        }
+        private void OnDestroy()
+        {
+            GameManager.OnGameEnd -= Disable;
         }
         public virtual void Activate(){}
+
+        private void Disable()
+        {
+            IsEnabled = false;
+        }
     }
 }

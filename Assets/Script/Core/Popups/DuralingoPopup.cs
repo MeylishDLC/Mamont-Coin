@@ -14,51 +14,17 @@ namespace Script.Core.Popups
     {
         [field: SerializeField] public int DuralingoCallsAmount { get; private set; }
         [field: SerializeField] public Vector2 SpawnPosition { get; private set; }
-
-        private CancellationTokenSource bounceCts;
-        
-        public override void PopupAppear()
+        private EventInstance callMusicInstance;
+        public override void OpenApp()
         {
-            PopupAppearAsync().Forget();
+            gameObject.SetActive(true);
+            callMusicInstance = AudioManager.CreateInstance(FMODEvents.skypeCallSound);
+            callMusicInstance.start();
         }
-
-        private async UniTask PopupAppearAsync()
+        public override void CloseApp()
         {
-            isActive = true;
-            for (int i = 0; i < DuralingoCallsAmount; i++)
-            {
-                var popupWindow = PopupsService.GetRandomPopupPrefab(Popups);
-                popupWindow.transform.localPosition = SpawnPosition;
-                
-                await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
-
-                bounceCts = new CancellationTokenSource();
-                
-                var instance = AudioManager.CreateInstance(FMODEvents.skypeCallSound);
-                instance.start();
-                
-                Bounce(popupWindow, bounceCts.Token).Forget();
-                
-                await UniTask.Delay(AppearIntervalMilliseconds);
-       
-                bounceCts.Cancel();
-                instance.stop(STOP_MODE.IMMEDIATE);
-                
-                await popupWindow.transform.DOScale(0.9f, 0.2f).ToUniTask();
-                Destroy(popupWindow);
-                await UniTask.Delay(300);
-            }
-            isActive = false;
-        }
-
-        private async UniTask Bounce(GameObject popupWindow, CancellationToken token)
-        {
-            while (!token.IsCancellationRequested)
-            {
-                await popupWindow.transform.DOScale(0.95f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask(cancellationToken: token);
-                await UniTask.Delay(100, cancellationToken: token);
-            }
-            bounceCts.Dispose();
+            callMusicInstance.stop(STOP_MODE.IMMEDIATE);
+            Destroy(gameObject);
         }
     }
 }
