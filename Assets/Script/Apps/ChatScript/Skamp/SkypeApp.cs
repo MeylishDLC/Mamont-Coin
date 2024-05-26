@@ -64,13 +64,13 @@ namespace Script.Apps.ChatScript
             notificationCounter = 0;
             notificationCounterText.text = notificationCounter.ToString();
             
-            ChatManager.MessageRecieved += OnNewNotificationGet;
+            SkampMessageSender.MessageRecieved += OnNewNotificationGet;
             closeButton.onClick.AddListener(CloseApp);
         }
         
         private void OnDestroy()
         {
-            ChatManager.MessageRecieved -= OnNewNotificationGet;
+            SkampMessageSender.MessageRecieved -= OnNewNotificationGet;
             closeButton.onClick.RemoveAllListeners();
         }
 

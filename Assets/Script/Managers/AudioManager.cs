@@ -28,13 +28,17 @@ namespace Script.Managers
         private Bus musicBus;
         private Bus SFXBus;
 
-        private List<EventInstance> eventInstances = new ();
+        private List<EventInstance> eventInstances;
 
         private EventInstance musicEventInstance;
 
         private void Awake()
         {
             LoadBanks();
+            eventInstances = new List<EventInstance>();
+            masterBus = RuntimeManager.GetBus("bus:/");
+            musicBus = RuntimeManager.GetBus("bus:/Music");
+            SFXBus = RuntimeManager.GetBus("bus:/SFX");
         }
 
         private void Update()
@@ -75,7 +79,7 @@ namespace Script.Managers
             }
             foreach (EventInstance eventInstance in eventInstances)
             {
-                eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                eventInstance.stop(STOP_MODE.IMMEDIATE);
                 eventInstance.release();
             }
         }

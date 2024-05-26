@@ -42,7 +42,7 @@ namespace Script.Managers
         [SerializeField] private Vector3 skypeSetPosition;
         [SerializeField] private Vector3 notepadSetPosition;
 
-        private ChatManager chatManager;
+        private SkampMessageSender _skampMessageSender;
 
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
@@ -50,10 +50,10 @@ namespace Script.Managers
         public static event Action OnGameEnd;
 
         [Inject]
-        public void Construct(SpecificBoostSetter specificBoostSetter, ChatManager chatManager, 
+        public void Construct(SpecificBoostSetter specificBoostSetter, SkampMessageSender skampMessageSender, 
             AudioManager audioManager, FMODEvents fmodEvents)
         {
-            this.chatManager = chatManager;
+            this._skampMessageSender = skampMessageSender;
             this.audioManager = audioManager;
             FMODEvents = fmodEvents;
         }
@@ -86,7 +86,7 @@ namespace Script.Managers
             beginningDialogueSequence.Invoke();
         
             //todo: fix that shit
-            await UniTask.Delay(chatManager.delayBetweenMessagesMillisecond * 4);
+            await UniTask.Delay(_skampMessageSender.DelayBetweenMessagesMillisecond * 4);
             audioManager.PlayOneShot(FMODEvents.skypeMessageSound);
         
             var messageObject = Instantiate(clickerExeMessagePrefab, skypeApp.scammerChatContent.transform);
@@ -138,11 +138,11 @@ namespace Script.Managers
             skypeApp.OpenApp();
             
         
-            chatManager.SwitchToScammer();
+            _skampMessageSender.SwitchToScammer();
             endingDialogueSequence.Invoke();
 
             //todo: fix that shit too
-            await UniTask.Delay(chatManager.delayBetweenMessagesMillisecond * 4);
+            await UniTask.Delay(_skampMessageSender.DelayBetweenMessagesMillisecond * 4);
         
             bankCardForm.SetActive(true);
             await bankCardForm.transform.DOScale(bankCardFormScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();

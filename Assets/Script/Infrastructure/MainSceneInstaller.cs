@@ -4,13 +4,14 @@ using Script.Data;
 using Script.Managers;
 using Script.Sound;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Infrastructure
 {
     public class MainSceneInstaller: MonoInstaller
     {
-        public ChatManager ChatManager;
+        [FormerlySerializedAs("ChatManager")] public SkampMessageSender skampMessageSender;
         public override void InstallBindings()
         {
             BindDataBank();
@@ -33,7 +34,7 @@ namespace Infrastructure
         }
         private void BindChatManager()
         {
-            Container.Bind<ChatManager>().FromInstance(ChatManager).AsSingle();
+            Container.Bind<SkampMessageSender>().FromInstance(skampMessageSender).AsSingle();
         }
         
     }

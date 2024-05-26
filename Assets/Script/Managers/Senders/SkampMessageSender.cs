@@ -9,17 +9,10 @@ using UnityEngine;
 
 namespace Script.Managers
 {
-    public class ChatManager : MonoBehaviour
+    public class SkampMessageSender : MessageSender
     {
         public static event Action MessageRecieved;
-        
-        [Header("Main")]
         [SerializeField] private SkypeApp skypeApp;
-        [SerializeField] private GameObject textObject;
-
-        [Header("Dialogues")] 
-        [SerializeField] private SerializedDictionary<string, DialogueSpeakerPair> dialogues; 
-        [SerializeField] public int delayBetweenMessagesMillisecond;
     
         private Color profileColorActive;
         private Color profileColorInactive;
@@ -36,23 +29,36 @@ namespace Script.Managers
 
             skypeApp.scammerProfileToolPanel.color = profileColorActive;
         }
-
-        public void StartDialogueSequence(string dialogueKey)
+        public override void StartDialogueSequence(string dialogueKey)
         {
-            if (!dialogues.ContainsKey(dialogueKey))
+            if (!Dialogues.ContainsKey(dialogueKey))
             {
                 Debug.LogWarning($"Could not find a dialogue key: {dialogueKey}");
                 return;
             }
-            var pair = dialogues[dialogueKey];
-            StartDialogueSequenceAsync(pair.character, pair.dialogueLines).Forget();
+            var pair = Dialogues[dialogueKey];
+            StartDialogueSequenceAsync(pair.chatCharacter, pair.dialogueLines).Forget();
         }
 
-        private async UniTask StartDialogueSequenceAsync(Character character, List<string> dialogueLines)
+        public void SendNewMessage(string message, Transform chatContainer)
+        {
+            var newMessage = new Message {text = message};
+        
+            var newText = Instantiate(TextObject, chatContainer);
+        
+            newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
+            newMessage.textObject.text = newMessage.text;
+        
+            newText.transform.DOScale(skypeApp.messageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
+        
+            MessageRecieved?.Invoke();
+        }
+
+        private async UniTask StartDialogueSequenceAsync(ChatCharacter chatCharacter, List<string> dialogueLines)
         {
             foreach (var line in dialogueLines)
             {
-                if (character is Character.Hacker)
+                if (chatCharacter is ChatCharacter.Hacker)
                 {
                     SendMessageToHackerChat(line);
                 }
@@ -60,7 +66,7 @@ namespace Script.Managers
                 {
                     SendMessageToScammerChat(line);
                 }
-                await UniTask.Delay(delayBetweenMessagesMillisecond);
+                await UniTask.Delay(DelayBetweenMessagesMillisecond);
             }
         }
         
@@ -70,17 +76,8 @@ namespace Script.Managers
             {
                 skypeApp.scammerNotificationIcon.SetActive(true);
             }
-        
-            var newMessage = new Message {text = text};
-        
-            var newText = Instantiate(textObject, skypeApp.scammerChatContent.transform);
-        
-            newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
-            newMessage.textObject.text = newMessage.text;
-        
-            newText.transform.DOScale(skypeApp.messageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
-        
-            MessageRecieved?.Invoke();
+            
+            SendNewMessage(text, skypeApp.scammerChatContent.transform);
         }
         public void SendMessageToHackerChat(string text)
         {
@@ -89,16 +86,7 @@ namespace Script.Managers
                 skypeApp.hackerNotificationIcon.SetActive(true);
             }
 
-            var newMessage = new Message {text = text};
-        
-            var newText = Instantiate(textObject, skypeApp.hackerChatContent.transform);
-        
-            newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
-            newMessage.textObject.text = newMessage.text;
-
-            newText.transform.DOScale(skypeApp.messageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
-        
-            MessageRecieved?.Invoke();
+            SendNewMessage(text, skypeApp.hackerChatContent.transform);
         }
 
         public void SwitchToHacker()

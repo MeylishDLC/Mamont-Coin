@@ -63,8 +63,8 @@ namespace Script.Apps.NotePadScript
             UpdateChoices();
             gameObject.SetActive(false);
             
-            hackerChoiceButton.onClick.AddListener(()=> MakeChoice(Character.Hacker));
-            scammerChoiceButton.onClick.AddListener(() => MakeChoice(Character.Scammer));
+            hackerChoiceButton.onClick.AddListener(()=> MakeChoice(ChatCharacter.Hacker));
+            scammerChoiceButton.onClick.AddListener(() => MakeChoice(ChatCharacter.Scammer));
         }
 
         private void OnDestroy()
@@ -87,11 +87,11 @@ namespace Script.Apps.NotePadScript
             scammerChoiceText.text = ScammerChoiceBoost.Keys.ElementAt(currentAct);
         }
 
-        private void MakeChoice(Character characterChoice)
+        private void MakeChoice(ChatCharacter chatCharacterChoice)
         {
-            switch (characterChoice)
+            switch (chatCharacterChoice)
             {
-                case Character.Hacker:
+                case ChatCharacter.Hacker:
                     var hackerBoostName = HackerChoiceBoost.Keys.ElementAt(currentAct);
                     if (currentAct == specificChoiceAct - 1)
                     {
@@ -105,7 +105,7 @@ namespace Script.Apps.NotePadScript
                     }
                     break;
                 
-                case Character.Scammer:
+                case ChatCharacter.Scammer:
                     var scammerBoostName = ScammerChoiceBoost.Keys.ElementAt(currentAct);
                     specificBoostSetter.EnableBoost(ScammerChoiceBoost[scammerBoostName]);
                     notepadInteractable.WriteDownNewBoost(scammerBoostName);

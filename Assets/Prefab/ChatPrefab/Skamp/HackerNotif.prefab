@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1643398373171933734}
   - component: {fileID: 8326202938240011947}
   m_Layer: 0
-  m_Name: HacherNotif
+  m_Name: HackerNotif
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
