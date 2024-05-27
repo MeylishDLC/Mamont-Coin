@@ -43,12 +43,21 @@ namespace Script.Core.Popups.Spawns
             }
             spawnParent.Clear();
         }
-        private Vector2 GetRandomPosition()
+        public Vector2 GetRandomPosition()
         {
             var randomX = Random.Range(0f, Screen.width);
             var randomY = Random.Range(0f, Screen.height);
 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(spawnParent.GetComponent<RectTransform>(), new Vector2(randomX, randomY), Camera.main, out var randomPositionLocal);
+
+            return randomPositionLocal;
+        } 
+        public Vector2 GetRandomPosition(PopupContainer popupContainer)
+        {
+            var randomX = Random.Range(0f, Screen.width);
+            var randomY = Random.Range(0f, Screen.height);
+
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(popupContainer.GetComponent<RectTransform>(), new Vector2(randomX, randomY), Camera.main, out var randomPositionLocal);
 
             return randomPositionLocal;
         }

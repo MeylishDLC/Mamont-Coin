@@ -8,11 +8,11 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
 {
     public class BasicWorkspaceApp: MonoBehaviour, IWindowedApp
     {
-        [SerializeField] private Button openIconButton;
-        [SerializeField] private Button closeButton; 
-        [SerializeField] private float scaleOnClose;
-        [SerializeField] private float scaleDuration;
-        private bool isOpen;
+        [SerializeField] protected Button openIconButton;
+        [SerializeField] protected Button closeButton; 
+        [SerializeField] protected float scaleOnClose;
+        [SerializeField] protected float scaleDuration;
+        protected bool isOpen;
         protected virtual void Start()
         {
             closeButton.onClick.AddListener(CloseApp);
@@ -20,7 +20,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
             gameObject.SetActive(false);
         }
 
-        public void OpenApp()
+        public virtual void OpenApp()
         {
             if (!isOpen)
             {
@@ -40,7 +40,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
             openIconButton.interactable = true;
             closeButton.interactable = true;
         }
-        public void CloseApp()
+        public virtual void CloseApp()
         {
             if (isOpen)
             {
