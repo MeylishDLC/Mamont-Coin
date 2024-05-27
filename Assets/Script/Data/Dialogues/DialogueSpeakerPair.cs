@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Script.Data
+namespace Script.Data.Dialogues
 {
     [System.Serializable]
     public class DialogueSpeakerPair

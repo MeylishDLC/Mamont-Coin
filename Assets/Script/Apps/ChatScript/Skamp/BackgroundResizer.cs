@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Script.Apps.ChatScript
+namespace Script.Apps.ChatScript.Skamp
 {
     [RequireComponent(typeof(RectTransform))]
     public class BackgroundResizer : MonoBehaviour

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Script.Apps.ChatScript;
 using Script.Apps.ChatScript.Aska;
+using Script.Apps.ChatScript.Skamp;
 using Script.Data;
 using TMPro;
 using UnityEngine;
 
-namespace Script.Managers
+namespace Script.Managers.Senders
 {
     public class AskaMessageSender: MessageSender
     {

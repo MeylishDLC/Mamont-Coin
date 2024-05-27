@@ -13,7 +13,6 @@ namespace Script.Core.Popups
     public class DuralingoPopup: Popup
     {
         [field: SerializeField] public int DuralingoCallsAmount { get; private set; }
-        [field: SerializeField] public Vector2 SpawnPosition { get; private set; }
         private EventInstance callMusicInstance;
         public override void OpenApp()
         {

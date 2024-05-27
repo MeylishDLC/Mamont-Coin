@@ -1,6 +1,6 @@
 using TMPro;
 
-namespace Script.Apps.ChatScript
+namespace Script.Apps.ChatScript.Skamp
 {
     [System.Serializable]
     public class Message

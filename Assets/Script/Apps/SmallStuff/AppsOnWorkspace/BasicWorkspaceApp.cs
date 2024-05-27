@@ -13,7 +13,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
         [SerializeField] private float scaleOnClose;
         [SerializeField] private float scaleDuration;
         private bool isOpen;
-        private void Start()
+        protected virtual void Start()
         {
             closeButton.onClick.AddListener(CloseApp);
             openIconButton.onClick.AddListener(OpenApp);

@@ -115,7 +115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000030518, y: -0.0000038147}
+  m_AnchoredPosition: {x: -0.000030517578, y: -0.0000038147}
   m_SizeDelta: {x: 827.68, y: 363.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &557074272394661363
@@ -206,6 +206,9 @@ MonoBehaviour:
     <ProfilePicture>k__BackingField: {fileID: -5898048369448233404, guid: ab7a48f2388415e42818e848ebc256d6, type: 3}
   notificationIndicator: {fileID: 0}
   OpenChatButton: {fileID: 0}
+  activeProfileColor: {r: 0.55916774, g: 0.8396226, b: 0.5584282, a: 1}
+  inactiveProfileColor: {r: 1, g: 1, b: 1, a: 1}
+  profileImage: {fileID: 0}
 --- !u!1 &6836264140549186037
 GameObject:
   m_ObjectHideFlags: 0

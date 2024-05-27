@@ -11,6 +11,7 @@ namespace Script.Sound
 
         [field: Header("UI SFX")]
         [field: SerializeField] public EventReference skypeMessageSound { get; private set; }
+        [field: SerializeField] public EventReference icqMessageSound { get; private set; }
         [field: SerializeField] public EventReference clickSound { get; private set; }
         [field: SerializeField] public EventReference buySound { get; private set; }
         [field: SerializeField] public EventReference boostChoiceSound { get; private set; }

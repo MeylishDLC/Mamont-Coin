@@ -33,11 +33,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 570, y: -403}
-  m_SizeDelta: {x: 702.9882, y: 169.7247}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -25, y: 33}
+  m_SizeDelta: {x: 702.9883, y: 169.7247}
+  m_Pivot: {x: 1, y: 0}
 --- !u!222 &8001365083006903080
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -88,8 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5938454d89f422a8809f60ca8720189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AppearIntervalMilliseconds: 5000
   destroyOnClose: 1
   closeButton: {fileID: 0}
   <DuralingoCallsAmount>k__BackingField: 30
-  <SpawnPosition>k__BackingField: {x: 702, y: 169}

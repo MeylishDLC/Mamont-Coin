@@ -1,8 +1,7 @@
-using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Script.Data;
 using Script.Managers;
+using Script.Managers.Senders;
 using Script.Sound;
 using Script.UI;
 using TMPro;
@@ -10,7 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Script.Apps.ChatScript
+namespace Script.Apps.ChatScript.Skamp
 {
     public class SkypeApp : MonoBehaviour, IWindowedApp
     {

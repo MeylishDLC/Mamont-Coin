@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Script.Managers;
+using Script.Managers.Senders;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,17 +14,30 @@ namespace Script.Apps.ChatScript.Aska
         [field:SerializeField] public AskaUser User { get; private set; }
         public bool IsOpen { get; private set; }
         
-        [SerializeField] private TMP_Text notificationIndicator;
-        [SerializeField] private Button OpenChatButton; 
+        [SerializeField] private Image notificationIndicator;
+        [SerializeField] private Button OpenChatButton;
 
+        [SerializeField] private Color activeProfileColor;
+        [SerializeField] private Color inactiveProfileColor;
+        [SerializeField] private Image profileImage;
+        
         public static event Action<AskaChat> OnChatChanged;
         private void Awake()
         {
             OpenChatButton.onClick.AddListener(OpenChat);
-            notificationIndicator.gameObject.SetActive(false);
             OnChatChanged += CloseChat;
             AskaMessageSender.OnNewMessageSend += SetNotificationIndicator;
+            
+            inactiveProfileColor = profileImage.color;
+            
+            notificationIndicator.gameObject.SetActive(false);
             gameObject.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            AskaMessageSender.OnNewMessageSend -= SetNotificationIndicator;
+            OnChatChanged -= CloseChat;
         }
 
         public void OpenChat()
@@ -35,12 +49,20 @@ namespace Script.Apps.ChatScript.Aska
             
             gameObject.SetActive(true);
             notificationIndicator.gameObject.SetActive(false);
+            profileImage.color = activeProfileColor;
+            
             IsOpen = true;
             OnChatChanged?.Invoke(this);
         }
-        private void CloseChat(AskaChat _)
+        private void CloseChat(AskaChat chat)
         {
+            if (chat == this)
+            {
+                return;
+            }
+            
             gameObject.SetActive(false);
+            profileImage.color = inactiveProfileColor;
             IsOpen = false;
         }
         private void SetNotificationIndicator(AskaChat chat)

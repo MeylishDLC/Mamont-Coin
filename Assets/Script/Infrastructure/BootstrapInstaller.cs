@@ -1,9 +1,8 @@
 ﻿using Script.Managers;
 using Script.Sound;
-using UnityEngine;
 using Zenject;
 
-namespace Infrastructure
+namespace Script.Infrastructure
 {
     public class BootstrapInstaller: MonoInstaller
     {

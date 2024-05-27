@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Managers;
+using Script.Managers.Senders;
 using Script.Sound;
 using Script.UI;
 using TMPro;
@@ -14,7 +15,6 @@ namespace Script.Apps.ChatScript.Aska
     public class AskaApp: MonoBehaviour, IWindowedApp
     {
         public AskaChat CurrentOpenedChat { get; private set; }
-        
         [field:SerializeField] public AskaChat[] Chats { get; private set; }
         
         [Header("Settings")] 
@@ -32,7 +32,6 @@ namespace Script.Apps.ChatScript.Aska
         [SerializeField] private TMP_Text currentChatStatus;
         [SerializeField] private Image notificationIcon;
         
-
         private bool isOpen;
         private TMP_Text notificationCounterText;
         private int notificationCounter;
@@ -76,6 +75,7 @@ namespace Script.Apps.ChatScript.Aska
 
         private void SetNotification(AskaChat _)
         {
+            audioManager.PlayOneShot(FMODEvents.icqMessageSound);
             if (isOpen)
             {
                 ResetNotification();

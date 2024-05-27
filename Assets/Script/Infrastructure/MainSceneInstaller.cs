@@ -1,23 +1,22 @@
 ﻿using Script.Core;
-using Script.Core.Popups;
 using Script.Data;
 using Script.Managers;
-using Script.Sound;
-using UnityEngine;
+using Script.Managers.Senders;
 using UnityEngine.Serialization;
 using Zenject;
 
-namespace Infrastructure
+namespace Script.Infrastructure
 {
     public class MainSceneInstaller: MonoInstaller
     {
         [FormerlySerializedAs("ChatManager")] public SkampMessageSender skampMessageSender;
+        public AskaMessageSender askaMessageSender;
         public override void InstallBindings()
         {
             BindDataBank();
             BindBoostsService();
             BindClickHandler();
-            BindChatManager();
+            BindSenders();
         }
         private void BindDataBank()
         {
@@ -32,9 +31,10 @@ namespace Infrastructure
         {
             Container.Bind<SpecificBoostSetter>().AsSingle();
         }
-        private void BindChatManager()
+        private void BindSenders()
         {
             Container.Bind<SkampMessageSender>().FromInstance(skampMessageSender).AsSingle();
+            Container.Bind<AskaMessageSender>().FromInstance(askaMessageSender).AsSingle();
         }
         
     }

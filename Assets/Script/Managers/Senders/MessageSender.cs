@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using Script.Data;
+﻿using Script.Data.Dialogues;
 using UnityEngine;
 
-namespace Script.Managers
+namespace Script.Managers.Senders
 {
     public abstract class MessageSender: MonoBehaviour
     {
