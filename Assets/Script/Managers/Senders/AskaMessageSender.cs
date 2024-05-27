@@ -6,6 +6,7 @@ using DG.Tweening;
 using Script.Apps.ChatScript.Aska;
 using Script.Apps.ChatScript.Skamp;
 using Script.Data;
+using Script.Data.Dialogues;
 using TMPro;
 using UnityEngine;
 
@@ -27,6 +28,16 @@ namespace Script.Managers.Senders
             var pair = Dialogues[dialogueKey];
             StartDialogueSequenceAsync(pair.chatCharacter, pair.dialogueLines).Forget();
         }
+        public void StartDialogueSequence(string dialogueKey, SerializedDictionary<string, DialogueSpeakerPair> dialogues)
+        {
+            if (!dialogues.ContainsKey(dialogueKey))
+            {
+                Debug.LogWarning($"Could not find a dialogue key: {dialogueKey}");
+                return;
+            }
+            var pair = dialogues[dialogueKey];
+            StartDialogueSequenceAsync(pair.chatCharacter, pair.dialogueLines).Forget();
+        }
 
         private void SendNewMessage(string message, AskaChat chat)
         {
@@ -41,7 +52,6 @@ namespace Script.Managers.Senders
         
             OnNewMessageSend?.Invoke(chat);
         }
-
         private async UniTask StartDialogueSequenceAsync(ChatCharacter chatCharacter, List<string> dialogueLines)
         {
             var dialogueChat = aska.Chats

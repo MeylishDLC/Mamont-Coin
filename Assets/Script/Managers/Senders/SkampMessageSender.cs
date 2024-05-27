@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Apps.ChatScript.Skamp;
 using Script.Data;
+using Script.Data.Dialogues;
 using TMPro;
 using UnityEngine;
 
@@ -37,6 +38,17 @@ namespace Script.Managers.Senders
                 return;
             }
             var pair = Dialogues[dialogueKey];
+            StartDialogueSequenceAsync(pair.chatCharacter, pair.dialogueLines).Forget();
+        }
+        
+        public void StartDialogueSequence(string dialogueKey, SerializedDictionary<string,DialogueSpeakerPair> dialogues)
+        {
+            if (!dialogues.ContainsKey(dialogueKey))
+            {
+                Debug.LogWarning($"Could not find a dialogue key: {dialogueKey}");
+                return;
+            }
+            var pair = dialogues[dialogueKey];
             StartDialogueSequenceAsync(pair.chatCharacter, pair.dialogueLines).Forget();
         }
 

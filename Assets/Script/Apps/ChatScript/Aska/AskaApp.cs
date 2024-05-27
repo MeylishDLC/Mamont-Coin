@@ -15,6 +15,7 @@ namespace Script.Apps.ChatScript.Aska
     public class AskaApp: MonoBehaviour, IWindowedApp
     {
         public AskaChat CurrentOpenedChat { get; private set; }
+        public bool IsOpen { get; private set; }
         [field:SerializeField] public AskaChat[] Chats { get; private set; }
         
         [Header("Settings")] 
@@ -32,7 +33,6 @@ namespace Script.Apps.ChatScript.Aska
         [SerializeField] private TMP_Text currentChatStatus;
         [SerializeField] private Image notificationIcon;
         
-        private bool isOpen;
         private TMP_Text notificationCounterText;
         private int notificationCounter;
         private AudioManager audioManager;
@@ -76,7 +76,7 @@ namespace Script.Apps.ChatScript.Aska
         private void SetNotification(AskaChat _)
         {
             audioManager.PlayOneShot(FMODEvents.icqMessageSound);
-            if (isOpen)
+            if (IsOpen)
             {
                 ResetNotification();
             }
@@ -116,6 +116,7 @@ namespace Script.Apps.ChatScript.Aska
             
             openIcon.interactable = true;
             closeButton.interactable = true;
+            IsOpen = true;
         }
         private async UniTask CloseAppAsync()
         {
@@ -127,6 +128,7 @@ namespace Script.Apps.ChatScript.Aska
             
             openIcon.interactable = true;
             closeButton.interactable = true;
+            IsOpen = false;
         }
     }
 }

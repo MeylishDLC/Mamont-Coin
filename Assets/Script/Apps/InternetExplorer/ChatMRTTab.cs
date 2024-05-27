@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Apps.ChatScript.Skamp;
+using Script.Core.RandomEvents;
 using TMPro;
 using UnityEngine;
 
@@ -44,13 +45,20 @@ namespace Script.Apps.InternetExplorer
             if (hasRequests)
             {
                 Instantiate(chatMRTMessageWithPicturePrefab, chatContainer);
+                requestsText.text = "Осталось басплатных запросов: 0";
+                hasRequests = false;
+                ArtClubEvent.OnImageGenerated?.Invoke();
             }
             else
             {
                 Instantiate(chatMRTDefaultMessagePrefab, chatContainer);
             }
         }
-        
+        public void AddFreeRequestToMRT()
+        {
+            requestsText.text = "Осталось басплатных запросов: 1";
+            hasRequests = true;
+        }
         public void ActionOnSearch()
         {
             OpenButton.gameObject.SetActive(true);

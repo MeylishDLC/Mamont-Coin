@@ -48,7 +48,7 @@ namespace Script.Core.Popups
 
         private void ShowNotification(AskaChat chat)
         {
-            if (aska.CurrentOpenedChat == chat)
+            if (aska.CurrentOpenedChat == chat && aska.IsOpen)
             {
                 return;
             }

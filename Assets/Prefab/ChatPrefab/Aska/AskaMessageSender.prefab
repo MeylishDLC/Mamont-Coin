@@ -46,14 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextObject: {fileID: 4170534593367641569, guid: 44c41332d0dbb7e4e84df0ef4eb44abb, type: 3}
   Dialogues:
-    pairs:
-    - key: test
-      value:
-        chatCharacter: 3
-        dialogueLines:
-        - "\u043F\u0440\u0438\u0432 \u0441\u044B\u043D"
-        - "\u0441\u043E\u0441\u0438 \u043A\u0443\u043A\u0443\u0440\u0443\u0437\u0443"
-        - )))))))))))))))
+    pairs: []
     error: 0
   DelayBetweenMessagesMillisecond: 2500
   aska: {fileID: 0}
