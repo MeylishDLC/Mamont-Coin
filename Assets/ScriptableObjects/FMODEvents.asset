@@ -26,6 +26,13 @@ MonoBehaviour:
       Data3: 254475703
       Data4: 172504672
     Path: event:/SFX/SkypeNewMessage
+  <icqMessageSound>k__BackingField:
+    Guid:
+      Data1: 263346898
+      Data2: 1082168451
+      Data3: 1087264653
+      Data4: -1604867553
+    Path: event:/SFX/AskaNotification
   <clickSound>k__BackingField:
     Guid:
       Data1: 687147958
@@ -89,3 +96,10 @@ MonoBehaviour:
       Data3: -1166763102
       Data4: 505754502
     Path: event:/SFX/DuralingoWrong
+  <duralingoScreamer>k__BackingField:
+    Guid:
+      Data1: 211037624
+      Data2: 1250587673
+      Data3: -135996255
+      Data4: -992200000
+    Path: event:/SFX/DualingoScreamer

@@ -210,7 +210,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      propovednik_0: 1731820763452145171
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

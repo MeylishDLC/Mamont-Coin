@@ -16,7 +16,7 @@ namespace Script.Core.Popups.Spawns
         [field:SerializeField] public int FrequencyMilliseconds { get; set; }
         [SerializeField] private int callsAmount;
         [SerializeField] private Popup popup; 
-        [SerializeField] private Vector2 spawnPosition;
+        [SerializeField] private Vector3 initSpawnPosition;
 
         private PopupContainer spawnParent;
         private CancellationTokenSource bounceCts;
@@ -38,10 +38,9 @@ namespace Script.Core.Popups.Spawns
             SpawnActive = true;
             for (int i = 0; i < callsAmount; i++)
             {
-                var popupWindow = InstantiateAndInject(popup, spawnPosition).GetComponent<Popup>();
-                popupWindow.transform.localScale = new Vector3(1, 1, 1);
-                popupWindow.transform.localPosition = spawnPosition;
-
+                var popupWindow = InstantiateAndInject(popup).GetComponent<Popup>();
+                popupWindow.transform.localPosition = initSpawnPosition;
+                
                 popupWindow.OpenApp();
                 
                 await popupWindow.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
@@ -59,12 +58,13 @@ namespace Script.Core.Popups.Spawns
             }
             SpawnActive = false;
         }
-        private GameObject InstantiateAndInject(Popup popup, Vector3 position)
+        private GameObject InstantiateAndInject(Popup popup)
         {
             var projectContext = FindFirstObjectByType<ProjectContext>();
             
             var obj = projectContext.Container.InstantiatePrefab
-                (popup, position, Quaternion.identity, spawnParent.transform);
+                (popup, popup.transform.localPosition, Quaternion.identity, spawnParent.transform);
+            obj.transform.localScale = new Vector3(1, 1, 1);
             return obj;
         }
 

@@ -27,6 +27,8 @@ namespace Script.Sound
         [field: SerializeField] public EventReference skypeCallSound { get; private set; }
         [field: SerializeField] public EventReference duralingoCorrect { get; private set; }
         [field: SerializeField] public EventReference duralingoWrong { get; private set; }
+        [field: SerializeField] public EventReference duralingoScreamer { get; private set; }
+        
  
     }
 }
