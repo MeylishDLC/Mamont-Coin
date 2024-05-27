@@ -8,8 +8,9 @@ namespace Script.Apps.ChatScript.Skamp
     {
         [SerializeField] private GameObject image;
         [SerializeField] private GameObject text;
-        [SerializeField] private float paddingX = 0f;
-        [SerializeField] private float paddingY = 0f;
+        [SerializeField] private float paddingX;
+        [SerializeField] private float paddingY;
+        [SerializeField] private float minHeight; 
 
         private RectTransform imageRectTransform;
         private TextMeshProUGUI textMeshPro;
@@ -24,7 +25,8 @@ namespace Script.Apps.ChatScript.Skamp
         {
             textMeshPro.ForceMeshUpdate();
             var preferredHeight = textMeshPro.GetPreferredValues().y;
-            imageRectTransform.sizeDelta = new Vector2(imageRectTransform.sizeDelta.x + paddingX, preferredHeight + paddingY);
+            var newHeight = Mathf.Max(preferredHeight + paddingY, minHeight);
+            imageRectTransform.sizeDelta = new Vector2(imageRectTransform.sizeDelta.x + paddingX, newHeight);
         }
     }
 }
