@@ -212,7 +212,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "Reapcord - \u0435\u0431\u0435\u0439\u0448\u0430\u044F \u043C\u043E\u0442\u0438\u0432\u0430\u0446\u0438\u044F \u0441\u043E \u0441\u043A\u0440\u0438\u043F\u043A\u043E\u0439 \u0438 \u0431\u0430\u0441\u043E\u043C_0": -6394748896446105136
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

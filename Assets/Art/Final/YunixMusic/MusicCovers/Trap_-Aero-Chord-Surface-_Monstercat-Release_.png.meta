@@ -210,7 +210,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Trap_-Aero-Chord-Surface-_Monstercat-Release__0: -3464050648016549717
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

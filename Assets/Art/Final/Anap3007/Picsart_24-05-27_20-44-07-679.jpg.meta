@@ -210,7 +210,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Picsart_24-05-27_20-44-07-679_0: 8458921807792460256
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
