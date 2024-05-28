@@ -4,6 +4,7 @@ using Script.Managers;
 using Script.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Script.Apps.SmallStuff.AppsOnWorkspace
@@ -15,8 +16,8 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
         [SerializeField] protected float scaleOnClose;
         [SerializeField] protected float scaleDuration;
 
-        protected Vector3 initPos;
-        protected bool isOpen;
+        protected Vector3 initPos; 
+        public bool IsOpen { get; protected set; }
         protected virtual void Start()
         {
             GameManager.OnGameEnd += CloseApp;
@@ -34,7 +35,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
         }
         public virtual void OpenApp()
         {
-            if (!isOpen)
+            if (!IsOpen)
             {
                 gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
                 OpenAppAsync().Forget();
@@ -52,14 +53,14 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
             
             gameObject.SetActive(true);
             await gameObject.transform.DOScale(1, scaleDuration).ToUniTask();
-            isOpen = true;
+            IsOpen = true;
             
             openIconButton.interactable = true;
             closeButton.interactable = true;
         }
         public virtual void CloseApp()
         {
-            if (isOpen)
+            if (IsOpen)
             {
                 CloseAppAsync().Forget();
             }
@@ -71,7 +72,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
             
             await gameObject.transform.DOScale(scaleOnClose, scaleDuration).ToUniTask();
             gameObject.SetActive(false);
-            isOpen = false;
+            IsOpen = false;
             gameObject.transform.localPosition = initPos;
             openIconButton.interactable = true;
             closeButton.interactable = true;

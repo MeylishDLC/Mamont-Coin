@@ -25,6 +25,7 @@ namespace Script.Core.Popups
             FMODEvents = fmodEvents;
 
             GameManager.OnGameEnd += CloseApp;
+            gameObject.SetActive(false);
         }
 
         private void OnDestroy()

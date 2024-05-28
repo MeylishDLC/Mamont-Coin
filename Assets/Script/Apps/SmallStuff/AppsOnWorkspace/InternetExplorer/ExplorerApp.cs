@@ -10,5 +10,10 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer
             base.Start();
             tabs[0].OpenTab();
         }
+
+        public void OpenTab(Tab tab)
+        {
+            tab.OpenTab();
+        }
     }
 }

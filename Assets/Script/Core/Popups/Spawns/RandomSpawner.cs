@@ -18,12 +18,7 @@ namespace Script.Core.Popups.Spawns
         
         public void StartSpawn()
         {
-            spawnParent = FindAnyObjectByType<PopupContainer>();
-            if (spawnParent is null)
-            {
-                Debug.LogError("No popup container in scene was found.");
-                return;
-            }
+            GetSpawnParent();
             
             GameManager.OnGameEnd += ClearSpawnParent;
             GameManager.OnGameEnd += StopSpawn;
@@ -63,6 +58,15 @@ namespace Script.Core.Popups.Spawns
             RectTransformUtility.ScreenPointToLocalPointInRectangle(popupContainer.GetComponent<RectTransform>(), new Vector2(randomX, randomY), Camera.main, out var randomPositionLocal);
 
             return randomPositionLocal;
+        }
+
+        private void GetSpawnParent()
+        {
+            spawnParent = FindAnyObjectByType<PopupContainer>();
+            if (spawnParent is null)
+            {
+                Debug.LogError("No popup container in scene was found.");
+            }
         }
         private Popup GetRandomPopup()
         {

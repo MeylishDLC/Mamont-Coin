@@ -36,13 +36,14 @@ namespace Script.Managers
         {
             LoadBanks();
             eventInstances = new();
-            masterBus = RuntimeManager.GetBus("bus:/");
-            musicBus = RuntimeManager.GetBus("bus:/Music");
-            SFXBus = RuntimeManager.GetBus("bus:/SFX");
         }
 
         private void Update()
         {
+            masterBus = RuntimeManager.GetBus("bus:/");
+            musicBus = RuntimeManager.GetBus("bus:/Music");
+            SFXBus = RuntimeManager.GetBus("bus:/SFX");
+            
             masterBus.setVolume(masterVolume);
             musicBus.setVolume(musicVolume);
             SFXBus.setVolume(SFXVolume);
