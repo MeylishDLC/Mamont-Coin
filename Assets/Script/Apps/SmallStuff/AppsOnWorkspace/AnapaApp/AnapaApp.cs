@@ -1,6 +1,5 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Script.Apps.SmallStuff.AppsOnWorkspace.AnapaApp
@@ -19,6 +18,12 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace.AnapaApp
             }
             Photo.OnPhotoClicked += OpenPhoto;
         }
+        private void OnValidate()
+        {
+            Debug.Log("PhotoApp is null"+ photoApp == null, photoApp);
+
+        }
+        
         private void OpenPhoto(Photo photo)
         {
             if (photoApp.IsOpen)

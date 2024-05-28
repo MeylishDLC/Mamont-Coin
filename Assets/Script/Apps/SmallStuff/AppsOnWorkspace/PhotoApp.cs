@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Managers;
 using TMPro;
@@ -22,6 +23,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
             gameObject.SetActive(false);
         }
 
+   
         public override void OpenApp()
         {
             OpenAppAsync().Forget();
