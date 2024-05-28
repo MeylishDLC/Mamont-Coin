@@ -7,12 +7,13 @@ using Script.Sound;
 using Script.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Zenject;
 using UnityEngine.UI;
 
 namespace Script.Apps.ChatScript.Aska
 {
-    public class AskaApp: MonoBehaviour, IWindowedApp
+    public class AskaApp: MonoBehaviour, IWindowedApp, IPointerDownHandler
     {
         public AskaChat CurrentOpenedChat { get; private set; }
         public bool IsOpen { get; private set; }
@@ -113,6 +114,7 @@ namespace Script.Apps.ChatScript.Aska
             }
             else
             {
+                gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
                 ResetNotification();
                 OpenAppAsync().Forget();
             }
@@ -151,6 +153,10 @@ namespace Script.Apps.ChatScript.Aska
             closeButton.interactable = true;
             IsOpen = false;
             gameObject.transform.localPosition = initPos;
+        }
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
         }
     }
 }

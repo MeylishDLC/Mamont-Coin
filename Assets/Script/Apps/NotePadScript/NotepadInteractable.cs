@@ -6,11 +6,12 @@ using Script.Managers;
 using Script.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Script.Apps.NotePadScript
 {
-    public class NotepadInteractable : MonoBehaviour, IWindowedApp
+    public class NotepadInteractable : MonoBehaviour, IWindowedApp, IPointerDownHandler
     {
         [Header("Open/Close Window")]
         [SerializeField] private Button closeButton;
@@ -59,6 +60,7 @@ namespace Script.Apps.NotePadScript
             }
             else
             {
+                gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
                 OpenAppAsync().Forget();
             }
         }
@@ -93,6 +95,10 @@ namespace Script.Apps.NotePadScript
             gameObject.SetActive(false);
             gameObject.transform.localPosition = initPos;
             isOpen = false;
+        }
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
         }
     }
 }

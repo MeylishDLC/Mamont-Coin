@@ -4,6 +4,7 @@ using Script.Core.Popups.Spawns;
 using Script.Managers;
 using Script.Sound;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Zenject;
 
 namespace Script.Apps.SmallStuff.AppsOnWorkspace
@@ -28,6 +29,8 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
         }
         public override void OpenApp()
         {
+            gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
+            
             popupContainer = FindAnyObjectByType<PopupContainer>();
             
             base.OpenApp();

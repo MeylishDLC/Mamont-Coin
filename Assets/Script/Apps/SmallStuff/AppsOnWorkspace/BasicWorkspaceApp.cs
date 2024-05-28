@@ -3,11 +3,12 @@ using DG.Tweening;
 using Script.Managers;
 using Script.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Script.Apps.SmallStuff.AppsOnWorkspace
 {
-    public class BasicWorkspaceApp: MonoBehaviour, IWindowedApp
+    public class BasicWorkspaceApp: MonoBehaviour, IWindowedApp, IPointerDownHandler
     {
         [SerializeField] protected Button openIconButton;
         [SerializeField] protected Button closeButton; 
@@ -35,6 +36,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
         {
             if (!isOpen)
             {
+                gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
                 OpenAppAsync().Forget();
             }
             else
@@ -73,6 +75,10 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
             gameObject.transform.localPosition = initPos;
             openIconButton.interactable = true;
             closeButton.interactable = true;
+        }
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
         }
     }
 }

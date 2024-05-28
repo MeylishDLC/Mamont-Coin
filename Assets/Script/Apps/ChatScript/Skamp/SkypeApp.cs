@@ -6,12 +6,13 @@ using Script.Sound;
 using Script.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Script.Apps.ChatScript.Skamp
 {
-    public class SkypeApp : MonoBehaviour, IWindowedApp
+    public class SkypeApp : MonoBehaviour, IWindowedApp, IPointerDownHandler
     {
         [Header("UI")]
         [SerializeField] public TextMeshProUGUI currentChatName;
@@ -133,6 +134,7 @@ namespace Script.Apps.ChatScript.Skamp
         {
             if (!isOpen)
             {
+                gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
                 OpenAppAsync().Forget();
             }
             else
@@ -140,7 +142,9 @@ namespace Script.Apps.ChatScript.Skamp
                 CloseApp();
             }
         }
-    
-    
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
+        }
     }
 }
