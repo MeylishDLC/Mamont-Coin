@@ -13,14 +13,19 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
         [SerializeField] protected Button closeButton; 
         [SerializeField] protected float scaleOnClose;
         [SerializeField] protected float scaleDuration;
+
+        protected Vector3 initPos;
         protected bool isOpen;
         protected virtual void Start()
         {
             GameManager.OnGameEnd += CloseApp;
             closeButton.onClick.AddListener(CloseApp);
             openIconButton.onClick.AddListener(OpenApp);
+            
+            gameObject.transform.localScale = new Vector3(scaleOnClose, scaleOnClose, 0);
+            initPos = gameObject.transform.localPosition;
+            
             gameObject.SetActive(false);
-            gameObject.transform.localScale = new Vector3(1, 1, 0);
         }
         private void OnDestroy()
         {
@@ -31,6 +36,10 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
             if (!isOpen)
             {
                 OpenAppAsync().Forget();
+            }
+            else
+            {
+                CloseApp();
             }
         }
 
@@ -61,7 +70,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
             await gameObject.transform.DOScale(scaleOnClose, scaleDuration).ToUniTask();
             gameObject.SetActive(false);
             isOpen = false;
-            
+            gameObject.transform.localPosition = initPos;
             openIconButton.interactable = true;
             closeButton.interactable = true;
         }

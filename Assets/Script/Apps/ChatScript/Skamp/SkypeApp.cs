@@ -43,6 +43,7 @@ namespace Script.Apps.ChatScript.Skamp
         private TextMeshProUGUI notificationCounterText;
         private int notificationCounter;
         private bool isOpen;
+        private Vector3 initPos;
         
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
@@ -62,6 +63,7 @@ namespace Script.Apps.ChatScript.Skamp
             notificationCounterText = notificationIcon.GetComponentInChildren<TextMeshProUGUI>();
             notificationCounter = 0;
             notificationCounterText.text = notificationCounter.ToString();
+            initPos = gameObject.transform.localPosition;
             
             SkampMessageSender.MessageRecieved += OnNewNotificationGet;
             GameManager.OnGameEnd += CloseApp;
@@ -85,6 +87,7 @@ namespace Script.Apps.ChatScript.Skamp
             closeButton.interactable = true;
             gameObject.SetActive(false);
             isOpen = false;
+            gameObject.transform.localPosition = initPos;
         }
 
         private async UniTask OpenAppAsync()
@@ -122,7 +125,7 @@ namespace Script.Apps.ChatScript.Skamp
         {
             if (isOpen)
             {
-                CloseAppAsync().Forget();   
+                CloseAppAsync().Forget();
             }
         }
 
@@ -131,6 +134,10 @@ namespace Script.Apps.ChatScript.Skamp
             if (!isOpen)
             {
                 OpenAppAsync().Forget();
+            }
+            else
+            {
+                CloseApp();
             }
         }
     

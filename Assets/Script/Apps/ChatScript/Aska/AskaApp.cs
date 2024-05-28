@@ -37,6 +37,7 @@ namespace Script.Apps.ChatScript.Aska
         private int notificationCounter;
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
+        private Vector3 initPos;
         
         [Inject]
         public void Construct(AudioManager audioManager, FMODEvents fmodEvents)
@@ -49,9 +50,10 @@ namespace Script.Apps.ChatScript.Aska
         {
             openIcon.onClick.AddListener(OpenApp);
             closeButton.onClick.AddListener(CloseApp);
-            
-            gameObject.SetActive(false);
+
+            initPos = gameObject.transform.localPosition;
             gameObject.transform.localScale = new Vector3(scaleOnClose, scaleOnClose, scaleOnClose);
+            gameObject.SetActive(false);
             
             AskaChat.OnChatChanged += ChangeChat;
             AskaMessageSender.OnNewMessageSend += SetNotification;
@@ -107,11 +109,13 @@ namespace Script.Apps.ChatScript.Aska
         {
             if (IsOpen)
             {
-                return;
+                CloseApp();
             }
-            
-            ResetNotification();
-            OpenAppAsync().Forget();
+            else
+            {
+                ResetNotification();
+                OpenAppAsync().Forget();
+            }
         }
 
         public void CloseApp()
@@ -146,6 +150,7 @@ namespace Script.Apps.ChatScript.Aska
             openIcon.interactable = true;
             closeButton.interactable = true;
             IsOpen = false;
+            gameObject.transform.localPosition = initPos;
         }
     }
 }

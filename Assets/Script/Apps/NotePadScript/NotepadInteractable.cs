@@ -22,7 +22,7 @@ namespace Script.Apps.NotePadScript
         [SerializeField] private List<TMP_Text> chosenBoosts;
         private int chosenBoostAmount;
         private bool isOpen;
-        
+        private Vector3 initPos;
         private void Start()
         {
             GameManager.OnGameEnd += CloseApp;
@@ -34,6 +34,7 @@ namespace Script.Apps.NotePadScript
             }
         
             closeButton.onClick.AddListener(CloseApp);
+            initPos = gameObject.transform.localPosition;
         }
 
         private void OnDestroy()
@@ -54,9 +55,12 @@ namespace Script.Apps.NotePadScript
         {
             if (isOpen)
             {
-                return;
+                CloseApp();
             }
-            OpenAppAsync().Forget();
+            else
+            {
+                OpenAppAsync().Forget();
+            }
         }
     
         public void CloseApp()
@@ -87,6 +91,7 @@ namespace Script.Apps.NotePadScript
 
             closeButton.interactable = true;
             gameObject.SetActive(false);
+            gameObject.transform.localPosition = initPos;
             isOpen = false;
         }
     }
