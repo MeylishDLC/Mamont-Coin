@@ -11,8 +11,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace.AnapaApp
         [field: SerializeField] public Sprite Picture { get; private set; }
         [field: SerializeField] public Button Button { get; private set; }
         
-        public static event Action<Photo> OnPhotoClicked;
-
+        public event Action<Photo> OnPhotoClicked;
         public void OnButtonClicked() => OnPhotoClicked?.Invoke(this);
     }
 }

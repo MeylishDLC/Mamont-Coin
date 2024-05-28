@@ -1,11 +1,9 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace Script.Apps.SmallStuff.AppsOnWorkspace.AnapaApp
 {
     public class AnapaApp: BasicWorkspaceApp
-    { 
+    {
         [SerializeField] private PhotoApp photoApp;
         [SerializeField] private Photo[] photos;
 
@@ -15,24 +13,19 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace.AnapaApp
             foreach (var photo in photos)
             {
                 photo.Button.onClick.AddListener(photo.OnButtonClicked);
+                photo.OnPhotoClicked += OpenPhoto;
             }
-            Photo.OnPhotoClicked += OpenPhoto;
-        }
-        private void OnValidate()
-        {
-            Debug.Log("PhotoApp is null"+ photoApp == null, photoApp);
-
         }
         
         private void OpenPhoto(Photo photo)
         {
-            if (photoApp.IsOpen)
-            {
-                photoApp.CloseApp();
-            }
             photoApp.Picture.sprite = photo.Picture;
             photoApp.PhotoText.text = photo.Name;
-            photoApp.OpenApp();
+
+            if (!photoApp.IsOpen)
+            {
+                photoApp.OpenApp();
+            }
         }
     }
 }

@@ -26,6 +26,8 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
    
         public override void OpenApp()
         {
+            gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
+
             OpenAppAsync().Forget();
         }
 
