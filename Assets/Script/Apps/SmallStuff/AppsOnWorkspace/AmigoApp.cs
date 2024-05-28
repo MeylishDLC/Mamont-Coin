@@ -1,7 +1,10 @@
 ﻿using Cysharp.Threading.Tasks;
 using Script.Core.Popups;
 using Script.Core.Popups.Spawns;
+using Script.Managers;
+using Script.Sound;
 using UnityEngine;
+using Zenject;
 
 namespace Script.Apps.SmallStuff.AppsOnWorkspace
 {
@@ -14,6 +17,15 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
         [SerializeField] private RandomSpawner randomSpawner;
 
         private PopupContainer popupContainer;
+        private AudioManager audioManager;
+        private FMODEvents FMODEvents;
+        
+        [Inject]
+        public void Construct(AudioManager audioManager, FMODEvents fmodEvents)
+        {
+            this.audioManager = audioManager;
+            FMODEvents = fmodEvents;
+        }
         public override void OpenApp()
         {
             popupContainer = FindAnyObjectByType<PopupContainer>();
@@ -26,6 +38,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
         {
             await UniTask.Delay(delayBeforeLagMilliseconds);
             
+            audioManager.PlayOneShot(FMODEvents.appStoppingSound);
             lagScreen.SetActive(true);
 
             for (int i = 0; i < spawnAmount; i++)

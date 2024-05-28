@@ -15,6 +15,7 @@ namespace Script.Sound
         [field: SerializeField] public EventReference clickSound { get; private set; }
         [field: SerializeField] public EventReference buySound { get; private set; }
         [field: SerializeField] public EventReference boostChoiceSound { get; private set; }
+        [field: SerializeField] public EventReference appStoppingSound { get; private set; }
 
         [field: Header("Popup Windows SFX")] 
         [field: SerializeField] public EventReference errorSound { get; private set; }

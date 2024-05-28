@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e136e52369244ac8068b1b9f23d82ac, type: 3}
   m_Name: AdSpawner
   m_EditorClassIdentifier: 
-  <FrequencyMilliseconds>k__BackingField: 25000
+  <FrequencyMilliseconds>k__BackingField: 15000
   popups:
   - {fileID: 2539487198404825370, guid: f9fe7e061bdb8d64cb971478ff6861b1, type: 3}
   - {fileID: 8432486804523127172, guid: 9351f8b1fc61aad44bbefc3e56ce9f1f, type: 3}
   - {fileID: 4751900566841241745, guid: d5e28ae31bf5c5848a8ecf6ce365541f, type: 3}
   - {fileID: 4950995810066448353, guid: 73ccf38fc53b52d46ac55023a5935ee0, type: 3}
   - {fileID: 606948324475024311, guid: 70d0ca7f90f57c94f8b63ad2c4ca758b, type: 3}
+  - {fileID: 6225217432400509056, guid: 6d8956b041807d04dbc4c37a0d521bd8, type: 3}
+  - {fileID: 3384903471255493364, guid: e571355c7ed79d744a7831011781811a, type: 3}
+  - {fileID: 8257231796920867239, guid: 5beb56ae5776aec4d97857c49fe3e3dd, type: 3}
+  - {fileID: 8976619010682869350, guid: d0dc852ddd30ea74aafc28709814b92a, type: 3}
+  - {fileID: 685374840789572050, guid: 8b67dceea3b70ef4886a896428468d80, type: 3}
+  - {fileID: 1917906824140507712, guid: ba3ffca7a4ab65b44bc819791427be46, type: 3}

@@ -54,6 +54,13 @@ MonoBehaviour:
       Data3: 600591232
       Data4: 1067806365
     Path: event:/SFX/BoostChoice
+  <appStoppingSound>k__BackingField:
+    Guid:
+      Data1: 1828411154
+      Data2: 1135495166
+      Data3: 2078792859
+      Data4: -316333399
+    Path: event:/SFX/AppStopping
   <errorSound>k__BackingField:
     Guid:
       Data1: -1037992838

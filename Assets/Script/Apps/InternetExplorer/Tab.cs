@@ -7,8 +7,8 @@ namespace Script.Apps.InternetExplorer
     public class Tab: MonoBehaviour
     {
         [field:SerializeField] protected Button OpenButton { get; private set; }
-        [field:SerializeField] protected Color ActiveTabColor { get; private set; }
-        [field:SerializeField] protected Color InactiveTabColor { get; private set; }
+        [field:SerializeField] protected Sprite ActiveTabSprite { get; private set; }
+        [field:SerializeField] protected Sprite InactiveTabSprite { get; private set; }
 
         private bool isOpen;
         private Image tabImage;
@@ -17,7 +17,7 @@ namespace Script.Apps.InternetExplorer
         protected virtual void Awake()
         {
             tabImage = OpenButton.GetComponent<Image>();
-            tabImage.color = InactiveTabColor;
+            tabImage.sprite = InactiveTabSprite;
             gameObject.SetActive(false);
 
             OpenButton.onClick.AddListener(OpenTab);
@@ -31,7 +31,7 @@ namespace Script.Apps.InternetExplorer
                 return;
             }
             
-            tabImage.color = ActiveTabColor;
+            tabImage.sprite = ActiveTabSprite;
             gameObject.SetActive(true);
             isOpen = true;
             OnTabOpen?.Invoke(this);
@@ -44,7 +44,7 @@ namespace Script.Apps.InternetExplorer
                 return;
             }
             gameObject.SetActive(false);
-            tabImage.color = InactiveTabColor;
+            tabImage.sprite = InactiveTabSprite;
             isOpen = false;
         }
     }
