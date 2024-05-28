@@ -1,4 +1,5 @@
 ﻿using System;
+using FMODUnity;
 using Script.Data;
 using Script.Managers;
 using UnityEngine;
@@ -8,20 +9,17 @@ namespace Script.Core.Boosts
 {
     public class Boost: ScriptableObject
     {
-        public bool IsEnabled { get; set; }
-        protected IDataBank DataBank { get; private set; }
-
-        [Inject]
-        public void Construct(IDataBank dataBank)
-        {
-            DataBank = dataBank;
-            GameManager.OnGameEnd += Disable;
-        }
+        protected bool IsEnabled { get; set; }
+        public static Action<int> OnBoostAddClicks;
         private void OnDestroy()
         {
             GameManager.OnGameEnd -= Disable;
         }
-        public virtual void Activate(){}
+
+        public virtual void Activate()
+        {
+            GameManager.OnGameEnd += Disable;
+        }
 
         private void Disable()
         {

@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Script.Apps.InternetExplorer
+namespace Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer
 {
     public class GoogleTab: Tab
     {

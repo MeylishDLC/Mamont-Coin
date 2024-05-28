@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Script.Managers;
 using Script.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,11 +16,16 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
         protected bool isOpen;
         protected virtual void Start()
         {
+            GameManager.OnGameEnd += CloseApp;
             closeButton.onClick.AddListener(CloseApp);
             openIconButton.onClick.AddListener(OpenApp);
             gameObject.SetActive(false);
+            gameObject.transform.localScale = new Vector3(1, 1, 0);
         }
-
+        private void OnDestroy()
+        {
+            GameManager.OnGameEnd -= CloseApp;
+        }
         public virtual void OpenApp()
         {
             if (!isOpen)

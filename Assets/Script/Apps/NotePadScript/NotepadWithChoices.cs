@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Script.Core;
 using Script.Core.Boosts;
 using Script.Data;
 using Script.Managers;
@@ -42,13 +43,14 @@ namespace Script.Apps.NotePadScript
         
         private int currentAct;
         private SpecificBoostSetter specificBoostSetter;
-        
+        private IDataBank dataBank;
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
 
         [Inject]
-        public void Construct(SpecificBoostSetter specificBoostSetter, AudioManager audioManager, FMODEvents fmodEvents)
+        public void Construct(IDataBank dataBank, SpecificBoostSetter specificBoostSetter, AudioManager audioManager, FMODEvents fmodEvents)
         {
+            this.dataBank = dataBank;
             this.specificBoostSetter = specificBoostSetter;
             this.audioManager = audioManager;
             FMODEvents = fmodEvents;
@@ -65,6 +67,13 @@ namespace Script.Apps.NotePadScript
             
             hackerChoiceButton.onClick.AddListener(()=> MakeChoice(ChatCharacter.Hacker));
             scammerChoiceButton.onClick.AddListener(() => MakeChoice(ChatCharacter.Scammer));
+
+            Boost.OnBoostAddClicks += AddClicksFromBoosts;
+        }
+        private void AddClicksFromBoosts(int amount)
+        {
+            dataBank.Clicks += amount;
+            ClickHandler.ClicksUpdated.Invoke(amount);
         }
 
         private void OnDestroy()

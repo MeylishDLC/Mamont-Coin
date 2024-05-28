@@ -26,12 +26,15 @@ namespace Script.Core.Popups.Spawns
             }
             
             GameManager.OnGameEnd += ClearSpawnParent;
+            GameManager.OnGameEnd += StopSpawn;
             StartSpawnAsync().Forget();
         }
 
         public void StopSpawn()
         {
             GameManager.OnGameEnd -= ClearSpawnParent;
+            GameManager.OnGameEnd -= StopSpawn;
+
             SpawnActive = false;
         }
 

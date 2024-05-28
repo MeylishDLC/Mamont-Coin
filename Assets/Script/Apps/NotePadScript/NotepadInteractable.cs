@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Script.Managers;
 using Script.UI;
 using TMPro;
 using UnityEngine;
@@ -20,8 +21,11 @@ namespace Script.Apps.NotePadScript
         [Header("Chosen Boosts")] 
         [SerializeField] private List<TMP_Text> chosenBoosts;
         private int chosenBoostAmount;
+        private bool isOpen;
+        
         private void Start()
         {
+            GameManager.OnGameEnd += CloseApp;
             gameObject.SetActive(false);
 
             foreach (var boostInfo in chosenBoosts)
@@ -34,6 +38,7 @@ namespace Script.Apps.NotePadScript
 
         private void OnDestroy()
         {
+            GameManager.OnGameEnd -= CloseApp;
             closeButton.onClick.RemoveAllListeners();
         }
 
@@ -47,11 +52,19 @@ namespace Script.Apps.NotePadScript
     
         public void OpenApp()
         {
+            if (isOpen)
+            {
+                return;
+            }
             OpenAppAsync().Forget();
         }
     
         public void CloseApp()
         {
+            if (!isOpen)
+            {
+                return;
+            }
             CloseAppAsync().Forget();
         }
     
@@ -63,6 +76,7 @@ namespace Script.Apps.NotePadScript
             await transform.DOScale(scaleOnOpen, openDuration).ToUniTask();
 
             closeButton.interactable = true;
+            isOpen = true;
         }
     
         private async UniTask CloseAppAsync()
@@ -73,6 +87,7 @@ namespace Script.Apps.NotePadScript
 
             closeButton.interactable = true;
             gameObject.SetActive(false);
+            isOpen = false;
         }
     }
 }

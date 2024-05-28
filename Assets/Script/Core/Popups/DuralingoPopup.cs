@@ -16,26 +16,30 @@ namespace Script.Core.Popups
     {
         [field: SerializeField] public int DuralingoCallsAmount { get; private set; }
         
-        private EventInstance callMusicInstance;
         private Button button;
-
         public static event Action OnDuralingoCallClicked; 
         public override void OpenApp()
         {
+            GameManager.OnGameEnd += CloseApp;
             button = GetComponent<Button>();
             button.onClick.AddListener(OnClick);
             
             gameObject.SetActive(true);
-            callMusicInstance = AudioManager.CreateInstance(FMODEvents.skypeCallSound);
-            callMusicInstance.start();
+            
+            AudioManager.InitializeMusic("Skype Call", FMODEvents.skypeCallSound);
         }
 
         private void OnClick() => OnDuralingoCallClicked?.Invoke();
         public override void CloseApp()
         {
-            callMusicInstance.stop(STOP_MODE.IMMEDIATE);
+            if (!isOpen)
+            {
+                return;
+            }
+            
+            AudioManager.StopMusic("Skype Call", STOP_MODE.IMMEDIATE);
             Destroy(gameObject);
+            GameManager.OnGameEnd -= CloseApp;
         }
-        
     }
 }

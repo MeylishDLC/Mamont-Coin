@@ -8,6 +8,8 @@ namespace Script.Sound
     {
         [field: Header("Music")] 
         [field: SerializeField] public EventReference defaultMusic { get; private set; }
+        [field: SerializeField] public EventReference defaultMusicSingle { get; private set; }
+        [field: SerializeField] public EventReference endingMusic { get; private set; }
 
         [field: Header("UI SFX")]
         [field: SerializeField] public EventReference skypeMessageSound { get; private set; }

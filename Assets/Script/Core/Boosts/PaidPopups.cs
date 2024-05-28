@@ -25,8 +25,7 @@ namespace Script.Core.Boosts
         private void PayForAd()
         {
             var addAmount = CoinsPerPopupWindow;
-            DataBank.Clicks += addAmount;
-            ClickHandler.ClicksUpdated?.Invoke(addAmount);
+            OnBoostAddClicks.Invoke(addAmount);
             Debug.Log("+ money for AD");
         }
     }

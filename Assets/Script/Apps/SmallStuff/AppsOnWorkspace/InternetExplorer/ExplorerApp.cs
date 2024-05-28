@@ -1,7 +1,6 @@
-﻿using Script.Apps.SmallStuff.AppsOnWorkspace;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Script.Apps.InternetExplorer
+namespace Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer
 {
     public class ExplorerApp: BasicWorkspaceApp
     {

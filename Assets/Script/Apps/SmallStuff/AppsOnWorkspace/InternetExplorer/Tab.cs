@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Script.Apps.InternetExplorer
+namespace Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer
 {
     public class Tab: MonoBehaviour
     {

@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using NUnit.Framework;
 using Script.Core;
+using Script.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 

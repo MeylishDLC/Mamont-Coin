@@ -31,6 +31,7 @@ namespace Script.Core.Popups.Spawns
             }
             
             GameManager.OnGameEnd += ClearSpawnParent;
+            GameManager.OnGameEnd += StopSpawn;
             PopupAppearAsync().Forget();
         }
         private async UniTask PopupAppearAsync()
@@ -80,6 +81,7 @@ namespace Script.Core.Popups.Spawns
         public void StopSpawn()
         {
             GameManager.OnGameEnd -= ClearSpawnParent;
+            GameManager.OnGameEnd -= StopSpawn;
         }
 
         public void ClearSpawnParent()

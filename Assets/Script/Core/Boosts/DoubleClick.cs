@@ -49,7 +49,7 @@ namespace Script.Core.Boosts
             }
             
             addAmount *= addAmount - 1;
-            ClickHandler.ClicksUpdated?.Invoke(addAmount);
+            OnBoostAddClicks.Invoke(addAmount);
         }
     }
 }

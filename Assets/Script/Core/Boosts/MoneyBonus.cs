@@ -11,8 +11,7 @@ namespace Script.Core.Boosts
         public override void Activate()
         {
             var addAmount = Amount;
-            DataBank.Clicks += addAmount;
-            ClickHandler.ClicksUpdated?.Invoke(addAmount);
+            OnBoostAddClicks.Invoke(addAmount);
         }
     }
 }

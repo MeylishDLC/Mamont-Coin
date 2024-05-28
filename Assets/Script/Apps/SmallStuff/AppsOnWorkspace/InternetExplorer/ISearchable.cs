@@ -1,4 +1,4 @@
-﻿namespace Script.Apps.InternetExplorer
+﻿namespace Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer
 {
     public interface ISearchable
     {

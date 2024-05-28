@@ -55,6 +55,7 @@ namespace Script.Apps.ChatScript.Aska
             
             AskaChat.OnChatChanged += ChangeChat;
             AskaMessageSender.OnNewMessageSend += SetNotification;
+            GameManager.OnGameEnd += CloseApp;
 
             notificationIcon.gameObject.SetActive(false);
             notificationCounterText = notificationIcon.GetComponentInChildren<TMP_Text>();
@@ -62,6 +63,13 @@ namespace Script.Apps.ChatScript.Aska
             
             Chats[0].OpenChat();
             CurrentOpenedChat = Chats[0];
+        }
+
+        private void OnDestroy()
+        {
+            AskaChat.OnChatChanged -= ChangeChat;
+            AskaMessageSender.OnNewMessageSend -= SetNotification;
+            GameManager.OnGameEnd -= CloseApp;
         }
 
         public void ChangeChat(AskaChat chat)
@@ -96,13 +104,22 @@ namespace Script.Apps.ChatScript.Aska
         }
         
         public void OpenApp()
-        { 
+        {
+            if (IsOpen)
+            {
+                return;
+            }
+            
             ResetNotification();
             OpenAppAsync().Forget();
         }
 
         public void CloseApp()
         {
+            if (!IsOpen)
+            {
+                return;
+            }
             CloseAppAsync().Forget();
         }
 

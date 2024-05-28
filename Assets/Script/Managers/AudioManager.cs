@@ -28,14 +28,14 @@ namespace Script.Managers
         private Bus musicBus;
         private Bus SFXBus;
 
-        private List<EventInstance> eventInstances;
+        private Dictionary<string, EventInstance> eventInstances;
 
         private EventInstance musicEventInstance;
 
         private void Awake()
         {
             LoadBanks();
-            eventInstances = new List<EventInstance>();
+            eventInstances = new();
             masterBus = RuntimeManager.GetBus("bus:/");
             musicBus = RuntimeManager.GetBus("bus:/Music");
             SFXBus = RuntimeManager.GetBus("bus:/SFX");
@@ -48,21 +48,42 @@ namespace Script.Managers
             SFXBus.setVolume(SFXVolume);
         }
 
-        public void InitializeMusic(EventReference musicEventReference)
+        public void InitializeMusic(string musicName, EventReference musicEventReference)
         {
-            musicEventInstance = CreateInstance(musicEventReference);
+            musicEventInstance = CreateInstance(musicName,musicEventReference);
             musicEventInstance.start();
         }
-        
+
+        public bool HasMusic(string musicName)
+        {
+            return eventInstances.ContainsKey(musicName);
+        }
+        public void StopMusic(string musicName, STOP_MODE stopMode)
+        {
+            if (!eventInstances.ContainsKey(musicName))
+            {
+                Debug.LogError($"No music with name {musicName} was found");
+            }
+
+            var instance = eventInstances[musicName];
+            instance.stop(stopMode);
+            instance.release();
+            eventInstances.Remove(musicName);
+        }
+
+        public void PauseMusic(string musicName, bool paused)
+        {
+            eventInstances[musicName].setPaused(paused);
+        }
         public void SetMusicAct(MusicAct act)
         {
             musicEventInstance.setParameterByName("Act", (float) act);
         }
 
-        public EventInstance CreateInstance(EventReference eventReference)
+        public EventInstance CreateInstance(string instanceName, EventReference eventReference)
         {
             var eventInstance = RuntimeManager.CreateInstance(eventReference);
-            eventInstances.Add(eventInstance);
+            eventInstances.Add(instanceName, eventInstance);
             return eventInstance;
         }
 
@@ -77,7 +98,7 @@ namespace Script.Managers
             {
                 return;
             }
-            foreach (EventInstance eventInstance in eventInstances)
+            foreach (EventInstance eventInstance in eventInstances.Values)
             {
                 eventInstance.stop(STOP_MODE.IMMEDIATE);
                 eventInstance.release();

@@ -68,7 +68,7 @@ namespace Script.Core
                 progressBar.value = currentValue / maxValue;
             }
        
-            if (currentValue == maxValue)
+            if (currentValue >= maxValue)
             {
                 if (currentGoalIndex < rankNameGoalPair.Count)
                 {

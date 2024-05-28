@@ -30,8 +30,7 @@ namespace Script.Core.Boosts
             {
                 await UniTask.Delay(ClickFrequencyMilliseconds);
                 var addAmount = AutoClickAmount;
-                DataBank.Clicks += addAmount;
-                ClickHandler.ClicksUpdated?.Invoke(addAmount);
+                OnBoostAddClicks.Invoke(addAmount);
             }
         }
         

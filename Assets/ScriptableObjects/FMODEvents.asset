@@ -19,6 +19,20 @@ MonoBehaviour:
       Data3: 1054721182
       Data4: 1836196248
     Path: event:/Music/DefaultMusic
+  <defaultMusicSingle>k__BackingField:
+    Guid:
+      Data1: -1337156193
+      Data2: 1269627282
+      Data3: 1508406444
+      Data4: -363504727
+    Path: event:/Music/MamontMusic
+  <endingMusic>k__BackingField:
+    Guid:
+      Data1: -572188208
+      Data2: 1303845833
+      Data3: -1350455423
+      Data4: 372553226
+    Path: event:/Music/EndingMusic
   <skypeMessageSound>k__BackingField:
     Guid:
       Data1: -2056325614

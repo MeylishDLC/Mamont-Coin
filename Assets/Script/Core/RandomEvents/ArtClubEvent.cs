@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using Script.Apps.InternetExplorer;
+using Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer;
 using Script.Data.Dialogues;
 using Script.Managers.Senders;
 using UnityEngine;

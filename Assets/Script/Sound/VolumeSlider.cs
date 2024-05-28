@@ -54,15 +54,12 @@ namespace Script.Sound
             {
                 case VolumeType.MASTER:
                     audioManager.masterVolume = volumeSlider.value;
-                    Debug.Log($"master volume : {audioManager.masterVolume}");
                     break;
                 case VolumeType.MUSIC:
                     audioManager.musicVolume = volumeSlider.value;
-                    Debug.Log($"music volume : {audioManager.musicVolume}");
                     break;
                 case VolumeType.SFX:
                     audioManager.SFXVolume = volumeSlider.value;
-                    Debug.Log($"SFX volume : {audioManager.SFXVolume}");
                     break;
                 default:
                     Debug.LogWarning("Volume type isn't valid");

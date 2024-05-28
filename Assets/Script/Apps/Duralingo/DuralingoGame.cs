@@ -35,6 +35,8 @@ namespace Script.Apps.Duralingo
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
 
+        private bool isOpen;
+
         [Inject]
         public void Construct(AudioManager audioManager, FMODEvents fmodEvents)
         {
@@ -45,17 +47,18 @@ namespace Script.Apps.Duralingo
         {
             duralingoTimerCts = new CancellationTokenSource();
             SubmitButton.onClick.AddListener(OnButtonSubmit);
+            GameManager.OnGameEnd += CloseApp;
             
             gameScreen.SetActive(true);
             loseScreen.SetActive(false);
             winScreen.SetActive(false);
         }
         
-
         private void OnDestroy()
         {
             SubmitButton.onClick.RemoveAllListeners();
             duralingoTimerCts.Dispose();
+            GameManager.OnGameEnd -= CloseApp;
         }
 
         private async void OnButtonSubmit()
@@ -83,12 +86,18 @@ namespace Script.Apps.Duralingo
         }
         public void OpenApp()
         {
+            if (isOpen)
+            {
+                return;
+            }
             OpenAppAsync().Forget();
         }
         private async UniTask OpenAppAsync()
         {
             gameObject.SetActive(true);
-            await gameObject.transform.DOScale(animationScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();
+            await gameObject.transform.DOScale(animationScale, 0.1f)
+                .SetLoops(2, LoopType.Yoyo).ToUniTask();
+            isOpen = true;
             WaitForTimer(duralingoTimerCts.Token).Forget();
         }
 
@@ -120,12 +129,18 @@ namespace Script.Apps.Duralingo
         }
         public void CloseApp()
         {
+            if (!isOpen)
+            {
+                return;
+            }
             CloseAppAsync().Forget();
         }
 
         private async UniTask CloseAppAsync()
         {
-            await gameObject.transform.DOScale(animationScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();
+            await gameObject.transform.DOScale(animationScale, 0.1f)
+                .SetLoops(2, LoopType.Yoyo).ToUniTask();
+            isOpen = false;
             gameObject.SetActive(false);
         }
     }

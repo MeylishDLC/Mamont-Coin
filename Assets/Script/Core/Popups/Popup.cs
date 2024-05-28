@@ -16,15 +16,26 @@ namespace Script.Core.Popups
         [SerializeField] private Button closeButton;
         protected AudioManager AudioManager { get; private set; }
         protected FMODEvents FMODEvents { get; private set; }
+        protected bool isOpen;
 
         [Inject]
         public void Construct(AudioManager audioManager, FMODEvents fmodEvents)
         {
             AudioManager = audioManager;
             FMODEvents = fmodEvents;
+
+            GameManager.OnGameEnd += CloseApp;
         }
+
+        private void OnDestroy()
+        {
+            GameManager.OnGameEnd -= CloseApp;
+        }
+
         public virtual void OpenApp()
         {
+            isOpen = true;
+            
             closeButton.onClick.AddListener(CloseApp);
             
             gameObject.SetActive(true);
@@ -34,7 +45,13 @@ namespace Script.Core.Popups
 
         public virtual void CloseApp()
         {
+            if (!isOpen)
+            {
+                return;
+            }
+            
             closeButton.onClick.RemoveAllListeners();
+            isOpen = false;
             if (destroyOnClose)
             {
                 Destroy(gameObject);

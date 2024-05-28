@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using FMOD.Studio;
 using Script.Apps.ChatScript;
 using Script.Apps.ChatScript.Skamp;
 using Script.Apps.NotePadScript;
+using Script.Apps.SmallStuff.AppsOnWorkspace.YunixMusic;
 using Script.Core.Popups;
 using Script.Core.Popups.Spawns;
 using Script.Managers.Senders;
@@ -29,6 +31,7 @@ namespace Script.Managers
     
         [SerializeField] private SkypeApp skypeApp; 
         [SerializeField] private NotepadInteractable notepadInteractive;
+        [SerializeField] private YunixMusicApp yunixMusicApp;
 
         [Header("Introduction")] 
         [SerializeField] private RandomSpawner popupSpawner;
@@ -45,7 +48,6 @@ namespace Script.Managers
         [SerializeField] private Vector3 notepadSetPosition;
 
         private SkampMessageSender _skampMessageSender;
-
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
 
@@ -72,7 +74,7 @@ namespace Script.Managers
         public void GameStart()
         {
             audioManager.PlayOneShot(FMODEvents.windowsGreetingSound);
-            audioManager.InitializeMusic(FMODEvents.defaultMusic);
+            audioManager.InitializeMusic("Default Music",FMODEvents.defaultMusic);
         
             bankCardForm.SetActive(false);
         
@@ -99,7 +101,17 @@ namespace Script.Managers
         private async UniTask OpenClickerAsync()
         {
             popupSpawner.StartSpawn();
-            audioManager.SetMusicAct(MusicAct.MAIN);
+
+            if (audioManager.HasMusic("Default Music"))
+            {
+                audioManager.SetMusicAct(MusicAct.MAIN);
+            }
+            else
+            {
+                audioManager.StopMusic(yunixMusicApp.CurrentMusicName, STOP_MODE.IMMEDIATE);
+                audioManager.InitializeMusic("Default Music", FMODEvents.defaultMusicSingle);
+                yunixMusicApp.CurrentMusicName = "Default Music";
+            }
         
             clickerObject.SetActive(true);
             await clickerObject.transform.DOScale(scaleOnOpenClicker, 0.1f).SetLoops(2, LoopType.Yoyo);
@@ -120,17 +132,13 @@ namespace Script.Managers
         
         private async UniTask GameEndAsync()
         {
+            //todo for every windowed app
             OnGameEnd?.Invoke();
         
             clickerObject.SetActive(false);
             shopPanelObject.SetActive(false);
         
             interactionOff.SetActive(true);
-        
-            //reopen notepad and skype
-            //todo: implement for all apps
-            notepadInteractive.CloseApp();
-            skypeApp.CloseApp();
 
             notepadInteractive.gameObject.transform.localPosition = notepadSetPosition;
             skypeApp.gameObject.transform.localPosition = skypeSetPosition;

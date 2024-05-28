@@ -23,8 +23,7 @@ namespace Script.Core.Popups
         
         private AskaChat chatToRedirect;
         private Button redirectButton;
-        private CancellationTokenSource notificationDisappearCts;
-        private bool isOpen;
+        private CancellationTokenSource notificationDisappearCts; 
         private Vector3 initialPosition;
         
         private void Start()
@@ -34,12 +33,15 @@ namespace Script.Core.Popups
             redirectButton = GetComponent<Button>();
             redirectButton.onClick.AddListener(RedirectToChat);
             AskaMessageSender.OnNewMessageSend += ShowNotification;
+            GameManager.OnGameEnd += CloseApp;
             notificationDisappearCts = new CancellationTokenSource();
         }
 
         private void OnDestroy()
         {
             AskaMessageSender.OnNewMessageSend -= ShowNotification;
+            GameManager.OnGameEnd -= CloseApp;
+
             if (notificationDisappearCts != null)
             {
                 notificationDisappearCts.Dispose();
@@ -58,7 +60,6 @@ namespace Script.Core.Popups
             name.text = $"от: {chat.User.Name}";
             
             OpenApp();
-            isOpen = true;
         }
 
         public override void OpenApp()
@@ -75,6 +76,7 @@ namespace Script.Core.Popups
             
             base.OpenApp();
             DisappearAfterTimer(notificationDisappearCts.Token).Forget();
+            isOpen = true;
         }
         private async UniTask DisappearAfterTimer(CancellationToken token)
         {
@@ -84,6 +86,10 @@ namespace Script.Core.Popups
 
         public override void CloseApp()
         {
+            if (!isOpen)
+            {
+                return;
+            }
             CloseAppAsync().Forget();
         }
         private async UniTask CloseAppAsync()

@@ -1,12 +1,10 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
+﻿using Cysharp.Threading.Tasks;
 using Script.Apps.ChatScript.Skamp;
 using Script.Core.RandomEvents;
 using TMPro;
 using UnityEngine;
 
-namespace Script.Apps.InternetExplorer
+namespace Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer
 {
     public class ChatMRTTab: Tab, ISearchable
     {
