@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnClose: 1
   closeButton: {fileID: 0}
-  <DuralingoCallsAmount>k__BackingField: 30
+  <DuralingoCallsAmount>k__BackingField: 10
 --- !u!114 &1809460644052455231
 MonoBehaviour:
   m_ObjectHideFlags: 0

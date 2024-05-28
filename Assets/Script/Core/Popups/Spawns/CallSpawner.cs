@@ -52,8 +52,8 @@ namespace Script.Core.Popups.Spawns
                 
                 await UniTask.Delay(FrequencyMilliseconds);
        
-                bounceCts.Cancel();
                 popupWindow.CloseApp();
+                bounceCts.Cancel();
                 
                 await UniTask.Delay(300);
             }
