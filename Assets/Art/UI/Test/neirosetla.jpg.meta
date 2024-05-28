@@ -210,7 +210,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      neirosetla_0: -2710534642776982030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -210,7 +210,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      1186394-photoaidcom-cropped_0: 2038637725346927214
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
