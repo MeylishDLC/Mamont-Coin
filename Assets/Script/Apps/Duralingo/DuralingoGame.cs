@@ -57,7 +57,7 @@ namespace Script.Apps.Duralingo
         private void OnDestroy()
         {
             SubmitButton.onClick.RemoveAllListeners();
-            duralingoTimerCts.Dispose();
+            duralingoTimerCts?.Dispose();
             GameManager.OnGameEnd -= CloseApp;
         }
 
@@ -119,7 +119,7 @@ namespace Script.Apps.Duralingo
                 await UniTask.Yield(PlayerLoopTiming.Update, token);
             }
 
-            if (token.IsCancellationRequested)
+            if (!token.IsCancellationRequested)
             {
                 timerImage.fillAmount = 1f;
                 loseScreen.SetActive(true);

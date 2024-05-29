@@ -30,14 +30,12 @@ namespace Script.Core.RandomEvents
         
         private AskaMessageSender askaSender;
         private SkampMessageSender skampSender;
-        
-        public static Action OnImageGenerated;
         public void Construct(AskaMessageSender askaMessageSender, SkampMessageSender skampMessageSender)
         {
             askaSender = askaMessageSender;
             skampSender = skampMessageSender;
             
-            OnImageGenerated += UpdateEvent;
+            ChatMRTTab.OnImageGenerated += UpdateEvent;
             sendImageButton.onClick.AddListener(OnImageSend);
         }
 
@@ -47,16 +45,16 @@ namespace Script.Core.RandomEvents
         }
         private async UniTask StartEventAsync()
         {
-            askaSender.StartDialogueSequence(askaDialogues.Keys.ToList()[0], askaDialogues);
+            askaSender.StartDialogueSequence(askaDialogues.Keys.ElementAt(0), askaDialogues);
             await UniTask.Delay(delayBetweenMomAndHackerMilliseconds);
-            skampSender.StartDialogueSequence(askaDialogues.Keys.ToList()[0], skampDialogues);
+            skampSender.StartDialogueSequence(askaDialogues.Keys.ElementAt(0), skampDialogues);
             chatMRTTab.AddFreeRequestToMRT();
         }
 
         private void UpdateEvent()
         {
             sendImageButton.gameObject.SetActive(true);
-            skampSender.StartDialogueSequence(askaDialogues.Keys.ToList()[1], skampDialogues);
+            skampSender.StartDialogueSequence(askaDialogues.Keys.ElementAt(1), skampDialogues);
         }
 
         private void OnImageSend()
@@ -70,7 +68,7 @@ namespace Script.Core.RandomEvents
             
             Object.Instantiate(messageWithImagePrefab, messageContainer);
             await UniTask.Delay(delayBeforeMomAnswerMilliseconds);
-            askaSender.StartDialogueSequence(askaDialogues.Keys.ToList()[1], askaDialogues);
+            askaSender.StartDialogueSequence(askaDialogues.Keys.ElementAt(1), askaDialogues);
         }
     }
 }

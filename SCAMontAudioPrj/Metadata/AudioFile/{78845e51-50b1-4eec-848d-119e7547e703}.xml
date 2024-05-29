@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{78845e51-50b1-4eec-848d-119e7547e703}">
+		<property name="assetPath">
+			<value>UISounds/icqLong.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>7.1314285714285717</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d08c2f65-daf8-4e77-bf01-77bde99e9dfe}</destination>
+		</relationship>
+	</object>
+</objects>

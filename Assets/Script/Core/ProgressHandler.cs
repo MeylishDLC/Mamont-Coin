@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Numerics;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Data;
@@ -25,8 +26,8 @@ namespace Script.Core
         [Header("Progress Bar")]
         [SerializeField] private Slider progressBar;
         
-        private float currentValue;
-        private float maxValue;
+        private double currentValue;
+        private double maxValue;
         private int currentGoalIndex;
 
         private IDataBank dataBank;
@@ -40,7 +41,7 @@ namespace Script.Core
         }
         private void Start()
         {
-            currentValue = dataBank.Clicks;
+            currentValue = (double)dataBank.Clicks;
             currentGoalIndex = 1;
 
             maxValue = rankNameGoalPair.Values.ElementAt(currentGoalIndex);
@@ -56,7 +57,7 @@ namespace Script.Core
             OnNewMamontTitleReached -= UpdateMamontTitle;
         }
 
-        private void UpdateProgress(int addAmount)
+        private void UpdateProgress(BigInteger addAmount)
         {
             if (addAmount > 0)
             {
@@ -65,7 +66,7 @@ namespace Script.Core
             
             if (progressBar.value < maxValue)
             {
-                progressBar.value = currentValue / maxValue;
+                progressBar.value = (float)(currentValue / maxValue);
             }
        
             if (currentValue >= maxValue)
@@ -100,11 +101,11 @@ namespace Script.Core
             await mamontObject.transform.DOScale(mamontTitleScale, 0.2f).SetLoops(2, LoopType.Yoyo);
             mamontObject.transform.localScale = new Vector3(1,1,1);
         }
-        private void AddProgress(long amount)
+        private void AddProgress(BigInteger amount)
         {
-            currentValue += amount;
-        
-            currentValue = Mathf.Clamp(currentValue, 0, maxValue);
+            currentValue += (double)(decimal)amount;
+
+            currentValue = Math.Clamp(currentValue, 0, maxValue);
         }
     }
 }

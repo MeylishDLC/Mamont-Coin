@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using Script.Apps.ChatScript.Skamp;
 using Script.Core.RandomEvents;
 using TMPro;
@@ -19,6 +20,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer
         [SerializeField] private GameObject chatMRTMessageWithPicturePrefab;
         [SerializeField] private int MRTAnswerDelayMilliseconds;
         private bool hasRequests;
+        public static event Action OnImageGenerated;
         protected override void Awake()
         {
             base.Awake();
@@ -45,7 +47,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer
                 Instantiate(chatMRTMessageWithPicturePrefab, chatContainer);
                 requestsText.text = "Осталось басплатных запросов: 0";
                 hasRequests = false;
-                ArtClubEvent.OnImageGenerated?.Invoke();
+                OnImageGenerated?.Invoke();
             }
             else
             {

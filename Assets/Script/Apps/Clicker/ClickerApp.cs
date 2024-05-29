@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Core;
@@ -9,6 +10,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 
 namespace Script.Apps.Clicker
@@ -95,16 +97,16 @@ namespace Script.Apps.Clicker
                     Quaternion.identity);
             }
         }
-        private void OnClicksUpdated(int addAmount)
+        private void OnClicksUpdated(BigInteger addAmount)
         {
             counterText.text = dataBank.Clicks.ToString();
             multiplierText.text = dataBank.Multiplier + " кликов";
             
             coinToRubleText.text = ConvertToRuble(dataBank.Clicks) + " руб.";
         }
-        private double ConvertToRuble(long clicks)
+        private double ConvertToRuble(BigInteger clicks)
         {
-            var rubles = Convert.ToDouble(clicks) / Convert.ToDouble(coinExchangeRate);
+            var rubles = (double)(decimal)clicks / Convert.ToDouble(coinExchangeRate);
             return rubles;
         }
 

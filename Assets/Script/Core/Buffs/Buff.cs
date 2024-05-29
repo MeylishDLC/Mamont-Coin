@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using Script.Data;
 using Script.Managers;
 using Script.Sound;
@@ -29,7 +30,7 @@ namespace Script.Core.Buffs
             AudioManager = audioManager;
             FMODEvents = fmodEvents;
         }
-        private void UpdateButtonInteractive(int _)
+        private void UpdateButtonInteractive(BigInteger _)
         {
             button.interactable = DataBank.Clicks >= price;
         }

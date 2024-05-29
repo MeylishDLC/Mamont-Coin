@@ -4,9 +4,8 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace.AnapaApp
 {
     public class AnapaApp: BasicWorkspaceApp
     {
+        public Photo[] photos;
         [SerializeField] private PhotoApp photoApp;
-        [SerializeField] private Photo[] photos;
-
         protected override void Start()
         {
             base.Start();

@@ -17,7 +17,7 @@ namespace Script.Managers.Senders
         [SerializeField] private SerializedDictionary<string, List<DialogueMessagePair>> a4ChatDialogues;
         [SerializeField] private AskaApp aska;
 
-        public static event Action<AskaChat> OnNewMessageSend;
+        public event Action<AskaChat> OnNewMessageSend;
        
         public override void StartDialogueSequence(string dialogueKey)
         {
@@ -52,7 +52,7 @@ namespace Script.Managers.Senders
             var dialogue = a4ChatDialogues[dialogueKey];
             StartDialogueSequenceAsync(dialogue).Forget();
         }
-        private async UniTask StartDialogueSequenceAsync(ChatCharacter chatCharacter, List<string> dialogueLines)
+        public async UniTask StartDialogueSequenceAsync(ChatCharacter chatCharacter, List<string> dialogueLines)
         {
             var dialogueChat = aska.Chats
                 .FirstOrDefault(chat => chat.User.CharacterType == chatCharacter);

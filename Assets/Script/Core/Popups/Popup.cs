@@ -12,8 +12,8 @@ namespace Script.Core.Popups
 {
     public class Popup: MonoBehaviour, IWindowedApp
     {
-        [SerializeField] private bool destroyOnClose;
-        [SerializeField] private Button closeButton;
+        [SerializeField] protected bool destroyOnClose;
+        [SerializeField] protected Button closeButton;
         protected AudioManager AudioManager { get; private set; }
         protected FMODEvents FMODEvents { get; private set; }
         protected bool isOpen;
@@ -25,6 +25,10 @@ namespace Script.Core.Popups
             FMODEvents = fmodEvents;
 
             GameManager.OnGameEnd += CloseApp;
+        }
+
+        private void Start()
+        {
             gameObject.SetActive(false);
         }
 
@@ -35,6 +39,11 @@ namespace Script.Core.Popups
 
         public virtual void OpenApp()
         {
+            if (isOpen)
+            {
+                return;
+            }
+            
             isOpen = true;
             
             closeButton.onClick.AddListener(CloseApp);

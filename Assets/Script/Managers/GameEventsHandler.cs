@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Script.Core;
 using Script.Core.Popups;
 using Script.Data;
@@ -40,7 +41,7 @@ namespace Script.Managers
             ClickHandler.ClicksUpdated -= CheckEnoughClicks;
         }
 
-        private void CheckEnoughClicks(int addAmount)
+        private void CheckEnoughClicks(BigInteger addAmount)
         {
             if (goalIndex < clickCountEventPair.Count)
             {
