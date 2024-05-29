@@ -34,6 +34,8 @@ namespace Script.Core
         
         public static event Action<string, Sprite> OnNewMamontTitleReached;
 
+        private BigInteger maxClicksCount;
+
         [Inject]
         public void Construct(IDataBank dataBank)
         {
@@ -43,6 +45,8 @@ namespace Script.Core
         {
             currentValue = (double)dataBank.Clicks;
             currentGoalIndex = 1;
+
+            maxClicksCount = dataBank.Clicks;
 
             maxValue = rankNameGoalPair.Values.ElementAt(currentGoalIndex);
             mamontTitle.text = rankNameGoalPair.Keys.First().Name;
@@ -104,9 +108,14 @@ namespace Script.Core
         }
         private void AddProgress(BigInteger amount)
         {
-            currentValue += (double)(decimal)amount;
+            if (dataBank.Clicks > maxClicksCount)
+            {
+                maxClicksCount = dataBank.Clicks;
+                
+                currentValue += (double)(decimal)amount;
 
-            currentValue = Math.Clamp(currentValue, 0, maxValue);
+                currentValue = Math.Clamp(currentValue, 0, maxValue);
+            }
         }
     }
 }
