@@ -16,14 +16,18 @@ MonoBehaviour:
   m_Subtarget: 2
   m_ModuleName: WindowsStandalone
   m_PlatformBuildProfile:
-    rid: 2497027383154180128
+    rid: 2497027339813126144
   m_Scenes:
   - m_enabled: 1
-    m_path: Assets/Scenes/WorkSceneMeylish.unity
+    m_path: Assets/Scenes/FINAL/StartScreen.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/FINAL/REPLACE WITH FINISHED.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/FINAL/EndScreen.unity
   references:
     version: 2
     RefIds:
-    - rid: 2497027383154180128
+    - rid: 2497027339813126144
       type: {class: WindowsPlatformSettings, ns: UnityEditor.WindowsStandalone, asm: UnityEditor.WindowsStandalone.Extensions}
       data:
         m_Development: 0

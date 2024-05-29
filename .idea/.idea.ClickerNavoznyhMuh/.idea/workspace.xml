@@ -73,7 +73,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:/мусор/clicker\ClickerNavoznyhMuh.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Builds/MamontCoin\ClickerNavoznyhMuh.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="D:\мусор\clicker" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -155,7 +155,7 @@
       <workItem from="1716880295410" duration="31967000" />
       <workItem from="1716920290118" duration="6932000" />
       <workItem from="1716950499724" duration="12634000" />
-      <workItem from="1716986692992" duration="662000" />
+      <workItem from="1716986692992" duration="2467000" />
     </task>
     <servers />
   </component>
