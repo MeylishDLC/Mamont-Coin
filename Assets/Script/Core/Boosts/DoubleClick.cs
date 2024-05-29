@@ -14,9 +14,11 @@ namespace Script.Core.Boosts
         [Header("Boost Improve")]
         [field:SerializeField] public string ImproveText { get; set; }
         [field: SerializeField] public int DoubleClickImproveAmount { get; private set; }
-        
+
+        private int currentDoubleClickAmount;
         public override void Activate()
         {
+            currentDoubleClickAmount = DoubleClickAmount;
             IsEnabled = true;
             ClickHandler.ClicksUpdated += OnClick;
         }
@@ -28,7 +30,7 @@ namespace Script.Core.Boosts
 
         public void Improve()
         {
-            DoubleClickAmount = DoubleClickImproveAmount;
+            currentDoubleClickAmount = DoubleClickImproveAmount;
         }
 
         private bool DoubleClickChance()
@@ -36,7 +38,6 @@ namespace Script.Core.Boosts
             var chance = Random.Range(1, 100);
             if (chance <= PercentageOfDoubleClick)
             {
-                Debug.Log($"Double click = {DoubleClickAmount}");
                 return true;
             }
             return false;
@@ -48,8 +49,10 @@ namespace Script.Core.Boosts
             {
                 return;
             }
-            
-            addAmount *= addAmount - 1;
+
+            addAmount *= currentDoubleClickAmount;
+            Debug.Log($"Double click = {addAmount}, {currentDoubleClickAmount}");
+            //addAmount *= addAmount - 1;
             OnBoostAddClicks.Invoke(addAmount);
         }
     }
