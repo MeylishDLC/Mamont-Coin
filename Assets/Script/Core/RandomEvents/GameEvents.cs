@@ -11,20 +11,16 @@ namespace Script.Core.RandomEvents
     {
         [SerializeField] private ArtClubEvent artEvent;
         [SerializeField] private ChineseTutorEvent chineseEvent;
-
-        private AudioManager audioManager;
-        private FMODEvents FMODEvents;
+        [SerializeField] private AnapaEvent anapaEvent;
+        
         private AskaMessageSender askaMessageSender;
         private SkampMessageSender skampMessageSender;
         
         [Inject]
-        public void Construct(SkampMessageSender skampMessageSender, AskaMessageSender askaMessageSender, 
-            AudioManager audioManager, FMODEvents fmodEvents)
+        public void Construct(SkampMessageSender skampMessageSender, AskaMessageSender askaMessageSender)
         {
             this.skampMessageSender = skampMessageSender;
             this.askaMessageSender = askaMessageSender;
-            this.audioManager = audioManager;
-            FMODEvents = fmodEvents;
         }
 
         public void StartChineseEvent()
@@ -36,6 +32,12 @@ namespace Script.Core.RandomEvents
         {
             artEvent.Construct(askaMessageSender, skampMessageSender);
             artEvent.StartEvent();
+        }
+
+        public void StartAnapaEvent()
+        {
+            anapaEvent.Construct(askaMessageSender);
+            anapaEvent.StartEvent();
         }
     }
 }
