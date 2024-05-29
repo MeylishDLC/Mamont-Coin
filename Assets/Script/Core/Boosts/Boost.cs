@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using FMODUnity;
 using Script.Data;
 using Script.Managers;
@@ -10,7 +11,7 @@ namespace Script.Core.Boosts
     public class Boost: ScriptableObject
     {
         protected bool IsEnabled { get; set; }
-        public static Action<int> OnBoostAddClicks;
+        public static Action<BigInteger> OnBoostAddClicks;
         private void OnDestroy()
         {
             GameManager.OnGameEnd -= Disable;

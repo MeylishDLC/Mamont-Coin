@@ -1,12 +1,13 @@
 ﻿using System.IO;
+using System.Numerics;
 using UnityEngine;
 
 namespace Script.Data
 {
     public class TestDataBank: IDataBank
     {
-        private long clicks;
-        public long Clicks
+        private BigInteger clicks;
+        public BigInteger Clicks
         {
             get => clicks;
             set
@@ -19,8 +20,8 @@ namespace Script.Data
             }
         }
 
-        private long multiplier = 1;
-        public long Multiplier
+        private BigInteger multiplier = 1;
+        public BigInteger Multiplier
         {
             get => multiplier;
             set

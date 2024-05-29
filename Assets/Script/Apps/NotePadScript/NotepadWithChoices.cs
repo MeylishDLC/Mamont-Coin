@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Core;
@@ -70,7 +71,7 @@ namespace Script.Apps.NotePadScript
 
             Boost.OnBoostAddClicks += AddClicksFromBoosts;
         }
-        private void AddClicksFromBoosts(int amount)
+        private void AddClicksFromBoosts(BigInteger amount)
         {
             dataBank.Clicks += amount;
             ClickHandler.ClicksUpdated.Invoke(amount);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -41,7 +42,7 @@ namespace Script.Core.Boosts
             return false;
         }
 
-        private void OnClick(int addAmount)
+        private void OnClick(BigInteger addAmount)
         {
             if (!DoubleClickChance())
             {

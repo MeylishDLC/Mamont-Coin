@@ -1,8 +1,10 @@
-﻿namespace Script.Data
+﻿using System.Numerics;
+
+namespace Script.Data
 {
     public interface IDataBank
     {
-        public long Clicks { get; set; }
-        public long Multiplier { get; set; }
+        public BigInteger Clicks { get; set; }
+        public BigInteger Multiplier { get; set; }
     }
 }

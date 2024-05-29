@@ -35,6 +35,11 @@ namespace Script.Core.Popups
 
         public virtual void OpenApp()
         {
+            if (isOpen)
+            {
+                return;
+            }
+            
             isOpen = true;
             
             closeButton.onClick.AddListener(CloseApp);
