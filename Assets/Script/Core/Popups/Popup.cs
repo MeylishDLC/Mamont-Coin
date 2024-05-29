@@ -14,6 +14,7 @@ namespace Script.Core.Popups
     {
         [SerializeField] protected bool destroyOnClose;
         [SerializeField] protected Button closeButton;
+        [SerializeField] protected bool disabledOnStart;
         protected AudioManager AudioManager { get; private set; }
         protected FMODEvents FMODEvents { get; private set; }
         protected bool isOpen;
@@ -29,7 +30,10 @@ namespace Script.Core.Popups
 
         private void Start()
         {
-            gameObject.SetActive(false);
+            if (disabledOnStart)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         private void OnDestroy()
