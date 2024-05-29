@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Script.Core.Popups;
 using Script.Managers;
 using Script.Managers.Senders;
 using Script.Sound;
@@ -25,6 +26,7 @@ namespace Script.Apps.ChatScript.Aska
         [Header("Main UI")] 
         [SerializeField] private Button openIcon;
         [SerializeField] private Button closeButton;
+        [SerializeField] private AskaPopup askaPopup;
         [SerializeField] private float scaleOnClose;
         [SerializeField] private float scaleDuration;
         
@@ -36,6 +38,7 @@ namespace Script.Apps.ChatScript.Aska
         
         private TMP_Text notificationCounterText;
         private int notificationCounter;
+        
         private AskaMessageSender askaMessageSender;
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
@@ -53,6 +56,7 @@ namespace Script.Apps.ChatScript.Aska
         {
             openIcon.onClick.AddListener(OpenApp);
             closeButton.onClick.AddListener(CloseApp);
+            askaPopup.RedirectButton.onClick.AddListener(OpenApp);
 
             initPos = gameObject.transform.localPosition;
             gameObject.transform.localScale = new Vector3(scaleOnClose, scaleOnClose, scaleOnClose);

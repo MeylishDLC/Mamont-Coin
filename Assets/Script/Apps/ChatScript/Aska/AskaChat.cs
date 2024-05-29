@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using Script.Core.Popups;
 using Script.Managers;
 using Script.Managers.Senders;
 using TMPro;
@@ -17,11 +18,10 @@ namespace Script.Apps.ChatScript.Aska
         
         [SerializeField] private Image notificationIndicator;
         [SerializeField] private Button OpenChatButton;
-
+        
         [SerializeField] private Color activeProfileColor;
         [SerializeField] private Color inactiveProfileColor;
         [SerializeField] private Image profileImage;
-        
         public static event Action<AskaChat> OnChatChanged;
 
         private AskaMessageSender askaMessageSender;

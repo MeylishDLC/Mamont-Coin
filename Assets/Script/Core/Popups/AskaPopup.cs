@@ -1,11 +1,9 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Apps.ChatScript.Aska;
 using Script.Managers;
 using Script.Managers.Senders;
-using Script.Sound;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,14 +13,14 @@ namespace Script.Core.Popups
 {
     public class AskaPopup: Popup
     {
+        [field:SerializeField] public Button RedirectButton { get; private set; }
+        
         [SerializeField] private Image avatar;
         [SerializeField] private TMP_Text name;
-        [SerializeField] private AskaApp aska;        
         [SerializeField] private int stayTimeMilliseconds;
         [SerializeField] private int delayTimeMilliseconds;
         
         private AskaChat chatToRedirect;
-        private Button redirectButton;
         private CancellationTokenSource notificationDisappearCts; 
         private Vector3 initialPosition;
         private AskaMessageSender askaMessageSender;
@@ -31,8 +29,7 @@ namespace Script.Core.Popups
         {
             initialPosition = gameObject.transform.position;
             
-            redirectButton = GetComponent<Button>();
-            redirectButton.onClick.AddListener(RedirectToChat);
+            RedirectButton.onClick.AddListener(RedirectToChat);
             closeButton.onClick.AddListener(CloseApp);
             
             askaMessageSender.OnNewMessageSend += ShowNotification;
@@ -57,11 +54,6 @@ namespace Script.Core.Popups
 
         private void ShowNotification(AskaChat chat)
         {
-            if (aska.CurrentOpenedChat == chat && aska.IsOpen)
-            {
-                return;
-            }
-            
             chatToRedirect = chat;
             avatar.sprite = chat.User.ProfilePicture;
             name.text = $"от: {chat.User.Name}";
@@ -113,7 +105,6 @@ namespace Script.Core.Popups
         private void RedirectToChat()
         {
             CancelCts();
-            aska.OpenApp();
             chatToRedirect.OpenChat();
             CloseApp();
         }
