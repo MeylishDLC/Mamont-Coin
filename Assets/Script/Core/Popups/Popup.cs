@@ -12,8 +12,8 @@ namespace Script.Core.Popups
 {
     public class Popup: MonoBehaviour, IWindowedApp
     {
-        [SerializeField] private bool destroyOnClose;
-        [SerializeField] private Button closeButton;
+        [SerializeField] protected bool destroyOnClose;
+        [SerializeField] protected Button closeButton;
         protected AudioManager AudioManager { get; private set; }
         protected FMODEvents FMODEvents { get; private set; }
         protected bool isOpen;

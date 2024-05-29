@@ -5,6 +5,7 @@ using Script.Managers.Senders;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Script.Apps.ChatScript.Aska
 {
@@ -22,11 +23,13 @@ namespace Script.Apps.ChatScript.Aska
         [SerializeField] private Image profileImage;
         
         public static event Action<AskaChat> OnChatChanged;
+
+        private AskaMessageSender askaMessageSender;
         private void Awake()
         {
             OpenChatButton.onClick.AddListener(OpenChat);
             OnChatChanged += CloseChat;
-            AskaMessageSender.OnNewMessageSend += SetNotificationIndicator;
+            askaMessageSender.OnNewMessageSend += SetNotificationIndicator;
             
             inactiveProfileColor = profileImage.color;
             
@@ -34,9 +37,15 @@ namespace Script.Apps.ChatScript.Aska
             gameObject.SetActive(false);
         }
 
+        [Inject]
+        public void Construct(AskaMessageSender askaMessageSender)
+        {
+            this.askaMessageSender = askaMessageSender;
+        }
+
         private void OnDestroy()
         {
-            AskaMessageSender.OnNewMessageSend -= SetNotificationIndicator;
+            askaMessageSender.OnNewMessageSend -= SetNotificationIndicator;
             OnChatChanged -= CloseChat;
         }
 

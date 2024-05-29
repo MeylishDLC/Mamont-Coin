@@ -36,13 +36,15 @@ namespace Script.Apps.ChatScript.Aska
         
         private TMP_Text notificationCounterText;
         private int notificationCounter;
+        private AskaMessageSender askaMessageSender;
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
         private Vector3 initPos;
         
         [Inject]
-        public void Construct(AudioManager audioManager, FMODEvents fmodEvents)
+        public void Construct(AudioManager audioManager, FMODEvents fmodEvents, AskaMessageSender askaMessageSender)
         {
+            this.askaMessageSender = askaMessageSender;
             this.audioManager = audioManager;
             FMODEvents = fmodEvents;
         }
@@ -57,7 +59,7 @@ namespace Script.Apps.ChatScript.Aska
             gameObject.SetActive(false);
             
             AskaChat.OnChatChanged += ChangeChat;
-            AskaMessageSender.OnNewMessageSend += SetNotification;
+            askaMessageSender.OnNewMessageSend += SetNotification;
             GameManager.OnGameEnd += CloseApp;
 
             notificationIcon.gameObject.SetActive(false);
@@ -71,7 +73,7 @@ namespace Script.Apps.ChatScript.Aska
         private void OnDestroy()
         {
             AskaChat.OnChatChanged -= ChangeChat;
-            AskaMessageSender.OnNewMessageSend -= SetNotification;
+            askaMessageSender.OnNewMessageSend -= SetNotification;
             GameManager.OnGameEnd -= CloseApp;
         }
 

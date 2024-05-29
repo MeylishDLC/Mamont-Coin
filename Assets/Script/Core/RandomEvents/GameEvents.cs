@@ -10,6 +10,7 @@ namespace Script.Core.RandomEvents
     public class GameEvents: MonoBehaviour
     {
         [SerializeField] private ArtClubEvent artEvent;
+        [SerializeField] private ChineseTutorEvent chineseEvent;
 
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
@@ -25,7 +26,12 @@ namespace Script.Core.RandomEvents
             this.audioManager = audioManager;
             FMODEvents = fmodEvents;
         }
-        
+
+        public void StartChineseEvent()
+        {
+            chineseEvent.Construct(askaMessageSender);
+            chineseEvent.StartEvent();
+        }
         public void StartArtEvent()
         {
             artEvent.Construct(askaMessageSender, skampMessageSender);

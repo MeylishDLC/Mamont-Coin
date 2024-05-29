@@ -25,27 +25,34 @@ namespace Script.Core.Popups
         private Button redirectButton;
         private CancellationTokenSource notificationDisappearCts; 
         private Vector3 initialPosition;
+        private AskaMessageSender askaMessageSender;
         
-        private void Start()
+        private void Awake()
         {
-            gameObject.SetActive(false);
             initialPosition = gameObject.transform.position;
+            
             redirectButton = GetComponent<Button>();
             redirectButton.onClick.AddListener(RedirectToChat);
-            AskaMessageSender.OnNewMessageSend += ShowNotification;
+            closeButton.onClick.AddListener(CloseApp);
+            
+            askaMessageSender.OnNewMessageSend += ShowNotification;
             GameManager.OnGameEnd += CloseApp;
             notificationDisappearCts = new CancellationTokenSource();
+            
+            gameObject.SetActive(false);
+        }
+
+        [Inject]
+        public void Construct(AskaMessageSender askaMessageSender)
+        {
+            this.askaMessageSender = askaMessageSender;
         }
 
         private void OnDestroy()
         {
-            AskaMessageSender.OnNewMessageSend -= ShowNotification;
+            askaMessageSender.OnNewMessageSend -= ShowNotification;
             GameManager.OnGameEnd -= CloseApp;
-
-            if (notificationDisappearCts != null)
-            {
-                notificationDisappearCts.Dispose();
-            }
+            notificationDisappearCts?.Dispose();
         }
 
         private void ShowNotification(AskaChat chat)
@@ -54,7 +61,7 @@ namespace Script.Core.Popups
             {
                 return;
             }
-
+            
             chatToRedirect = chat;
             avatar.sprite = chat.User.ProfilePicture;
             name.text = $"от: {chat.User.Name}";
@@ -74,9 +81,12 @@ namespace Script.Core.Popups
                 CloseApp();
             }
             
-            base.OpenApp();
-            DisappearAfterTimer(notificationDisappearCts.Token).Forget();
+            gameObject.SetActive(true);
             isOpen = true;
+            transform.localScale = new Vector3(1, 1, 1);
+            transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo);
+            
+            DisappearAfterTimer(notificationDisappearCts.Token).Forget();
         }
         private async UniTask DisappearAfterTimer(CancellationToken token)
         {
@@ -95,9 +105,9 @@ namespace Script.Core.Popups
         private async UniTask CloseAppAsync()
         {
             CancelCts();
-            await gameObject.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
-            base.CloseApp();
             isOpen = false;
+            await gameObject.transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask();
+            gameObject.SetActive(false);
             gameObject.transform.position = initialPosition;
         }
         private void RedirectToChat()
