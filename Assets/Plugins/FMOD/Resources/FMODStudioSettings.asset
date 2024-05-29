@@ -453,8 +453,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../FMOD/SCAMontAudioPrj/SCAMontAudioPrj.fspro
-  sourceBankPath: ../../FMOD/SCAMontAudioPrj/Build
+  sourceProjectPath: SCAMontAudioPrj/SCAMontAudioPrj.fspro
+  sourceBankPath: SCAMontAudioPrj/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

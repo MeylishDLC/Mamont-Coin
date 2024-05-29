@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{9000e7f7-ddc1-4193-b0f2-f3020b2be28a}">
+		<property name="assetPath">
+			<value>Music/Trap_-Aero-Chord-Surface-_Monstercat-Release_.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>254.17142857142858</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d08c2f65-daf8-4e77-bf01-77bde99e9dfe}</destination>
+		</relationship>
+	</object>
+</objects>
