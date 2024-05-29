@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Script.Core.Popups;
 using Script.Core.Popups.Spawns;
 using Script.Managers;
@@ -29,6 +30,11 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
         }
         public override void OpenApp()
         {
+            if (IsOpen)
+            {
+                return;
+            }
+            
             gameObject.transform.SetSiblingIndex(gameObject.transform.parent.childCount - 1);
             
             popupContainer = FindAnyObjectByType<PopupContainer>();
@@ -37,6 +43,24 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
             SpawnPopups().Forget();
         }
 
+        public override void CloseApp()
+        {
+            CloseAppAsync().Forget();
+        }
+
+        private async UniTask CloseAppAsync()
+        {
+            openIconButton.interactable = false;
+            closeButton.interactable = false;
+            
+            await gameObject.transform.DOScale(scaleOnClose, scaleDuration).ToUniTask();
+            gameObject.SetActive(false);
+            IsOpen = false;
+            gameObject.transform.localPosition = initPos;
+            openIconButton.interactable = true;
+            closeButton.interactable = true;
+            lagScreen.SetActive(false);
+        }
         private async UniTask SpawnPopups()
         {
             await UniTask.Delay(delayBeforeLagMilliseconds);
