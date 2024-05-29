@@ -6488,7 +6488,7 @@ PrefabInstance:
       objectReference: {fileID: 5158180467527427361}
     - target: {fileID: 1233300447702482193, guid: 4d33ac5d7609c0e479e03bf4515c8a8f, type: 3}
       propertyPath: Debugging
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1233300447702482193, guid: 4d33ac5d7609c0e479e03bf4515c8a8f, type: 3}
       propertyPath: clickerEXE
@@ -18968,8 +18968,8 @@ Transform:
   m_Children:
   - {fileID: 659821490}
   - {fileID: 4583416336598674470}
-  - {fileID: 7020896590981412619}
   - {fileID: 662333657303376449}
+  - {fileID: 7020896590981412619}
   - {fileID: 379812547213841130}
   - {fileID: 651101850}
   - {fileID: 1543359795}
@@ -19155,7 +19155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.size
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[1].key
@@ -19235,7 +19235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[20].key
-      value: 1550
+      value: 1000000001
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: countEventPairs.Array.data[0].<ClicksCount>k__BackingField
@@ -19399,7 +19399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[19].value.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[20].value.m_PersistentCalls.m_Calls.Array.size
@@ -19739,7 +19739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[20].value.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[0].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -19988,7 +19988,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[20].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1604464781}
+      objectReference: {fileID: 704487224}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[0].value.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -20483,7 +20483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[20].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartDialogueSequence
+      value: GameEnd
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: countEventPairs.Array.data[0].<Event>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -22827,7 +22827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[20].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ChatManager, Assembly-CSharp
+      value: Script.Managers.GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[0].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -23027,7 +23027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[20].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: act1Hacker2
+      value: act4Hacker1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: countEventPairs.Array.data[0].<Event>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -28661,7 +28661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2530330639597019422, guid: b86c20c32c3bcfb42adb022c91eb762f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2849610217941861831, guid: b86c20c32c3bcfb42adb022c91eb762f, type: 3}
       propertyPath: price
@@ -28885,11 +28885,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7489042842834128346, guid: b86c20c32c3bcfb42adb022c91eb762f, type: 3}
       propertyPath: m_Size
-      value: 0.33349115
+      value: 0.3521916
       objectReference: {fileID: 0}
     - target: {fileID: 7489042842834128346, guid: b86c20c32c3bcfb42adb022c91eb762f, type: 3}
       propertyPath: m_Value
-      value: 0.70000005
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7565258719123940712, guid: b86c20c32c3bcfb42adb022c91eb762f, type: 3}
       propertyPath: price
@@ -29760,7 +29760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8879951247410238294, guid: 73c526a8a5331ea458c4b061bbbe4781, type: 3}
       propertyPath: delayTimeMilliseconds
-      value: 1500
+      value: 2500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
