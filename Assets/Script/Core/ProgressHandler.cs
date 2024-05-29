@@ -81,6 +81,7 @@ namespace Script.Core
                     {
                         maxValue = rankNameGoalPair.Values.ElementAt(currentGoalIndex);
                     }
+                    Debug.Log($"Current goal: {maxValue}");
                 }
                 else
                 {

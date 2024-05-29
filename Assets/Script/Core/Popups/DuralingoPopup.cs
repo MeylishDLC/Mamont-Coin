@@ -26,7 +26,11 @@ namespace Script.Core.Popups
             button.onClick.AddListener(OnClick);
             
             gameObject.SetActive(true);
-            
+
+            if (AudioManager.HasMusic("Skype Call"))
+            {
+                AudioManager.StopMusic("Skype Call", STOP_MODE.IMMEDIATE);
+            }
             AudioManager.InitializeMusic("Skype Call", FMODEvents.skypeCallSound);
         }
 

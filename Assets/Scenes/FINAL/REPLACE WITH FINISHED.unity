@@ -8806,10 +8806,10 @@ PrefabInstance:
     - target: {fileID: 8328817166888348767, guid: ab88a223989375441a70287c52721bda, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 710115779}
+      objectReference: {fileID: 710115781}
     - target: {fileID: 8328817166888348767, guid: ab88a223989375441a70287c52721bda, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: OpenApp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18774,55 +18774,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[2].key
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[3].key
-      value: 1150
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[4].key
-      value: 1550
+      value: 1150
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[5].key
-      value: 10000
+      value: 1550
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[6].key
-      value: 11500
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[7].key
-      value: 12000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[8].key
-      value: 22000
+      value: 11500
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].key
-      value: 100000
+      value: 12000
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[10].key
-      value: 100001
+      value: 22000
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[11].key
-      value: 115000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].key
-      value: 120000
+      value: 100001
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[13].key
-      value: 150000
+      value: 115000
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[14].key
-      value: 4000000
+      value: 300000
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[15].key
@@ -18830,19 +18830,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[16].key
-      value: 10000001
+      value: 4000000
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[17].key
-      value: 10010000
+      value: 10000001
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[18].key
-      value: 10100000
+      value: 10010000
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[19].key
-      value: 30100000
+      value: 10100000
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[20].key
@@ -18942,11 +18942,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[2].value.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[3].value.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[4].value.m_PersistentCalls.m_Calls.Array.size
@@ -18962,15 +18962,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[7].value.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[8].value.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].value.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[10].value.m_PersistentCalls.m_Calls.Array.size
@@ -18978,15 +18978,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[11].value.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[13].value.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[14].value.m_PersistentCalls.m_Calls.Array.size
@@ -18998,11 +18998,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[16].value.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[18].value.m_PersistentCalls.m_Calls.Array.size
@@ -19142,7 +19142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[3].value.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[3].value.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -19166,7 +19166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[5].value.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[5].value.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -19174,7 +19174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[6].value.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[6].value.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -19246,7 +19246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -19326,6 +19326,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
@@ -19334,7 +19346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[19].value.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[20].value.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -19367,7 +19379,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[2].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5158180467527427361}
+      objectReference: {fileID: 614247646}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[2].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19379,7 +19391,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[3].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1604464781}
+      objectReference: {fileID: 5158180467527427361}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[3].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19403,7 +19415,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[5].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1319758429}
+      objectReference: {fileID: 1604464781}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[5].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19411,7 +19423,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[6].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 614247646}
+      objectReference: {fileID: 1106834503}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[6].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19423,7 +19435,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[7].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5158180467527427361}
+      objectReference: {fileID: 1319758429}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[7].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19435,7 +19447,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[8].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5158180467527427361}
+      objectReference: {fileID: 614247646}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[8].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19447,7 +19459,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1319758429}
+      objectReference: {fileID: 5158180467527427361}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19471,7 +19483,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[11].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5158180467527427361}
+      objectReference: {fileID: 1319758429}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[11].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19483,7 +19495,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1106834503}
+      objectReference: {fileID: 5158180467527427361}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19499,7 +19511,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[13].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1673205047}
+      objectReference: {fileID: 5158180467527427361}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[13].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19515,7 +19527,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[14].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 614247646}
+      objectReference: {fileID: 1673205047}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[14].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19547,7 +19559,7 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[16].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5158180467527427361}
+      objectReference: {fileID: 614247646}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[16].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19563,15 +19575,27 @@ PrefabInstance:
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1106834503}
+      objectReference: {fileID: 5158180467527427361}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
-      propertyPath: clickCountEventPair.pairs.Array.data[18].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1604464781}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1604464781}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1604464781}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[18].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1106834503}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[19].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 614247646}
+      objectReference: {fileID: 1604464781}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[20].value.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -19809,6 +19833,18 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[18].value.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -19838,7 +19874,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[2].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenApp
+      value: StartArtEvent
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[2].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -19850,7 +19886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[3].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartDialogueSequence
+      value: OpenApp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[3].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -19874,7 +19910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[5].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenApp
+      value: StartDialogueSequence
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[5].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -19882,7 +19918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[6].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartChineseEvent
+      value: StartA4ChatDialogueSequence
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[6].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -19906,11 +19942,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[8].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenApp
+      value: StartChineseEvent
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[8].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SwitchToHacker
+      value: SwitchToScammer
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[8].value.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -19922,7 +19958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SwitchToHacker
+      value: SwitchToScammer
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].value.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -19934,7 +19970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[10].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SwitchToScammer
+      value: SwitchToHacker
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[10].value.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -19946,7 +19982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[11].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SwitchToHacker
+      value: SwitchToScammer
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[11].value.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -19954,11 +19990,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartA4ChatDialogueSequence
+      value: OpenApp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SwitchToHacker
+      value: SwitchToScammer
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -19974,7 +20010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[13].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SwitchToScammer
+      value: SwitchToHacker
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[13].value.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -19986,7 +20022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[14].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartAnapaEvent
+      value: OpenApp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[14].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -20018,7 +20054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[16].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenApp
+      value: StartAnapaEvent
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[16].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -20034,15 +20070,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartA4ChatDialogueSequence
+      value: OpenApp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
-      propertyPath: clickCountEventPair.pairs.Array.data[18].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SwitchToScammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: StartDialogueSequence
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: StartDialogueSequence
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[18].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartA4ChatDialogueSequence
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[19].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartArtEvent
+      value: StartDialogueSequence
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[20].value.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -22170,7 +22218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[2].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SkypeApp, Assembly-CSharp
+      value: Script.Core.RandomEvents.GameEvents, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[2].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -22182,7 +22230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[3].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ChatManager, Assembly-CSharp
+      value: SkypeApp, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[3].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -22206,7 +22254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[5].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Script.Apps.NotePadScript.NotepadWithChoices, Assembly-CSharp
+      value: ChatManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[5].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -22214,7 +22262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[6].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Script.Core.RandomEvents.GameEvents, Assembly-CSharp
+      value: Script.Managers.Senders.AskaMessageSender, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[6].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -22226,7 +22274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[7].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SkypeApp, Assembly-CSharp
+      value: Script.Apps.NotePadScript.NotepadWithChoices, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[7].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -22238,7 +22286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[8].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SkypeApp, Assembly-CSharp
+      value: Script.Core.RandomEvents.GameEvents, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[8].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -22250,7 +22298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Script.Apps.NotePadScript.NotepadWithChoices, Assembly-CSharp
+      value: SkypeApp, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -22274,7 +22322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[11].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SkypeApp, Assembly-CSharp
+      value: Script.Apps.NotePadScript.NotepadWithChoices, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[11].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -22286,7 +22334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Script.Managers.Senders.AskaMessageSender, Assembly-CSharp
+      value: SkypeApp, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -22302,7 +22350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[13].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Script.Apps.Duralingo.DuralingoGame, Assembly-CSharp
+      value: SkypeApp, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[13].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -22318,7 +22366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[14].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Script.Core.RandomEvents.GameEvents, Assembly-CSharp
+      value: Script.Apps.Duralingo.DuralingoGame, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[14].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -22350,7 +22398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[16].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SkypeApp, Assembly-CSharp
+      value: Script.Core.RandomEvents.GameEvents, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[16].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -22366,15 +22414,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Script.Managers.Senders.AskaMessageSender, Assembly-CSharp
+      value: SkypeApp, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
-      propertyPath: clickCountEventPair.pairs.Array.data[18].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: ChatManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: ChatManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: ChatManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[18].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Script.Managers.Senders.AskaMessageSender, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[19].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Script.Core.RandomEvents.GameEvents, Assembly-CSharp
+      value: ChatManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[20].value.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -22402,7 +22462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[2].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: 
+      value: act4Hacker1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[2].value.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
@@ -22414,7 +22474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[3].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: act1Hacker1
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[3].value.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
@@ -22426,7 +22486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[4].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: act1Hacker2
+      value: act1Hacker1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[4].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
@@ -22438,7 +22498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[6].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: ArtClubEvent
+      value: Distant
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[6].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
@@ -22454,7 +22514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[8].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: act1Hacker2
+      value: ArtClubEvent
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[8].value.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
@@ -22462,27 +22522,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[8].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: act2Hacker
+      value: act2Scammer
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: act4Hacker1
+      value: act1Hacker2
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[9].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: act2Hacker
+      value: act2Scammer
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[10].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: act2Hacker
+      value: act1Hacker2
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[10].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: act3Scammer
+      value: act2Hacker
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[11].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: act2Hacker
+      value: act4Hacker1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[11].value.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
@@ -22490,15 +22550,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[11].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: act3Hacker
+      value: act3Scammer
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Distant
+      value: act2Hacker
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: act3Hacker
+      value: act3Scammer
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[12].value.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
@@ -22506,7 +22566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[13].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: act4Hacker1
+      value: act2Hacker
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[13].value.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
@@ -22514,7 +22574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[13].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: act4Scammer
+      value: act3Hacker
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[13].value.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
@@ -22522,7 +22582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[14].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Distant
+      value: act4Hacker1
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[14].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
@@ -22546,7 +22606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[16].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: act2Hacker
+      value: Distant
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[16].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
@@ -22558,11 +22618,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Fruktovich
+      value: act2Hacker
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
+      value: act4Scammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
+      value: act4Hacker
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[18].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: act4Hacker1
+      value: Fruktovich
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[19].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -24213,6 +24281,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
       propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}
+      propertyPath: clickCountEventPair.pairs.Array.data[17].value.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5459070280681888414, guid: b9d50d0097124e04ead9fa4fef8a6871, type: 3}

@@ -74,7 +74,7 @@ namespace Script.Core.Popups.Spawns
 
         private async UniTask Bounce(Popup popupWindow, CancellationToken token)
         {
-            while (!token.IsCancellationRequested)
+            while (!token.IsCancellationRequested && popupWindow.isActiveAndEnabled)
             {
                 await popupWindow.transform.DOScale(0.95f, 0.2f).SetLoops(2, LoopType.Yoyo).ToUniTask(cancellationToken: token);
                 await UniTask.Delay(100, cancellationToken: token);

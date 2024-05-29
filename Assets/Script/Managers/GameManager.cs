@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using FMOD.Studio;
@@ -9,6 +10,7 @@ using Script.Apps.NotePadScript;
 using Script.Apps.SmallStuff.AppsOnWorkspace.YunixMusic;
 using Script.Core.Popups;
 using Script.Core.Popups.Spawns;
+using Script.Data;
 using Script.Managers.Senders;
 using Script.Sound;
 using Script.UI;
@@ -16,6 +18,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Script.Managers
 {
@@ -46,11 +49,12 @@ namespace Script.Managers
 
         [SerializeField] private Vector3 skypeSetPosition;
         [SerializeField] private Vector3 notepadSetPosition;
+        [SerializeField] private string goal;
 
         private SkampMessageSender _skampMessageSender;
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
-
+        
         public static event Action OnGameEnd;
 
         [Inject]
@@ -157,6 +161,6 @@ namespace Script.Managers
             bankCardForm.SetActive(true);
             await bankCardForm.transform.DOScale(bankCardFormScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();
         }
-    
+        
     }
 }

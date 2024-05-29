@@ -29,13 +29,8 @@ namespace Script.Managers
         {
             goalIndex = 0;
             currentGoal = clickCountEventPair.Keys.ElementAt(goalIndex);
-        }
-
-        private void OnEnable()
-        {
             ClickHandler.ClicksUpdated += CheckEnoughClicks;
         }
-
         private void OnDestroy()
         {
             ClickHandler.ClicksUpdated -= CheckEnoughClicks;
@@ -54,11 +49,12 @@ namespace Script.Managers
                     {
                         currentGoal = keys[goalIndex];
                     }
+                    //Debug.Log($"current goal: {currentGoal}");
                 }
             }
             else
             {
-                Debug.Log("All goals achieved");
+                Debug.Log("Game events all goals reached");
             }
         }
 
