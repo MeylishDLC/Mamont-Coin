@@ -49,13 +49,14 @@ namespace Script.Managers
 
         [SerializeField] private Vector3 skypeSetPosition;
         [SerializeField] private Vector3 notepadSetPosition;
-        [SerializeField] private string goal;
 
         private SkampMessageSender _skampMessageSender;
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
+        private IDataBank _dataBank;
         
         public static event Action OnGameEnd;
+        
 
         [Inject]
         public void Construct(SpecificBoostSetter specificBoostSetter, SkampMessageSender skampMessageSender, 

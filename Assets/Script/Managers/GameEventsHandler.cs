@@ -49,7 +49,7 @@ namespace Script.Managers
                     {
                         currentGoal = keys[goalIndex];
                     }
-                    //Debug.Log($"current goal: {currentGoal}");
+                    Debug.Log($"current goal: {currentGoal}");
                 }
             }
             else
