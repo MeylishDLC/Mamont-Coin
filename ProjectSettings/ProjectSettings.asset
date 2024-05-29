@@ -686,7 +686,7 @@ PlayerSettings:
   webWasm2023: 0
   scriptingDefineSymbols:
     Standalone: UNITASK_DOTWEEN_SUPPORT
-    WebGL: UNITASK_DOTWEEN_SUPPORT
+    WebGL: UNITASK_DOTWEEN_SUPPORT;FMOD_IGNORE_STREAM_CACHE;FMOD_LOWLEVEL
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

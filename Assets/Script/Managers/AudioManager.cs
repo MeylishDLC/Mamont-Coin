@@ -118,16 +118,6 @@ namespace Script.Managers
 
             RuntimeManager.CoreSystem.mixerSuspend();
             RuntimeManager.CoreSystem.mixerResume();
-            
-            CheckBanksLoaded().Forget();
-        }
-
-        private async UniTask CheckBanksLoaded()
-        {
-            while (!RuntimeManager.HaveAllBanksLoaded)
-            {
-                await UniTask.Yield();
-            }
         }
     }
 }

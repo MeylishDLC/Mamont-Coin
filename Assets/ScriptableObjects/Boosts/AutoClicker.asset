@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AutoClicker
   m_EditorClassIdentifier: 
   <ClickFrequencyMilliseconds>k__BackingField: 100
-  <AutoClickAmount>k__BackingField: 1
+  <AutoClickAmount>k__BackingField: 10
   <ImproveText>k__BackingField: "- \u043F\u043E\u0434\u043A\u0440\u0443\u0442\u0438\u0442\u044C
     \u0430\u0432\u0442\u043E\u043A\u043B\u0438\u043A\u0435\u0440"
-  <AutoClickImproveAmount>k__BackingField: 2
+  <AutoClickImproveAmount>k__BackingField: 20
