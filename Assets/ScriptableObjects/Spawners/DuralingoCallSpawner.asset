@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DuralingoCallSpawner
   m_EditorClassIdentifier: 
   <FrequencyMilliseconds>k__BackingField: 8000
-  callsAmount: 3
+  callsAmount: 2
   popup: {fileID: 4623816063739237335, guid: dd44f04a35349ee4fbeb43e4f736beae, type: 3}
   initSpawnPosition: {x: 583.51, y: -396.6, z: 0}
