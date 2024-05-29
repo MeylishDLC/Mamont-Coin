@@ -24,9 +24,9 @@ namespace Script.Managers
         [Range(0,1)]
         public float SFXVolume = 1;
 
-        private Bus masterBus;
-        private Bus musicBus;
-        private Bus SFXBus;
+        public Bus masterBus;
+        public Bus musicBus;
+        public Bus SFXBus;
 
         private Dictionary<string, EventInstance> eventInstances;
 
@@ -35,10 +35,7 @@ namespace Script.Managers
         private void Awake()
         {
             LoadBanks();
-            eventInstances = new();
-            masterBus = RuntimeManager.GetBus("bus:/");
-            musicBus = RuntimeManager.GetBus("bus:/Music");
-            SFXBus = RuntimeManager.GetBus("bus:/SFX");
+            eventInstances = new Dictionary<string, EventInstance>();
         }
 
         private void Update()

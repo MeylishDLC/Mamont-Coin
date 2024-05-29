@@ -1,4 +1,5 @@
-﻿using Script.Managers;
+﻿using FMODUnity;
+using Script.Managers;
 using Script.Sound;
 using Zenject;
 
@@ -21,7 +22,11 @@ namespace Script.Infrastructure
         }
         private void BindFMODEvents()
         {
+            var audioManager = Container.Resolve<AudioManager>();
             Container.Bind<FMODEvents>().FromInstance(FMODEvents).AsSingle();
+            audioManager.masterBus = RuntimeManager.GetBus("bus:/");
+            audioManager.musicBus = RuntimeManager.GetBus("bus:/Music");
+            audioManager.SFXBus = RuntimeManager.GetBus("bus:/SFX");
         }
     }
 }

@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15.5, y: -17.3}
-  m_SizeDelta: {x: 46.150024, y: 22.71997}
+  m_AnchoredPosition: {x: -10.799988, y: -7.399994}
+  m_SizeDelta: {x: 61.241, y: 30.15}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &5002605077823240492
 CanvasRenderer:
@@ -131,8 +131,8 @@ GameObject:
   - component: {fileID: 3273163482677737882}
   - component: {fileID: 7199504872406405420}
   - component: {fileID: 2862471213568172707}
-  - component: {fileID: 3889838720646688535}
   - component: {fileID: 7112862718144693819}
+  - component: {fileID: 3901316508049612369}
   m_Layer: 0
   m_Name: MyComputerWindow
   m_TagString: Untagged
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7412104278440080869, guid: fb8c2831527413a47a89307c34a6320f, type: 3}
+  m_Sprite: {fileID: 406395315414665482, guid: abdc626c7e0dd8f4c9fa32343832b8e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -198,22 +198,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3889838720646688535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5533639220326626380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3412114b38cc400d8c70bf8f7d368627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  openIconButton: {fileID: 0}
-  closeButton: {fileID: 8207679036749528784}
-  scaleOnClose: 0.9
-  scaleDuration: 0.15
 --- !u!114 &7112862718144693819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,3 +211,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   draggableObjectRectTransform: {fileID: 3273163482677737882}
+--- !u!114 &3901316508049612369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5533639220326626380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c4073dd56d4448b544070951199ad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openIconButton: {fileID: 0}
+  closeButton: {fileID: 8207679036749528784}
+  scaleOnClose: 0.8
+  scaleDuration: 0.2
