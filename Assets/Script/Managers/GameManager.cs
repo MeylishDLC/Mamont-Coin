@@ -37,7 +37,7 @@ namespace Script.Managers
         [SerializeField] private SkypeApp skypeApp; 
         [SerializeField] private NotepadInteractable notepadInteractive;
         [SerializeField] private NotepadWithChoices notepadWithChoices;
-        [SerializeField] private YunixMusicApp yunixMusicApp;
+        [SerializeField] private YunixMusicApp yunixMusicApp; 
         
         [Header("Introduction")] 
         [SerializeField] private RandomSpawner popupSpawner;
