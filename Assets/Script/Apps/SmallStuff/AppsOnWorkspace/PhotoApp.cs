@@ -14,7 +14,6 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
         [field:SerializeField] public Image Picture { get; private set; }
         protected override void Start()
         {
-            GameManager.OnGameEnd += CloseApp;
             closeButton.onClick.AddListener(CloseApp);
             
             gameObject.transform.localScale = new Vector3(scaleOnClose, scaleOnClose, 0);

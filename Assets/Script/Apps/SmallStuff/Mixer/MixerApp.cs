@@ -17,16 +17,9 @@ namespace Script.Apps.SmallStuff.Mixer
         
         private void Start()
         {
-            GameManager.OnGameEnd += CloseApp;
-
             gameObject.SetActive(false);
             initialPosition = gameObject.transform.position;
             closeButton.onClick.AddListener(CloseApp);
-        }
-
-        private void OnDestroy()
-        {
-            GameManager.OnGameEnd -= CloseApp;
         }
 
         public void OpenApp()

@@ -33,7 +33,6 @@ namespace Script.Core.Popups
             closeButton.onClick.AddListener(CloseApp);
             
             askaMessageSender.OnNewMessageSend += ShowNotification;
-            GameManager.OnGameEnd += CloseApp;
             notificationDisappearCts = new CancellationTokenSource();
             
             gameObject.SetActive(false);
@@ -48,7 +47,6 @@ namespace Script.Core.Popups
         private void OnDestroy()
         {
             askaMessageSender.OnNewMessageSend -= ShowNotification;
-            GameManager.OnGameEnd -= CloseApp;
             notificationDisappearCts?.Dispose();
         }
 
@@ -76,7 +74,7 @@ namespace Script.Core.Popups
             gameObject.SetActive(true);
             isOpen = true;
             transform.localScale = new Vector3(1, 1, 1);
-            transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo);
+            await transform.DOScale(0.9f, 0.2f).SetLoops(2, LoopType.Yoyo);
             
             DisappearAfterTimer(notificationDisappearCts.Token).Forget();
         }
@@ -111,9 +109,12 @@ namespace Script.Core.Popups
 
         private void CancelCts()
         {
-            notificationDisappearCts.Cancel();
-            notificationDisappearCts.Dispose();
-            notificationDisappearCts = new CancellationTokenSource();
+            if (notificationDisappearCts != null)
+            {
+                notificationDisappearCts.Cancel();
+                notificationDisappearCts.Dispose();
+                notificationDisappearCts = new CancellationTokenSource();
+            }
         }
     }
 }

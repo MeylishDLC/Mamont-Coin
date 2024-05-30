@@ -64,7 +64,6 @@ namespace Script.Apps.ChatScript.Aska
             
             AskaChat.OnChatChanged += ChangeChat;
             askaMessageSender.OnNewMessageSend += SetNotification;
-            GameManager.OnGameEnd += CloseApp;
 
             notificationIcon.gameObject.SetActive(false);
             notificationCounterText = notificationIcon.GetComponentInChildren<TMP_Text>();
@@ -78,7 +77,6 @@ namespace Script.Apps.ChatScript.Aska
         {
             AskaChat.OnChatChanged -= ChangeChat;
             askaMessageSender.OnNewMessageSend -= SetNotification;
-            GameManager.OnGameEnd -= CloseApp;
         }
 
         public void ChangeChat(AskaChat chat)

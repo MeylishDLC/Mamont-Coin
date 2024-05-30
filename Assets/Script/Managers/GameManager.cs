@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -8,6 +9,7 @@ using Script.Apps.ChatScript;
 using Script.Apps.ChatScript.Skamp;
 using Script.Apps.NotePadScript;
 using Script.Apps.SmallStuff.AppsOnWorkspace.YunixMusic;
+using Script.Core.Boosts;
 using Script.Core.Popups;
 using Script.Core.Popups.Spawns;
 using Script.Data;
@@ -34,8 +36,9 @@ namespace Script.Managers
     
         [SerializeField] private SkypeApp skypeApp; 
         [SerializeField] private NotepadInteractable notepadInteractive;
+        [SerializeField] private NotepadWithChoices notepadWithChoices;
         [SerializeField] private YunixMusicApp yunixMusicApp;
-
+        
         [Header("Introduction")] 
         [SerializeField] private RandomSpawner popupSpawner;
         [SerializeField] private UnityEvent beginningDialogueSequence;
@@ -49,14 +52,14 @@ namespace Script.Managers
 
         [SerializeField] private Vector3 skypeSetPosition;
         [SerializeField] private Vector3 notepadSetPosition;
-
+        
         private SkampMessageSender _skampMessageSender;
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
         private IDataBank _dataBank;
         
-        public static event Action OnGameEnd;
-        
+        private List<Boost> boosts = new();
+        private PopupContainer popupContainer;
 
         [Inject]
         public void Construct(SpecificBoostSetter specificBoostSetter, SkampMessageSender skampMessageSender, 
@@ -68,8 +71,17 @@ namespace Script.Managers
         }
         private void Start()
         {
-            interactionOff.SetActive(false);
+            boosts = notepadWithChoices.ScammerChoiceBoost.Values
+                .Concat(notepadWithChoices.HackerChoiceBoost.Values)
+                .ToList();
             
+            popupContainer = FindAnyObjectByType<PopupContainer>();
+            if (popupContainer is null)
+            {
+                Debug.LogError("Popup container was not found in the scene");
+            }
+            
+            interactionOff.SetActive(false);
             if (!Debugging)
             {
                 GameStart();
@@ -137,8 +149,10 @@ namespace Script.Managers
         
         private async UniTask GameEndAsync()
         {
-            //todo for every windowed app
-            OnGameEnd?.Invoke();
+            CloseAllApps();
+            DisableAllBoosts();
+            popupSpawner.StopSpawn();
+            popupContainer.Clear();
         
             clickerObject.SetActive(false);
             shopPanelObject.SetActive(false);
@@ -161,6 +175,28 @@ namespace Script.Managers
         
             bankCardForm.SetActive(true);
             await bankCardForm.transform.DOScale(bankCardFormScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();
+        }
+
+        private void DisableAllBoosts()
+        {
+            foreach (var boost in boosts)
+            {
+                boost.Disable();
+            }
+        }
+        private void CloseAllApps()
+        {
+            var sceneObjects = FindObjectsByType<MonoBehaviour>((FindObjectsSortMode) FindObjectsInactive.Exclude);
+
+            foreach (var currentObj in sceneObjects)
+            {
+                var currentComponent = currentObj.GetComponent<IWindowedApp>();
+
+                if (currentComponent != null)
+                {
+                    currentComponent.CloseApp();
+                }
+            }
         }
         
     }

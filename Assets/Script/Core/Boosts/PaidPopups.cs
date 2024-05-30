@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Core.Popups;
@@ -27,6 +28,12 @@ namespace Script.Core.Boosts
             var addAmount = CoinsPerPopupWindow;
             OnBoostAddClicks.Invoke(addAmount);
             Debug.Log("+ money for AD");
+        }
+
+        private void OnDisable()
+        {
+            IsEnabled = false;
+            paidAdSpawner.StopSpawn();
         }
     }
 }

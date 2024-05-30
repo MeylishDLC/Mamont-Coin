@@ -21,7 +21,6 @@ namespace Script.Core.Popups
         public override void OpenApp()
         {
             isOpen = true;
-            GameManager.OnGameEnd += CloseApp;
             button = GetComponent<Button>();
             button.onClick.AddListener(OnClick);
             
@@ -43,7 +42,6 @@ namespace Script.Core.Popups
             }
             
             AudioManager.StopMusic("Skype Call", STOP_MODE.IMMEDIATE);
-            GameManager.OnGameEnd -= CloseApp;
             Destroy(gameObject);
         }
     }

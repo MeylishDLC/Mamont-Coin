@@ -47,7 +47,6 @@ namespace Script.Apps.Duralingo
         {
             duralingoTimerCts = new CancellationTokenSource();
             SubmitButton.onClick.AddListener(OnButtonSubmit);
-            GameManager.OnGameEnd += CloseApp;
             
             gameScreen.SetActive(true);
             loseScreen.SetActive(false);
@@ -58,7 +57,6 @@ namespace Script.Apps.Duralingo
         {
             SubmitButton.onClick.RemoveAllListeners();
             duralingoTimerCts?.Dispose();
-            GameManager.OnGameEnd -= CloseApp;
         }
 
         private async void OnButtonSubmit()

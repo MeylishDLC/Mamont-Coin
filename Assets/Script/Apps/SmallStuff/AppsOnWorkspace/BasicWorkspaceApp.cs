@@ -20,7 +20,6 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
         public bool IsOpen { get; protected set; }
         protected virtual void Start()
         {
-            GameManager.OnGameEnd += CloseApp;
             closeButton.onClick.AddListener(CloseApp);
             openIconButton.onClick.AddListener(OpenApp);
             
@@ -28,10 +27,6 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace
             initPos = gameObject.transform.localPosition;
             
             gameObject.SetActive(false);
-        }
-        private void OnDestroy()
-        {
-            GameManager.OnGameEnd -= CloseApp;
         }
         public virtual void OpenApp()
         {

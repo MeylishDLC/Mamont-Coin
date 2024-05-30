@@ -26,7 +26,6 @@ namespace Script.Apps.NotePadScript
         private Vector3 initPos;
         private void Start()
         {
-            GameManager.OnGameEnd += CloseApp;
             gameObject.SetActive(false);
 
             foreach (var boostInfo in chosenBoosts)
@@ -40,7 +39,6 @@ namespace Script.Apps.NotePadScript
 
         private void OnDestroy()
         {
-            GameManager.OnGameEnd -= CloseApp;
             closeButton.onClick.RemoveAllListeners();
         }
 

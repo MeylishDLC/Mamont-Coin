@@ -14,6 +14,7 @@ namespace Script.Managers
     public class GameEventsHandler : MonoBehaviour
     {
         [SerializeField] private SerializedDictionary<int, UnityEvent> clickCountEventPair;
+        [SerializeField] private GameManager GameManager;
         
         private int goalIndex;
         private int currentGoal;
@@ -49,7 +50,13 @@ namespace Script.Managers
                     {
                         currentGoal = keys[goalIndex];
                     }
-                    Debug.Log($"current goal: {currentGoal}");
+
+                    if (goalIndex == clickCountEventPair.Count)
+                    {
+                        GameManager.GameEnd();
+                        goalIndex++;
+                    }
+                    Debug.Log($"Current goal: {currentGoal}");
                 }
             }
             else

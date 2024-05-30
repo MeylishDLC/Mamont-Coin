@@ -67,14 +67,12 @@ namespace Script.Apps.ChatScript.Skamp
             initPos = gameObject.transform.localPosition;
             
             SkampMessageSender.MessageRecieved += OnNewNotificationGet;
-            GameManager.OnGameEnd += CloseApp;
             closeButton.onClick.AddListener(CloseApp);
         }
         
         private void OnDestroy()
         {
             SkampMessageSender.MessageRecieved -= OnNewNotificationGet;
-            GameManager.OnGameEnd -= CloseApp;
             closeButton.onClick.RemoveAllListeners();
         }
 

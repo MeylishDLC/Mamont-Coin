@@ -14,15 +14,13 @@ namespace Script.Core.Boosts
         public static Action<BigInteger> OnBoostAddClicks;
         private void OnDestroy()
         {
-            GameManager.OnGameEnd -= Disable;
         }
 
         public virtual void Activate()
         {
-            GameManager.OnGameEnd += Disable;
         }
 
-        private void Disable()
+        public virtual void Disable()
         {
             IsEnabled = false;
         }

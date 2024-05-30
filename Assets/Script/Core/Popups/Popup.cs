@@ -24,8 +24,6 @@ namespace Script.Core.Popups
         {
             AudioManager = audioManager;
             FMODEvents = fmodEvents;
-
-            GameManager.OnGameEnd += CloseApp;
         }
 
         private void Start()
@@ -34,11 +32,6 @@ namespace Script.Core.Popups
             {
                 gameObject.SetActive(false);
             }
-        }
-
-        private void OnDestroy()
-        {
-            GameManager.OnGameEnd -= CloseApp;
         }
 
         public virtual void OpenApp()

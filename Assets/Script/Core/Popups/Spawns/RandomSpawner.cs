@@ -19,27 +19,12 @@ namespace Script.Core.Popups.Spawns
         public void StartSpawn()
         {
             GetSpawnParent();
-            
-            GameManager.OnGameEnd += ClearSpawnParent;
-            GameManager.OnGameEnd += StopSpawn;
             StartSpawnAsync().Forget();
         }
 
         public void StopSpawn()
         {
-            GameManager.OnGameEnd -= ClearSpawnParent;
-            GameManager.OnGameEnd -= StopSpawn;
-
             SpawnActive = false;
-        }
-
-        public void ClearSpawnParent()
-        {
-            if (spawnParent is null)
-            {
-                return;
-            }
-            spawnParent.Clear();
         }
         public Vector2 GetRandomPosition()
         {

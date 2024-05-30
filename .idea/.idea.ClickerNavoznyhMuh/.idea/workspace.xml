@@ -155,7 +155,8 @@
       <workItem from="1716880295410" duration="31967000" />
       <workItem from="1716920290118" duration="6932000" />
       <workItem from="1716950499724" duration="12634000" />
-      <workItem from="1716986692992" duration="10164000" />
+      <workItem from="1716986692992" duration="12646000" />
+      <workItem from="1717046896058" duration="1986000" />
     </task>
     <servers />
   </component>
@@ -183,6 +184,45 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Script/Managers/GameEventsHandler.cs</url>
+          <line>55</line>
+          <properties documentPath="G:\Data\UniProjects\Prjcs\unity\ClickerNavoznyhMuh\Assets\Script\Managers\GameEventsHandler.cs" initialLine="55" containingFunctionPresentation="Method 'CheckEnoughClicks'">
+            <startOffsets>
+              <option value="1656" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1678" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Script/Managers/GameManager.cs</url>
+          <line>151</line>
+          <properties documentPath="G:\Data\UniProjects\Prjcs\unity\ClickerNavoznyhMuh\Assets\Script\Managers\GameManager.cs" initialLine="151" containingFunctionPresentation="Method 'GameEndAsync'">
+            <startOffsets>
+              <option value="5278" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5293" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Script/Managers/GameManager.cs</url>
+          <line>146</line>
+          <properties documentPath="G:\Data\UniProjects\Prjcs\unity\ClickerNavoznyhMuh\Assets\Script\Managers\GameManager.cs" initialLine="146" containingFunctionPresentation="Method 'GameEnd'">
+            <startOffsets>
+              <option value="5167" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5191" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
