@@ -6,7 +6,7 @@ namespace Script.UI.Screens
 {
     public class EndingScreen : MonoBehaviour
     {
-        //todo: ????? some ending better than this shit
+        //todo: ????? some better ending  
         private TypeText text;
         private void Start()
         {

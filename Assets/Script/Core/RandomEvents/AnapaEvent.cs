@@ -100,7 +100,7 @@ namespace Script.Core.RandomEvents
             replyButton.gameObject.SetActive(false);
             
             var message = Object.Instantiate(playerMessageWithImagePrefab, messageContainer);
-            var messagePic = message.GetComponentInChildren<UnityEngine.UI.Image>(); 
+            var messagePic = message.GetComponentInChildren<Image>(); 
             messagePic.sprite = currentChosenPhoto.Picture;
             await UniTask.Delay(delayBeforeAnswerMilliseconds);
             askaSender.StartDialogueSequence(askaDialogues.Keys.ElementAt(2), askaDialogues);

@@ -156,7 +156,7 @@
       <workItem from="1716920290118" duration="6932000" />
       <workItem from="1716950499724" duration="12634000" />
       <workItem from="1716986692992" duration="12646000" />
-      <workItem from="1717046896058" duration="1986000" />
+      <workItem from="1717046896058" duration="3810000" />
     </task>
     <servers />
   </component>
@@ -184,19 +184,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Script/Managers/GameEventsHandler.cs</url>
-          <line>55</line>
-          <properties documentPath="G:\Data\UniProjects\Prjcs\unity\ClickerNavoznyhMuh\Assets\Script\Managers\GameEventsHandler.cs" initialLine="55" containingFunctionPresentation="Method 'CheckEnoughClicks'">
-            <startOffsets>
-              <option value="1656" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1678" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Script/Managers/GameManager.cs</url>
