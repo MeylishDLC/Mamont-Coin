@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using Script.Data;
 using UnityEngine;
 
 namespace Script.Core.Boosts

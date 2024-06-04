@@ -23,7 +23,7 @@ namespace Script.Apps.Duralingo
         }
         public void AddWordToSentence(TextObject textObject)
         {
-            if (!textObject.isAdded)
+            if (!textObject.IsAdded)
             {
                 textObject.gameObject.transform.SetParent(gameObject.transform);
                 currentSentence.Add(textObject);
@@ -32,7 +32,7 @@ namespace Script.Apps.Duralingo
 
         public void RemoveWordFromSentence(TextObject textObject)
         {
-            if (textObject.isAdded)
+            if (textObject.IsAdded)
             {
                 textObject.gameObject.transform.SetParent(textObjectsContainer.transform);
                 currentSentence.Remove(textObject);

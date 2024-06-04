@@ -1,7 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Script.Apps.ChatScript.Skamp;
-using Script.Core.RandomEvents;
 using TMPro;
 using UnityEngine;
 
@@ -20,6 +19,7 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer
         [SerializeField] private GameObject chatMRTMessageWithPicturePrefab;
         [SerializeField] private int MRTAnswerDelayMilliseconds;
         private bool hasRequests;
+        
         public static event Action OnImageGenerated;
         protected override void Awake()
         {
@@ -30,12 +30,12 @@ namespace Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer
 
         private void UserSendMessage(string message)
         {
-            var newMessage = new Message {text = message};
+            var newMessage = new Message {Text = message};
         
             var newText = Instantiate(userMessagePrefab, chatContainer);
         
-            newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
-            newMessage.textObject.text = newMessage.text;
+            newMessage.TextObject = newText.GetComponentInChildren<TextMeshProUGUI>();
+            newMessage.TextObject.text = newMessage.Text;
             MRTSendMessageAsync().Forget();
         }
 

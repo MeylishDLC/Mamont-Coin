@@ -1,8 +1,4 @@
-﻿using Script.Data;
-using Script.Managers;
-using Script.Sound;
-
-namespace Script.Core.Buffs
+﻿namespace Script.Core.Buffs
 {
     public class AddMultiplierBuff: Buff
     {

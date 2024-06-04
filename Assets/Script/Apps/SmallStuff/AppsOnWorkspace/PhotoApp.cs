@@ -1,7 +1,5 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Script.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

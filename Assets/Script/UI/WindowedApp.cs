@@ -2,7 +2,7 @@
 {
     public interface IWindowedApp
     {
-        void OpenApp();
-        void CloseApp();
+        public void OpenApp();
+        public void CloseApp();
     }
 }

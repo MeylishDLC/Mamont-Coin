@@ -19,9 +19,9 @@ namespace Script.Core.Buffs
         [SerializeField] protected Button button;
         [SerializeField] protected TMP_Text priceText;
 
-        public IDataBank DataBank { get; private set; }
-        public AudioManager AudioManager { get; private set; }
-        public FMODEvents FMODEvents { get; private set; }
+        protected IDataBank DataBank { get; private set; }
+        protected AudioManager AudioManager { get; private set; }
+        protected FMODEvents FMODEvents { get; private set; }
 
         [Inject]
         public void Construct(IDataBank dataBank, AudioManager audioManager, FMODEvents fmodEvents)
@@ -44,7 +44,10 @@ namespace Script.Core.Buffs
             UpdateButtonInteractive(0); 
         }
 
-        public virtual void BuyBuff() { }
+        public virtual void BuyBuff()
+        {
+            throw new NotImplementedException();
+        }
         private void OnDestroy()
         {
             ClickHandler.ClicksUpdated -= UpdateButtonInteractive;

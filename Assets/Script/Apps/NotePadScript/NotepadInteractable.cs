@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Script.Managers;
 using Script.UI;
 using TMPro;
 using UnityEngine;
@@ -21,6 +19,7 @@ namespace Script.Apps.NotePadScript
     
         [Header("Chosen Boosts")] 
         [SerializeField] private List<TMP_Text> chosenBoosts;
+        
         private int chosenBoostAmount;
         private bool isOpen;
         private Vector3 initPos;

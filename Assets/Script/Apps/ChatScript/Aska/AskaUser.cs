@@ -1,7 +1,5 @@
 ﻿using Script.Data;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UIElements;
 
 namespace Script.Apps.ChatScript.Aska
 {

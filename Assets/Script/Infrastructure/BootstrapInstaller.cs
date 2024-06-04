@@ -24,8 +24,10 @@ namespace Script.Infrastructure
         {
             var audioManager = Container.Resolve<AudioManager>();
             Container.Bind<FMODEvents>().FromInstance(FMODEvents).AsSingle();
-            audioManager.masterBus = RuntimeManager.GetBus("bus:/");
-            audioManager.musicBus = RuntimeManager.GetBus("bus:/Music");
+            
+            //attempt to fix the trouble with getting busses in WebGL
+            audioManager.MasterBus = RuntimeManager.GetBus("bus:/");
+            audioManager.MusicBus = RuntimeManager.GetBus("bus:/Music");
             audioManager.SFXBus = RuntimeManager.GetBus("bus:/SFX");
         }
     }

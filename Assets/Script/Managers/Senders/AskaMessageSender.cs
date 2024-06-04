@@ -79,12 +79,12 @@ namespace Script.Managers.Senders
         
         private void SendNewMessage(string message, AskaChat chat)
         {
-            var newMessage = new Message {text = message};
+            var newMessage = new Message {Text = message};
         
             var newText = Instantiate(TextObject, chat.MessageContainer.transform);
         
-            newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
-            newMessage.textObject.text = newMessage.text;
+            newMessage.TextObject = newText.GetComponentInChildren<TextMeshProUGUI>();
+            newMessage.TextObject.text = newMessage.Text;
         
             newText.transform.DOScale(aska.MessageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
         
@@ -92,13 +92,13 @@ namespace Script.Managers.Senders
         }
         private void SendNewMessage(string message, AskaChat chat, GameObject messagePrefab)
         {
-            var newMessage = new Message {text = message};
+            var newMessage = new Message {Text = message};
         
             var newText = Instantiate(messagePrefab, chat.MessageContainer.transform);
 
 
-            newMessage.textObject = newText.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
-            newMessage.textObject.text = newMessage.text;
+            newMessage.TextObject = newText.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
+            newMessage.TextObject.text = newMessage.Text;
         
             newText.transform.DOScale(aska.MessageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
         

@@ -1,8 +1,6 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Core;
-using Script.Data;
 using UnityEngine;
 using UnityEngine.UI;
 

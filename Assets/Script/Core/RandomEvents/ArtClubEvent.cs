@@ -1,13 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Cysharp.Threading.Tasks;
 using Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer;
 using Script.Data.Dialogues;
 using Script.Managers.Senders;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using Zenject;
 using Object = UnityEngine.Object;
 
 namespace Script.Core.RandomEvents

@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using Script.Core.Popups;
+﻿using Script.Core.Popups;
 using Script.Core.Popups.Spawns;
-using Script.Data;
-using Script.Managers;
-using Script.UI;
 using UnityEngine;
 
 namespace Script.Core.Boosts
@@ -23,17 +16,17 @@ namespace Script.Core.Boosts
             paidAdSpawner.StartSpawn();
         }
 
+        public override void Disable()
+        {
+            base.Disable();
+            paidAdSpawner.StopSpawn();
+            PaidAdPopup.OnPaidPopupClick -= PayForAd;
+        }
         private void PayForAd()
         {
             var addAmount = CoinsPerPopupWindow;
             OnBoostAddClicks.Invoke(addAmount);
             Debug.Log("+ money for AD");
-        }
-
-        private void OnDisable()
-        {
-            IsEnabled = false;
-            paidAdSpawner.StopSpawn();
         }
     }
 }

@@ -34,7 +34,6 @@ namespace Script.Apps.Clicker
         [SerializeField] private TMP_Text multiplierText;
         [SerializeField] private TMP_Text coinToRubleText;
         [SerializeField] private int coinExchangeRate;
-        [SerializeField] private ProgressHandler progressHandler;
         
         private bool isAnimated;
         private ClickHandler clickHandler;

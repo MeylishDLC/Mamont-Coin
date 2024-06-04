@@ -1,7 +1,4 @@
 ﻿using System;
-using Script.Managers;
-using Script.Sound;
-using Zenject;
 
 namespace Script.Core.Popups
 {

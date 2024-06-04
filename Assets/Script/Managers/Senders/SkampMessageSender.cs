@@ -11,13 +11,13 @@ using UnityEngine;
 namespace Script.Managers.Senders
 {
     public class SkampMessageSender : MessageSender
-    {
-        public static event Action MessageRecieved;
+    { 
         [SerializeField] private SkypeApp skypeApp;
     
         private Color profileColorActive;
         private Color profileColorInactive;
         private bool ScammerChatActive { get; set; } = true;
+        public static event Action MessageRecieved;
         private void Start()
         {
             skypeApp.scammerChat.SetActive(true);
@@ -54,12 +54,12 @@ namespace Script.Managers.Senders
 
         private void SendNewMessage(string message, Transform chatContainer)
         {
-            var newMessage = new Message {text = message};
+            var newMessage = new Message {Text = message};
         
             var newText = Instantiate(TextObject, chatContainer);
         
-            newMessage.textObject = newText.GetComponentInChildren<TextMeshProUGUI>();
-            newMessage.textObject.text = newMessage.text;
+            newMessage.TextObject = newText.GetComponentInChildren<TextMeshProUGUI>();
+            newMessage.TextObject.text = newMessage.Text;
         
             newText.transform.DOScale(skypeApp.messageScale, 0.1f).SetLoops(2, LoopType.Yoyo);
         

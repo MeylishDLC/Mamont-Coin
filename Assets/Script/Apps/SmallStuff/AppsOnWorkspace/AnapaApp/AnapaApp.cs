@@ -3,13 +3,14 @@
 namespace Script.Apps.SmallStuff.AppsOnWorkspace.AnapaApp
 {
     public class AnapaApp: BasicWorkspaceApp
-    {
-        public Photo[] photos;
+    { 
+        public Photo[] Photos;
         [SerializeField] private PhotoApp photoApp;
+        
         protected override void Start()
         {
             base.Start();
-            foreach (var photo in photos)
+            foreach (var photo in Photos)
             {
                 photo.Button.onClick.AddListener(photo.OnButtonClicked);
                 photo.OnPhotoClicked += OpenPhoto;

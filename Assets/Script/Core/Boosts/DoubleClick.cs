@@ -1,5 +1,4 @@
-﻿using System;
-using System.Numerics;
+﻿using System.Numerics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,15 +21,15 @@ namespace Script.Core.Boosts
             IsEnabled = true;
             ClickHandler.ClicksUpdated += OnClick;
         }
-
-        private void OnDisable()
-        {
-            ClickHandler.ClicksUpdated -= OnClick;
-        }
-
         public void Improve()
         {
             currentDoubleClickAmount = DoubleClickImproveAmount;
+        }
+
+        public override void Disable()
+        {
+            base.Disable();
+            ClickHandler.ClicksUpdated -= OnClick;
         }
 
         private bool DoubleClickChance()
@@ -42,7 +41,6 @@ namespace Script.Core.Boosts
             }
             return false;
         }
-
         private void OnClick(BigInteger addAmount)
         {
             if (!DoubleClickChance())
@@ -52,7 +50,6 @@ namespace Script.Core.Boosts
 
             addAmount *= currentDoubleClickAmount;
             Debug.Log($"Double click = {addAmount}, {currentDoubleClickAmount}");
-            //addAmount *= addAmount - 1;
             OnBoostAddClicks.Invoke(addAmount);
         }
     }

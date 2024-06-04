@@ -1,14 +1,11 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Script.Core.Popups;
 using Script.Core.Popups.Spawns;
 using Script.Managers;
 using Script.Sound;
 using Script.UI;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
 

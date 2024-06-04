@@ -1,9 +1,6 @@
 using System;
 using System.Numerics;
 using Script.Data;
-using Script.Managers;
-using TMPro;
-using UnityEngine;
 
 namespace Script.Core
 {

@@ -9,12 +9,7 @@ namespace Script.InputSystem
     [RequireComponent(typeof(PlayerInput))]
     public class InputManager : MonoBehaviour
     {
-        private Vector2 pointerPos = Vector2.zero;
-    
         private bool mouseButtonPressed;
-        private bool keyboardButtonPressed;
-        private bool isDragging;
-
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
         
@@ -36,31 +31,6 @@ namespace Script.InputSystem
             {
                 mouseButtonPressed = false;
             }
-        }
-
-        public void KeyboardButtonPressed(InputAction.CallbackContext context)
-        {
-            if (context.performed)
-            {
-                keyboardButtonPressed = true;
-            }
-            else if (context.canceled)
-            {
-                keyboardButtonPressed = false;
-            }
-        }
-        
-        public bool GetMouseButtonPressed()
-        {
-            bool result = mouseButtonPressed;
-            mouseButtonPressed = false;
-            return result;
-        }
-        public bool GetKeyboardButtonPressed()
-        {
-            bool result = keyboardButtonPressed;
-            keyboardButtonPressed = false;
-            return result;
         }
 
     }

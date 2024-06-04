@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Script.Core;
-using Script.Core.Popups;
 using Script.Data;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,11 +11,10 @@ namespace Script.Managers
     public class GameEventsHandler : MonoBehaviour
     {
         [SerializeField] private SerializedDictionary<int, UnityEvent> clickCountEventPair;
-        [SerializeField] private GameManager GameManager;
+        [SerializeField] private GameManager gameManager;
         
         private int goalIndex;
         private int currentGoal;
-
         private IDataBank dataBank;
         
         [Inject]
@@ -53,7 +49,7 @@ namespace Script.Managers
 
                     if (goalIndex == clickCountEventPair.Count)
                     {
-                        GameManager.GameEnd();
+                        gameManager.GameEnd();
                         goalIndex++;
                     }
                     Debug.Log($"Current goal: {currentGoal}");

@@ -1,6 +1,4 @@
-﻿using System;
-using Script.Data;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Script.Core.Boosts
 {

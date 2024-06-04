@@ -1,9 +1,6 @@
-﻿using System.ComponentModel;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Script.Managers;
-using Script.Sound;
 using UnityEngine;
 using Zenject;
 
@@ -81,7 +78,7 @@ namespace Script.Core.Popups.Spawns
         }
         public void StopSpawn()
         {
-            //
+            //Stops on itself
         }
     }
 }

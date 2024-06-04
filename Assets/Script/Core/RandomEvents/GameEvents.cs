@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using Script.Managers;
-using Script.Managers.Senders;
-using Script.Sound;
+﻿using Script.Managers.Senders;
 using UnityEngine;
 using Zenject;
 

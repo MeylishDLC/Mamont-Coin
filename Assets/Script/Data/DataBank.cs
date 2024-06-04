@@ -1,5 +1,4 @@
-﻿using System;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace Script.Data
 {
@@ -7,7 +6,5 @@ namespace Script.Data
     {
         public BigInteger Clicks { get; set; }
         public BigInteger Multiplier { get; set; } = 1;
-
-        public static Action OnFinalGoalReached;
     }
 }

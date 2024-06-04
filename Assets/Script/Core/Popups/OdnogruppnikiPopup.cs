@@ -1,8 +1,6 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Script.Apps.SmallStuff.AppsOnWorkspace.InternetExplorer;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Script.Core.Popups

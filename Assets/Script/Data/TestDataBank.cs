@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Script.Data
 {
+    //todo: finish savings???
     public class TestDataBank: IDataBank
     {
         private BigInteger clicks;

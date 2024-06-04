@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Script.Managers;
 using Script.Sound;
 using Script.UI;

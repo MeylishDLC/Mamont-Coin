@@ -52,7 +52,7 @@ namespace Script.Core.RandomEvents
 
         private void OnEventEnd()
         {
-            foreach (var photo in anapaApp.photos)
+            foreach (var photo in anapaApp.Photos)
             {
                 photo.OnPhotoClicked -= ChoosePhoto;
             }
@@ -76,7 +76,7 @@ namespace Script.Core.RandomEvents
             else
             {
                 Answer().Forget();
-                foreach (var photo in anapaApp.photos)
+                foreach (var photo in anapaApp.Photos)
                 {
                     photo.OnPhotoClicked += ChoosePhoto;
                 }

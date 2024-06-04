@@ -1,6 +1,4 @@
-﻿using Unity.VisualScripting;
-
-namespace Script.Data
+﻿namespace Script.Data
 {
     public enum ChatCharacter
     {

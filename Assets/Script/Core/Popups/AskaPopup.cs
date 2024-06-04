@@ -2,7 +2,6 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Script.Apps.ChatScript.Aska;
-using Script.Managers;
 using Script.Managers.Senders;
 using TMPro;
 using UnityEngine;

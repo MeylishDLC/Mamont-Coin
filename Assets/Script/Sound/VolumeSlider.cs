@@ -34,10 +34,10 @@ namespace Script.Sound
             switch (volumeType)
             {
                 case VolumeType.MASTER:
-                    volumeSlider.value = audioManager.masterVolume;
+                    volumeSlider.value = audioManager.MasterVolume;
                     break;
                 case VolumeType.MUSIC:
-                    volumeSlider.value = audioManager.musicVolume;
+                    volumeSlider.value = audioManager.MusicVolume;
                     break;
                 case VolumeType.SFX:
                     volumeSlider.value = audioManager.SFXVolume;
@@ -53,10 +53,10 @@ namespace Script.Sound
             switch (volumeType)
             {
                 case VolumeType.MASTER:
-                    audioManager.masterVolume = volumeSlider.value;
+                    audioManager.MasterVolume = volumeSlider.value;
                     break;
                 case VolumeType.MUSIC:
-                    audioManager.musicVolume = volumeSlider.value;
+                    audioManager.MusicVolume = volumeSlider.value;
                     break;
                 case VolumeType.SFX:
                     audioManager.SFXVolume = volumeSlider.value;

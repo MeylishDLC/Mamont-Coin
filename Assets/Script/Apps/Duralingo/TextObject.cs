@@ -8,7 +8,7 @@ namespace Script.Apps.Duralingo
     {
         private Vector2 originalPosition;
         [SerializeField] private TextField textField;
-        public bool isAdded { get; private set; }
+        public bool IsAdded { get; private set; }
         void Start()
         {
             originalPosition = transform.localPosition;
@@ -16,7 +16,7 @@ namespace Script.Apps.Duralingo
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            // Do nothing
+            //Do nothing
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -48,12 +48,12 @@ namespace Script.Apps.Duralingo
             if (isOverTargetUIObject)
             {
                 textField.AddWordToSentence(this);
-                isAdded = true;
+                IsAdded = true;
             }
             else
             {
                 textField.RemoveWordFromSentence(this);
-                isAdded = false;
+                IsAdded = false;
                 transform.localPosition = originalPosition;
             }
             textField.RefreshLayout();

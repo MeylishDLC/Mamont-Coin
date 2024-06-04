@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Cysharp.Threading.Tasks;
+﻿using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using Script.Sound;
 using UnityEngine;
-using Zenject;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Script.Managers
@@ -14,18 +10,18 @@ namespace Script.Managers
     public class AudioManager : MonoBehaviour
     {
         [BankRef]
-        public List<string> banks;
+        public List<string> Banks;
         
         [Header("Volume")] 
         [Range(0,1)]
-        public float masterVolume = 1;
+        public float MasterVolume = 1;
         [Range(0,1)]
-        public float musicVolume = 1;
+        public float MusicVolume = 1;
         [Range(0,1)]
         public float SFXVolume = 1;
 
-        public Bus masterBus;
-        public Bus musicBus;
+        public Bus MasterBus;
+        public Bus MusicBus;
         public Bus SFXBus;
 
         private Dictionary<string, EventInstance> eventInstances;
@@ -40,8 +36,8 @@ namespace Script.Managers
 
         private void Update()
         {
-            masterBus.setVolume(masterVolume);
-            musicBus.setVolume(musicVolume);
+            MasterBus.setVolume(MasterVolume);
+            MusicBus.setVolume(MusicVolume);
             SFXBus.setVolume(SFXVolume);
         }
 
@@ -107,7 +103,7 @@ namespace Script.Managers
         }
         private void LoadBanks()
         {
-            foreach (var b in banks)
+            foreach (var b in Banks)
             {
                 RuntimeManager.LoadBank(b, true);
                 Debug.Log("Loaded bank " + b);

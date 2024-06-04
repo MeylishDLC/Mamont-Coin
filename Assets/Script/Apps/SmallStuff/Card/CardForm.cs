@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,7 +5,6 @@ namespace Script.Apps.SmallStuff.Card
 {
     public class CardForm : MonoBehaviour
     {
-        //todo: check input and restrict all wrong variations
         public bool numberSet { get; set; }
         public bool nameSet { get; set; }
         public bool daySet { get; set; }

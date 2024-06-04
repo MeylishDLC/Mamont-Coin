@@ -1,10 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using Script.Core;
 using Script.Core.Boosts;
-using Script.Data;
-using UnityEngine;
 
 namespace Script.Managers
 {

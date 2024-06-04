@@ -1,9 +1,5 @@
 ﻿using System;
-using NUnit.Framework;
-using Script.Core.Popups;
-using Script.Managers;
 using Script.Managers.Senders;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

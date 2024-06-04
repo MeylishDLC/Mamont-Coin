@@ -1,7 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using Script.Data;
-using Script.Managers;
-using Script.Sound;
 using UnityEngine;
 
 namespace Script.Core.Buffs

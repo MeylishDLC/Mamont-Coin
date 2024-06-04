@@ -1,9 +1,6 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using NUnit.Framework;
 using Script.Core;
-using Script.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,7 +50,7 @@ namespace Script.UI
         }
         public void OpenApp()
         {
-            //
+            //Do nothing
         }
 
         public void CloseApp()

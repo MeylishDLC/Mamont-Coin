@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Numerics;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -12,8 +10,6 @@ using Script.Sound;
 using Script.UI;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 

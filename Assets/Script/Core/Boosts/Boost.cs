@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Numerics;
-using FMODUnity;
-using Script.Data;
-using Script.Managers;
 using UnityEngine;
-using Zenject;
 
 namespace Script.Core.Boosts
 {
@@ -12,17 +8,12 @@ namespace Script.Core.Boosts
     {
         protected bool IsEnabled { get; set; }
         public static Action<BigInteger> OnBoostAddClicks;
-        private void OnDestroy()
-        {
-        }
 
         public virtual void Activate()
         {
+            throw new NotImplementedException();
         }
 
-        public virtual void Disable()
-        {
-            IsEnabled = false;
-        }
+        public virtual void Disable() { IsEnabled = false; }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using NUnit.Framework;
-using Script.Managers;
 using UnityEngine;
 using Zenject;
 
@@ -26,7 +23,7 @@ namespace Script.Core.Popups.Spawns
         {
             SpawnActive = false;
         }
-        public Vector2 GetRandomPosition()
+        private Vector2 GetRandomPosition()
         {
             var randomX = Random.Range(0f, Screen.width);
             var randomY = Random.Range(0f, Screen.height);

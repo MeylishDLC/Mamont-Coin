@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3bd6c0ba4747629c9c0ee2b77a635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  banks:
-  - Master
+  Banks:
   - Master.strings
+  - Master
   - Music
   - SFX
-  masterVolume: 1
-  musicVolume: 1
+  MasterVolume: 1
+  MusicVolume: 1
   SFXVolume: 1

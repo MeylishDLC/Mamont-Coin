@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using FMOD.Studio;
-using Script.Apps.ChatScript;
 using Script.Apps.ChatScript.Skamp;
 using Script.Apps.NotePadScript;
 using Script.Apps.SmallStuff.AppsOnWorkspace.YunixMusic;
@@ -53,10 +50,9 @@ namespace Script.Managers
         [SerializeField] private Vector3 skypeSetPosition;
         [SerializeField] private Vector3 notepadSetPosition;
         
-        private SkampMessageSender _skampMessageSender;
+        private SkampMessageSender skampMessageSender;
         private AudioManager audioManager;
         private FMODEvents FMODEvents;
-        private IDataBank _dataBank;
         
         private List<Boost> boosts = new();
         private PopupContainer popupContainer;
@@ -65,7 +61,7 @@ namespace Script.Managers
         public void Construct(SpecificBoostSetter specificBoostSetter, SkampMessageSender skampMessageSender, 
             AudioManager audioManager, FMODEvents fmodEvents)
         {
-            this._skampMessageSender = skampMessageSender;
+            this.skampMessageSender = skampMessageSender;
             this.audioManager = audioManager;
             FMODEvents = fmodEvents;
         }
@@ -106,8 +102,8 @@ namespace Script.Managers
         
             beginningDialogueSequence.Invoke();
         
-            //todo: fix that shit
-            await UniTask.Delay(_skampMessageSender.DelayBetweenMessagesMillisecond * 4);
+            //todo: refactor
+            await UniTask.Delay(skampMessageSender.DelayBetweenMessagesMillisecond * 4);
             audioManager.PlayOneShot(FMODEvents.skypeMessageSound);
         
             var messageObject = Instantiate(clickerExeMessagePrefab, skypeApp.scammerChatContent.transform);
@@ -167,11 +163,11 @@ namespace Script.Managers
             skypeApp.OpenApp();
             
         
-            _skampMessageSender.SwitchToScammer();
+            skampMessageSender.SwitchToScammer();
             endingDialogueSequence.Invoke();
 
-            //todo: fix that shit too
-            await UniTask.Delay(_skampMessageSender.DelayBetweenMessagesMillisecond * 4);
+            //todo: refactor that too
+            await UniTask.Delay(skampMessageSender.DelayBetweenMessagesMillisecond * 4);
         
             bankCardForm.SetActive(true);
             await bankCardForm.transform.DOScale(bankCardFormScale, 0.1f).SetLoops(2, LoopType.Yoyo).ToUniTask();
@@ -186,6 +182,7 @@ namespace Script.Managers
         }
         private void CloseAllApps()
         {
+            //todo: ??? refactor
             var sceneObjects = FindObjectsByType<MonoBehaviour>((FindObjectsSortMode) FindObjectsInactive.Exclude);
 
             foreach (var currentObj in sceneObjects)

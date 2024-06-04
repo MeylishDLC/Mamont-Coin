@@ -5,7 +5,6 @@ using Script.Core.Popups.Spawns;
 using Script.Managers;
 using Script.Sound;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Zenject;
 
 namespace Script.Apps.SmallStuff.AppsOnWorkspace

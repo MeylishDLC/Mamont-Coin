@@ -2,14 +2,13 @@
 using Script.Data;
 using Script.Managers;
 using Script.Managers.Senders;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Script.Infrastructure
 {
     public class MainSceneInstaller: MonoInstaller
     {
-        [FormerlySerializedAs("ChatManager")] public SkampMessageSender skampMessageSender;
+        public SkampMessageSender skampMessageSender;
         public AskaMessageSender askaMessageSender;
         public override void InstallBindings()
         {

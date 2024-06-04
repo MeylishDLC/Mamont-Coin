@@ -1,10 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Script.Managers;
 using Script.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Script.Apps.SmallStuff.AppsOnWorkspace

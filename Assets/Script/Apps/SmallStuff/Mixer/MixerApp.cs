@@ -1,7 +1,5 @@
-using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Script.Managers;
 using Script.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +12,6 @@ namespace Script.Apps.SmallStuff.Mixer
         [SerializeField] private float scaleOnOpen;
         private Vector2 initialPosition;
         private bool isOpen;
-        
         private void Start()
         {
             gameObject.SetActive(false);
